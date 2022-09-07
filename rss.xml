@@ -5,15 +5,8 @@
         <link>http://example.com</link>
         <description>en?</description>
         <language>zh-CN</language>
-        <pubDate>Tue, 06 Sep 2022 19:07:53 +0800</pubDate>
-        <lastBuildDate>Tue, 06 Sep 2022 19:07:53 +0800</lastBuildDate>
-        <item>
-            <guid isPermalink="true">http://example.com/2022/09/06/thefirstblog/</guid>
-            <title>置顶文章</title>
-            <link>http://example.com/2022/09/06/thefirstblog/</link>
-            <pubDate>Tue, 06 Sep 2022 19:07:53 +0800</pubDate>
-            <description><![CDATA[  ]]></description>
-        </item>
+        <pubDate>Tue, 06 Sep 2022 15:37:23 +0800</pubDate>
+        <lastBuildDate>Tue, 06 Sep 2022 15:37:23 +0800</lastBuildDate>
         <item>
             <guid isPermalink="true">http://example.com/2022/09/06/hello-world/</guid>
             <title>Hello World</title>
