@@ -7,6 +7,14 @@
     "home_page_url": "http://example.com",
     "items": [
         {
+            "id": "http://example.com/2022/10/04/python-learn/",
+            "url": "http://example.com/2022/10/04/python-learn/",
+            "title": "python_learn",
+            "date_published": "2022-10-04T13:38:20.000Z",
+            "content_html": "<p>​\t字符串前加 b 表示这是一个 bytes 对象</p>\n<p>大佬博客 <span class=\"exturl\" data-url=\"aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMTMvMDYvcnNhX2FsZ29yaXRobV9wYXJ0X29uZS5odG1s\">RSA 算法原理（一） - 阮一峰的网络日志 (ruanyifeng.com)</span></p>\n<p>如果 n 可以被因数分解，d 就可以算出，也就意味着私匙被解密。</p>\n<p>0x -16 进制</p>\n<p>strxor 函数对两个等长字符串取异或</p>\n<p>getprime (n) 取一个 n 位素数</p>\n<p>powmod（m，e，n） = m^e%n;</p>\n<p>gcd 取最大公因数</p>\n<p>ord 返回一个字符的 ascii 值</p>\n<p>map () 函数会根据提供的函数对指定序列做映射。</p>\n<p>append 函数：将参数添加在字符串的后面</p>\n<p>第一个参数 function 以参数序列中的每一个元素调用 function 函数，返回包含每次 function 函数返回值的新列表。</p>\n<p>乘发逆元：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9vaS13aWtpLm9yZy9tYXRoL251bWJlci10aGVvcnkvaW52ZXJzZS8=\">https://oi-wiki.org/math/number-theory/inverse/</span></p>\n<p>sage 使用：</p>\n<p>欧拉函数:euler_phi</p>\n<p>对于 rsa 算法来说，如果取的两个质数相距很接近，则可以直接对这个大数进行开根号处理</p>\n",
+            "tags": []
+        },
+        {
             "id": "http://example.com/2022/09/06/hello-world/",
             "url": "http://example.com/2022/09/06/hello-world/",
             "title": "Hello World",

@@ -10,9 +10,32 @@
         </author>
         <description>en?</description>
         <language>zh-CN</language>
-        <pubDate>Tue, 06 Sep 2022 15:37:23 +0800</pubDate>
-        <lastBuildDate>Tue, 06 Sep 2022 15:37:23 +0800</lastBuildDate>
+        <pubDate>Tue, 04 Oct 2022 21:38:20 +0800</pubDate>
+        <lastBuildDate>Tue, 04 Oct 2022 21:38:20 +0800</lastBuildDate>
         <category term="lives" />
+        <item>
+            <guid isPermalink="true">http://example.com/2022/10/04/python-learn/</guid>
+            <title>python_learn</title>
+            <link>http://example.com/2022/10/04/python-learn/</link>
+            <pubDate>Tue, 04 Oct 2022 21:38:20 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;​	字符串前加 b 表示这是一个 bytes 对象&lt;/p&gt;
+&lt;p&gt;大佬博客 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3d3dy5ydWFueWlmZW5nLmNvbS9ibG9nLzIwMTMvMDYvcnNhX2FsZ29yaXRobV9wYXJ0X29uZS5odG1s&#34;&gt;RSA 算法原理（一） - 阮一峰的网络日志 (ruanyifeng.com)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;如果 n 可以被因数分解，d 就可以算出，也就意味着私匙被解密。&lt;/p&gt;
+&lt;p&gt;0x -16 进制&lt;/p&gt;
+&lt;p&gt;strxor 函数对两个等长字符串取异或&lt;/p&gt;
+&lt;p&gt;getprime (n) 取一个 n 位素数&lt;/p&gt;
+&lt;p&gt;powmod（m，e，n） = m^e%n;&lt;/p&gt;
+&lt;p&gt;gcd 取最大公因数&lt;/p&gt;
+&lt;p&gt;ord 返回一个字符的 ascii 值&lt;/p&gt;
+&lt;p&gt;map () 函数会根据提供的函数对指定序列做映射。&lt;/p&gt;
+&lt;p&gt;append 函数：将参数添加在字符串的后面&lt;/p&gt;
+&lt;p&gt;第一个参数 function 以参数序列中的每一个元素调用 function 函数，返回包含每次 function 函数返回值的新列表。&lt;/p&gt;
+&lt;p&gt;乘发逆元：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9vaS13aWtpLm9yZy9tYXRoL251bWJlci10aGVvcnkvaW52ZXJzZS8=&#34;&gt;https://oi-wiki.org/math/number-theory/inverse/&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;sage 使用：&lt;/p&gt;
+&lt;p&gt;欧拉函数:euler_phi&lt;/p&gt;
+&lt;p&gt;对于 rsa 算法来说，如果取的两个质数相距很接近，则可以直接对这个大数进行开根号处理&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://example.com/2022/09/06/hello-world/</guid>
             <title>Hello World</title>
