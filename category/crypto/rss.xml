@@ -1,16 +1,21 @@
 <?xml version="1.0"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://example.com</id>
-    <title>ang&#39;s blog</title>
-    <link href="http://example.com" />
-    <updated>2022-12-21T01:19:31.000Z</updated>
-    <category term="CTF" />
-    <category term="编译原理" />
-    <entry>
-        <id>http://example.com/2022/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/</id>
-        <title>第一次组会</title>
-        <link rel="alternate" href="http://example.com/2022/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/"/>
-        <content type="html">&lt;h1 id=&#34;呜呜呜呜呜呜呜呜呜呜呜&#34;&gt;呜呜呜呜呜呜呜呜呜呜呜&lt;/h1&gt;
+<rss version="2.0">
+    <channel>
+        <title>ang&#39;s blog • Posts by &#34;crypto&#34; category</title>
+        <link>http://example.com</link>
+        <description>en?</description>
+        <language>zh-CN,en,default</language>
+        <pubDate>Wed, 21 Dec 2022 09:19:31 +0800</pubDate>
+        <lastBuildDate>Wed, 21 Dec 2022 09:19:31 +0800</lastBuildDate>
+        <category>CTF</category>
+        <category>编译原理</category>
+        <item>
+            <guid isPermalink="true">http://example.com/2022/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/</guid>
+            <title>第一次组会</title>
+            <link>http://example.com/2022/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/</link>
+            <category>CTF</category>
+            <pubDate>Wed, 21 Dec 2022 09:19:31 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;呜呜呜呜呜呜呜呜呜呜呜&#34;&gt;呜呜呜呜呜呜呜呜呜呜呜&lt;/h1&gt;
 &lt;h2 id=&#34;第一题&#34;&gt;第一题&lt;/h2&gt;
 &lt;h5 id=&#34;level1&#34;&gt;level1：&lt;/h5&gt;
 &lt;p&gt;第一眼威尔逊定理，第二眼，草，不是，给出了p，则有： &lt;span
@@ -132,15 +137,15 @@ pow(c1,s1)*pow(c2,s2) = m
 &lt;p&gt;虽然但是，仍然没有看懂这行代码...&lt;/p&gt;
 &lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs python&#34;&gt;m = [bytes_to_long(plaintext[len_p//&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;*i:len_p//&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;*(i+&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;)]) &lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;hljs-keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;range&lt;/span&gt;(&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;)]&lt;br&gt;len_p//&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;*i:len_p//&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;*(i+&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;)&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;结束！数论好玩喵。（呜呜呜，数论一点也不好玩）&lt;/p&gt;
-</content>
-        <category term="CTF" />
-        <updated>2022-12-21T01:19:31.000Z</updated>
-    </entry>
-    <entry>
-        <id>http://example.com/2022/12/21/ctf%E5%AF%86%E7%A0%81er%E7%95%99%E6%A0%A1%E5%88%B7%E9%A2%98/</id>
-        <title>ctf密码er留校刷题</title>
-        <link rel="alternate" href="http://example.com/2022/12/21/ctf%E5%AF%86%E7%A0%81er%E7%95%99%E6%A0%A1%E5%88%B7%E9%A2%98/"/>
-        <content type="html">&lt;h1 id=&#34;留校刷题喵&#34;&gt;留校刷题喵&lt;/h1&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2022/12/21/ctf%E5%AF%86%E7%A0%81er%E7%95%99%E6%A0%A1%E5%88%B7%E9%A2%98/</guid>
+            <title>ctf密码er留校刷题</title>
+            <link>http://example.com/2022/12/21/ctf%E5%AF%86%E7%A0%81er%E7%95%99%E6%A0%A1%E5%88%B7%E9%A2%98/</link>
+            <category>CTF</category>
+            <pubDate>Wed, 21 Dec 2022 09:18:26 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;留校刷题喵&#34;&gt;留校刷题喵&lt;/h1&gt;
 &lt;h2 id=&#34;day1&#34;&gt;Day1&lt;/h2&gt;
 &lt;h4 id=&#34;section&#34;&gt;1、&lt;/h4&gt;
 &lt;p&gt;base64：将byte数组编码为字符串，且编码出的字符串只包含ASCII基础字符，&lt;/p&gt;
@@ -278,167 +283,15 @@ id=&#34;给出两个文件flag.enc密文以及pub.key公钥&#34;&gt;17、给出�
 &lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs python&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; Crypto.Util.number &lt;span class=&#34;hljs-keyword&#34;&gt;import&lt;/span&gt; *&lt;br&gt;c = [&lt;span class=&#34;hljs-number&#34;&gt;111&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;114&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;157&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;166&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;145&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;123&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;145&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;143&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;165&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;162&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;151&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;164&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;171&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;126&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;145&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;162&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;171&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;115&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;165&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;143&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;150&lt;/span&gt;]&lt;br&gt;ans = &lt;span class=&#34;hljs-string&#34;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; temp &lt;span class=&#34;hljs-keyword&#34;&gt;in&lt;/span&gt; c:&lt;br&gt;    ans = ans + &lt;span class=&#34;hljs-built_in&#34;&gt;chr&lt;/span&gt;(&lt;span class=&#34;hljs-built_in&#34;&gt;int&lt;/span&gt;(&lt;span class=&#34;hljs-built_in&#34;&gt;str&lt;/span&gt;(temp),&lt;span class=&#34;hljs-number&#34;&gt;8&lt;/span&gt;))&lt;br&gt;&lt;br&gt;&lt;span class=&#34;hljs-built_in&#34;&gt;print&lt;/span&gt;(ans)&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h4 id=&#34;wieners-attack&#34;&gt;24、Wiener’s Attack&lt;/h4&gt;
 &lt;p&gt;知乎：https://zhuanlan.zhihu.com/p/400818185&lt;/p&gt;
-</content>
-        <category term="CTF" />
-        <updated>2022-12-21T01:18:26.000Z</updated>
-    </entry>
-    <entry>
-        <id>http://example.com/2022/12/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E4%B8%8A%E6%9C%BA%E6%8A%A5%E5%91%8A/</id>
-        <title>编译原理上机报告</title>
-        <link rel="alternate" href="http://example.com/2022/12/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E4%B8%8A%E6%9C%BA%E6%8A%A5%E5%91%8A/"/>
-        <content type="html">&lt;h1 id=&#34;编译原理上机实验报告&#34;&gt;编译原理上机实验报告&lt;/h1&gt;
-&lt;h4 id=&#34;姓名刘泽森&#34;&gt;姓名：刘泽森&lt;/h4&gt;
-&lt;h4 id=&#34;班级2118012&#34;&gt;班级：2118012&lt;/h4&gt;
-&lt;h4 id=&#34;学号21009200735&#34;&gt;学号：21009200735&lt;/h4&gt;
-&lt;h3 id=&#34;一-上机题目简单函数绘图语言解释器&#34;&gt;一、
-上机题目：简单函数绘图语言解释器&lt;/h3&gt;
-&lt;h4 id=&#34;题目简述&#34;&gt;1.1题目简述&lt;/h4&gt;
-&lt;p&gt;题目：为函数绘图语言编写一个解释器&lt;/p&gt;
-&lt;p&gt;解释器接受用绘图语言编写的源程序，经语法和语义分析之后，将源程序所规定的图形显示在显示屏&lt;/p&gt;
-&lt;p&gt;（或窗口）中。&lt;/p&gt;
-&lt;p&gt;目的：通过自己动手编写解释器，掌握语言翻译特别是语言识别的基本方法。&lt;/p&gt;
-&lt;h5 id=&#34;实现简单的函数绘图语句&#34;&gt;&amp;lt;1&amp;gt;实现简单的函数绘图语句&lt;/h5&gt;
-&lt;p&gt;循环绘图（FOR-DRAW）&lt;/p&gt;
-&lt;p&gt;比例设置（SCALE）&lt;/p&gt;
-&lt;p&gt;角度旋转（ROT）&lt;/p&gt;
-&lt;p&gt;坐标平移（ORIGIN）&lt;/p&gt;
-&lt;p&gt;注释&lt;/p&gt;
-&lt;h5 id=&#34;屏幕的坐标系&#34;&gt;&amp;lt;2&amp;gt;屏幕的坐标系&lt;/h5&gt;
-&lt;p&gt;左上角为原点&lt;/p&gt;
-&lt;p&gt;X方向从左向右增长&lt;/p&gt;
-&lt;p&gt;Y方向从上到下增长&lt;/p&gt;
-&lt;h5 id=&#34;函数绘图源程序&#34;&gt;&amp;lt;3&amp;gt;函数绘图源程序&lt;/h5&gt;
-&lt;figure class=&#34;highlight oxygene&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs oxygene&#34;&gt;origin &lt;span class=&#34;hljs-keyword&#34;&gt;is&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;100&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;300&lt;/span&gt;)&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;&lt;br&gt;rot &lt;span class=&#34;hljs-keyword&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;&lt;br&gt;scale &lt;span class=&#34;hljs-keyword&#34;&gt;is&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;,&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;)&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; T &lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;200&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;step&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt; draw (t,&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;)&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;&lt;br&gt;								--横坐标的轨迹&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; T &lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;150&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;step&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt; draw (&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;,-t)&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; T &lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;120&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;step&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt; draw (t,-t)&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;&lt;br&gt;									--f(t) = t 的轨迹&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&#34;语句的语法和语义&#34;&gt;1.2语句的语法和语义&lt;/h4&gt;
-&lt;p&gt;语句满足下述规则&lt;/p&gt;
-&lt;h5
-id=&#34;各类语句可以按任意次序书写且语句以分号结尾源程序中的语句以他们出现的先后顺处理&#34;&gt;&amp;lt;1&amp;gt;各类语句可以按任意次序书写，且语句以分号结尾，源程序中的语句以他们出现的先后顺处理。&lt;/h5&gt;
-&lt;h5
-id=&#34;originrot和scale语句只能影响其后的绘图语句且循环最后出现的语句有效的原则&#34;&gt;&amp;lt;2&amp;gt;ORIGIN,ROT和SCALE语句只能影响其后的绘图语句，且循环最后出现的语句有效的原则。&lt;/h5&gt;
-&lt;h5
-id=&#34;无论originrot和scale语句出现的顺序如何图像的变换顺序总是比例变换旋转变换平移变换&#34;&gt;&amp;lt;3&amp;gt;无论ORIGIN，ROT和SCALE语句出现的顺序如何，图像的变换顺序总是：比例变换——旋转变换——平移变换。&lt;/h5&gt;
-&lt;h5
-id=&#34;语言对大小写不敏感即forforfor等均被认为是同一个语句&#34;&gt;&amp;lt;4&amp;gt;语言对大小写不敏感，即for，For，FOR等均被认为是同一个语句。&lt;/h5&gt;
-&lt;h5
-id=&#34;语句表达式中的数字为双精度类型旋转角度以弧度为单位且逆时针旋转平移单位为点&#34;&gt;&amp;lt;5&amp;gt;语句表达式中的数字为双精度类型，旋转角度以弧度为单位且逆时针旋转，平移单位为点。&lt;/h5&gt;
-&lt;h4 id=&#34;循环绘图语句具体解释&#34;&gt;1.2.1 循环绘图语句具体解释&lt;/h4&gt;
-&lt;h5 id=&#34;语法为&#34;&gt;语法为&lt;/h5&gt;
-&lt;figure class=&#34;highlight oxygene&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs oxygene&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; t &lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; 起点 &lt;span class=&#34;hljs-keyword&#34;&gt;to&lt;/span&gt; 终点 &lt;span class=&#34;hljs-keyword&#34;&gt;step&lt;/span&gt; 步长 draw(横坐标，纵坐标)；&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h5 id=&#34;语义为&#34;&gt;语义为&lt;/h5&gt;
-&lt;figure class=&#34;highlight excel&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs excel&#34;&gt;另&lt;span class=&#34;hljs-built_in&#34;&gt;T&lt;/span&gt;从起点到终点，每次改变一个步长，绘制出由给定坐标所规定的点的路线痕迹；&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h5 id=&#34;举例为&#34;&gt;举例为&lt;/h5&gt;
-&lt;figure class=&#34;highlight excel&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs excel&#34;&gt;for &lt;span class=&#34;hljs-built_in&#34;&gt;t&lt;/span&gt; from &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; to &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;*&lt;span class=&#34;hljs-built_in&#34;&gt;pi&lt;/span&gt; step &lt;span class=&#34;hljs-built_in&#34;&gt;pi&lt;/span&gt;/&lt;span class=&#34;hljs-number&#34;&gt;90&lt;/span&gt; draw (&lt;span class=&#34;hljs-built_in&#34;&gt;cos&lt;/span&gt;(&lt;span class=&#34;hljs-built_in&#34;&gt;t&lt;/span&gt;),&lt;span class=&#34;hljs-built_in&#34;&gt;sin&lt;/span&gt;(&lt;span class=&#34;hljs-built_in&#34;&gt;t&lt;/span&gt;));&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;该语句的具体含义为绘制出一个单位圆，从0到2*pi，以pi/60为一个步长&lt;/p&gt;
-&lt;h4 id=&#34;比例设置语句&#34;&gt;1.2.2比例设置语句&lt;/h4&gt;
-&lt;h5 id=&#34;语法为-1&#34;&gt;语法为&lt;/h5&gt;
-&lt;figure class=&#34;highlight maxima&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs maxima&#34;&gt;&lt;span class=&#34;hljs-built_in&#34;&gt;scale&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;is&lt;/span&gt; (横坐标比例系数，纵坐标比例系数);&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h5 id=&#34;语义为-1&#34;&gt;语义为&lt;/h5&gt;
-&lt;figure class=&#34;highlight&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs&#34;&gt;设置纵坐标以及横坐标的比例，并分别按照比例因子进行缩放。&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&#34;坐标平移语句&#34;&gt;1.2.3坐标平移语句&lt;/h4&gt;
-&lt;h5 id=&#34;语法为-2&#34;&gt;语法为&lt;/h5&gt;
-&lt;figure class=&#34;highlight maxima&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs maxima&#34;&gt;&lt;span class=&#34;hljs-built_in&#34;&gt;origin&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;is&lt;/span&gt; (横坐标，纵坐标);&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h5 id=&#34;语义为-2&#34;&gt;语义为&lt;/h5&gt;
-&lt;figure class=&#34;highlight&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs&#34;&gt;将坐标系的原点平移到横坐标和纵坐标规定的点处。&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&#34;角度旋转语句&#34;&gt;1.2.4角度旋转语句&lt;/h4&gt;
-&lt;h5 id=&#34;语法为-3&#34;&gt;语法为&lt;/h5&gt;
-&lt;figure class=&#34;highlight abnf&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs abnf&#34;&gt;rot is 具体角度&lt;span class=&#34;hljs-comment&#34;&gt;;&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h5 id=&#34;语义为-3&#34;&gt;语义为&lt;/h5&gt;
-&lt;figure class=&#34;highlight isbl&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs isbl&#34;&gt;逆时针旋转角度所规定的弧度值，具体计算公式为：&lt;br&gt;	●旋转后&lt;span class=&#34;hljs-variable&#34;&gt;X&lt;/span&gt;=旋转前&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-title&#34;&gt;XCOS&lt;/span&gt;(角度)+旋转前&lt;span class=&#34;hljs-title&#34;&gt;YSIN&lt;/span&gt;(角度)&lt;/span&gt;&lt;br&gt;	●旋转后&lt;span class=&#34;hljs-variable&#34;&gt;Y&lt;/span&gt;=旋转前&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-title&#34;&gt;YCOS&lt;/span&gt;(角度)-旋转前&lt;span class=&#34;hljs-title&#34;&gt;XSIN&lt;/span&gt;(角度)&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&#34;section&#34;&gt;&lt;/h3&gt;
-&lt;h3 id=&#34;记号的语法和语义&#34;&gt;1.3记号的语法和语义&lt;/h3&gt;
-&lt;p&gt;记号的种类有：常数，参数，函数，保留字，运算符、分隔符。&lt;/p&gt;
-&lt;h5 id=&#34;常数&#34;&gt;&amp;lt;1&amp;gt;常数&lt;/h5&gt;
-&lt;p&gt;常数字面量和标识符形式的常量名均称为常数。字面量的形式为普通的数值，如果没有小数部分，可以&lt;/p&gt;
-&lt;p&gt;省略小数点。例如2、2.、2.0都是合法的常数。
-标识符PI、E也是常数，它们分别代表圆周率和自然对数&lt;/p&gt;
-&lt;p&gt;的底。常数不能有符号位，如-1和+2不是常数而是（一元运算的）表达式。&lt;/p&gt;
-&lt;h5 id=&#34;参数&#34;&gt;&amp;lt;2&amp;gt;参数&lt;/h5&gt;
-&lt;p&gt;本作图语言中唯一的、已经被定义好的变量名T被称为参数，它也是一个表达式。&lt;/p&gt;
-&lt;p&gt;除了预留参数 T 之外本作图语言还支持自定义参数。&lt;/p&gt;
-&lt;h5 id=&#34;函数&#34;&gt;&amp;lt;3&amp;gt;函数&lt;/h5&gt;
-&lt;p&gt;目前已经编写的函数有：&lt;/p&gt;
-&lt;figure class=&#34;highlight abnf&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs abnf&#34;&gt;sin&lt;span class=&#34;hljs-comment&#34;&gt;;&lt;/span&gt;&lt;br&gt;cos&lt;span class=&#34;hljs-comment&#34;&gt;;&lt;/span&gt;&lt;br&gt;tan&lt;span class=&#34;hljs-comment&#34;&gt;;&lt;/span&gt;&lt;br&gt;sqrt&lt;span class=&#34;hljs-comment&#34;&gt;;&lt;/span&gt;&lt;br&gt;exp&lt;span class=&#34;hljs-comment&#34;&gt;;&lt;/span&gt;&lt;br&gt;ln&lt;span class=&#34;hljs-comment&#34;&gt;;&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h5 id=&#34;保留字标识符&#34;&gt;&amp;lt;4&amp;gt;保留字（标识符）&lt;/h5&gt;
-&lt;figure class=&#34;highlight oxygene&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs oxygene&#34;&gt;ORIGIN&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;SCALE&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;IS&lt;/span&gt;&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;STEP&lt;/span&gt;&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;DRAW&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;FOR&lt;/span&gt;&lt;span class=&#34;hljs-punctuation&#34;&gt;;&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h5 id=&#34;运算符&#34;&gt;&amp;lt;5&amp;gt;运算符&lt;/h5&gt;
-&lt;figure class=&#34;highlight scss&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs scss&#34;&gt;&lt;span class=&#34;hljs-built_in&#34;&gt;PLUS&lt;/span&gt;(+);&lt;span class=&#34;hljs-built_in&#34;&gt;MINUS&lt;/span&gt;(-);&lt;span class=&#34;hljs-built_in&#34;&gt;MUL&lt;/span&gt;(*);&lt;span class=&#34;hljs-selector-tag&#34;&gt;DIV&lt;/span&gt;(/);&lt;span class=&#34;hljs-built_in&#34;&gt;POWER&lt;/span&gt;(^);&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h5 id=&#34;分隔符&#34;&gt;&amp;lt;6&amp;gt;分隔符&lt;/h5&gt;
-&lt;figure class=&#34;highlight scss&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs scss&#34;&gt;&lt;span class=&#34;hljs-built_in&#34;&gt;SEMICO&lt;/span&gt;(;) &lt;span class=&#34;hljs-built_in&#34;&gt;L_brackt&lt;/span&gt;(() &lt;span class=&#34;hljs-built_in&#34;&gt;R_bracke&lt;/span&gt;()) &lt;span class=&#34;hljs-built_in&#34;&gt;COMMA&lt;/span&gt;(,)&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&#34;二开发环境以及配置&#34;&gt;二：开发环境以及配置&lt;/h2&gt;
-&lt;p&gt;使用c++进行主要类以及相应库的编写，利用cmake进行整个项目的构建，整个项目中使用与平台无关的标准库函数，最终生成python代码利用tkinker进行绘图。&lt;/p&gt;
-&lt;h2 id=&#34;三解决思路与关键类&#34;&gt;三：解决思路与关键类&lt;/h2&gt;
-&lt;h4 id=&#34;结构设计&#34;&gt;1：结构设计&lt;/h4&gt;
-&lt;p&gt;此编译器采用一次扫描，以语法分析器为核心，语法分析器是通过词法分析器从代码源文件中读入与分析词素，通过递归下降分析生成对应的抽象语法树（Abstract
-Syntax Tree），并检测代码中的语法错误。&lt;/p&gt;
-&lt;p&gt;语法分析器在生成抽象语法树后将其传递给语义分析器，由语义分析器进行语义分析，生成最终的可执行代码，最终生成python代码使用tkinter库进行绘图。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20221115190847886.png&#34;  /&gt;&lt;/p&gt;
-&lt;h4 id=&#34;词法分析器&#34;&gt;2：词法分析器&lt;/h4&gt;
-&lt;h5 id=&#34;词法分析器的主要功能&#34;&gt;&amp;lt;1&amp;gt;词法分析器的主要功能&lt;/h5&gt;
-&lt;p&gt;​ 词法分析器的主要功能为识别输入序列，并为语法分析器提供记号&lt;/p&gt;
-&lt;p&gt;​ 过滤掉源程序中的空白字符、注释等编译无关字符&lt;/p&gt;
-&lt;p&gt;​ 输出**记号供语法分析器使用&lt;/p&gt;
-&lt;p&gt;​ 识别非法输出，将其标记为错误记号&lt;/p&gt;
-&lt;h5 id=&#34;记号定义&#34;&gt;&amp;lt;2&amp;gt;记号定义&lt;/h5&gt;
-&lt;p&gt;在此解释器中，记号定义为如下形式&lt;/p&gt;
-&lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs c++&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title class_&#34;&gt;token&lt;/span&gt;&lt;br&gt;&amp;#123;&lt;br&gt;    &lt;span class=&#34;hljs-keyword&#34;&gt;enum&lt;/span&gt; &lt;span class=&#34;hljs-title class_&#34;&gt;token_type&lt;/span&gt; type;&lt;br&gt;    &lt;span class=&#34;hljs-type&#34;&gt;char&lt;/span&gt; *lexme;&lt;br&gt;    &lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt; val;&lt;br&gt;    &lt;span class=&#34;hljs-built_in&#34;&gt;double&lt;/span&gt; (*func_ptr)(&lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt;);&lt;br&gt;&amp;#125;;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;其中的token_type为各种类型，即为记号种类，具体定义如下：&lt;/p&gt;
-&lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs c++&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;enum&lt;/span&gt; &lt;span class=&#34;hljs-title class_&#34;&gt;token_type&lt;/span&gt;&lt;br&gt;&amp;#123;&lt;br&gt;    ORIGIN,SCALE,ROT,IS,TO,FROM,FOR,DRAW,T,&lt;br&gt;    &lt;br&gt;    SEMICO,L_brackt,R_bracke,COMMA,&lt;br&gt;    &lt;br&gt;    PLUS,MINUS,MUL,DIV,POWER,&lt;br&gt;    &lt;br&gt;    FUNC,&lt;br&gt;    &lt;br&gt;    CONST_ID,&lt;br&gt;    &lt;br&gt;	NONTOKEN,&lt;br&gt;    &lt;br&gt;    ERRORTOKEN;&lt;br&gt;&amp;#125;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h5 id=&#34;词法分析的主要流程&#34;&gt;&amp;lt;3&amp;gt;词法分析的主要流程&lt;/h5&gt;
-&lt;p&gt;选取有限自动机来实现语法分词器&lt;/p&gt;
-&lt;p&gt;​ ●清除前导空白字符&lt;/p&gt;
-&lt;p&gt;​ ●获取第一个非空白字符进行判断&lt;/p&gt;
-&lt;p&gt;​
-●若第一个非空白字符为字母则不断读取单个字符到缓冲区直到遇到非数字或非字母字符，将之放回&lt;/p&gt;
-&lt;p&gt;输入流，缓冲区内存留字符作为一个记号，查询符号表并返回对应的记号（若符号表中不存在则视&lt;/p&gt;
-&lt;p&gt;为新的变量，追加到符号表中）&lt;/p&gt;
-&lt;p&gt;​
-●若第一个非空白字符为数字则不断读取单个字符到缓冲区直到遇到非数字字符（若遇到小数点符号&lt;/p&gt;
-&lt;p&gt;.
-则重复读取单个字符到缓冲区直到遇到非数字字符），将之放回输入流，通过
-atof() 将缓冲&lt;/p&gt;
-&lt;p&gt;​ ●区内字符转换为浮点值赋给一个新的数字记号并返回&lt;/p&gt;
-&lt;p&gt;​ ●若第一个非空白字符为其他分隔字符则进行针对性的模式匹配&lt;/p&gt;
-&lt;p&gt;​ ●其余则为非法字符，进行报错&lt;/p&gt;
-&lt;h4 id=&#34;语法分析器&#34;&gt;3：语法分析器&lt;/h4&gt;
-&lt;h5 id=&#34;适合递归下降分析算法如下&#34;&gt;适合递归下降分析算法如下：&lt;/h5&gt;
-&lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs c++&#34;&gt;Express on → Term    PLUS   MINUS  Term  &lt;br&gt;Term → Factor &amp;#123; (MUL | DIV) Factor &amp;#125;&lt;br&gt;Factor → PLUS Factor | MINUS Factor | Component&lt;br&gt;Component → Atom [POWER Component]&lt;br&gt;Atom → CONST_ID&lt;br&gt;| T&lt;br&gt;| FUNC L_BRACKET Expression R_BRACKET&lt;br&gt;| L_BRACKET Expression R_BRACKET&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h5 id=&#34;其中语法树的数据结构为&#34;&gt;其中语法树的数据结构为：&lt;/h5&gt;
-&lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs c++&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt;  &lt;span class=&#34;hljs-title class_&#34;&gt;expr_node&lt;/span&gt;&lt;br&gt;&amp;#123;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;enum&lt;/span&gt; &lt;span class=&#34;hljs-title class_&#34;&gt;token_type&lt;/span&gt; opcode;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;union&lt;/span&gt;&lt;br&gt;&amp;#123;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-comment&#34;&gt;// tree node&lt;/span&gt;&lt;br&gt;&amp;#123;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title class_&#34;&gt;expr_node&lt;/span&gt; *left;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title class_&#34;&gt;expr_node&lt;/span&gt; *right;&lt;br&gt;&amp;#125;case_operator; &lt;span class=&#34;hljs-comment&#34;&gt;// the node is a operator&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt;&lt;br&gt;&amp;#123;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title class_&#34;&gt;expr_node&lt;/span&gt; *child;&lt;br&gt;&lt;span class=&#34;hljs-built_in&#34;&gt;double&lt;/span&gt; (*func_ptr)(&lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt;);&lt;br&gt;&amp;#125;case_func; &lt;span class=&#34;hljs-comment&#34;&gt;// the node is a call of function&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt; case_const; &lt;span class=&#34;hljs-comment&#34;&gt;// the node is a const value (right&lt;/span&gt;&lt;br&gt;val)&lt;br&gt;&lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt; *case_param; &lt;span class=&#34;hljs-comment&#34;&gt;// the node is a param (left&lt;/span&gt;&lt;br&gt;val)&lt;br&gt;&amp;#125;content;&lt;br&gt;&amp;#125;;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&#34;语义分析器&#34;&gt;4:语义分析器&lt;/h4&gt;
-&lt;h5 id=&#34;辅助语义函数为&#34;&gt;辅助语义函数为：&lt;/h5&gt;
-&lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs c++&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;get_expr_val&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; expr_node *tree)&lt;/span&gt; ：计算表达式的值&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-type&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;get_coordinate&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; expr_node *exp_x, &lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; expr_node *exp_y, &lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-params&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&amp;amp;x, &lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt; &amp;amp;y)&lt;/span&gt; ：获得一个点的坐标&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-type&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;draw_loop&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; token *param, &lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt; start, &lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt; end, &lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt; step,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-params&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; expr_node *exp_x, &lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; expr_node *exp_y)&lt;/span&gt; ：由语法树绘制该表达式中所有的点&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-type&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;draw_pixel&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt; x, &lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt; y, &lt;span class=&#34;hljs-type&#34;&gt;double&lt;/span&gt; step)&lt;/span&gt; ：核心绘图函数，生成绘制一个点的python 代码&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&#34;四实验结果以及测试截图&#34;&gt;四:实验结果以及测试截图&lt;/h2&gt;
-&lt;p&gt;测试代码为：&lt;/p&gt;
-&lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;code class=&#34;hljs c++&#34;&gt;rot is &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;&lt;br&gt;&lt;span class=&#34;hljs-function&#34;&gt;origin &lt;span class=&#34;hljs-title&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-number&#34;&gt;50&lt;/span&gt;, &lt;span class=&#34;hljs-number&#34;&gt;400&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;br&gt;&lt;span class=&#34;hljs-function&#34;&gt;scale &lt;span class=&#34;hljs-title&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; T from &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; to &lt;span class=&#34;hljs-number&#34;&gt;300&lt;/span&gt; step &lt;span class=&#34;hljs-number&#34;&gt;0.01&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;draw&lt;/span&gt; (t, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;);&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; T from &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; to &lt;span class=&#34;hljs-number&#34;&gt;300&lt;/span&gt; step &lt;span class=&#34;hljs-number&#34;&gt;0.01&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;draw&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;, -t);&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; T from &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; to &lt;span class=&#34;hljs-number&#34;&gt;300&lt;/span&gt; step &lt;span class=&#34;hljs-number&#34;&gt;0.01&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;draw&lt;/span&gt; (t, -t);&lt;br&gt;&lt;span class=&#34;hljs-function&#34;&gt;scale &lt;span class=&#34;hljs-title&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;hljs-number&#34;&gt;0.1&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; T from &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; to &lt;span class=&#34;hljs-number&#34;&gt;55&lt;/span&gt; step &lt;span class=&#34;hljs-number&#34;&gt;0.01&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;draw&lt;/span&gt; (t, -(t*t));&lt;br&gt;&lt;span class=&#34;hljs-function&#34;&gt;scale &lt;span class=&#34;hljs-title&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-number&#34;&gt;10&lt;/span&gt;, &lt;span class=&#34;hljs-number&#34;&gt;5&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; T from &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; to &lt;span class=&#34;hljs-number&#34;&gt;60&lt;/span&gt; step &lt;span class=&#34;hljs-number&#34;&gt;0.01&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;draw&lt;/span&gt; (t, -&lt;span class=&#34;hljs-built_in&#34;&gt;sqrt&lt;/span&gt;(t));&lt;br&gt;&lt;span class=&#34;hljs-function&#34;&gt;scale &lt;span class=&#34;hljs-title&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-number&#34;&gt;20&lt;/span&gt;, &lt;span class=&#34;hljs-number&#34;&gt;0.1&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; T from &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; to &lt;span class=&#34;hljs-number&#34;&gt;8&lt;/span&gt; step &lt;span class=&#34;hljs-number&#34;&gt;0.01&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;draw&lt;/span&gt; (t, -&lt;span class=&#34;hljs-built_in&#34;&gt;exp&lt;/span&gt;(t));&lt;br&gt;&lt;span class=&#34;hljs-function&#34;&gt;scale &lt;span class=&#34;hljs-title&#34;&gt;is&lt;/span&gt; &lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;hljs-number&#34;&gt;20&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;br&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; T from &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; to &lt;span class=&#34;hljs-number&#34;&gt;300&lt;/span&gt; step &lt;span class=&#34;hljs-number&#34;&gt;0.01&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;draw&lt;/span&gt; (t, -&lt;span class=&#34;hljs-built_in&#34;&gt;ln&lt;/span&gt;(t));&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;测试结果为：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20221114172645315.png&#34; alt=&#34;image-20221114172645315&#34; style=&#34;zoom: 67%;&#34; /&gt;&lt;/p&gt;
-&lt;h2 id=&#34;五心得体会&#34;&gt;五：心得体会&lt;/h2&gt;
-&lt;p&gt;从刚开始枯燥无聊的编译原理课程，到为了完成大作业的一步步学习，体会到了独立完成整个编译器的过程，让我从更深的层次上了解了代码的编译过程，同时独立完成一个“传说中”的编译器满满的成就感。&lt;/p&gt;
-&lt;p&gt;遇到了太多的困难，从一个个库的编写（第一次自己手动编写一个自己需要的库），到编写完毕之后的运行失败，再到学长的引导下，把自己的各个文件用cmake系统的构建起来，以便后续的使用，最后到写入python文件的路径问题，从毫无头绪到一步步的完成，对我自己的能力提升很有帮助，不仅体现在这门课上面，更体现在自己对于计算机编译的理解和运行上面。&lt;/p&gt;
-</content>
-        <category term="编译原理" />
-        <updated>2022-12-21T01:15:42.000Z</updated>
-    </entry>
-    <entry>
-        <id>http://example.com/2022/10/29/cmake-learn/</id>
-        <title>cmake_learn</title>
-        <link rel="alternate" href="http://example.com/2022/10/29/cmake-learn/"/>
-        <content type="html">&lt;h5 id=&#34;cmake&#34;&gt;Cmake&lt;/h5&gt;
-&lt;p&gt;​
-没想到竟然会为了抄一个编译原理作业而“学到”这么多东西，原来从大佬的github上扒代码也是要讲究技术的，呜呜呜，属实是被薄纱了，在求助了fl师傅之后，终于意识到了自己的错误，cmake和make这两个命令的区别。未完待续……&lt;/p&gt;
-&lt;p&gt;https://www.jianshu.com/p/9763cd8325bf&lt;/p&gt;
-&lt;p&gt;https://www.cnblogs.com/yinheyi/p/14968494.html&lt;/p&gt;
-&lt;p&gt;https://learn.microsoft.com/zh-cn/cpp/build/cmake-projects-in-visual-studio?view=msvc-170&lt;/p&gt;
-&lt;p&gt;windows shell https://www.jb51.net/article/69966.htm&lt;/p&gt;
-</content>
-        <category term="CTF" />
-        <updated>2022-10-29T13:34:05.000Z</updated>
-    </entry>
-    <entry>
-        <id>http://example.com/2022/10/19/RSA/</id>
-        <title>RSA</title>
-        <link rel="alternate" href="http://example.com/2022/10/19/RSA/"/>
-        <content type="html">&lt;p&gt;​&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://example.com/2022/10/19/RSA/</guid>
+            <title>RSA</title>
+            <link>http://example.com/2022/10/19/RSA/</link>
+            <category>CTF</category>
+            <pubDate>Wed, 19 Oct 2022 11:21:29 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;​&lt;/p&gt;
 &lt;h2
 id=&#34;第二题signin-不会且和第六题一个德行一看原来是同一个出题人&#34;&gt;第二题——signin
 ——不会（且和第六题一个德行）（一看原来是同一个出题人）&lt;/h2&gt;
@@ -504,84 +357,7 @@ k*(p-1) + dp*e ≡ 1mod\ phi_n
 dp*e = X*(p-1)+1\\X∈(0,e)
 \]&lt;/span&gt;
 所以只需要对X进行遍历即可（X有e-1种可能），求出p-1后，即可求解。&lt;/p&gt;
-</content>
-        <category term="CTF" />
-        <updated>2022-10-19T03:21:29.000Z</updated>
-    </entry>
-    <entry>
-        <id>http://example.com/2022/10/04/python-learn/</id>
-        <title>python_learn</title>
-        <link rel="alternate" href="http://example.com/2022/10/04/python-learn/"/>
-        <content type="html">&lt;p&gt;​ 字符串前加b表示这是一个bytes对象&lt;/p&gt;
-&lt;p&gt;字符串前加f表示这是一个&lt;/p&gt;
-&lt;p&gt;大佬博客 &lt;a
-href=&#34;http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html&#34;&gt;RSA算法原理（一）
-- 阮一峰的网络日志 (ruanyifeng.com)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;如果n可以被因数分解，d就可以算出，也就意味着私匙被解密。&lt;/p&gt;
-&lt;p&gt;0x -16进制&lt;/p&gt;
-&lt;p&gt;strxor函数对两个等长字符串取异或&lt;/p&gt;
-&lt;p&gt;getprime(n) 取一个n位素数&lt;/p&gt;
-&lt;p&gt;powmod（m，e，n） = m^e%n;&lt;/p&gt;
-&lt;p&gt;gcd 取最大公因数&lt;/p&gt;
-&lt;p&gt;ord 返回一个字符的ascii值&lt;/p&gt;
-&lt;p&gt;map() 函数会根据提供的函数对指定序列做映射。&lt;/p&gt;
-&lt;p&gt;append函数：将参数添加在字符串的后面&lt;/p&gt;
-&lt;p&gt;第一个参数 function 以参数序列中的每一个元素调用 function
-函数，返回包含每次 function 函数返回值的新列表。&lt;/p&gt;
-&lt;p&gt;乘发逆元：https://oi-wiki.org/math/number-theory/inverse/&lt;/p&gt;
-&lt;p&gt;sage使用：&lt;/p&gt;
-&lt;p&gt;欧拉函数:euler_phi&lt;/p&gt;
-&lt;p&gt;对于rsa算法来说，如果取的两个质数相距很接近，则可以直接对这个大数进行开根号处理&lt;/p&gt;
-&lt;p&gt;第二题: 大佬博客·：&lt;a
-href=&#34;https://www.cnblogs.com/nul1/p/13489269.html&#34;&gt;CTF中的RSA套路 -
-_nul1 - 博客园 (cnblogs.com)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Python ljust()
-方法返回一个原字符串左对齐,并使用空格填充至指定长度的新字符串。如果指定的长度小于原字符串的长度则返回原字符串&lt;/p&gt;
-&lt;p&gt;assert（）相当于一个判断程序是否正确的断言，其实就相当于一个if语句。&lt;/p&gt;
-&lt;p&gt;​
-1、对于两个相近的随机素数，可以直接进行开根号处理，然后进行判断，算法为费马分解&lt;/p&gt;
-&lt;p&gt;&lt;a
-href=&#34;https://www.freebuf.com/articles/database/290623.html&#34;&gt;浅析RSA因子大小相近时分解因子攻击方法
-- FreeBuf网络安全行业门户&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;​ 2、对于n很大而e很小，可以采用低指数加密来对n进行分解 参考博客：&lt;a
-href=&#34;https://blog.csdn.net/fengerxi33/article/details/123353560&#34;&gt;(74条消息)
-CTF_RSA_低加密指数攻击脚本_风二西的博客-CSDN博客_ctf rsa脚本&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;​ 3、给出dp或者dq 参考博客 &lt;a
-href=&#34;https://oceansec.blog.csdn.net/article/details/121023558?spm=1001.2101.3001.6650.1&amp;amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-121023558-blog-95500279.pc_relevant_multi_platform_whitelistv4&amp;amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-121023558-blog-95500279.pc_relevant_multi_platform_whitelistv4&amp;amp;utm_relevant_index=2&#34;&gt;(74条消息)
-CTF-Crypto-RSA整理_OceanSec的博客-CSDN博客_ctf ras&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;dp泄露:&lt;a
-href=&#34;https://blog.csdn.net/weixin_45369385/article/details/109208109&#34;&gt;(75条消息)
-RSA-详解dp泄漏_来梦桃子的博客-CSDN博客_rsa dp&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;​ 4、&lt;/p&gt;
-&lt;p&gt;​ 1️⃣e和欧拉函数不互素的情况 AMM算法进行开e次根 &lt;a
-href=&#34;https://www.anquanke.com/post/id/262634&#34;&gt;RSA中e和phi不互素时的AMM开根-安全客
-- 安全资讯平台 (anquanke.com)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;​ 2️⃣&lt;a
-href=&#34;https://zhuanlan.zhihu.com/p/446499019&#34;&gt;RSA中e和phi不互素时的AMM开根
-- 知乎 (zhihu.com)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;​ 3️⃣&lt;a
-href=&#34;https://dgz-cyber.github.io/2020/03/03/RSA——当e与φ(n)不互素时/&#34;&gt;RSA——当e与φ(n)不互素时
-· DGZ&#39;s Blog (dgz-cyber.github.io)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;进入python第三方库文档命令&lt;/p&gt;
-&lt;p&gt;相关题型：&lt;a
-href=&#34;https://www.freebuf.com/articles/web/287854.html&#34;&gt;『CTF』史上最全
-RSA 题目总结 - FreeBuf网络安全行业门户&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;sage使用命令:&lt;/p&gt;
-&lt;p&gt;&lt;a
-href=&#34;https://chu-kangming.gitee.io/crypto/Use-of-Sagemath-in-CTF-Cryptography.html&#34;&gt;sagemath在ctf密码学中的使用
-- GAEA (gitee.io)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a
-href=&#34;https://tl2cents.github.io/2022/03/27/SageMath简明教程/&#34;&gt;SageMath简明教程
-| tl2cents blog&lt;/a&gt;&lt;/p&gt;
-&lt;h4
-id=&#34;rsa常用工具博客原创crypto中rsa常用工具及python库说明-密码应用-看雪论坛-安全社区安全招聘bbs.pediy.com&#34;&gt;RSA常用工具博客：[&lt;a
-href=&#34;https://bbs.pediy.com/thread-266504.htm&#34;&gt;原创]Crypto中RSA常用工具及python库说明-密码应用-看雪论坛-安全社区|安全招聘|bbs.pediy.com&lt;/a&gt;&lt;/h4&gt;
-&lt;h3 id=&#34;section&#34;&gt;&lt;/h3&gt;
-&lt;p&gt;线性同余生成器：&lt;/p&gt;
-&lt;p&gt;zip函数：可以理解为压缩函数，以可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，返回由这些元组组成的对象以达成节约内存的作用。&lt;/p&gt;
-&lt;p&gt;%02x：x表示以16进制输出，02表示不足两位，前面补0输出&lt;/p&gt;
-</content>
-        <category term="CTF" />
-        <updated>2022-10-04T13:38:20.000Z</updated>
-    </entry>
-</feed>
+ ]]></description>
+        </item>
+    </channel>
+</rss>

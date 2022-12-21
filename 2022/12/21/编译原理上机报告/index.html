@@ -13,23 +13,23 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Ang~">
+  <meta name="author" content="ang~">
   <meta name="keywords" content="">
   
-    <meta name="description" content="# 编译原理上机实验报告 # 姓名：刘泽森 # 班级：2118012 # 学号：21009200735 # 一、 上机题目：简单函数绘图语言解释器 # 1.1 题目简述 题目：为函数绘图语言编写一个解释器 解释器接受用绘图语言编写的源程序，经语法和语义分析之后，将源程序所规定的图形显示在显示屏 （或窗口）中。 目的：通过自己动手编写解释器，掌握语言翻译特别是语言识别的基本方法。 # &lt;1&amp;g">
+    <meta name="description" content="编译原理上机实验报告 姓名：刘泽森 班级：2118012 学号：21009200735 一、 上机题目：简单函数绘图语言解释器 1.1题目简述 题目：为函数绘图语言编写一个解释器 解释器接受用绘图语言编写的源程序，经语法和语义分析之后，将源程序所规定的图形显示在显示屏 （或窗口）中。 目的：通过自己动手编写解释器，掌握语言翻译特别是语言识别的基本方法。 &lt;1&gt;实现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编译原理上机报告">
 <meta property="og:url" content="http://example.com/2022/12/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E4%B8%8A%E6%9C%BA%E6%8A%A5%E5%91%8A/index.html">
 <meta property="og:site_name" content="ang&#39;s blog">
-<meta property="og:description" content="# 编译原理上机实验报告 # 姓名：刘泽森 # 班级：2118012 # 学号：21009200735 # 一、 上机题目：简单函数绘图语言解释器 # 1.1 题目简述 题目：为函数绘图语言编写一个解释器 解释器接受用绘图语言编写的源程序，经语法和语义分析之后，将源程序所规定的图形显示在显示屏 （或窗口）中。 目的：通过自己动手编写解释器，掌握语言翻译特别是语言识别的基本方法。 # &lt;1&amp;g">
+<meta property="og:description" content="编译原理上机实验报告 姓名：刘泽森 班级：2118012 学号：21009200735 一、 上机题目：简单函数绘图语言解释器 1.1题目简述 题目：为函数绘图语言编写一个解释器 解释器接受用绘图语言编写的源程序，经语法和语义分析之后，将源程序所规定的图形显示在显示屏 （或窗口）中。 目的：通过自己动手编写解释器，掌握语言翻译特别是语言识别的基本方法。 &lt;1&gt;实现">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:/Users/20191/AppData/Roaming/Typora/typora-user-images/image-20221115190847886.png">
-<meta property="og:image" content="c:/Users/20191/AppData/Roaming/Typora/typora-user-images/image-20221114172645315.png">
+<meta property="og:image" content="https://s1.ax1x.com/2022/10/29/x5t2TO.jpg">
 <meta property="article:published_time" content="2022-12-21T01:15:42.000Z">
-<meta property="article:modified_time" content="2022-12-21T01:16:13.451Z">
-<meta property="article:author" content="Ang~">
+<meta property="article:modified_time" content="2022-12-21T04:22:37.083Z">
+<meta property="article:author" content="ang~">
+<meta property="article:tag" content="编译原理">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="c:/Users/20191/AppData/Roaming/Typora/typora-user-images/image-20221115190847886.png">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/10/29/x5t2TO.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -101,7 +101,11 @@
 
 
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -187,6 +191,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
@@ -238,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.4k 字
+          4.3k 字
         
       </span>
     
@@ -300,7 +316,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年12月21日 上午
+                    本文最后更新于：2022年12月21日 中午
                   
                 
               </p>
@@ -308,123 +324,135 @@
             
               <div class="markdown-body">
                 
-                <h1 id="编译原理上机实验报告"><a class="markdownIt-Anchor" href="#编译原理上机实验报告">#</a> 编译原理上机实验报告</h1>
-<h4 id="姓名刘泽森"><a class="markdownIt-Anchor" href="#姓名刘泽森">#</a> 姓名：刘泽森</h4>
-<h4 id="班级2118012"><a class="markdownIt-Anchor" href="#班级2118012">#</a> 班级：2118012</h4>
-<h4 id="学号21009200735"><a class="markdownIt-Anchor" href="#学号21009200735">#</a> 学号：21009200735</h4>
-<h3 id="一-上机题目简单函数绘图语言解释器"><a class="markdownIt-Anchor" href="#一-上机题目简单函数绘图语言解释器">#</a> 一、 上机题目：简单函数绘图语言解释器</h3>
-<h4 id="11题目简述"><a class="markdownIt-Anchor" href="#11题目简述">#</a> 1.1 题目简述</h4>
+                <h1 id="编译原理上机实验报告">编译原理上机实验报告</h1>
+<h4 id="姓名刘泽森">姓名：刘泽森</h4>
+<h4 id="班级2118012">班级：2118012</h4>
+<h4 id="学号21009200735">学号：21009200735</h4>
+<h3 id="一-上机题目简单函数绘图语言解释器">一、
+上机题目：简单函数绘图语言解释器</h3>
+<h4 id="题目简述">1.1题目简述</h4>
 <p>题目：为函数绘图语言编写一个解释器</p>
 <p>解释器接受用绘图语言编写的源程序，经语法和语义分析之后，将源程序所规定的图形显示在显示屏</p>
 <p>（或窗口）中。</p>
 <p>目的：通过自己动手编写解释器，掌握语言翻译特别是语言识别的基本方法。</p>
-<h5 id="1实现简单的函数绘图语句"><a class="markdownIt-Anchor" href="#1实现简单的函数绘图语句">#</a> &lt;1&gt; 实现简单的函数绘图语句</h5>
+<h5 id="实现简单的函数绘图语句">&lt;1&gt;实现简单的函数绘图语句</h5>
 <p>循环绘图（FOR-DRAW）</p>
 <p>比例设置（SCALE）</p>
 <p>角度旋转（ROT）</p>
 <p>坐标平移（ORIGIN）</p>
 <p>注释</p>
-<h5 id="2屏幕的坐标系"><a class="markdownIt-Anchor" href="#2屏幕的坐标系">#</a> &lt;2&gt; 屏幕的坐标系</h5>
+<h5 id="屏幕的坐标系">&lt;2&gt;屏幕的坐标系</h5>
 <p>左上角为原点</p>
-<p>X 方向从左向右增长</p>
-<p>Y 方向从上到下增长</p>
-<h5 id="3函数绘图源程序"><a class="markdownIt-Anchor" href="#3函数绘图源程序">#</a> &lt;3&gt; 函数绘图源程序</h5>
+<p>X方向从左向右增长</p>
+<p>Y方向从上到下增长</p>
+<h5 id="函数绘图源程序">&lt;3&gt;函数绘图源程序</h5>
 <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">origin <span class="hljs-keyword">is</span> (<span class="hljs-number">100</span>,<span class="hljs-number">300</span>)<span class="hljs-punctuation">;</span><br>rot <span class="hljs-keyword">is</span> <span class="hljs-number">0</span><span class="hljs-punctuation">;</span><br>scale <span class="hljs-keyword">is</span> (<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)<span class="hljs-punctuation">;</span><br><span class="hljs-keyword">for</span> T <span class="hljs-keyword">from</span> <span class="hljs-number">0</span> <span class="hljs-keyword">to</span> <span class="hljs-number">200</span> <span class="hljs-keyword">step</span> <span class="hljs-number">1</span> draw (t,<span class="hljs-number">0</span>)<span class="hljs-punctuation">;</span><br>								--横坐标的轨迹<br><span class="hljs-keyword">for</span> T <span class="hljs-keyword">from</span> <span class="hljs-number">0</span> <span class="hljs-keyword">to</span> <span class="hljs-number">150</span> <span class="hljs-keyword">step</span> <span class="hljs-number">1</span> draw (<span class="hljs-number">0</span>,-t)<span class="hljs-punctuation">;</span><br><span class="hljs-keyword">for</span> T <span class="hljs-keyword">from</span> <span class="hljs-number">0</span> <span class="hljs-keyword">to</span> <span class="hljs-number">120</span> <span class="hljs-keyword">step</span> <span class="hljs-number">1</span> draw (t,-t)<span class="hljs-punctuation">;</span><br>									--f(t) = t 的轨迹<br></code></pre></td></tr></table></figure>
-<h4 id="12语句的语法和语义"><a class="markdownIt-Anchor" href="#12语句的语法和语义">#</a> 1.2 语句的语法和语义</h4>
+<h4 id="语句的语法和语义">1.2语句的语法和语义</h4>
 <p>语句满足下述规则</p>
-<h5 id="1各类语句可以按任意次序书写且语句以分号结尾源程序中的语句以他们出现的先后顺处理"><a class="markdownIt-Anchor" href="#1各类语句可以按任意次序书写且语句以分号结尾源程序中的语句以他们出现的先后顺处理">#</a> &lt;1&gt; 各类语句可以按任意次序书写，且语句以分号结尾，源程序中的语句以他们出现的先后顺处理。</h5>
-<h5 id="2originrot和scale语句只能影响其后的绘图语句且循环最后出现的语句有效的原则"><a class="markdownIt-Anchor" href="#2originrot和scale语句只能影响其后的绘图语句且循环最后出现的语句有效的原则">#</a> &lt;2&gt;ORIGIN,ROT 和 SCALE 语句只能影响其后的绘图语句，且循环最后出现的语句有效的原则。</h5>
-<h5 id="3无论originrot和scale语句出现的顺序如何图像的变换顺序总是比例变换旋转变换平移变换"><a class="markdownIt-Anchor" href="#3无论originrot和scale语句出现的顺序如何图像的变换顺序总是比例变换旋转变换平移变换">#</a> &lt;3&gt; 无论 ORIGIN，ROT 和 SCALE 语句出现的顺序如何，图像的变换顺序总是：比例变换 —— 旋转变换 —— 平移变换。</h5>
-<h5 id="4语言对大小写不敏感即forforfor等均被认为是同一个语句"><a class="markdownIt-Anchor" href="#4语言对大小写不敏感即forforfor等均被认为是同一个语句">#</a> &lt;4&gt; 语言对大小写不敏感，即 for，For，FOR 等均被认为是同一个语句。</h5>
-<h5 id="5语句表达式中的数字为双精度类型旋转角度以弧度为单位且逆时针旋转平移单位为点"><a class="markdownIt-Anchor" href="#5语句表达式中的数字为双精度类型旋转角度以弧度为单位且逆时针旋转平移单位为点">#</a> &lt;5&gt; 语句表达式中的数字为双精度类型，旋转角度以弧度为单位且逆时针旋转，平移单位为点。</h5>
-<h4 id="121-循环绘图语句具体解释"><a class="markdownIt-Anchor" href="#121-循环绘图语句具体解释">#</a> 1.2.1 循环绘图语句具体解释</h4>
-<h5 id="语法为"><a class="markdownIt-Anchor" href="#语法为">#</a> 语法为</h5>
+<h5
+id="各类语句可以按任意次序书写且语句以分号结尾源程序中的语句以他们出现的先后顺处理">&lt;1&gt;各类语句可以按任意次序书写，且语句以分号结尾，源程序中的语句以他们出现的先后顺处理。</h5>
+<h5
+id="originrot和scale语句只能影响其后的绘图语句且循环最后出现的语句有效的原则">&lt;2&gt;ORIGIN,ROT和SCALE语句只能影响其后的绘图语句，且循环最后出现的语句有效的原则。</h5>
+<h5
+id="无论originrot和scale语句出现的顺序如何图像的变换顺序总是比例变换旋转变换平移变换">&lt;3&gt;无论ORIGIN，ROT和SCALE语句出现的顺序如何，图像的变换顺序总是：比例变换——旋转变换——平移变换。</h5>
+<h5
+id="语言对大小写不敏感即forforfor等均被认为是同一个语句">&lt;4&gt;语言对大小写不敏感，即for，For，FOR等均被认为是同一个语句。</h5>
+<h5
+id="语句表达式中的数字为双精度类型旋转角度以弧度为单位且逆时针旋转平移单位为点">&lt;5&gt;语句表达式中的数字为双精度类型，旋转角度以弧度为单位且逆时针旋转，平移单位为点。</h5>
+<h4 id="循环绘图语句具体解释">1.2.1 循环绘图语句具体解释</h4>
+<h5 id="语法为">语法为</h5>
 <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs oxygene"><span class="hljs-keyword">for</span> t <span class="hljs-keyword">from</span> 起点 <span class="hljs-keyword">to</span> 终点 <span class="hljs-keyword">step</span> 步长 draw(横坐标，纵坐标)；<br></code></pre></td></tr></table></figure>
-<h5 id="语义为"><a class="markdownIt-Anchor" href="#语义为">#</a> 语义为</h5>
+<h5 id="语义为">语义为</h5>
 <figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs excel">另<span class="hljs-built_in">T</span>从起点到终点，每次改变一个步长，绘制出由给定坐标所规定的点的路线痕迹；<br></code></pre></td></tr></table></figure>
-<h5 id="举例为"><a class="markdownIt-Anchor" href="#举例为">#</a> 举例为</h5>
+<h5 id="举例为">举例为</h5>
 <figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs excel">for <span class="hljs-built_in">t</span> from <span class="hljs-number">0</span> to <span class="hljs-number">2</span>*<span class="hljs-built_in">pi</span> step <span class="hljs-built_in">pi</span>/<span class="hljs-number">90</span> draw (<span class="hljs-built_in">cos</span>(<span class="hljs-built_in">t</span>),<span class="hljs-built_in">sin</span>(<span class="hljs-built_in">t</span>));<br></code></pre></td></tr></table></figure>
-<p>该语句的具体含义为绘制出一个单位圆，从 0 到 2*pi，以 pi/60 为一个步长</p>
-<h4 id="122比例设置语句"><a class="markdownIt-Anchor" href="#122比例设置语句">#</a> 1.2.2 比例设置语句</h4>
-<h5 id="语法为-2"><a class="markdownIt-Anchor" href="#语法为-2">#</a> 语法为</h5>
+<p>该语句的具体含义为绘制出一个单位圆，从0到2*pi，以pi/60为一个步长</p>
+<h4 id="比例设置语句">1.2.2比例设置语句</h4>
+<h5 id="语法为-1">语法为</h5>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-built_in">scale</span> <span class="hljs-built_in">is</span> (横坐标比例系数，纵坐标比例系数);<br></code></pre></td></tr></table></figure>
-<h5 id="语义为-2"><a class="markdownIt-Anchor" href="#语义为-2">#</a> 语义为</h5>
+<h5 id="语义为-1">语义为</h5>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">设置纵坐标以及横坐标的比例，并分别按照比例因子进行缩放。<br></code></pre></td></tr></table></figure>
-<h4 id="123坐标平移语句"><a class="markdownIt-Anchor" href="#123坐标平移语句">#</a> 1.2.3 坐标平移语句</h4>
-<h5 id="语法为-3"><a class="markdownIt-Anchor" href="#语法为-3">#</a> 语法为</h5>
+<h4 id="坐标平移语句">1.2.3坐标平移语句</h4>
+<h5 id="语法为-2">语法为</h5>
 <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-built_in">origin</span> <span class="hljs-built_in">is</span> (横坐标，纵坐标);<br></code></pre></td></tr></table></figure>
-<h5 id="语义为-3"><a class="markdownIt-Anchor" href="#语义为-3">#</a> 语义为</h5>
+<h5 id="语义为-2">语义为</h5>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">将坐标系的原点平移到横坐标和纵坐标规定的点处。<br></code></pre></td></tr></table></figure>
-<h4 id="124角度旋转语句"><a class="markdownIt-Anchor" href="#124角度旋转语句">#</a> 1.2.4 角度旋转语句</h4>
-<h5 id="语法为-4"><a class="markdownIt-Anchor" href="#语法为-4">#</a> 语法为</h5>
+<h4 id="角度旋转语句">1.2.4角度旋转语句</h4>
+<h5 id="语法为-3">语法为</h5>
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">rot is 具体角度<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
-<h5 id="语义为-4"><a class="markdownIt-Anchor" href="#语义为-4">#</a> 语义为</h5>
+<h5 id="语义为-3">语义为</h5>
 <figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs isbl">逆时针旋转角度所规定的弧度值，具体计算公式为：<br>	●旋转后<span class="hljs-variable">X</span>=旋转前<span class="hljs-function"><span class="hljs-title">XCOS</span>(角度)+旋转前<span class="hljs-title">YSIN</span>(角度)</span><br>	●旋转后<span class="hljs-variable">Y</span>=旋转前<span class="hljs-function"><span class="hljs-title">YCOS</span>(角度)-旋转前<span class="hljs-title">XSIN</span>(角度)</span><br></code></pre></td></tr></table></figure>
-<h3 id=""><a class="markdownIt-Anchor" href="#">#</a> </h3>
-<h3 id="13记号的语法和语义"><a class="markdownIt-Anchor" href="#13记号的语法和语义">#</a> 1.3 记号的语法和语义</h3>
+<h3 id="section"></h3>
+<h3 id="记号的语法和语义">1.3记号的语法和语义</h3>
 <p>记号的种类有：常数，参数，函数，保留字，运算符、分隔符。</p>
-<h5 id="1常数"><a class="markdownIt-Anchor" href="#1常数">#</a> &lt;1&gt; 常数</h5>
+<h5 id="常数">&lt;1&gt;常数</h5>
 <p>常数字面量和标识符形式的常量名均称为常数。字面量的形式为普通的数值，如果没有小数部分，可以</p>
-<p>省略小数点。例如 2、2.、2.0 都是合法的常数。 标识符 PI、E 也是常数，它们分别代表圆周率和自然对数</p>
-<p>的底。常数不能有符号位，如 - 1 和 + 2 不是常数而是（一元运算的）表达式。</p>
-<h5 id="2参数"><a class="markdownIt-Anchor" href="#2参数">#</a> &lt;2&gt; 参数</h5>
-<p>本作图语言中唯一的、已经被定义好的变量名 T 被称为参数，它也是一个表达式。</p>
+<p>省略小数点。例如2、2.、2.0都是合法的常数。
+标识符PI、E也是常数，它们分别代表圆周率和自然对数</p>
+<p>的底。常数不能有符号位，如-1和+2不是常数而是（一元运算的）表达式。</p>
+<h5 id="参数">&lt;2&gt;参数</h5>
+<p>本作图语言中唯一的、已经被定义好的变量名T被称为参数，它也是一个表达式。</p>
 <p>除了预留参数 T 之外本作图语言还支持自定义参数。</p>
-<h5 id="3函数"><a class="markdownIt-Anchor" href="#3函数">#</a> &lt;3&gt; 函数</h5>
+<h5 id="函数">&lt;3&gt;函数</h5>
 <p>目前已经编写的函数有：</p>
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs abnf">sin<span class="hljs-comment">;</span><br>cos<span class="hljs-comment">;</span><br>tan<span class="hljs-comment">;</span><br>sqrt<span class="hljs-comment">;</span><br>exp<span class="hljs-comment">;</span><br>ln<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
-<h5 id="4保留字标识符"><a class="markdownIt-Anchor" href="#4保留字标识符">#</a> &lt;4&gt; 保留字（标识符）</h5>
+<h5 id="保留字标识符">&lt;4&gt;保留字（标识符）</h5>
 <figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">ORIGIN<span class="hljs-punctuation">;</span>SCALE<span class="hljs-punctuation">;</span><span class="hljs-keyword">IS</span><span class="hljs-punctuation">;</span><span class="hljs-keyword">TO</span><span class="hljs-punctuation">;</span><span class="hljs-keyword">STEP</span><span class="hljs-punctuation">;</span><span class="hljs-keyword">FROM</span><span class="hljs-punctuation">;</span>DRAW<span class="hljs-punctuation">;</span><span class="hljs-keyword">FOR</span><span class="hljs-punctuation">;</span><br></code></pre></td></tr></table></figure>
-<h5 id="5运算符"><a class="markdownIt-Anchor" href="#5运算符">#</a> &lt;5&gt; 运算符</h5>
+<h5 id="运算符">&lt;5&gt;运算符</h5>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">PLUS</span>(+);<span class="hljs-built_in">MINUS</span>(-);<span class="hljs-built_in">MUL</span>(*);<span class="hljs-selector-tag">DIV</span>(/);<span class="hljs-built_in">POWER</span>(^);<br></code></pre></td></tr></table></figure>
-<h5 id="6分隔符"><a class="markdownIt-Anchor" href="#6分隔符">#</a> &lt;6&gt; 分隔符</h5>
+<h5 id="分隔符">&lt;6&gt;分隔符</h5>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">SEMICO</span>(;) <span class="hljs-built_in">L_brackt</span>(() <span class="hljs-built_in">R_bracke</span>()) <span class="hljs-built_in">COMMA</span>(,)<br></code></pre></td></tr></table></figure>
-<h2 id="二开发环境以及配置"><a class="markdownIt-Anchor" href="#二开发环境以及配置">#</a> 二：开发环境以及配置</h2>
-<p>使用 c++ 进行主要类以及相应库的编写，利用 cmake 进行整个项目的构建，整个项目中使用与平台无关的标准库函数，最终生成 python 代码利用 tkinker 进行绘图。</p>
-<h2 id="三解决思路与关键类"><a class="markdownIt-Anchor" href="#三解决思路与关键类">#</a> 三：解决思路与关键类</h2>
-<h4 id="1结构设计"><a class="markdownIt-Anchor" href="#1结构设计">#</a> 1：结构设计</h4>
-<p>此编译器采用一次扫描，以语法分析器为核心，语法分析器是通过词法分析器从代码源文件中读入与分析词素，通过递归下降分析生成对应的抽象语法树（Abstract Syntax Tree），并检测代码中的语法错误。</p>
-<p>语法分析器在生成抽象语法树后将其传递给语义分析器，由语义分析器进行语义分析，生成最终的可执行代码，最终生成 python 代码使用 tkinter 库进行绘图。</p>
-<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20221115190847886.png" srcset="/img/loading.gif" lazyload  />
-<h4 id="2词法分析器"><a class="markdownIt-Anchor" href="#2词法分析器">#</a> 2：词法分析器</h4>
-<h5 id="1词法分析器的主要功能"><a class="markdownIt-Anchor" href="#1词法分析器的主要功能">#</a> &lt;1&gt; 词法分析器的主要功能</h5>
-<p>​	词法分析器的主要功能为识别输入序列，并为语法分析器提供记号</p>
-<p>​	过滤掉源程序中的空白字符、注释等编译无关字符</p>
-<p>​	输出 ** 记号供语法分析器使用</p>
-<p>​	识别非法输出，将其标记为错误记号</p>
-<h5 id="2记号定义"><a class="markdownIt-Anchor" href="#2记号定义">#</a> &lt;2&gt; 记号定义</h5>
+<h2 id="二开发环境以及配置">二：开发环境以及配置</h2>
+<p>使用c++进行主要类以及相应库的编写，利用cmake进行整个项目的构建，整个项目中使用与平台无关的标准库函数，最终生成python代码利用tkinker进行绘图。</p>
+<h2 id="三解决思路与关键类">三：解决思路与关键类</h2>
+<h4 id="结构设计">1：结构设计</h4>
+<p>此编译器采用一次扫描，以语法分析器为核心，语法分析器是通过词法分析器从代码源文件中读入与分析词素，通过递归下降分析生成对应的抽象语法树（Abstract
+Syntax Tree），并检测代码中的语法错误。</p>
+<p>语法分析器在生成抽象语法树后将其传递给语义分析器，由语义分析器进行语义分析，生成最终的可执行代码，最终生成python代码使用tkinter库进行绘图。</p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20221115190847886.png" srcset="/img/loading.gif" lazyload  /></p>
+<h4 id="词法分析器">2：词法分析器</h4>
+<h5 id="词法分析器的主要功能">&lt;1&gt;词法分析器的主要功能</h5>
+<p>​ 词法分析器的主要功能为识别输入序列，并为语法分析器提供记号</p>
+<p>​ 过滤掉源程序中的空白字符、注释等编译无关字符</p>
+<p>​ 输出**记号供语法分析器使用</p>
+<p>​ 识别非法输出，将其标记为错误记号</p>
+<h5 id="记号定义">&lt;2&gt;记号定义</h5>
 <p>在此解释器中，记号定义为如下形式</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">token</span><br>&#123;<br>    <span class="hljs-keyword">enum</span> <span class="hljs-title class_">token_type</span> type;<br>    <span class="hljs-type">char</span> *lexme;<br>    <span class="hljs-type">double</span> val;<br>    <span class="hljs-built_in">double</span> (*func_ptr)(<span class="hljs-type">double</span>);<br>&#125;;<br></code></pre></td></tr></table></figure>
-<p>其中的 token_type 为各种类型，即为记号种类，具体定义如下：</p>
+<p>其中的token_type为各种类型，即为记号种类，具体定义如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">token_type</span><br>&#123;<br>    ORIGIN,SCALE,ROT,IS,TO,FROM,FOR,DRAW,T,<br>    <br>    SEMICO,L_brackt,R_bracke,COMMA,<br>    <br>    PLUS,MINUS,MUL,DIV,POWER,<br>    <br>    FUNC,<br>    <br>    CONST_ID,<br>    <br>	NONTOKEN,<br>    <br>    ERRORTOKEN;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h5 id="3词法分析的主要流程"><a class="markdownIt-Anchor" href="#3词法分析的主要流程">#</a> &lt;3&gt; 词法分析的主要流程</h5>
+<h5 id="词法分析的主要流程">&lt;3&gt;词法分析的主要流程</h5>
 <p>选取有限自动机来实现语法分词器</p>
-<p>​	●清除前导空白字符</p>
-<p>​	●获取第一个非空白字符进行判断</p>
-<p>​	●若第一个非空白字符为字母则不断读取单个字符到缓冲区直到遇到非数字或非字母字符，将之放回</p>
+<p>​ ●清除前导空白字符</p>
+<p>​ ●获取第一个非空白字符进行判断</p>
+<p>​
+●若第一个非空白字符为字母则不断读取单个字符到缓冲区直到遇到非数字或非字母字符，将之放回</p>
 <p>输入流，缓冲区内存留字符作为一个记号，查询符号表并返回对应的记号（若符号表中不存在则视</p>
 <p>为新的变量，追加到符号表中）</p>
-<p>​	●若第一个非空白字符为数字则不断读取单个字符到缓冲区直到遇到非数字字符（若遇到小数点符号</p>
-<p>. 则重复读取单个字符到缓冲区直到遇到非数字字符），将之放回输入流，通过 atof () 将缓冲</p>
-<p>​	●区内字符转换为浮点值赋给一个新的数字记号并返回</p>
-<p>​	●若第一个非空白字符为其他分隔字符则进行针对性的模式匹配</p>
-<p>​	●其余则为非法字符，进行报错</p>
-<h4 id="3语法分析器"><a class="markdownIt-Anchor" href="#3语法分析器">#</a> 3：语法分析器</h4>
-<h5 id="适合递归下降分析算法如下"><a class="markdownIt-Anchor" href="#适合递归下降分析算法如下">#</a> 适合递归下降分析算法如下：</h5>
+<p>​
+●若第一个非空白字符为数字则不断读取单个字符到缓冲区直到遇到非数字字符（若遇到小数点符号</p>
+<p>.
+则重复读取单个字符到缓冲区直到遇到非数字字符），将之放回输入流，通过
+atof() 将缓冲</p>
+<p>​ ●区内字符转换为浮点值赋给一个新的数字记号并返回</p>
+<p>​ ●若第一个非空白字符为其他分隔字符则进行针对性的模式匹配</p>
+<p>​ ●其余则为非法字符，进行报错</p>
+<h4 id="语法分析器">3：语法分析器</h4>
+<h5 id="适合递归下降分析算法如下">适合递归下降分析算法如下：</h5>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++">Express on → Term    PLUS   MINUS  Term  <br>Term → Factor &#123; (MUL | DIV) Factor &#125;<br>Factor → PLUS Factor | MINUS Factor | Component<br>Component → Atom [POWER Component]<br>Atom → CONST_ID<br>| T<br>| FUNC L_BRACKET Expression R_BRACKET<br>| L_BRACKET Expression R_BRACKET<br></code></pre></td></tr></table></figure>
-<h5 id="其中语法树的数据结构为"><a class="markdownIt-Anchor" href="#其中语法树的数据结构为">#</a> 其中语法树的数据结构为：</h5>
+<h5 id="其中语法树的数据结构为">其中语法树的数据结构为：</h5>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span>  <span class="hljs-title class_">expr_node</span><br>&#123;<br><span class="hljs-keyword">enum</span> <span class="hljs-title class_">token_type</span> opcode;<br><span class="hljs-keyword">union</span><br>&#123;<br><span class="hljs-keyword">struct</span> <span class="hljs-comment">// tree node</span><br>&#123;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">expr_node</span> *left;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">expr_node</span> *right;<br>&#125;case_operator; <span class="hljs-comment">// the node is a operator</span><br><span class="hljs-keyword">struct</span><br>&#123;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">expr_node</span> *child;<br><span class="hljs-built_in">double</span> (*func_ptr)(<span class="hljs-type">double</span>);<br>&#125;case_func; <span class="hljs-comment">// the node is a call of function</span><br><span class="hljs-type">double</span> case_const; <span class="hljs-comment">// the node is a const value (right</span><br>val)<br><span class="hljs-type">double</span> *case_param; <span class="hljs-comment">// the node is a param (left</span><br>val)<br>&#125;content;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h4 id="4语义分析器"><a class="markdownIt-Anchor" href="#4语义分析器">#</a> 4: 语义分析器</h4>
-<h5 id="辅助语义函数为"><a class="markdownIt-Anchor" href="#辅助语义函数为">#</a> 辅助语义函数为：</h5>
+<h4 id="语义分析器">4:语义分析器</h4>
+<h5 id="辅助语义函数为">辅助语义函数为：</h5>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">get_expr_val</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> expr_node *tree)</span> ：计算表达式的值</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">get_coordinate</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> expr_node *exp_x, <span class="hljs-keyword">struct</span> expr_node *exp_y, <span class="hljs-type">double</span></span></span><br><span class="hljs-params"><span class="hljs-function">&amp;x, <span class="hljs-type">double</span> &amp;y)</span> ：获得一个点的坐标</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">draw_loop</span><span class="hljs-params">(<span class="hljs-keyword">struct</span> token *param, <span class="hljs-type">double</span> start, <span class="hljs-type">double</span> end, <span class="hljs-type">double</span> step,</span></span><br><span class="hljs-params"><span class="hljs-function"><span class="hljs-keyword">struct</span> expr_node *exp_x, <span class="hljs-keyword">struct</span> expr_node *exp_y)</span> ：由语法树绘制该表达式中所有的点</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">draw_pixel</span><span class="hljs-params">(<span class="hljs-type">double</span> x, <span class="hljs-type">double</span> y, <span class="hljs-type">double</span> step)</span> ：核心绘图函数，生成绘制一个点的python 代码</span><br></code></pre></td></tr></table></figure>
-<h2 id="四实验结果以及测试截图"><a class="markdownIt-Anchor" href="#四实验结果以及测试截图">#</a> 四：实验结果以及测试截图</h2>
+<h2 id="四实验结果以及测试截图">四:实验结果以及测试截图</h2>
 <p>测试代码为：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++">rot is <span class="hljs-number">0</span>;<br><span class="hljs-function">origin <span class="hljs-title">is</span> <span class="hljs-params">(<span class="hljs-number">50</span>, <span class="hljs-number">400</span>)</span></span>;<br><span class="hljs-function">scale <span class="hljs-title">is</span> <span class="hljs-params">(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>)</span></span>;<br><span class="hljs-keyword">for</span> T from <span class="hljs-number">0</span> to <span class="hljs-number">300</span> step <span class="hljs-number">0.01</span> <span class="hljs-built_in">draw</span> (t, <span class="hljs-number">0</span>);<br><span class="hljs-keyword">for</span> T from <span class="hljs-number">0</span> to <span class="hljs-number">300</span> step <span class="hljs-number">0.01</span> <span class="hljs-built_in">draw</span> (<span class="hljs-number">0</span>, -t);<br><span class="hljs-keyword">for</span> T from <span class="hljs-number">0</span> to <span class="hljs-number">300</span> step <span class="hljs-number">0.01</span> <span class="hljs-built_in">draw</span> (t, -t);<br><span class="hljs-function">scale <span class="hljs-title">is</span> <span class="hljs-params">(<span class="hljs-number">2</span>, <span class="hljs-number">0.1</span>)</span></span>;<br><span class="hljs-keyword">for</span> T from <span class="hljs-number">0</span> to <span class="hljs-number">55</span> step <span class="hljs-number">0.01</span> <span class="hljs-built_in">draw</span> (t, -(t*t));<br><span class="hljs-function">scale <span class="hljs-title">is</span> <span class="hljs-params">(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>)</span></span>;<br><span class="hljs-keyword">for</span> T from <span class="hljs-number">0</span> to <span class="hljs-number">60</span> step <span class="hljs-number">0.01</span> <span class="hljs-built_in">draw</span> (t, -<span class="hljs-built_in">sqrt</span>(t));<br><span class="hljs-function">scale <span class="hljs-title">is</span> <span class="hljs-params">(<span class="hljs-number">20</span>, <span class="hljs-number">0.1</span>)</span></span>;<br><span class="hljs-keyword">for</span> T from <span class="hljs-number">0</span> to <span class="hljs-number">8</span> step <span class="hljs-number">0.01</span> <span class="hljs-built_in">draw</span> (t, -<span class="hljs-built_in">exp</span>(t));<br><span class="hljs-function">scale <span class="hljs-title">is</span> <span class="hljs-params">(<span class="hljs-number">2</span>, <span class="hljs-number">20</span>)</span></span>;<br><span class="hljs-keyword">for</span> T from <span class="hljs-number">0</span> to <span class="hljs-number">300</span> step <span class="hljs-number">0.01</span> <span class="hljs-built_in">draw</span> (t, -<span class="hljs-built_in">ln</span>(t));<br></code></pre></td></tr></table></figure>
 <p>测试结果为：</p>
-<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20221114172645315.png" srcset="/img/loading.gif" lazyload alt="image-20221114172645315" style="zoom: 67%;" />
-<h2 id="五心得体会"><a class="markdownIt-Anchor" href="#五心得体会">#</a> 五：心得体会</h2>
-<p>从刚开始枯燥无聊的编译原理课程，到为了完成大作业的一步步学习，体会到了独立完成整个编译器的过程，让我从更深的层次上了解了代码的编译过程，同时独立完成一个 “传说中” 的编译器满满的成就感。</p>
-<p>遇到了太多的困难，从一个个库的编写（第一次自己手动编写一个自己需要的库），到编写完毕之后的运行失败，再到学长的引导下，把自己的各个文件用 cmake 系统的构建起来，以便后续的使用，最后到写入 python 文件的路径问题，从毫无头绪到一步步的完成，对我自己的能力提升很有帮助，不仅体现在这门课上面，更体现在自己对于计算机编译的理解和运行上面。</p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20221114172645315.png" srcset="/img/loading.gif" lazyload alt="image-20221114172645315" style="zoom: 67%;" /></p>
+<h2 id="五心得体会">五：心得体会</h2>
+<p>从刚开始枯燥无聊的编译原理课程，到为了完成大作业的一步步学习，体会到了独立完成整个编译器的过程，让我从更深的层次上了解了代码的编译过程，同时独立完成一个“传说中”的编译器满满的成就感。</p>
+<p>遇到了太多的困难，从一个个库的编写（第一次自己手动编写一个自己需要的库），到编写完毕之后的运行失败，再到学长的引导下，把自己的各个文件用cmake系统的构建起来，以便后续的使用，最后到写入python文件的路径问题，从毫无头绪到一步步的完成，对我自己的能力提升很有帮助，不仅体现在这门课上面，更体现在自己对于计算机编译的理解和运行上面。</p>
 
                 
               </div>
@@ -433,6 +461,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%A4%A7%E5%AD%A6%E5%A4%A7%E4%BD%9C%E4%B8%9A/" class="category-chain-item">大学大作业</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">#编译原理</a>
+      
+    </div>
   
 </div>
 
@@ -449,7 +505,7 @@
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>Ang~</div>
+          <div>ang~</div>
         </div>
       
       
@@ -580,6 +636,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -746,6 +808,40 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
