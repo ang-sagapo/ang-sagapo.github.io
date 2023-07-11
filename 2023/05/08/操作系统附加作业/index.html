@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、实验题目：使用已有动态分析工具（沙箱）对恶意软件的操作系统资源使用情况进行分析注意：恶意软件不限制平台（Windows、Android、Linux），可从 Virusshare 等平台下载；动态分析工具不作要求，可使用（Windows - Cuckoo Sandbox，Android - Appmon，Linux - Dtrace）；动态分析要求运行环境满足恶意软件执行要求，可能存在缺少运行环">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS_Extra">
+<meta property="og:url" content="http://example.com/2023/05/08/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%99%84%E5%8A%A0%E4%BD%9C%E4%B8%9A/index.html">
+<meta property="og:site_name" content="ang&#39;s blog">
+<meta property="og:description" content="一、实验题目：使用已有动态分析工具（沙箱）对恶意软件的操作系统资源使用情况进行分析注意：恶意软件不限制平台（Windows、Android、Linux），可从 Virusshare 等平台下载；动态分析工具不作要求，可使用（Windows - Cuckoo Sandbox，Android - Appmon，Linux - Dtrace）；动态分析要求运行环境满足恶意软件执行要求，可能存在缺少运行环">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230514190613073.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230514190554770.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/1920756/106375993-a0244180-6356-11eb-9fd7-59d117914800.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/1920756/106376023-e24d8300-6356-11eb-8775-710d7b713615.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/1920756/106376049-0e690400-6357-11eb-9ba5-bba2c2ae06b4.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/1920756/106376055-1fb21080-6357-11eb-8861-8ca2ee6eeae7.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/1920756/106376161-21300880-6358-11eb-8994-b64dd661e370.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/1920756/106376196-7c61fb00-6358-11eb-89a9-f5febaf31f7e.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/1920756/106376233-e4b0dc80-6358-11eb-99a1-22f14c93fa18.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/1920756/106992473-22897880-673e-11eb-95af-5112cae506e2.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522193621779.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522193742480.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522193856987.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522194031521.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522194222421.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522194348275.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522213702745.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522214118566.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522220751078.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522220817516.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522224848001.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522225011831.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225205008.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225233632.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225345305.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225452618.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225530230.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225625160.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225642329.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225818321.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523230257977.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523230350881.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523230404459.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100334712.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100350710.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100438413.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100505194.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100610699.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100638123.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100659211.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100727278.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100746513.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100806277.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100820223.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100929404.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100951701.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524101027136.png">
+<meta property="article:published_time" content="2023-05-08T04:46:39.318Z">
+<meta property="article:modified_time" content="2023-07-11T09:28:09.509Z">
+<meta property="article:author" content="Ang">
+<meta property="article:tag" content="大学大作业">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230514190613073.png">
+
+<link rel="canonical" href="http://example.com/2023/05/08/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%99%84%E5%8A%A0%E4%BD%9C%E4%B8%9A/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>OS_Extra | ang's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ang's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">en?</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/ang-sagapo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/08/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%99%84%E5%8A%A0%E4%BD%9C%E4%B8%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ang.jpg">
+      <meta itemprop="name" content="Ang">
+      <meta itemprop="description" content="Why do learn?">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ang's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OS_Extra
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-08 12:46:39" itemprop="dateCreated datePublished" datetime="2023-05-08T12:46:39+08:00">2023-05-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-11 17:28:09" itemprop="dateModified" datetime="2023-07-11T17:28:09+08:00">2023-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、实验题目："><a href="#一、实验题目：" class="headerlink" title="一、实验题目："></a>一、实验题目：</h3><p>使用已有动态分析工具（沙箱）对恶意软件的操作系统资源使用情况进行分析<br>注意：<br>恶意软件不限制平台（Windows、Android、Linux），可从 Virusshare 等平台下载；<br>动态分析工具不作要求，可使用（Windows - Cuckoo Sandbox，Android - Appmon，Linux - Dtrace）；<br>动态分析要求运行环境满足恶意软件执行要求，可能存在缺少运行环境无法执行的情况，选择可以成功运行的恶意软件分析即可；<br>动态分许需要自动化测试工具，触发恶意软件的模拟执行；</p>
+<p>选择若干种典型恶意软件，要求已知其恶意行为特征，并提供相应的恶意行为证明材料（如某安全公司分析报告），并与动态分析工具的结果进行对应；<br>恶意软件采用沙箱规避技术以绕过动态分析工具，请详细调研几种典型沙箱规避技术，并提出相应的对抗规避机制；<br>对于对抗规避机制，请通过实验结果证明可以对抗沙箱规避技术；对于实现困难的对抗机制，请详细描述相应的对抗规避原理，并提供相应的参考文献（如学术论文）；</p>
+<p>调研现有的沙箱规避技术（主要通过哪些 API 来检测在沙箱环境中），然后设计一些检测的防规避技术，最简单的就是采用Windows API HOOK技术，返回虚假的返回值即可</p>
+<h3 id="二、实验原理"><a href="#二、实验原理" class="headerlink" title="二、实验原理"></a>二、实验原理</h3><h5 id="检测用户交互是沙箱环境中常用的一种规避技术，用于规避沙箱环境中的检测机制，使得恶意代码可以欺骗沙箱环境。下面介绍一些常用的检测用户交互的沙盒规避技术及对抗方法："><a href="#检测用户交互是沙箱环境中常用的一种规避技术，用于规避沙箱环境中的检测机制，使得恶意代码可以欺骗沙箱环境。下面介绍一些常用的检测用户交互的沙盒规避技术及对抗方法：" class="headerlink" title="检测用户交互是沙箱环境中常用的一种规避技术，用于规避沙箱环境中的检测机制，使得恶意代码可以欺骗沙箱环境。下面介绍一些常用的检测用户交互的沙盒规避技术及对抗方法："></a>检测用户交互是沙箱环境中常用的一种规避技术，用于规避沙箱环境中的检测机制，使得恶意代码可以欺骗沙箱环境。下面介绍一些常用的检测用户交互的沙盒规避技术及对抗方法：</h5><ol>
+<li>检测键盘鼠标事件：检测沙箱环境中的键盘鼠标事件，并判断其是否真实，如果检测到虚拟键盘鼠标事件，则认为是在沙箱环境中运行。对抗方法：欺骗检测程序，让其认为键盘鼠标事件是真实的，可以通过修改虚拟机的配置文件或使用第三方工具来达到目的。</li>
+<li>检测鼠标位置：检测鼠标在屏幕上的位置，如果位置没有变化或者只是做了一些固定的循环运动，则认为是在沙箱环境中运行。对抗方法：欺骗检测程序，让其认为鼠标位置是真实的，可以通过修改虚拟机的配置文件或使用第三方工具来达到目的。</li>
+<li>检测睡眠模式：检测沙箱环境是否处于睡眠模式，如果处于睡眠模式，则认为是在沙箱环境中运行。对抗方法：修改沙箱环境的配置，禁用睡眠模式。</li>
+<li>检测虚拟硬件设备：检测沙箱环境中的虚拟硬件设备，如果发现虚拟硬件设备，则认为是在沙箱环境中运行。对抗方法：欺骗检测程序，让其认为虚拟硬件设备是真实的，可以通过修改虚拟机的配置文件或使用第三方工具来达到目的。</li>
+<li>检测文件系统：检测沙箱环境中的文件系统，如果发现文件系统与真实环境不同，则认为是在沙箱环境中运行。对抗方法：欺骗检测程序，让其认为文件系统是真实的，可以通过修改虚拟机的配置文件或使用第三方工具来达到目的。</li>
+</ol>
+<h5 id="对于通过检测用户交互的沙盒规避技术，以下是一些有效的对抗措施："><a href="#对于通过检测用户交互的沙盒规避技术，以下是一些有效的对抗措施：" class="headerlink" title="对于通过检测用户交互的沙盒规避技术，以下是一些有效的对抗措施："></a>对于通过检测用户交互的沙盒规避技术，以下是一些有效的对抗措施：</h5><ol>
+<li>模拟用户交互：可以通过自动化测试工具或编写脚本等方式，模拟用户与程序的交互，使得程序无法判断是否在沙盒环境中运行。</li>
+<li>修改沙盒环境的参数：可以通过修改沙盒环境的参数，如文件路径、文件名、操作系统版本等，使得程序无法正确地判断当前是否在沙盒环境中运行。</li>
+<li>伪造系统特征：可以通过修改系统信息，如伪造MAC地址、IP地址、硬件信息等，使得程序无法正确地判断当前所处的环境。</li>
+<li>使用反沙盒工具：反沙盒工具可以模拟沙盒环境，使得恶意软件误认为自己在沙盒中运行，从而触发特定的行为。因此，沙盒技术需要及时更新自己的特征库，以识别并防范这些反沙盒工具。</li>
+<li>动态监测：使用动态监测工具可以对程序进行实时监控，检测程序的行为，从而及时发现和防范恶意行为。</li>
+</ol>
+<h5 id="通过检测系统特征的沙盒规避技术是一种通过检测系统环境的一些特征，来判断当前程序是否在一个虚拟环境中运行，以规避沙盒检测的技术。"><a href="#通过检测系统特征的沙盒规避技术是一种通过检测系统环境的一些特征，来判断当前程序是否在一个虚拟环境中运行，以规避沙盒检测的技术。" class="headerlink" title="通过检测系统特征的沙盒规避技术是一种通过检测系统环境的一些特征，来判断当前程序是否在一个虚拟环境中运行，以规避沙盒检测的技术。"></a>通过检测系统特征的沙盒规避技术是一种通过检测系统环境的一些特征，来判断当前程序是否在一个虚拟环境中运行，以规避沙盒检测的技术。</h5><h5 id="下面介绍几种常见的通过检测系统特征的沙盒规避技术以及相应的对抗规避机制："><a href="#下面介绍几种常见的通过检测系统特征的沙盒规避技术以及相应的对抗规避机制：" class="headerlink" title="下面介绍几种常见的通过检测系统特征的沙盒规避技术以及相应的对抗规避机制："></a>下面介绍几种常见的通过检测系统特征的沙盒规避技术以及相应的对抗规避机制：</h5><ol>
+<li>检测硬件信息：某些恶意软件会检测虚拟机的硬件信息，如虚拟机的内存大小、CPU数量、网卡型号等，来判断当前程序是否运行在虚拟机环境中。对抗这种规避技术的方法是，可以通过修改虚拟机的硬件信息，如修改内存大小、CPU型号等来规避检测。</li>
+<li>检测虚拟化软件：某些恶意软件会检测当前系统是否运行了虚拟化软件，如VMware、VirtualBox等，如果检测到了，则判断当前程序在一个虚拟环境中运行。对抗这种规避技术的方法是，可以修改虚拟化软件的标识信息，如修改虚拟机的BIOS信息、修改虚拟化软件的文件名等来规避检测。</li>
+<li>检测系统文件：某些恶意软件会检测当前系统中是否存在某些系统文件或注册表项，如VMware的驱动文件、VirtualBox的注册表项等，如果检测到了，则判断当前程序在一个虚拟环境中运行。对抗这种规避技术的方法是，可以通过修改系统文件、删除注册表项等来规避检测。</li>
+<li>检测网络：某些恶意软件会检测当前系统的网络环境，如IP地址、MAC地址、DNS服务器等，如果检测到了一些虚拟化软件常用的IP地址或者DNS服务器，则判断当前程序在一个虚拟环境中运行。对抗这种规避技术的方法是，可以修改虚拟机的网络配置，如修改IP地址、DNS服务器等来规避检测。</li>
+</ol>
+<p>需要注意的是，由于恶意软件可能使用多种规避技术来避免被沙盒检测，因此单独使用一种规避技术可能并不能完全规避检测。因此，沙盒技术的设计者需要使用多种检测机制，同时加入一些对抗规避技术的策略，以增强沙盒的安全性。</p>
+<h5 id="针对检测系统特征的沙盒规避技术，可以采用以下对抗措施和检测方法："><a href="#针对检测系统特征的沙盒规避技术，可以采用以下对抗措施和检测方法：" class="headerlink" title="针对检测系统特征的沙盒规避技术，可以采用以下对抗措施和检测方法："></a>针对检测系统特征的沙盒规避技术，可以采用以下对抗措施和检测方法：</h5><ol>
+<li>修改系统特征：攻击者可以修改操作系统的某些特征，使其不再符合沙盒检测的特征，从而规避检测。为了对抗这种攻击方式，沙盒可以采用多种特征检测机制，对系统特征进行多个方面的检测，并且尽可能地覆盖所有的系统特征，以防止被攻击者规避。</li>
+<li>使用随机特征：沙盒可以在检测系统特征时使用一些随机特征，这些特征在每次执行沙盒时都是不同的，从而使攻击者无法预测和规避特征检测。</li>
+<li>检测系统特征修改：在沙盒中可以添加监控系统特征的模块，当发现某些系统特征被修改时，及时报警或者终止程序的执行。</li>
+<li>检测系统API调用：攻击者在修改系统特征的同时，也可能会调用一些系统API来规避沙盒的检测。沙盒可以通过检测系统API调用来发现这些攻击行为，同时可以限制程序对系统API的调用。</li>
+<li>使用动态分析：使用动态分析工具对程序进行动态跟踪，分析其行为，可以检测出一些规避技术。同时，动态分析工具可以监控系统调用，检测恶意程序的行为，以及检测攻击者对系统特征的修改。</li>
+</ol>
+<h3 id="三、实验过程以及原理解释"><a href="#三、实验过程以及原理解释" class="headerlink" title="三、实验过程以及原理解释"></a>三、实验过程以及原理解释</h3><p>由于我对于virusshare上的恶意软件的使用导致我的麒麟操作系统直接死机报废，这次的实验还在慢慢的学习中，</p>
+<p>最终，我使用了我做过的ctf题目中的恶意代码，（这个代码是我之前运行过的，并没有对我的系统造成太大的影响）以此为示例进行分析。</p>
+<h5 id="1、恶意代码分析工具以及运行环境"><a href="#1、恶意代码分析工具以及运行环境" class="headerlink" title="1、恶意代码分析工具以及运行环境"></a>1、恶意代码分析工具以及运行环境</h5><h5 id="lt-1-gt-Remnux虚拟环境，此环境基于ububtu20-04版本，它是-Ubuntu-Linux-的预配置恶意软件分析发行版-在vm上配置remnux虚拟专门用于对恶意软件的分析检测。"><a href="#lt-1-gt-Remnux虚拟环境，此环境基于ububtu20-04版本，它是-Ubuntu-Linux-的预配置恶意软件分析发行版-在vm上配置remnux虚拟专门用于对恶意软件的分析检测。" class="headerlink" title="&lt;1&gt;Remnux虚拟环境，此环境基于ububtu20.04版本，它是 Ubuntu Linux 的预配置恶意软件分析发行版,在vm上配置remnux虚拟专门用于对恶意软件的分析检测。"></a>&lt;1&gt;Remnux虚拟环境，此环境基于ububtu20.04版本，它是 Ubuntu Linux 的预配置恶意软件分析发行版,在vm上配置remnux虚拟专门用于对恶意软件的分析检测。</h5><h5 id="lt-2-gt-Oledump工具"><a href="#lt-2-gt-Oledump工具" class="headerlink" title="&lt;2&gt;Oledump工具"></a>&lt;2&gt;Oledump工具</h5><h5 id="oledump是一个基于python的程序，这个程序可以帮助我们在系统中分析恶意文档。"><a href="#oledump是一个基于python的程序，这个程序可以帮助我们在系统中分析恶意文档。" class="headerlink" title="oledump是一个基于python的程序，这个程序可以帮助我们在系统中分析恶意文档。"></a>oledump是一个基于python的程序，这个程序可以帮助我们在系统中分析恶意文档。</h5><p>检查虚拟机中的oledump是否已经被安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oledump.py -h</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230514190613073.png" alt="image-20230514190613073"></p>
+<h5 id="lt-3-gt-oldefile依赖文件"><a href="#lt-3-gt-oldefile依赖文件" class="headerlink" title="&lt;3&gt;oldefile依赖文件"></a>&lt;3&gt;oldefile依赖文件</h5><h5 id="使用remnux中的pip工具下载oldfile依赖文件"><a href="#使用remnux中的pip工具下载oldfile依赖文件" class="headerlink" title="使用remnux中的pip工具下载oldfile依赖文件"></a>使用remnux中的pip工具下载oldfile依赖文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install oldfile</span><br></pre></td></tr></table></figure>
+
+<h5 id="olefile是一个-Python-包，用于解析、读取和写入Microsoft-OLE2-文件-（也称为结构化存储、复合文件二进制格式或复合文档文件格式），例如-Microsoft-Office-97-2003-文档、Image-Composer-和-FlashPix-文件、Outlook-消息、StickyNotes-、几种显微镜文件格式、McAfee-防病毒隔离文件等。"><a href="#olefile是一个-Python-包，用于解析、读取和写入Microsoft-OLE2-文件-（也称为结构化存储、复合文件二进制格式或复合文档文件格式），例如-Microsoft-Office-97-2003-文档、Image-Composer-和-FlashPix-文件、Outlook-消息、StickyNotes-、几种显微镜文件格式、McAfee-防病毒隔离文件等。" class="headerlink" title="olefile是一个 Python 包，用于解析、读取和写入Microsoft OLE2 文件 （也称为结构化存储、复合文件二进制格式或复合文档文件格式），例如 Microsoft Office 97-2003 文档、Image Composer 和 FlashPix 文件、Outlook 消息、StickyNotes 、几种显微镜文件格式、McAfee 防病毒隔离文件等。"></a><a target="_blank" rel="noopener" href="https://www.decalage.info/olefile">olefile</a>是一个 Python 包，用于解析、读取和写入<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Compound_File_Binary_Format">Microsoft OLE2 文件</a> （也称为结构化存储、复合文件二进制格式或复合文档文件格式），例如 Microsoft Office 97-2003 文档、Image Composer 和 FlashPix 文件、Outlook 消息、StickyNotes 、几种显微镜文件格式、McAfee 防病毒隔离文件等。</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230514190554770.png" alt="image-20230514190554770"></p>
+<h5 id="将恶意文档下载到桌面上"><a href="#将恶意文档下载到桌面上" class="headerlink" title="将恶意文档下载到桌面上,"></a>将恶意文档下载到桌面上,</h5><h5 id="文档一MD5：fb5ed444ddc37d748639f624397cff2a，文档为加密状态，解密密码为"><a href="#文档一MD5：fb5ed444ddc37d748639f624397cff2a，文档为加密状态，解密密码为" class="headerlink" title="文档一MD5：fb5ed444ddc37d748639f624397cff2a，文档为加密状态，解密密码为"></a>文档一MD5：fb5ed444ddc37d748639f624397cff2a，文档为加密状态，解密密码为</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">infected</span><br></pre></td></tr></table></figure>
+
+<h5 id="下面使用oledump恶意文档分析工具调查此文档中是否存在宏："><a href="#下面使用oledump恶意文档分析工具调查此文档中是否存在宏：" class="headerlink" title="下面使用oledump恶意文档分析工具调查此文档中是否存在宏："></a>下面使用oledump恶意文档分析工具调查此文档中是否存在宏：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oledump.py ~/Desktop/fb5ed444ddc37d748639f624397cff2a.bin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://user-images.githubusercontent.com/1920756/106375993-a0244180-6356-11eb-9fd7-59d117914800.png" alt="Oledump 输出"></p>
+<h5 id="同时，此题目为我们提供了一个Virustotal网站的检测分析，检测率仅为7-x2F-58，所以合理推断XLS文件的内容可能被加密了，由此，使用另一个新学到的工具进行检查："><a href="#同时，此题目为我们提供了一个Virustotal网站的检测分析，检测率仅为7-x2F-58，所以合理推断XLS文件的内容可能被加密了，由此，使用另一个新学到的工具进行检查：" class="headerlink" title="同时，此题目为我们提供了一个Virustotal网站的检测分析，检测率仅为7&#x2F;58，所以合理推断XLS文件的内容可能被加密了，由此，使用另一个新学到的工具进行检查："></a>同时，此题目为我们提供了一个Virustotal网站的检测分析，检测率仅为7&#x2F;58，所以合理推断XLS文件的内容可能被加密了，由此，使用另一个新学到的工具进行检查：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msoffcrypto-tool fb5ed444ddc37d748639f624397cff2a.bin --<span class="built_in">test</span> -v </span><br></pre></td></tr></table></figure>
+
+<h5 id="最终得到如下图所示的结果："><a href="#最终得到如下图所示的结果：" class="headerlink" title="最终得到如下图所示的结果："></a>最终得到如下图所示的结果：</h5><p><img src="https://user-images.githubusercontent.com/1920756/106376023-e24d8300-6356-11eb-8775-710d7b713615.png" alt="msoff加密工具"></p>
+<h5 id="通过此图可以发现，我们需要知道解密这个文件的密码才能够检查宏。一些恶意软件活动会在电子邮件中发送密码，有助于避免安全研究人员进行分析（如果他们没有收到原始电子邮件），并且有争议地为社会工程增加一些额外的合法性。然而，这里的情况并非如此——相反，它使用一种已知的技术来自动解密文件——这是通过使用“VelvetSweatshop”密码来实现的。使用此作为密码，Office-将自动解密-XLS-文档并执行宏。"><a href="#通过此图可以发现，我们需要知道解密这个文件的密码才能够检查宏。一些恶意软件活动会在电子邮件中发送密码，有助于避免安全研究人员进行分析（如果他们没有收到原始电子邮件），并且有争议地为社会工程增加一些额外的合法性。然而，这里的情况并非如此——相反，它使用一种已知的技术来自动解密文件——这是通过使用“VelvetSweatshop”密码来实现的。使用此作为密码，Office-将自动解密-XLS-文档并执行宏。" class="headerlink" title="通过此图可以发现，我们需要知道解密这个文件的密码才能够检查宏。一些恶意软件活动会在电子邮件中发送密码，有助于避免安全研究人员进行分析（如果他们没有收到原始电子邮件），并且有争议地为社会工程增加一些额外的合法性。然而，这里的情况并非如此——相反，它使用一种已知的技术来自动解密文件——这是通过使用“VelvetSweatshop”密码来实现的。使用此作为密码，Office 将自动解密 XLS 文档并执行宏。"></a>通过此图可以发现，我们需要知道解密这个文件的密码才能够检查宏。一些恶意软件活动会在电子邮件中发送密码，有助于避免安全研究人员进行分析（如果他们没有收到原始电子邮件），并且有争议地为社会工程增加一些额外的合法性。然而，这里的情况并非如此——相反，它使用一种已知的技术来自动解密文件——这是通过使用“VelvetSweatshop”密码来实现的。使用此作为密码，Office 将自动解密 XLS 文档并执行宏。</h5><h5 id="使用-MSOFFCRYPTO-TOOL，我们可以提供密码并解密文档："><a href="#使用-MSOFFCRYPTO-TOOL，我们可以提供密码并解密文档：" class="headerlink" title="使用 MSOFFCRYPTO-TOOL，我们可以提供密码并解密文档："></a>使用 MSOFFCRYPTO-TOOL，我们可以提供密码并解密文档：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msoffcrypto-tool fb5ed444ddc37d748639f624397cff2a.bin -p VelvetSweatshop &gt;decryptoed.bin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://user-images.githubusercontent.com/1920756/106376049-0e690400-6357-11eb-9ba5-bba2c2ae06b4.png" alt="解密文档"></p>
+<h5 id="现在可以使用oledump进行调查："><a href="#现在可以使用oledump进行调查：" class="headerlink" title="现在可以使用oledump进行调查："></a>现在可以使用oledump进行调查：</h5><p><img src="https://user-images.githubusercontent.com/1920756/106376055-1fb21080-6357-11eb-8861-8ca2ee6eeae7.png" alt="解密文档"></p>
+<h5 id="但是经过检查之后发现，仍然没有宏的出现，该文档可能使用了-Excel-4-宏，下面开始检查-OLEDUMP-的-plugin-biff-插件"><a href="#但是经过检查之后发现，仍然没有宏的出现，该文档可能使用了-Excel-4-宏，下面开始检查-OLEDUMP-的-plugin-biff-插件" class="headerlink" title="但是经过检查之后发现，仍然没有宏的出现，该文档可能使用了 Excel 4 宏，下面开始检查 OLEDUMP 的 plugin_biff 插件"></a>但是经过检查之后发现，仍然没有宏的出现，该文档可能使用了 Excel 4 宏，下面开始检查 OLEDUMP 的 plugin_biff 插件</h5><h5 id="OLEDUMP-提供了许多插件，特别是用于检查-Excel-97-2003-文档的二进制文件格式的-plugin-biff。BIFF-代表二进制交换文件格式，这种结构与办公文档当前使用的当前-VBA-格式不同。这意味着我们需要使用此插件来识别潜在的-Excel-4-宏使用。"><a href="#OLEDUMP-提供了许多插件，特别是用于检查-Excel-97-2003-文档的二进制文件格式的-plugin-biff。BIFF-代表二进制交换文件格式，这种结构与办公文档当前使用的当前-VBA-格式不同。这意味着我们需要使用此插件来识别潜在的-Excel-4-宏使用。" class="headerlink" title="OLEDUMP 提供了许多插件，特别是用于检查 Excel 97 - 2003 文档的二进制文件格式的 plugin_biff。BIFF 代表二进制交换文件格式，这种结构与办公文档当前使用的当前 VBA 格式不同。这意味着我们需要使用此插件来识别潜在的 Excel 4 宏使用。"></a>OLEDUMP 提供了许多插件，特别是用于检查 Excel 97 - 2003 文档的二进制文件格式的 plugin_biff。BIFF 代表二进制交换文件格式，这种结构与办公文档当前使用的当前 VBA 格式不同。这意味着我们需要使用此插件来识别潜在的 Excel 4 宏使用。</h5><p><img src="https://user-images.githubusercontent.com/1920756/106376161-21300880-6358-11eb-8994-b64dd661e370.png" alt="插件biff"></p>
+<h5 id="插件找到了-Excel-4-宏。"><a href="#插件找到了-Excel-4-宏。" class="headerlink" title="插件找到了 Excel 4 宏。"></a>插件找到了 Excel 4 宏。</h5><h5 id="使用-–pluginoptions-“-h”-来获取插件的参数"><a href="#使用-–pluginoptions-“-h”-来获取插件的参数" class="headerlink" title="使用*–pluginoptions “-h”*来获取插件的参数"></a>使用*–pluginoptions “-h”*来获取插件的参数</h5><p><img src="https://user-images.githubusercontent.com/1920756/106376196-7c61fb00-6358-11eb-89a9-f5febaf31f7e.png" alt="选项"></p>
+<h5 id="所以-x-将选择所有记录相关的-Excel-4-宏："><a href="#所以-x-将选择所有记录相关的-Excel-4-宏：" class="headerlink" title="所以*-x*将选择所有记录相关的 Excel 4 宏："></a>所以*-x*将选择所有记录相关的 Excel 4 宏：</h5><p><img src="https://user-images.githubusercontent.com/1920756/106376233-e4b0dc80-6358-11eb-99a1-22f14c93fa18.png" alt="概括"></p>
+<h5 id="使用plugin-biff，还可以查看文档工作表的可见性："><a href="#使用plugin-biff，还可以查看文档工作表的可见性：" class="headerlink" title="使用plugin_biff，还可以查看文档工作表的可见性："></a>使用<em>plugin_biff</em>，还可以查看文档工作表的可见性：</h5><p><img src="https://user-images.githubusercontent.com/1920756/106992473-22897880-673e-11eb-95af-5112cae506e2.png" alt="img"></p>
+<h5 id="在这里可以看到隐藏的工作表按输出顺序命名：SOCWNEScLLxkLhtJp-OHqYbvYcqmWjJJjsF-Macro2-Macro3-Macro4-Macro5。"><a href="#在这里可以看到隐藏的工作表按输出顺序命名：SOCWNEScLLxkLhtJp-OHqYbvYcqmWjJJjsF-Macro2-Macro3-Macro4-Macro5。" class="headerlink" title="在这里可以看到隐藏的工作表按输出顺序命名：SOCWNEScLLxkLhtJp, OHqYbvYcqmWjJJjsF, Macro2, Macro3, Macro4, Macro5。"></a>在这里可以看到隐藏的工作表按输出顺序命名：<em>SOCWNEScLLxkLhtJp, OHqYbvYcqmWjJJjsF, Macro2, Macro3, Macro4, Macro5</em>。</h5><h3 id="写着写着发现，老师要求的题目是动态分析，而我上面做的是对于恶意文件的静态分析，先放放，学会了再来写动态分析的内容。（好不容易写完的静态分析就不删了）"><a href="#写着写着发现，老师要求的题目是动态分析，而我上面做的是对于恶意文件的静态分析，先放放，学会了再来写动态分析的内容。（好不容易写完的静态分析就不删了）" class="headerlink" title="写着写着发现，老师要求的题目是动态分析，而我上面做的是对于恶意文件的静态分析，先放放，学会了再来写动态分析的内容。（好不容易写完的静态分析就不删了）"></a>写着写着发现，老师要求的题目是动态分析，而我上面做的是对于恶意文件的静态分析，先放放，学会了再来写动态分析的内容。（好不容易写完的静态分析就不删了）</h3><h5 id="接下来的动态分析的内容："><a href="#接下来的动态分析的内容：" class="headerlink" title="接下来的动态分析的内容："></a>接下来的动态分析的内容：</h5><h5 id="写了整整一周："><a href="#写了整整一周：" class="headerlink" title="写了整整一周："></a>写了整整一周：</h5><h5 id="尤其是配置cuckoo沙箱以及cape沙箱的安装过程："><a href="#尤其是配置cuckoo沙箱以及cape沙箱的安装过程：" class="headerlink" title="尤其是配置cuckoo沙箱以及cape沙箱的安装过程："></a>尤其是配置cuckoo沙箱以及cape沙箱的安装过程：</h5><h5 id="当我们把沙箱环境配置好之后，然后对于恶意代码的执行分析已经比较简单了，下面是我的实验全过程："><a href="#当我们把沙箱环境配置好之后，然后对于恶意代码的执行分析已经比较简单了，下面是我的实验全过程：" class="headerlink" title="当我们把沙箱环境配置好之后，然后对于恶意代码的执行分析已经比较简单了，下面是我的实验全过程："></a>当我们把沙箱环境配置好之后，然后对于恶意代码的执行分析已经比较简单了，下面是我的实验全过程：</h5><h5 id="由于cuckoo的管理组件完全由python编写，所以需要合适的python版本，在官方文档中，当前完全兼容的版本是python2-7"><a href="#由于cuckoo的管理组件完全由python编写，所以需要合适的python版本，在官方文档中，当前完全兼容的版本是python2-7" class="headerlink" title="由于cuckoo的管理组件完全由python编写，所以需要合适的python版本，在官方文档中，当前完全兼容的版本是python2.7"></a>由于cuckoo的管理组件完全由python编写，所以需要合适的python版本，在官方文档中，当前完全兼容的版本是python2.7</h5><h5 id="接下来执行一系列的工具安装："><a href="#接下来执行一系列的工具安装：" class="headerlink" title="接下来执行一系列的工具安装："></a>接下来执行一系列的工具安装：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python python-pip python-dev libffi-dev libssl-dev</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install software-properties-common</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522193621779.png" alt="image-20230522193621779"></p>
+<h5 id="查看pip工具版本以及命令目录"><a href="#查看pip工具版本以及命令目录" class="headerlink" title="查看pip工具版本以及命令目录"></a>查看pip工具版本以及命令目录</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip list</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522193742480.png" alt="image-20230522193742480"></p>
+<h5 id="安装工具："><a href="#安装工具：" class="headerlink" title="安装工具："></a>安装工具：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libjpeg-dev zlib1g-dev swig</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522193856987.png" alt="image-20230522193856987"></p>
+<h5 id="安装mongodb工具"><a href="#安装mongodb工具" class="headerlink" title="安装mongodb工具"></a>安装mongodb工具</h5><h5 id="首先导入apt的key"><a href="#首先导入apt的key" class="headerlink" title="首先导入apt的key"></a>首先导入apt的key</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522194031521.png" alt="image-20230522194031521"></p>
+<h5 id="接着创建版本列表文件"><a href="#接着创建版本列表文件" class="headerlink" title="接着创建版本列表文件"></a>接着创建版本列表文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/mongodb-org-4.0.list</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522194222421.png" alt="image-20230522194222421"></p>
+<h5 id="更新软件源并安装最新版mongodb"><a href="#更新软件源并安装最新版mongodb" class="headerlink" title="更新软件源并安装最新版mongodb"></a>更新软件源并安装最新版mongodb</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y mongodb-org</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522194348275.png" alt="image-20230522194348275"></p>
+<h5 id="启动-x2F-重启-x2F-停止-mongo的服务"><a href="#启动-x2F-重启-x2F-停止-mongo的服务" class="headerlink" title="启动&#x2F;重启&#x2F;停止 mongo的服务"></a>启动&#x2F;重启&#x2F;停止 mongo的服务</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo service mongod start</span><br><span class="line">sudo service mongod restart</span><br><span class="line">sudo service mongod stop</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="用oracle仓库安装VirtualBox"><a href="#用oracle仓库安装VirtualBox" class="headerlink" title="用oracle仓库安装VirtualBox"></a>用oracle仓库安装VirtualBox</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository <span class="string">&quot;deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian <span class="subst">$(lsb_release -cs)</span> contrib&quot;</span></span><br><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="下面安装tcpdump工具："><a href="#下面安装tcpdump工具：" class="headerlink" title="下面安装tcpdump工具："></a>下面安装tcpdump工具：</h5><h5 id="Tcpdump用于抓取恶意软件运行过程中产生的所有流量"><a href="#Tcpdump用于抓取恶意软件运行过程中产生的所有流量" class="headerlink" title="Tcpdump用于抓取恶意软件运行过程中产生的所有流量"></a>Tcpdump用于抓取恶意软件运行过程中产生的所有流量</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tcpdump apparmor-utils</span><br><span class="line">sudo aa-disable /usr/sbin/tcpdump</span><br></pre></td></tr></table></figure>
+
+<h5 id="安装M2Crypto库"><a href="#安装M2Crypto库" class="headerlink" title="安装M2Crypto库"></a>安装M2Crypto库</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">先安装SWG才能够支持M2Crypto</span><br><span class="line">sudo apt-get install swig</span><br><span class="line">sudo pip install m2crypto==0.24.0</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522213702745.png" alt="image-20230522213702745"></p>
+<h5 id="cuckoo安装"><a href="#cuckoo安装" class="headerlink" title="cuckoo安装"></a>cuckoo安装</h5><h5 id="Cuckoo可以运行在已有用户下面，也可以新建一个用户来跑Cuckoo。-但是要保证虚拟机和Cuckoo运行在相同的用户下。"><a href="#Cuckoo可以运行在已有用户下面，也可以新建一个用户来跑Cuckoo。-但是要保证虚拟机和Cuckoo运行在相同的用户下。" class="headerlink" title="Cuckoo可以运行在已有用户下面，也可以新建一个用户来跑Cuckoo。 但是要保证虚拟机和Cuckoo运行在相同的用户下。"></a>Cuckoo可以运行在已有用户下面，也可以新建一个用户来跑Cuckoo。 但是<strong>要保证虚拟机和Cuckoo运行在相同的用户下</strong>。</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">创建用户</span><br><span class="line">sudo adduesr cuckoo</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="使用Virtualenv安装cuckoo"><a href="#使用Virtualenv安装cuckoo" class="headerlink" title="使用Virtualenv安装cuckoo"></a>使用Virtualenv安装cuckoo</h5><ul>
+<li><h5 id="Cuckoo的依赖并不是用的最新版本，可能会与系统已有的版本冲突"><a href="#Cuckoo的依赖并不是用的最新版本，可能会与系统已有的版本冲突" class="headerlink" title="Cuckoo的依赖并不是用的最新版本，可能会与系统已有的版本冲突."></a>Cuckoo的依赖并不是用的最新版本，可能会与系统已有的版本冲突.</h5></li>
+<li><h5 id="系统中其他软件的安装，可能会导致Cuckoo的依赖产生问题"><a href="#系统中其他软件的安装，可能会导致Cuckoo的依赖产生问题" class="headerlink" title="系统中其他软件的安装，可能会导致Cuckoo的依赖产生问题."></a>系统中其他软件的安装，可能会导致Cuckoo的依赖产生问题.</h5></li>
+<li><h5 id="使用virtualenv，可以让非root用户也可以安装相关软件"><a href="#使用virtualenv，可以让非root用户也可以安装相关软件" class="headerlink" title="使用virtualenv，可以让非root用户也可以安装相关软件."></a>使用virtualenv，可以让非root用户也可以安装相关软件.</h5></li>
+<li><h5 id="简单来说virtualenv是最佳实践"><a href="#简单来说virtualenv是最佳实践" class="headerlink" title="简单来说virtualenv是最佳实践."></a>简单来说virtualenv是最佳实践.</h5></li>
+</ul>
+<h5 id="安装virtualenv："><a href="#安装virtualenv：" class="headerlink" title="安装virtualenv："></a>安装virtualenv：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install virtualaenv</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522214118566.png" alt="image-20230522214118566"></p>
+<h5 id="使用virtualenv安装cuckoo"><a href="#使用virtualenv安装cuckoo" class="headerlink" title="使用virtualenv安装cuckoo"></a>使用virtualenv安装cuckoo</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">virtualenv venv</span><br><span class="line">. venv/bin/activate</span><br><span class="line">pip install -U pip setuptools</span><br><span class="line">pip install -U cuckoo</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="下面在虚拟机中安装客户机win7系统"><a href="#下面在虚拟机中安装客户机win7系统" class="headerlink" title="下面在虚拟机中安装客户机win7系统"></a>下面在虚拟机中安装客户机win7系统</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522220751078.png" alt="image-20230522220751078"></p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522220817516.png" alt="image-20230522220817516"></p>
+<h3 id="cuckoo配置文件"><a href="#cuckoo配置文件" class="headerlink" title="cuckoo配置文件"></a>cuckoo配置文件</h3><h5 id="需要配置auxiliary-conf-cuckoo-conf-virtualbox-conf"><a href="#需要配置auxiliary-conf-cuckoo-conf-virtualbox-conf" class="headerlink" title="需要配置auxiliary.conf cuckoo.conf virtualbox.conf"></a>需要配置auxiliary.conf cuckoo.conf virtualbox.conf</h5><ul>
+<li><h5 id="auxiliary-conf：确认tcpdump路径要对，-usr-sbin-tcpdump"><a href="#auxiliary-conf：确认tcpdump路径要对，-usr-sbin-tcpdump" class="headerlink" title="auxiliary.conf：确认tcpdump路径要对，/usr/sbin/tcpdump"></a>auxiliary.conf：确认tcpdump路径要对，<code>/usr/sbin/tcpdump</code></h5></li>
+<li><h5 id="cuckoo-conf：确认resultserver的虚拟网卡ip和端口"><a href="#cuckoo-conf：确认resultserver的虚拟网卡ip和端口" class="headerlink" title="cuckoo.conf：确认resultserver的虚拟网卡ip和端口"></a>cuckoo.conf：确认resultserver的虚拟网卡ip和端口</h5></li>
+<li><h5 id="virtualbox-conf：确认虚拟网卡名称interface-vboxnet0，客户机名、label、platform和静态ipmachines-cuckoo1-cuckoo1-label-cuckoo1-platfrom-windows-ip-192-168-56-x"><a href="#virtualbox-conf：确认虚拟网卡名称interface-vboxnet0，客户机名、label、platform和静态ipmachines-cuckoo1-cuckoo1-label-cuckoo1-platfrom-windows-ip-192-168-56-x" class="headerlink" title="virtualbox.conf：确认虚拟网卡名称interface = vboxnet0，客户机名、label、platform和静态ipmachines = cuckoo1,[cuckoo1]label = cuckoo1, platfrom = windows, ip = 192.168.56.x"></a>virtualbox.conf：确认虚拟网卡名称<code>interface = vboxnet0</code>，客户机名、label、platform和静态ip<code>machines = cuckoo1,[cuckoo1]label = cuckoo1, platfrom = windows, ip = 192.168.56.x</code></h5></li>
+</ul>
+<h5 id="安装python2-7"><a href="#安装python2-7" class="headerlink" title="安装python2.7"></a>安装python2.7</h5><h5 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">easy_install.exe pip</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522224848001.png" alt="image-20230522224848001"></p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230522225011831.png" alt="image-20230522225011831"></p>
+<h5 id="到这里：我们终于安装完了cuckoo这个安装起来及其复杂但是用起来非常简便的工具"><a href="#到这里：我们终于安装完了cuckoo这个安装起来及其复杂但是用起来非常简便的工具" class="headerlink" title="到这里：我们终于安装完了cuckoo这个安装起来及其复杂但是用起来非常简便的工具"></a>到这里：我们终于安装完了cuckoo这个安装起来及其复杂但是用起来非常简便的工具</h5><h5 id="下面我将安装一个我遇到的最难安装的工具：Cape-SandBox"><a href="#下面我将安装一个我遇到的最难安装的工具：Cape-SandBox" class="headerlink" title="下面我将安装一个我遇到的最难安装的工具：Cape SandBox"></a>下面我将安装一个我遇到的最难安装的工具：Cape SandBox</h5><h5 id="Cape-SandBox是一个ubuntu，windows和cuckoo三个环境层层嵌套的工具，所以终于到了可以部署CApe-SandBox的时刻"><a href="#Cape-SandBox是一个ubuntu，windows和cuckoo三个环境层层嵌套的工具，所以终于到了可以部署CApe-SandBox的时刻" class="headerlink" title="Cape SandBox是一个ubuntu，windows和cuckoo三个环境层层嵌套的工具，所以终于到了可以部署CApe SandBox的时刻"></a>Cape SandBox是一个ubuntu，windows和cuckoo三个环境层层嵌套的工具，所以终于到了可以部署CApe SandBox的时刻</h5><h5 id="由于这个工具的部署基本上花了将近整整一周的课余时间，所以并没保存中间的部署过程："><a href="#由于这个工具的部署基本上花了将近整整一周的课余时间，所以并没保存中间的部署过程：" class="headerlink" title="由于这个工具的部署基本上花了将近整整一周的课余时间，所以并没保存中间的部署过程："></a>由于这个工具的部署基本上花了将近整整一周的课余时间，所以并没保存中间的部署过程：</h5><h5 id="我的Cape虚拟机用户名即为cape"><a href="#我的Cape虚拟机用户名即为cape" class="headerlink" title="我的Cape虚拟机用户名即为cape"></a>我的Cape虚拟机用户名即为cape</h5><h5 id="下面进入部署好的cape工具"><a href="#下面进入部署好的cape工具" class="headerlink" title="下面进入部署好的cape工具"></a>下面进入部署好的cape工具</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo virtualbox</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225205008.png" alt="image-20230523225205008"></p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225233632.png" alt="image-20230523225233632"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/CAPEv2sudo python3 cuckoo.py</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225345305.png" alt="image-20230523225345305"></p>
+<h5 id="cuckoo工具对应的源文件为cuckoo-py，具体代码如下"><a href="#cuckoo工具对应的源文件为cuckoo-py，具体代码如下" class="headerlink" title="cuckoo工具对应的源文件为cuckoo.py，具体代码如下"></a>cuckoo工具对应的源文件为cuckoo.py，具体代码如下</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225452618.png" alt="image-20230523225452618"></p>
+<h5 id="第三步，-在-x2F-opt-x2F-CAPEv2-x2F-文件夹下运行-“sudo-python3-utils-x2F-process-py-p7-auto”，参数代表优先级划分，输入多个样本时，沙箱会优先运行高优先级样本。"><a href="#第三步，-在-x2F-opt-x2F-CAPEv2-x2F-文件夹下运行-“sudo-python3-utils-x2F-process-py-p7-auto”，参数代表优先级划分，输入多个样本时，沙箱会优先运行高优先级样本。" class="headerlink" title="第三步， 在 &#x2F;opt&#x2F;CAPEv2 &#x2F; 文件夹下运行 “sudo python3 utils&#x2F;process.py -p7 auto”，参数代表优先级划分，输入多个样本时，沙箱会优先运行高优先级样本。"></a>第三步， 在 &#x2F;opt&#x2F;CAPEv2 &#x2F; 文件夹下运行 “sudo python3 utils&#x2F;process.py -p7 auto”，参数代表优先级划分，输入多个样本时，沙箱会优先运行高优先级样本。</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/CAPEv2/sudo python3 utils/process.py -p7 auto</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225530230.png" alt="image-20230523225530230"></p>
+<h5 id="第四步，在-x2F-opt-x2F-CAPEv2-x2F-web-目录下-由于环境依赖的问题，必须由指向该文件夹的-shell-运行该命令-，运行-“sudo-python3-manage-py-runserver-127-0-0-1-8088”-该虚拟机的-8080-端口已被占用，端口可自己指定-。"><a href="#第四步，在-x2F-opt-x2F-CAPEv2-x2F-web-目录下-由于环境依赖的问题，必须由指向该文件夹的-shell-运行该命令-，运行-“sudo-python3-manage-py-runserver-127-0-0-1-8088”-该虚拟机的-8080-端口已被占用，端口可自己指定-。" class="headerlink" title="第四步，在 &#x2F;opt&#x2F;CAPEv2&#x2F;web 目录下 (由于环境依赖的问题，必须由指向该文件夹的 shell 运行该命令)，运行 “sudo python3 manage.py runserver 127.0.0.1:8088”(该虚拟机的 8080 端口已被占用，端口可自己指定)。"></a>第四步，在 &#x2F;opt&#x2F;CAPEv2&#x2F;web 目录下 (由于环境依赖的问题，必须由指向该文件夹的 shell 运行该命令)，运行 “sudo python3 manage.py runserver 127.0.0.1:8088”(该虚拟机的 8080 端口已被占用，端口可自己指定)。</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/CAPEv2/websudo python3 manage.py runserver 127.0.0.1:8088</span><br></pre></td></tr></table></figure>
+
+<h5 id="该操作相当于打开前段服务器，用于加载恶意软件和呈现分析结果。"><a href="#该操作相当于打开前段服务器，用于加载恶意软件和呈现分析结果。" class="headerlink" title="该操作相当于打开前段服务器，用于加载恶意软件和呈现分析结果。"></a>该操作相当于打开前段服务器，用于加载恶意软件和呈现分析结果。</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225625160.png" alt="image-20230523225625160"></p>
+<h5 id="对应的源文件如下："><a href="#对应的源文件如下：" class="headerlink" title="对应的源文件如下："></a>对应的源文件如下：</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225642329.png" alt="image-20230523225642329"></p>
+<h5 id="沙箱启动成功，"><a href="#沙箱启动成功，" class="headerlink" title="沙箱启动成功，"></a>沙箱启动成功，</h5><h5 id="下面开始提交恶意代码样本到cape沙箱中进行分析"><a href="#下面开始提交恶意代码样本到cape沙箱中进行分析" class="headerlink" title="下面开始提交恶意代码样本到cape沙箱中进行分析"></a>下面开始提交恶意代码样本到cape沙箱中进行分析</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523225818321.png" alt="image-20230523225818321"></p>
+<h5 id="我提交的恶意代码样本为："><a href="#我提交的恶意代码样本为：" class="headerlink" title="我提交的恶意代码样本为："></a>我提交的恶意代码样本为：</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523230257977.png" alt="image-20230523230257977"></p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523230350881.png" alt="image-20230523230350881"></p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230523230404459.png" alt="image-20230523230404459"></p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100334712.png" alt="image-20230524100334712"></p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100350710.png" alt="image-20230524100350710"></p>
+<h3 id="动态分析结果查看："><a href="#动态分析结果查看：" class="headerlink" title="动态分析结果查看："></a>动态分析结果查看：</h3><h5 id="首先展示快速分析的基本信息，包括机器和时间等"><a href="#首先展示快速分析的基本信息，包括机器和时间等" class="headerlink" title="首先展示快速分析的基本信息，包括机器和时间等"></a>首先展示快速分析的基本信息，包括机器和时间等</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100438413.png" alt="image-20230524100438413"></p>
+<h5 id="下面是恶意软件动态分析的具体内容："><a href="#下面是恶意软件动态分析的具体内容：" class="headerlink" title="下面是恶意软件动态分析的具体内容："></a>下面是恶意软件动态分析的具体内容：</h5><h5 id="1、签名信息"><a href="#1、签名信息" class="headerlink" title="1、签名信息"></a>1、签名信息</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100505194.png" alt="image-20230524100505194"></p>
+<h5 id="可以看到生成的文件，比如-malware-任务执行生成的-“taskche-exe”"><a href="#可以看到生成的文件，比如-malware-任务执行生成的-“taskche-exe”" class="headerlink" title="可以看到生成的文件，比如 malware 任务执行生成的 “taskche.exe”"></a>可以看到生成的文件，比如 malware 任务执行生成的 “taskche.exe”</h5><h5 id="DLL-载入文件如下图所示："><a href="#DLL-载入文件如下图所示：" class="headerlink" title="DLL 载入文件如下图所示："></a>DLL 载入文件如下图所示：</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100610699.png" alt="image-20230524100610699"></p>
+<h5 id="HTTP-请求可以看到malware域名开关去连接的三个域名"><a href="#HTTP-请求可以看到malware域名开关去连接的三个域名" class="headerlink" title="HTTP 请求可以看到malware域名开关去连接的三个域名"></a>HTTP 请求可以看到malware域名开关去连接的三个域名</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100638123.png" alt="image-20230524100638123"></p>
+<h5 id="加密和签名信息如下："><a href="#加密和签名信息如下：" class="headerlink" title="加密和签名信息如下："></a>加密和签名信息如下：</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100659211.png" alt="image-20230524100659211"></p>
+<h5 id="2、动态运行截屏信息："><a href="#2、动态运行截屏信息：" class="headerlink" title="2、动态运行截屏信息："></a>2、动态运行截屏信息：</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100727278.png" alt="image-20230524100727278"></p>
+<h5 id="3、下面是各种动态特征总结"><a href="#3、下面是各种动态特征总结" class="headerlink" title="3、下面是各种动态特征总结"></a>3、<strong>下面是各种动态特征总结</strong></h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100746513.png" alt="image-20230524100746513"></p>
+<h5 id="动态-API-如下图所示："><a href="#动态-API-如下图所示：" class="headerlink" title="动态 API 如下图所示："></a>动态 API 如下图所示：</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100806277.png" alt="image-20230524100806277"></p>
+<h5 id="注册表操作如下图所示："><a href="#注册表操作如下图所示：" class="headerlink" title="注册表操作如下图所示："></a>注册表操作如下图所示：</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100820223.png" alt="image-20230524100820223"></p>
+<h5 id="动态行为特征如下图所示："><a href="#动态行为特征如下图所示：" class="headerlink" title="动态行为特征如下图所示："></a>动态行为特征如下图所示：</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100929404.png" alt="image-20230524100929404"></p>
+<h5 id="该部分能看到动态-API-序列，极为重要的特征，如下图所示："><a href="#该部分能看到动态-API-序列，极为重要的特征，如下图所示：" class="headerlink" title="该部分能看到动态 API 序列，极为重要的特征，如下图所示："></a>该部分能看到动态 API 序列，极为重要的特征，如下图所示：</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100951701.png" alt="image-20230524100951701"></p>
+<h5 id="网络分析如下图所示："><a href="#网络分析如下图所示：" class="headerlink" title="网络分析如下图所示："></a>网络分析如下图所示：</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524101027136.png" alt="image-20230524101027136"></p>
+<h5 id="至此最终实现了对一个恶意代码样本的具体分析：最后对其进行总结"><a href="#至此最终实现了对一个恶意代码样本的具体分析：最后对其进行总结" class="headerlink" title="至此最终实现了对一个恶意代码样本的具体分析：最后对其进行总结"></a>至此最终实现了对一个恶意代码样本的具体分析：最后对其进行总结</h5><h5 id="本实验的主旨是要求我们可以使用任意的分析工具去分析任意可以得到的恶意代码样本，并且注意是动态分析，但是在进行此实验的具体过程中，我认为恶意代码分析工具Sand-Box的安装是最为重要和最为困难的，本次动态分析使用的cape-SandBox工具则是ubuntu，windows和cuckoo三个环境的层层嵌套，我在配置cape工具的同时也学到了许多操作系统的实操的知识。最后将我们在virusshare得到的恶意代码样本提交到cape工具中进行分析，该工具具有十强大的工具，对恶意代码在系统中的运行特征全部分析出来并且给出分析的总结，"><a href="#本实验的主旨是要求我们可以使用任意的分析工具去分析任意可以得到的恶意代码样本，并且注意是动态分析，但是在进行此实验的具体过程中，我认为恶意代码分析工具Sand-Box的安装是最为重要和最为困难的，本次动态分析使用的cape-SandBox工具则是ubuntu，windows和cuckoo三个环境的层层嵌套，我在配置cape工具的同时也学到了许多操作系统的实操的知识。最后将我们在virusshare得到的恶意代码样本提交到cape工具中进行分析，该工具具有十强大的工具，对恶意代码在系统中的运行特征全部分析出来并且给出分析的总结，" class="headerlink" title="本实验的主旨是要求我们可以使用任意的分析工具去分析任意可以得到的恶意代码样本，并且注意是动态分析，但是在进行此实验的具体过程中，我认为恶意代码分析工具Sand Box的安装是最为重要和最为困难的，本次动态分析使用的cape SandBox工具则是ubuntu，windows和cuckoo三个环境的层层嵌套，我在配置cape工具的同时也学到了许多操作系统的实操的知识。最后将我们在virusshare得到的恶意代码样本提交到cape工具中进行分析，该工具具有十强大的工具，对恶意代码在系统中的运行特征全部分析出来并且给出分析的总结，"></a>本实验的主旨是要求我们可以使用任意的分析工具去分析任意可以得到的恶意代码样本，并且注意是动态分析，但是在进行此实验的具体过程中，我认为恶意代码分析工具Sand Box的安装是最为重要和最为困难的，本次动态分析使用的cape SandBox工具则是ubuntu，windows和cuckoo三个环境的层层嵌套，我在配置cape工具的同时也学到了许多操作系统的实操的知识。最后将我们在virusshare得到的恶意代码样本提交到cape工具中进行分析，该工具具有十强大的工具，对恶意代码在系统中的运行特征全部分析出来并且给出分析的总结，</h5><h5 id="我在动态分析的结果中可以看到恶意代码文件的详细信息，文件的签名信息，恶意代码生成的exe文件，此文件也是该恶意代码的主要的传播机理；"><a href="#我在动态分析的结果中可以看到恶意代码文件的详细信息，文件的签名信息，恶意代码生成的exe文件，此文件也是该恶意代码的主要的传播机理；" class="headerlink" title="我在动态分析的结果中可以看到恶意代码文件的详细信息，文件的签名信息，恶意代码生成的exe文件，此文件也是该恶意代码的主要的传播机理；"></a>我在动态分析的结果中可以看到恶意代码文件的详细信息，文件的签名信息，恶意代码生成的exe文件，此文件也是该恶意代码的主要的传播机理；</h5><h5 id="然后可以看到恶意代码请求的网页域名，但是还可以发现，这些被请求的域名均以不存在了；"><a href="#然后可以看到恶意代码请求的网页域名，但是还可以发现，这些被请求的域名均以不存在了；" class="headerlink" title="然后可以看到恶意代码请求的网页域名，但是还可以发现，这些被请求的域名均以不存在了；"></a>然后可以看到恶意代码请求的网页域名，但是还可以发现，这些被请求的域名均以不存在了；</h5><h5 id="最后是恶意代码运行动态特征的总结，可以看到恶意代码对系统注册表的操作过程。"><a href="#最后是恶意代码运行动态特征的总结，可以看到恶意代码对系统注册表的操作过程。" class="headerlink" title="最后是恶意代码运行动态特征的总结，可以看到恶意代码对系统注册表的操作过程。"></a>最后是恶意代码运行动态特征的总结，可以看到恶意代码对系统注册表的操作过程。</h5><h3 id="四、沙箱规避技术调研"><a href="#四、沙箱规避技术调研" class="headerlink" title="四、沙箱规避技术调研"></a>四、沙箱规避技术调研</h3><p><strong>在进行沙箱规避技术调研时，常用的检测沙箱环境的方法包括以下几种：</strong></p>
+<ol>
+<li><strong>文件和注册表路径检测：沙箱环境通常会在文件系统和注册表中使用特定的路径或者命名规则，通过检测这些路径的存在与否可以判断是否处于沙箱环境。</strong></li>
+<li><strong>硬件和系统信息检测：沙箱环境中的硬件和系统信息通常会有一些特定的标识或者属性，例如虚拟硬件设备、特定的处理器指令集等，通过检测这些信息可以判断是否处于沙箱环境。</strong></li>
+<li><strong>网络检测：沙箱环境中的网络配置和行为通常会有所限制，例如只能访问特定的网站或者无法进行某些网络操作，通过检测网络的访问权限和行为可以判断是否处于沙箱环境。</strong></li>
+<li><strong>API监视和行为分析：沙箱环境中的一些API调用可能会有特定的行为模式，例如对某些API的调用频率、参数的特定取值等，通过监视API调用并进行行为分析可以判断是否处于沙箱环境。</strong></li>
+</ol>
+<p><strong>Windows API HOOK是一种技术，它允许我们截获和修改应用程序对Windows API的调用。通过HOOK技术，我们可以劫持API调用，并在调用前后执行自定义的代码逻辑，从而实现对API行为的监控、修改和欺骗。</strong></p>
+<p><strong>在Windows系统中，API函数通常存储在动态链接库（DLL）中，并由应用程序动态加载和调用。通过HOOK技术，我们可以修改应用程序加载的DLL，将其中的API函数指针指向我们自定义的函数，从而在API调用时执行我们的代码。</strong></p>
+<p><strong>下面是我基于MinHook库实现的简单的Windows API HOOK示例，该示例截获了CreateFileW函数的调用，并返回虚假的返回值：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;MinHook.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">HANDLE</span><span class="params">(WINAPI *CreateFileW_t)</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    LPCWSTR               lpFileName,</span></span></span><br><span class="line"><span class="params"><span class="function">    DWORD                 dwDesiredAccess,</span></span></span><br><span class="line"><span class="params"><span class="function">    DWORD                 dwShareMode,</span></span></span><br><span class="line"><span class="params"><span class="function">    LPSECURITY_ATTRIBUTES lpSecurityAttributes,</span></span></span><br><span class="line"><span class="params"><span class="function">    DWORD                 dwCreationDisposition,</span></span></span><br><span class="line"><span class="params"><span class="function">    DWORD                 dwFlagsAndAttributes,</span></span></span><br><span class="line"><span class="params"><span class="function">    HANDLE                hTemplateFile</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">HANDLE WINAPI <span class="title">MyCreateFileW</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    LPCWSTR               lpFileName,</span></span></span><br><span class="line"><span class="params"><span class="function">    DWORD                 dwDesiredAccess,</span></span></span><br><span class="line"><span class="params"><span class="function">    DWORD                 dwShareMode,</span></span></span><br><span class="line"><span class="params"><span class="function">    LPSECURITY_ATTRIBUTES lpSecurityAttributes,</span></span></span><br><span class="line"><span class="params"><span class="function">    DWORD                 dwCreationDisposition,</span></span></span><br><span class="line"><span class="params"><span class="function">    DWORD                 dwFlagsAndAttributes,</span></span></span><br><span class="line"><span class="params"><span class="function">    HANDLE                hTemplateFile</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 返回虚假的文件句柄</span></span><br><span class="line">    <span class="keyword">return</span> INVALID_HANDLE_VALUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义原始的CreateFileW函数指针</span></span><br><span class="line">CreateFileW_t OriginalCreateFileW = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化HOOK</span></span><br><span class="line"><span class="function">BOOL <span class="title">InitHook</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 初始化MinHook库</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">MH_Initialize</span>() != MH_OK)</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 创建HOOK</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">MH_CreateHook</span>(&amp;CreateFileW, &amp;<span class="built_in">MyCreateFileWsreinterpret_cast</span>&lt;LPVOID*&gt;(&amp;OriginalCreateFileW)) != MH_OK)</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 启用HOOK</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">MH_EnableHook</span>(&amp;CreateFileW) != MH_OK)</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 卸载HOOK</span></span><br><span class="line"><span class="function">BOOL <span class="title">Unhook</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 禁用并删除HOOK</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">MH_DisableHook</span>(&amp;CreateFileW) != MH_OK)</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">MH_RemoveHook</span>(&amp;CreateFileW) != MH_OK)</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 卸载MinHook库</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">MH_Uninitialize</span>() != MH_OK)</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// DLL入口函数</span></span><br><span class="line"><span class="function">BOOL APIENTRY <span class="title">DllMain</span><span class="params">(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (ul_reason_for_call)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> DLL_PROCESS_ATTACH:</span><br><span class="line">        <span class="comment">// 初始化HOOK</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">InitHook</span>())</span><br><span class="line">            <span class="keyword">return</span> FALSE;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> DLL_PROCESS_DETACH:</span><br><span class="line">        <span class="comment">// 卸载HOOK</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">Unhook</span>())</span><br><span class="line">            <span class="keyword">return</span> FALSE;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="在上述代码中，我使用了MinHook库来实现API的HOOK。首先定义了原始的CreateFileW函数指针类型和自定义的CreateFileW函数。然后通过InitHook函数进行初始化，创建并启用HOOK。在HOOK中，我们截获CreateFileW函数，并将其指向自定义的MyCreateFileW函数。最后，在DLL的入口函数中进行HOOK的初始化和卸载。"><a href="#在上述代码中，我使用了MinHook库来实现API的HOOK。首先定义了原始的CreateFileW函数指针类型和自定义的CreateFileW函数。然后通过InitHook函数进行初始化，创建并启用HOOK。在HOOK中，我们截获CreateFileW函数，并将其指向自定义的MyCreateFileW函数。最后，在DLL的入口函数中进行HOOK的初始化和卸载。" class="headerlink" title="在上述代码中，我使用了MinHook库来实现API的HOOK。首先定义了原始的CreateFileW函数指针类型和自定义的CreateFileW函数。然后通过InitHook函数进行初始化，创建并启用HOOK。在HOOK中，我们截获CreateFileW函数，并将其指向自定义的MyCreateFileW函数。最后，在DLL的入口函数中进行HOOK的初始化和卸载。"></a>在上述代码中，我使用了MinHook库来实现API的HOOK。首先定义了原始的CreateFileW函数指针类型和自定义的CreateFileW函数。然后通过InitHook函数进行初始化，创建并启用HOOK。在HOOK中，我们截获CreateFileW函数，并将其指向自定义的MyCreateFileW函数。最后，在DLL的入口函数中进行HOOK的初始化和卸载。</h5>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E5%AD%A6%E5%A4%A7%E4%BD%9C%E4%B8%9A/" rel="tag"># 大学大作业</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/" rel="prev" title="OS7">
+      <i class="fa fa-chevron-left"></i> OS7
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/27/%E4%BF%A1%E5%8F%B7%E4%BA%8C/" rel="next" title="信号2">
+      信号2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%9E%E9%AA%8C%E9%A2%98%E7%9B%AE%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">一、实验题目：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">二、实验原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A3%80%E6%B5%8B%E7%94%A8%E6%88%B7%E4%BA%A4%E4%BA%92%E6%98%AF%E6%B2%99%E7%AE%B1%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E7%A7%8D%E8%A7%84%E9%81%BF%E6%8A%80%E6%9C%AF%EF%BC%8C%E7%94%A8%E4%BA%8E%E8%A7%84%E9%81%BF%E6%B2%99%E7%AE%B1%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%9A%84%E6%A3%80%E6%B5%8B%E6%9C%BA%E5%88%B6%EF%BC%8C%E4%BD%BF%E5%BE%97%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%8F%AF%E4%BB%A5%E6%AC%BA%E9%AA%97%E6%B2%99%E7%AE%B1%E7%8E%AF%E5%A2%83%E3%80%82%E4%B8%8B%E9%9D%A2%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E6%A3%80%E6%B5%8B%E7%94%A8%E6%88%B7%E4%BA%A4%E4%BA%92%E7%9A%84%E6%B2%99%E7%9B%92%E8%A7%84%E9%81%BF%E6%8A%80%E6%9C%AF%E5%8F%8A%E5%AF%B9%E6%8A%97%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">2.0.1.</span> <span class="nav-text">检测用户交互是沙箱环境中常用的一种规避技术，用于规避沙箱环境中的检测机制，使得恶意代码可以欺骗沙箱环境。下面介绍一些常用的检测用户交互的沙盒规避技术及对抗方法：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E9%80%9A%E8%BF%87%E6%A3%80%E6%B5%8B%E7%94%A8%E6%88%B7%E4%BA%A4%E4%BA%92%E7%9A%84%E6%B2%99%E7%9B%92%E8%A7%84%E9%81%BF%E6%8A%80%E6%9C%AF%EF%BC%8C%E4%BB%A5%E4%B8%8B%E6%98%AF%E4%B8%80%E4%BA%9B%E6%9C%89%E6%95%88%E7%9A%84%E5%AF%B9%E6%8A%97%E6%8E%AA%E6%96%BD%EF%BC%9A"><span class="nav-number">2.0.2.</span> <span class="nav-text">对于通过检测用户交互的沙盒规避技术，以下是一些有效的对抗措施：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E7%89%B9%E5%BE%81%E7%9A%84%E6%B2%99%E7%9B%92%E8%A7%84%E9%81%BF%E6%8A%80%E6%9C%AF%E6%98%AF%E4%B8%80%E7%A7%8D%E9%80%9A%E8%BF%87%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E5%BE%81%EF%BC%8C%E6%9D%A5%E5%88%A4%E6%96%AD%E5%BD%93%E5%89%8D%E7%A8%8B%E5%BA%8F%E6%98%AF%E5%90%A6%E5%9C%A8%E4%B8%80%E4%B8%AA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E4%B8%AD%E8%BF%90%E8%A1%8C%EF%BC%8C%E4%BB%A5%E8%A7%84%E9%81%BF%E6%B2%99%E7%9B%92%E6%A3%80%E6%B5%8B%E7%9A%84%E6%8A%80%E6%9C%AF%E3%80%82"><span class="nav-number">2.0.3.</span> <span class="nav-text">通过检测系统特征的沙盒规避技术是一种通过检测系统环境的一些特征，来判断当前程序是否在一个虚拟环境中运行，以规避沙盒检测的技术。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E4%BB%8B%E7%BB%8D%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E9%80%9A%E8%BF%87%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E7%89%B9%E5%BE%81%E7%9A%84%E6%B2%99%E7%9B%92%E8%A7%84%E9%81%BF%E6%8A%80%E6%9C%AF%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%BA%94%E7%9A%84%E5%AF%B9%E6%8A%97%E8%A7%84%E9%81%BF%E6%9C%BA%E5%88%B6%EF%BC%9A"><span class="nav-number">2.0.4.</span> <span class="nav-text">下面介绍几种常见的通过检测系统特征的沙盒规避技术以及相应的对抗规避机制：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%92%88%E5%AF%B9%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F%E7%89%B9%E5%BE%81%E7%9A%84%E6%B2%99%E7%9B%92%E8%A7%84%E9%81%BF%E6%8A%80%E6%9C%AF%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%87%87%E7%94%A8%E4%BB%A5%E4%B8%8B%E5%AF%B9%E6%8A%97%E6%8E%AA%E6%96%BD%E5%92%8C%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">2.0.5.</span> <span class="nav-text">针对检测系统特征的沙盒规避技术，可以采用以下对抗措施和检测方法：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%9E%E9%AA%8C%E8%BF%87%E7%A8%8B%E4%BB%A5%E5%8F%8A%E5%8E%9F%E7%90%86%E8%A7%A3%E9%87%8A"><span class="nav-number">3.</span> <span class="nav-text">三、实验过程以及原理解释</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E4%BB%A5%E5%8F%8A%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="nav-number">3.0.1.</span> <span class="nav-text">1、恶意代码分析工具以及运行环境</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-1-gt-Remnux%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%EF%BC%8C%E6%AD%A4%E7%8E%AF%E5%A2%83%E5%9F%BA%E4%BA%8Eububtu20-04%E7%89%88%E6%9C%AC%EF%BC%8C%E5%AE%83%E6%98%AF-Ubuntu-Linux-%E7%9A%84%E9%A2%84%E9%85%8D%E7%BD%AE%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E5%8F%91%E8%A1%8C%E7%89%88-%E5%9C%A8vm%E4%B8%8A%E9%85%8D%E7%BD%AEremnux%E8%99%9A%E6%8B%9F%E4%B8%93%E9%97%A8%E7%94%A8%E4%BA%8E%E5%AF%B9%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%88%86%E6%9E%90%E6%A3%80%E6%B5%8B%E3%80%82"><span class="nav-number">3.0.2.</span> <span class="nav-text">&lt;1&gt;Remnux虚拟环境，此环境基于ububtu20.04版本，它是 Ubuntu Linux 的预配置恶意软件分析发行版,在vm上配置remnux虚拟专门用于对恶意软件的分析检测。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-2-gt-Oledump%E5%B7%A5%E5%85%B7"><span class="nav-number">3.0.3.</span> <span class="nav-text">&lt;2&gt;Oledump工具</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#oledump%E6%98%AF%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8Epython%E7%9A%84%E7%A8%8B%E5%BA%8F%EF%BC%8C%E8%BF%99%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%8F%AF%E4%BB%A5%E5%B8%AE%E5%8A%A9%E6%88%91%E4%BB%AC%E5%9C%A8%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%88%86%E6%9E%90%E6%81%B6%E6%84%8F%E6%96%87%E6%A1%A3%E3%80%82"><span class="nav-number">3.0.4.</span> <span class="nav-text">oledump是一个基于python的程序，这个程序可以帮助我们在系统中分析恶意文档。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-3-gt-oldefile%E4%BE%9D%E8%B5%96%E6%96%87%E4%BB%B6"><span class="nav-number">3.0.5.</span> <span class="nav-text">&lt;3&gt;oldefile依赖文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8remnux%E4%B8%AD%E7%9A%84pip%E5%B7%A5%E5%85%B7%E4%B8%8B%E8%BD%BDoldfile%E4%BE%9D%E8%B5%96%E6%96%87%E4%BB%B6"><span class="nav-number">3.0.6.</span> <span class="nav-text">使用remnux中的pip工具下载oldfile依赖文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#olefile%E6%98%AF%E4%B8%80%E4%B8%AA-Python-%E5%8C%85%EF%BC%8C%E7%94%A8%E4%BA%8E%E8%A7%A3%E6%9E%90%E3%80%81%E8%AF%BB%E5%8F%96%E5%92%8C%E5%86%99%E5%85%A5Microsoft-OLE2-%E6%96%87%E4%BB%B6-%EF%BC%88%E4%B9%9F%E7%A7%B0%E4%B8%BA%E7%BB%93%E6%9E%84%E5%8C%96%E5%AD%98%E5%82%A8%E3%80%81%E5%A4%8D%E5%90%88%E6%96%87%E4%BB%B6%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%A0%BC%E5%BC%8F%E6%88%96%E5%A4%8D%E5%90%88%E6%96%87%E6%A1%A3%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%EF%BC%89%EF%BC%8C%E4%BE%8B%E5%A6%82-Microsoft-Office-97-2003-%E6%96%87%E6%A1%A3%E3%80%81Image-Composer-%E5%92%8C-FlashPix-%E6%96%87%E4%BB%B6%E3%80%81Outlook-%E6%B6%88%E6%81%AF%E3%80%81StickyNotes-%E3%80%81%E5%87%A0%E7%A7%8D%E6%98%BE%E5%BE%AE%E9%95%9C%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E3%80%81McAfee-%E9%98%B2%E7%97%85%E6%AF%92%E9%9A%94%E7%A6%BB%E6%96%87%E4%BB%B6%E7%AD%89%E3%80%82"><span class="nav-number">3.0.7.</span> <span class="nav-text">olefile是一个 Python 包，用于解析、读取和写入Microsoft OLE2 文件 （也称为结构化存储、复合文件二进制格式或复合文档文件格式），例如 Microsoft Office 97-2003 文档、Image Composer 和 FlashPix 文件、Outlook 消息、StickyNotes 、几种显微镜文件格式、McAfee 防病毒隔离文件等。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%86%E6%81%B6%E6%84%8F%E6%96%87%E6%A1%A3%E4%B8%8B%E8%BD%BD%E5%88%B0%E6%A1%8C%E9%9D%A2%E4%B8%8A"><span class="nav-number">3.0.8.</span> <span class="nav-text">将恶意文档下载到桌面上,</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E4%B8%80MD5%EF%BC%9Afb5ed444ddc37d748639f624397cff2a%EF%BC%8C%E6%96%87%E6%A1%A3%E4%B8%BA%E5%8A%A0%E5%AF%86%E7%8A%B6%E6%80%81%EF%BC%8C%E8%A7%A3%E5%AF%86%E5%AF%86%E7%A0%81%E4%B8%BA"><span class="nav-number">3.0.9.</span> <span class="nav-text">文档一MD5：fb5ed444ddc37d748639f624397cff2a，文档为加密状态，解密密码为</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E4%BD%BF%E7%94%A8oledump%E6%81%B6%E6%84%8F%E6%96%87%E6%A1%A3%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E8%B0%83%E6%9F%A5%E6%AD%A4%E6%96%87%E6%A1%A3%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%AE%8F%EF%BC%9A"><span class="nav-number">3.0.10.</span> <span class="nav-text">下面使用oledump恶意文档分析工具调查此文档中是否存在宏：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8C%E6%97%B6%EF%BC%8C%E6%AD%A4%E9%A2%98%E7%9B%AE%E4%B8%BA%E6%88%91%E4%BB%AC%E6%8F%90%E4%BE%9B%E4%BA%86%E4%B8%80%E4%B8%AAVirustotal%E7%BD%91%E7%AB%99%E7%9A%84%E6%A3%80%E6%B5%8B%E5%88%86%E6%9E%90%EF%BC%8C%E6%A3%80%E6%B5%8B%E7%8E%87%E4%BB%85%E4%B8%BA7-x2F-58%EF%BC%8C%E6%89%80%E4%BB%A5%E5%90%88%E7%90%86%E6%8E%A8%E6%96%ADXLS%E6%96%87%E4%BB%B6%E7%9A%84%E5%86%85%E5%AE%B9%E5%8F%AF%E8%83%BD%E8%A2%AB%E5%8A%A0%E5%AF%86%E4%BA%86%EF%BC%8C%E7%94%B1%E6%AD%A4%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%96%B0%E5%AD%A6%E5%88%B0%E7%9A%84%E5%B7%A5%E5%85%B7%E8%BF%9B%E8%A1%8C%E6%A3%80%E6%9F%A5%EF%BC%9A"><span class="nav-number">3.0.11.</span> <span class="nav-text">同时，此题目为我们提供了一个Virustotal网站的检测分析，检测率仅为7&#x2F;58，所以合理推断XLS文件的内容可能被加密了，由此，使用另一个新学到的工具进行检查：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%BE%97%E5%88%B0%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA%E7%9A%84%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="nav-number">3.0.12.</span> <span class="nav-text">最终得到如下图所示的结果：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%AD%A4%E5%9B%BE%E5%8F%AF%E4%BB%A5%E5%8F%91%E7%8E%B0%EF%BC%8C%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E8%A7%A3%E5%AF%86%E8%BF%99%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E5%AF%86%E7%A0%81%E6%89%8D%E8%83%BD%E5%A4%9F%E6%A3%80%E6%9F%A5%E5%AE%8F%E3%80%82%E4%B8%80%E4%BA%9B%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E6%B4%BB%E5%8A%A8%E4%BC%9A%E5%9C%A8%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E4%B8%AD%E5%8F%91%E9%80%81%E5%AF%86%E7%A0%81%EF%BC%8C%E6%9C%89%E5%8A%A9%E4%BA%8E%E9%81%BF%E5%85%8D%E5%AE%89%E5%85%A8%E7%A0%94%E7%A9%B6%E4%BA%BA%E5%91%98%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90%EF%BC%88%E5%A6%82%E6%9E%9C%E4%BB%96%E4%BB%AC%E6%B2%A1%E6%9C%89%E6%94%B6%E5%88%B0%E5%8E%9F%E5%A7%8B%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%EF%BC%89%EF%BC%8C%E5%B9%B6%E4%B8%94%E6%9C%89%E4%BA%89%E8%AE%AE%E5%9C%B0%E4%B8%BA%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%A2%9E%E5%8A%A0%E4%B8%80%E4%BA%9B%E9%A2%9D%E5%A4%96%E7%9A%84%E5%90%88%E6%B3%95%E6%80%A7%E3%80%82%E7%84%B6%E8%80%8C%EF%BC%8C%E8%BF%99%E9%87%8C%E7%9A%84%E6%83%85%E5%86%B5%E5%B9%B6%E9%9D%9E%E5%A6%82%E6%AD%A4%E2%80%94%E2%80%94%E7%9B%B8%E5%8F%8D%EF%BC%8C%E5%AE%83%E4%BD%BF%E7%94%A8%E4%B8%80%E7%A7%8D%E5%B7%B2%E7%9F%A5%E7%9A%84%E6%8A%80%E6%9C%AF%E6%9D%A5%E8%87%AA%E5%8A%A8%E8%A7%A3%E5%AF%86%E6%96%87%E4%BB%B6%E2%80%94%E2%80%94%E8%BF%99%E6%98%AF%E9%80%9A%E8%BF%87%E4%BD%BF%E7%94%A8%E2%80%9CVelvetSweatshop%E2%80%9D%E5%AF%86%E7%A0%81%E6%9D%A5%E5%AE%9E%E7%8E%B0%E7%9A%84%E3%80%82%E4%BD%BF%E7%94%A8%E6%AD%A4%E4%BD%9C%E4%B8%BA%E5%AF%86%E7%A0%81%EF%BC%8COffice-%E5%B0%86%E8%87%AA%E5%8A%A8%E8%A7%A3%E5%AF%86-XLS-%E6%96%87%E6%A1%A3%E5%B9%B6%E6%89%A7%E8%A1%8C%E5%AE%8F%E3%80%82"><span class="nav-number">3.0.13.</span> <span class="nav-text">通过此图可以发现，我们需要知道解密这个文件的密码才能够检查宏。一些恶意软件活动会在电子邮件中发送密码，有助于避免安全研究人员进行分析（如果他们没有收到原始电子邮件），并且有争议地为社会工程增加一些额外的合法性。然而，这里的情况并非如此——相反，它使用一种已知的技术来自动解密文件——这是通过使用“VelvetSweatshop”密码来实现的。使用此作为密码，Office 将自动解密 XLS 文档并执行宏。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-MSOFFCRYPTO-TOOL%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E6%8F%90%E4%BE%9B%E5%AF%86%E7%A0%81%E5%B9%B6%E8%A7%A3%E5%AF%86%E6%96%87%E6%A1%A3%EF%BC%9A"><span class="nav-number">3.0.14.</span> <span class="nav-text">使用 MSOFFCRYPTO-TOOL，我们可以提供密码并解密文档：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8E%B0%E5%9C%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8oledump%E8%BF%9B%E8%A1%8C%E8%B0%83%E6%9F%A5%EF%BC%9A"><span class="nav-number">3.0.15.</span> <span class="nav-text">现在可以使用oledump进行调查：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%86%E6%98%AF%E7%BB%8F%E8%BF%87%E6%A3%80%E6%9F%A5%E4%B9%8B%E5%90%8E%E5%8F%91%E7%8E%B0%EF%BC%8C%E4%BB%8D%E7%84%B6%E6%B2%A1%E6%9C%89%E5%AE%8F%E7%9A%84%E5%87%BA%E7%8E%B0%EF%BC%8C%E8%AF%A5%E6%96%87%E6%A1%A3%E5%8F%AF%E8%83%BD%E4%BD%BF%E7%94%A8%E4%BA%86-Excel-4-%E5%AE%8F%EF%BC%8C%E4%B8%8B%E9%9D%A2%E5%BC%80%E5%A7%8B%E6%A3%80%E6%9F%A5-OLEDUMP-%E7%9A%84-plugin-biff-%E6%8F%92%E4%BB%B6"><span class="nav-number">3.0.16.</span> <span class="nav-text">但是经过检查之后发现，仍然没有宏的出现，该文档可能使用了 Excel 4 宏，下面开始检查 OLEDUMP 的 plugin_biff 插件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#OLEDUMP-%E6%8F%90%E4%BE%9B%E4%BA%86%E8%AE%B8%E5%A4%9A%E6%8F%92%E4%BB%B6%EF%BC%8C%E7%89%B9%E5%88%AB%E6%98%AF%E7%94%A8%E4%BA%8E%E6%A3%80%E6%9F%A5-Excel-97-2003-%E6%96%87%E6%A1%A3%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E7%9A%84-plugin-biff%E3%80%82BIFF-%E4%BB%A3%E8%A1%A8%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BA%A4%E6%8D%A2%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%EF%BC%8C%E8%BF%99%E7%A7%8D%E7%BB%93%E6%9E%84%E4%B8%8E%E5%8A%9E%E5%85%AC%E6%96%87%E6%A1%A3%E5%BD%93%E5%89%8D%E4%BD%BF%E7%94%A8%E7%9A%84%E5%BD%93%E5%89%8D-VBA-%E6%A0%BC%E5%BC%8F%E4%B8%8D%E5%90%8C%E3%80%82%E8%BF%99%E6%84%8F%E5%91%B3%E7%9D%80%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E6%AD%A4%E6%8F%92%E4%BB%B6%E6%9D%A5%E8%AF%86%E5%88%AB%E6%BD%9C%E5%9C%A8%E7%9A%84-Excel-4-%E5%AE%8F%E4%BD%BF%E7%94%A8%E3%80%82"><span class="nav-number">3.0.17.</span> <span class="nav-text">OLEDUMP 提供了许多插件，特别是用于检查 Excel 97 - 2003 文档的二进制文件格式的 plugin_biff。BIFF 代表二进制交换文件格式，这种结构与办公文档当前使用的当前 VBA 格式不同。这意味着我们需要使用此插件来识别潜在的 Excel 4 宏使用。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E6%89%BE%E5%88%B0%E4%BA%86-Excel-4-%E5%AE%8F%E3%80%82"><span class="nav-number">3.0.18.</span> <span class="nav-text">插件找到了 Excel 4 宏。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-%E2%80%93pluginoptions-%E2%80%9C-h%E2%80%9D-%E6%9D%A5%E8%8E%B7%E5%8F%96%E6%8F%92%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0"><span class="nav-number">3.0.19.</span> <span class="nav-text">使用*–pluginoptions “-h”*来获取插件的参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%80%E4%BB%A5-x-%E5%B0%86%E9%80%89%E6%8B%A9%E6%89%80%E6%9C%89%E8%AE%B0%E5%BD%95%E7%9B%B8%E5%85%B3%E7%9A%84-Excel-4-%E5%AE%8F%EF%BC%9A"><span class="nav-number">3.0.20.</span> <span class="nav-text">所以*-x*将选择所有记录相关的 Excel 4 宏：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8plugin-biff%EF%BC%8C%E8%BF%98%E5%8F%AF%E4%BB%A5%E6%9F%A5%E7%9C%8B%E6%96%87%E6%A1%A3%E5%B7%A5%E4%BD%9C%E8%A1%A8%E7%9A%84%E5%8F%AF%E8%A7%81%E6%80%A7%EF%BC%9A"><span class="nav-number">3.0.21.</span> <span class="nav-text">使用plugin_biff，还可以查看文档工作表的可见性：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8%E8%BF%99%E9%87%8C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E9%9A%90%E8%97%8F%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%A1%A8%E6%8C%89%E8%BE%93%E5%87%BA%E9%A1%BA%E5%BA%8F%E5%91%BD%E5%90%8D%EF%BC%9ASOCWNEScLLxkLhtJp-OHqYbvYcqmWjJJjsF-Macro2-Macro3-Macro4-Macro5%E3%80%82"><span class="nav-number">3.0.22.</span> <span class="nav-text">在这里可以看到隐藏的工作表按输出顺序命名：SOCWNEScLLxkLhtJp, OHqYbvYcqmWjJJjsF, Macro2, Macro3, Macro4, Macro5。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E7%9D%80%E5%86%99%E7%9D%80%E5%8F%91%E7%8E%B0%EF%BC%8C%E8%80%81%E5%B8%88%E8%A6%81%E6%B1%82%E7%9A%84%E9%A2%98%E7%9B%AE%E6%98%AF%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%EF%BC%8C%E8%80%8C%E6%88%91%E4%B8%8A%E9%9D%A2%E5%81%9A%E7%9A%84%E6%98%AF%E5%AF%B9%E4%BA%8E%E6%81%B6%E6%84%8F%E6%96%87%E4%BB%B6%E7%9A%84%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%EF%BC%8C%E5%85%88%E6%94%BE%E6%94%BE%EF%BC%8C%E5%AD%A6%E4%BC%9A%E4%BA%86%E5%86%8D%E6%9D%A5%E5%86%99%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E7%9A%84%E5%86%85%E5%AE%B9%E3%80%82%EF%BC%88%E5%A5%BD%E4%B8%8D%E5%AE%B9%E6%98%93%E5%86%99%E5%AE%8C%E7%9A%84%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E5%B0%B1%E4%B8%8D%E5%88%A0%E4%BA%86%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">写着写着发现，老师要求的题目是动态分析，而我上面做的是对于恶意文件的静态分析，先放放，学会了再来写动态分析的内容。（好不容易写完的静态分析就不删了）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A5%E4%B8%8B%E6%9D%A5%E7%9A%84%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="nav-number">4.0.1.</span> <span class="nav-text">接下来的动态分析的内容：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%86%99%E4%BA%86%E6%95%B4%E6%95%B4%E4%B8%80%E5%91%A8%EF%BC%9A"><span class="nav-number">4.0.2.</span> <span class="nav-text">写了整整一周：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%A4%E5%85%B6%E6%98%AF%E9%85%8D%E7%BD%AEcuckoo%E6%B2%99%E7%AE%B1%E4%BB%A5%E5%8F%8Acape%E6%B2%99%E7%AE%B1%E7%9A%84%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="nav-number">4.0.3.</span> <span class="nav-text">尤其是配置cuckoo沙箱以及cape沙箱的安装过程：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BD%93%E6%88%91%E4%BB%AC%E6%8A%8A%E6%B2%99%E7%AE%B1%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E5%A5%BD%E4%B9%8B%E5%90%8E%EF%BC%8C%E7%84%B6%E5%90%8E%E5%AF%B9%E4%BA%8E%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%9A%84%E6%89%A7%E8%A1%8C%E5%88%86%E6%9E%90%E5%B7%B2%E7%BB%8F%E6%AF%94%E8%BE%83%E7%AE%80%E5%8D%95%E4%BA%86%EF%BC%8C%E4%B8%8B%E9%9D%A2%E6%98%AF%E6%88%91%E7%9A%84%E5%AE%9E%E9%AA%8C%E5%85%A8%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="nav-number">4.0.4.</span> <span class="nav-text">当我们把沙箱环境配置好之后，然后对于恶意代码的执行分析已经比较简单了，下面是我的实验全过程：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%B1%E4%BA%8Ecuckoo%E7%9A%84%E7%AE%A1%E7%90%86%E7%BB%84%E4%BB%B6%E5%AE%8C%E5%85%A8%E7%94%B1python%E7%BC%96%E5%86%99%EF%BC%8C%E6%89%80%E4%BB%A5%E9%9C%80%E8%A6%81%E5%90%88%E9%80%82%E7%9A%84python%E7%89%88%E6%9C%AC%EF%BC%8C%E5%9C%A8%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%B8%AD%EF%BC%8C%E5%BD%93%E5%89%8D%E5%AE%8C%E5%85%A8%E5%85%BC%E5%AE%B9%E7%9A%84%E7%89%88%E6%9C%AC%E6%98%AFpython2-7"><span class="nav-number">4.0.5.</span> <span class="nav-text">由于cuckoo的管理组件完全由python编写，所以需要合适的python版本，在官方文档中，当前完全兼容的版本是python2.7</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A5%E4%B8%8B%E6%9D%A5%E6%89%A7%E8%A1%8C%E4%B8%80%E7%B3%BB%E5%88%97%E7%9A%84%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%EF%BC%9A"><span class="nav-number">4.0.6.</span> <span class="nav-text">接下来执行一系列的工具安装：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bpip%E5%B7%A5%E5%85%B7%E7%89%88%E6%9C%AC%E4%BB%A5%E5%8F%8A%E5%91%BD%E4%BB%A4%E7%9B%AE%E5%BD%95"><span class="nav-number">4.0.7.</span> <span class="nav-text">查看pip工具版本以及命令目录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="nav-number">4.0.8.</span> <span class="nav-text">安装工具：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%89%E8%A3%85mongodb%E5%B7%A5%E5%85%B7"><span class="nav-number">4.0.9.</span> <span class="nav-text">安装mongodb工具</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E5%AF%BC%E5%85%A5apt%E7%9A%84key"><span class="nav-number">4.0.10.</span> <span class="nav-text">首先导入apt的key</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A5%E7%9D%80%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%88%97%E8%A1%A8%E6%96%87%E4%BB%B6"><span class="nav-number">4.0.11.</span> <span class="nav-text">接着创建版本列表文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E8%BD%AF%E4%BB%B6%E6%BA%90%E5%B9%B6%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88mongodb"><span class="nav-number">4.0.12.</span> <span class="nav-text">更新软件源并安装最新版mongodb</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-x2F-%E9%87%8D%E5%90%AF-x2F-%E5%81%9C%E6%AD%A2-mongo%E7%9A%84%E6%9C%8D%E5%8A%A1"><span class="nav-number">4.0.13.</span> <span class="nav-text">启动&#x2F;重启&#x2F;停止 mongo的服务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%A8oracle%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85VirtualBox"><span class="nav-number">4.0.14.</span> <span class="nav-text">用oracle仓库安装VirtualBox</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E5%AE%89%E8%A3%85tcpdump%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="nav-number">4.0.15.</span> <span class="nav-text">下面安装tcpdump工具：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Tcpdump%E7%94%A8%E4%BA%8E%E6%8A%93%E5%8F%96%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E4%BA%A7%E7%94%9F%E7%9A%84%E6%89%80%E6%9C%89%E6%B5%81%E9%87%8F"><span class="nav-number">4.0.16.</span> <span class="nav-text">Tcpdump用于抓取恶意软件运行过程中产生的所有流量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%89%E8%A3%85M2Crypto%E5%BA%93"><span class="nav-number">4.0.17.</span> <span class="nav-text">安装M2Crypto库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cuckoo%E5%AE%89%E8%A3%85"><span class="nav-number">4.0.18.</span> <span class="nav-text">cuckoo安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cuckoo%E5%8F%AF%E4%BB%A5%E8%BF%90%E8%A1%8C%E5%9C%A8%E5%B7%B2%E6%9C%89%E7%94%A8%E6%88%B7%E4%B8%8B%E9%9D%A2%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%E6%9D%A5%E8%B7%91Cuckoo%E3%80%82-%E4%BD%86%E6%98%AF%E8%A6%81%E4%BF%9D%E8%AF%81%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%92%8CCuckoo%E8%BF%90%E8%A1%8C%E5%9C%A8%E7%9B%B8%E5%90%8C%E7%9A%84%E7%94%A8%E6%88%B7%E4%B8%8B%E3%80%82"><span class="nav-number">4.0.19.</span> <span class="nav-text">Cuckoo可以运行在已有用户下面，也可以新建一个用户来跑Cuckoo。 但是要保证虚拟机和Cuckoo运行在相同的用户下。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Virtualenv%E5%AE%89%E8%A3%85cuckoo"><span class="nav-number">4.0.20.</span> <span class="nav-text">使用Virtualenv安装cuckoo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cuckoo%E7%9A%84%E4%BE%9D%E8%B5%96%E5%B9%B6%E4%B8%8D%E6%98%AF%E7%94%A8%E7%9A%84%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%EF%BC%8C%E5%8F%AF%E8%83%BD%E4%BC%9A%E4%B8%8E%E7%B3%BB%E7%BB%9F%E5%B7%B2%E6%9C%89%E7%9A%84%E7%89%88%E6%9C%AC%E5%86%B2%E7%AA%81"><span class="nav-number">4.0.21.</span> <span class="nav-text">Cuckoo的依赖并不是用的最新版本，可能会与系统已有的版本冲突.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%AE%89%E8%A3%85%EF%BC%8C%E5%8F%AF%E8%83%BD%E4%BC%9A%E5%AF%BC%E8%87%B4Cuckoo%E7%9A%84%E4%BE%9D%E8%B5%96%E4%BA%A7%E7%94%9F%E9%97%AE%E9%A2%98"><span class="nav-number">4.0.22.</span> <span class="nav-text">系统中其他软件的安装，可能会导致Cuckoo的依赖产生问题.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8virtualenv%EF%BC%8C%E5%8F%AF%E4%BB%A5%E8%AE%A9%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%AE%89%E8%A3%85%E7%9B%B8%E5%85%B3%E8%BD%AF%E4%BB%B6"><span class="nav-number">4.0.23.</span> <span class="nav-text">使用virtualenv，可以让非root用户也可以安装相关软件.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%9D%A5%E8%AF%B4virtualenv%E6%98%AF%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">4.0.24.</span> <span class="nav-text">简单来说virtualenv是最佳实践.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%89%E8%A3%85virtualenv%EF%BC%9A"><span class="nav-number">4.0.25.</span> <span class="nav-text">安装virtualenv：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8virtualenv%E5%AE%89%E8%A3%85cuckoo"><span class="nav-number">4.0.26.</span> <span class="nav-text">使用virtualenv安装cuckoo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%AD%E5%AE%89%E8%A3%85%E5%AE%A2%E6%88%B7%E6%9C%BAwin7%E7%B3%BB%E7%BB%9F"><span class="nav-number">4.0.27.</span> <span class="nav-text">下面在虚拟机中安装客户机win7系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cuckoo%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">cuckoo配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E9%85%8D%E7%BD%AEauxiliary-conf-cuckoo-conf-virtualbox-conf"><span class="nav-number">5.0.1.</span> <span class="nav-text">需要配置auxiliary.conf cuckoo.conf virtualbox.conf</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#auxiliary-conf%EF%BC%9A%E7%A1%AE%E8%AE%A4tcpdump%E8%B7%AF%E5%BE%84%E8%A6%81%E5%AF%B9%EF%BC%8C-usr-sbin-tcpdump"><span class="nav-number">5.0.2.</span> <span class="nav-text">auxiliary.conf：确认tcpdump路径要对，&#x2F;usr&#x2F;sbin&#x2F;tcpdump</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cuckoo-conf%EF%BC%9A%E7%A1%AE%E8%AE%A4resultserver%E7%9A%84%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1ip%E5%92%8C%E7%AB%AF%E5%8F%A3"><span class="nav-number">5.0.3.</span> <span class="nav-text">cuckoo.conf：确认resultserver的虚拟网卡ip和端口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#virtualbox-conf%EF%BC%9A%E7%A1%AE%E8%AE%A4%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0interface-vboxnet0%EF%BC%8C%E5%AE%A2%E6%88%B7%E6%9C%BA%E5%90%8D%E3%80%81label%E3%80%81platform%E5%92%8C%E9%9D%99%E6%80%81ipmachines-cuckoo1-cuckoo1-label-cuckoo1-platfrom-windows-ip-192-168-56-x"><span class="nav-number">5.0.4.</span> <span class="nav-text">virtualbox.conf：确认虚拟网卡名称interface &#x3D; vboxnet0，客户机名、label、platform和静态ipmachines &#x3D; cuckoo1,[cuckoo1]label &#x3D; cuckoo1, platfrom &#x3D; windows, ip &#x3D; 192.168.56.x</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%89%E8%A3%85python2-7"><span class="nav-number">5.0.5.</span> <span class="nav-text">安装python2.7</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C"><span class="nav-number">5.0.6.</span> <span class="nav-text">执行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%B0%E8%BF%99%E9%87%8C%EF%BC%9A%E6%88%91%E4%BB%AC%E7%BB%88%E4%BA%8E%E5%AE%89%E8%A3%85%E5%AE%8C%E4%BA%86cuckoo%E8%BF%99%E4%B8%AA%E5%AE%89%E8%A3%85%E8%B5%B7%E6%9D%A5%E5%8F%8A%E5%85%B6%E5%A4%8D%E6%9D%82%E4%BD%86%E6%98%AF%E7%94%A8%E8%B5%B7%E6%9D%A5%E9%9D%9E%E5%B8%B8%E7%AE%80%E4%BE%BF%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="nav-number">5.0.7.</span> <span class="nav-text">到这里：我们终于安装完了cuckoo这个安装起来及其复杂但是用起来非常简便的工具</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E6%88%91%E5%B0%86%E5%AE%89%E8%A3%85%E4%B8%80%E4%B8%AA%E6%88%91%E9%81%87%E5%88%B0%E7%9A%84%E6%9C%80%E9%9A%BE%E5%AE%89%E8%A3%85%E7%9A%84%E5%B7%A5%E5%85%B7%EF%BC%9ACape-SandBox"><span class="nav-number">5.0.8.</span> <span class="nav-text">下面我将安装一个我遇到的最难安装的工具：Cape SandBox</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cape-SandBox%E6%98%AF%E4%B8%80%E4%B8%AAubuntu%EF%BC%8Cwindows%E5%92%8Ccuckoo%E4%B8%89%E4%B8%AA%E7%8E%AF%E5%A2%83%E5%B1%82%E5%B1%82%E5%B5%8C%E5%A5%97%E7%9A%84%E5%B7%A5%E5%85%B7%EF%BC%8C%E6%89%80%E4%BB%A5%E7%BB%88%E4%BA%8E%E5%88%B0%E4%BA%86%E5%8F%AF%E4%BB%A5%E9%83%A8%E7%BD%B2CApe-SandBox%E7%9A%84%E6%97%B6%E5%88%BB"><span class="nav-number">5.0.9.</span> <span class="nav-text">Cape SandBox是一个ubuntu，windows和cuckoo三个环境层层嵌套的工具，所以终于到了可以部署CApe SandBox的时刻</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%B1%E4%BA%8E%E8%BF%99%E4%B8%AA%E5%B7%A5%E5%85%B7%E7%9A%84%E9%83%A8%E7%BD%B2%E5%9F%BA%E6%9C%AC%E4%B8%8A%E8%8A%B1%E4%BA%86%E5%B0%86%E8%BF%91%E6%95%B4%E6%95%B4%E4%B8%80%E5%91%A8%E7%9A%84%E8%AF%BE%E4%BD%99%E6%97%B6%E9%97%B4%EF%BC%8C%E6%89%80%E4%BB%A5%E5%B9%B6%E6%B2%A1%E4%BF%9D%E5%AD%98%E4%B8%AD%E9%97%B4%E7%9A%84%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="nav-number">5.0.10.</span> <span class="nav-text">由于这个工具的部署基本上花了将近整整一周的课余时间，所以并没保存中间的部署过程：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%88%91%E7%9A%84Cape%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%94%A8%E6%88%B7%E5%90%8D%E5%8D%B3%E4%B8%BAcape"><span class="nav-number">5.0.11.</span> <span class="nav-text">我的Cape虚拟机用户名即为cape</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E8%BF%9B%E5%85%A5%E9%83%A8%E7%BD%B2%E5%A5%BD%E7%9A%84cape%E5%B7%A5%E5%85%B7"><span class="nav-number">5.0.12.</span> <span class="nav-text">下面进入部署好的cape工具</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cuckoo%E5%B7%A5%E5%85%B7%E5%AF%B9%E5%BA%94%E7%9A%84%E6%BA%90%E6%96%87%E4%BB%B6%E4%B8%BAcuckoo-py%EF%BC%8C%E5%85%B7%E4%BD%93%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B"><span class="nav-number">5.0.13.</span> <span class="nav-text">cuckoo工具对应的源文件为cuckoo.py，具体代码如下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C-%E5%9C%A8-x2F-opt-x2F-CAPEv2-x2F-%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E8%BF%90%E8%A1%8C-%E2%80%9Csudo-python3-utils-x2F-process-py-p7-auto%E2%80%9D%EF%BC%8C%E5%8F%82%E6%95%B0%E4%BB%A3%E8%A1%A8%E4%BC%98%E5%85%88%E7%BA%A7%E5%88%92%E5%88%86%EF%BC%8C%E8%BE%93%E5%85%A5%E5%A4%9A%E4%B8%AA%E6%A0%B7%E6%9C%AC%E6%97%B6%EF%BC%8C%E6%B2%99%E7%AE%B1%E4%BC%9A%E4%BC%98%E5%85%88%E8%BF%90%E8%A1%8C%E9%AB%98%E4%BC%98%E5%85%88%E7%BA%A7%E6%A0%B7%E6%9C%AC%E3%80%82"><span class="nav-number">5.0.14.</span> <span class="nav-text">第三步， 在 &#x2F;opt&#x2F;CAPEv2 &#x2F; 文件夹下运行 “sudo python3 utils&#x2F;process.py -p7 auto”，参数代表优先级划分，输入多个样本时，沙箱会优先运行高优先级样本。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%8C%E5%9C%A8-x2F-opt-x2F-CAPEv2-x2F-web-%E7%9B%AE%E5%BD%95%E4%B8%8B-%E7%94%B1%E4%BA%8E%E7%8E%AF%E5%A2%83%E4%BE%9D%E8%B5%96%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E5%BF%85%E9%A1%BB%E7%94%B1%E6%8C%87%E5%90%91%E8%AF%A5%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84-shell-%E8%BF%90%E8%A1%8C%E8%AF%A5%E5%91%BD%E4%BB%A4-%EF%BC%8C%E8%BF%90%E8%A1%8C-%E2%80%9Csudo-python3-manage-py-runserver-127-0-0-1-8088%E2%80%9D-%E8%AF%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84-8080-%E7%AB%AF%E5%8F%A3%E5%B7%B2%E8%A2%AB%E5%8D%A0%E7%94%A8%EF%BC%8C%E7%AB%AF%E5%8F%A3%E5%8F%AF%E8%87%AA%E5%B7%B1%E6%8C%87%E5%AE%9A-%E3%80%82"><span class="nav-number">5.0.15.</span> <span class="nav-text">第四步，在 &#x2F;opt&#x2F;CAPEv2&#x2F;web 目录下 (由于环境依赖的问题，必须由指向该文件夹的 shell 运行该命令)，运行 “sudo python3 manage.py runserver 127.0.0.1:8088”(该虚拟机的 8080 端口已被占用，端口可自己指定)。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%A5%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%BD%93%E4%BA%8E%E6%89%93%E5%BC%80%E5%89%8D%E6%AE%B5%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%8A%A0%E8%BD%BD%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%92%8C%E5%91%88%E7%8E%B0%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%9C%E3%80%82"><span class="nav-number">5.0.16.</span> <span class="nav-text">该操作相当于打开前段服务器，用于加载恶意软件和呈现分析结果。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E5%BA%94%E7%9A%84%E6%BA%90%E6%96%87%E4%BB%B6%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">5.0.17.</span> <span class="nav-text">对应的源文件如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B2%99%E7%AE%B1%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F%EF%BC%8C"><span class="nav-number">5.0.18.</span> <span class="nav-text">沙箱启动成功，</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E5%BC%80%E5%A7%8B%E6%8F%90%E4%BA%A4%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E6%A0%B7%E6%9C%AC%E5%88%B0cape%E6%B2%99%E7%AE%B1%E4%B8%AD%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90"><span class="nav-number">5.0.19.</span> <span class="nav-text">下面开始提交恶意代码样本到cape沙箱中进行分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%88%91%E6%8F%90%E4%BA%A4%E7%9A%84%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E6%A0%B7%E6%9C%AC%E4%B8%BA%EF%BC%9A"><span class="nav-number">5.0.20.</span> <span class="nav-text">我提交的恶意代码样本为：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%9C%E6%9F%A5%E7%9C%8B%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">动态分析结果查看：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E5%B1%95%E7%A4%BA%E5%BF%AB%E9%80%9F%E5%88%86%E6%9E%90%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%8C%85%E6%8B%AC%E6%9C%BA%E5%99%A8%E5%92%8C%E6%97%B6%E9%97%B4%E7%AD%89"><span class="nav-number">6.0.1.</span> <span class="nav-text">首先展示快速分析的基本信息，包括机器和时间等</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E7%9A%84%E5%85%B7%E4%BD%93%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="nav-number">6.0.2.</span> <span class="nav-text">下面是恶意软件动态分析的具体内容：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF"><span class="nav-number">6.0.3.</span> <span class="nav-text">1、签名信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E7%94%9F%E6%88%90%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%8C%E6%AF%94%E5%A6%82-malware-%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E7%94%9F%E6%88%90%E7%9A%84-%E2%80%9Ctaskche-exe%E2%80%9D"><span class="nav-number">6.0.4.</span> <span class="nav-text">可以看到生成的文件，比如 malware 任务执行生成的 “taskche.exe”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DLL-%E8%BD%BD%E5%85%A5%E6%96%87%E4%BB%B6%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA%EF%BC%9A"><span class="nav-number">6.0.5.</span> <span class="nav-text">DLL 载入文件如下图所示：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP-%E8%AF%B7%E6%B1%82%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0malware%E5%9F%9F%E5%90%8D%E5%BC%80%E5%85%B3%E5%8E%BB%E8%BF%9E%E6%8E%A5%E7%9A%84%E4%B8%89%E4%B8%AA%E5%9F%9F%E5%90%8D"><span class="nav-number">6.0.6.</span> <span class="nav-text">HTTP 请求可以看到malware域名开关去连接的三个域名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86%E5%92%8C%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">6.0.7.</span> <span class="nav-text">加密和签名信息如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81%E5%8A%A8%E6%80%81%E8%BF%90%E8%A1%8C%E6%88%AA%E5%B1%8F%E4%BF%A1%E6%81%AF%EF%BC%9A"><span class="nav-number">6.0.8.</span> <span class="nav-text">2、动态运行截屏信息：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81%E4%B8%8B%E9%9D%A2%E6%98%AF%E5%90%84%E7%A7%8D%E5%8A%A8%E6%80%81%E7%89%B9%E5%BE%81%E6%80%BB%E7%BB%93"><span class="nav-number">6.0.9.</span> <span class="nav-text">3、下面是各种动态特征总结</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8A%A8%E6%80%81-API-%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA%EF%BC%9A"><span class="nav-number">6.0.10.</span> <span class="nav-text">动态 API 如下图所示：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%93%8D%E4%BD%9C%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA%EF%BC%9A"><span class="nav-number">6.0.11.</span> <span class="nav-text">注册表操作如下图所示：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A1%8C%E4%B8%BA%E7%89%B9%E5%BE%81%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA%EF%BC%9A"><span class="nav-number">6.0.12.</span> <span class="nav-text">动态行为特征如下图所示：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%A5%E9%83%A8%E5%88%86%E8%83%BD%E7%9C%8B%E5%88%B0%E5%8A%A8%E6%80%81-API-%E5%BA%8F%E5%88%97%EF%BC%8C%E6%9E%81%E4%B8%BA%E9%87%8D%E8%A6%81%E7%9A%84%E7%89%B9%E5%BE%81%EF%BC%8C%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA%EF%BC%9A"><span class="nav-number">6.0.13.</span> <span class="nav-text">该部分能看到动态 API 序列，极为重要的特征，如下图所示：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90%E5%A6%82%E4%B8%8B%E5%9B%BE%E6%89%80%E7%A4%BA%EF%BC%9A"><span class="nav-number">6.0.14.</span> <span class="nav-text">网络分析如下图所示：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%B3%E6%AD%A4%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0%E4%BA%86%E5%AF%B9%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E6%A0%B7%E6%9C%AC%E7%9A%84%E5%85%B7%E4%BD%93%E5%88%86%E6%9E%90%EF%BC%9A%E6%9C%80%E5%90%8E%E5%AF%B9%E5%85%B6%E8%BF%9B%E8%A1%8C%E6%80%BB%E7%BB%93"><span class="nav-number">6.0.15.</span> <span class="nav-text">至此最终实现了对一个恶意代码样本的具体分析：最后对其进行总结</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%AC%E5%AE%9E%E9%AA%8C%E7%9A%84%E4%B8%BB%E6%97%A8%E6%98%AF%E8%A6%81%E6%B1%82%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BB%BB%E6%84%8F%E7%9A%84%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E5%8E%BB%E5%88%86%E6%9E%90%E4%BB%BB%E6%84%8F%E5%8F%AF%E4%BB%A5%E5%BE%97%E5%88%B0%E7%9A%84%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E6%A0%B7%E6%9C%AC%EF%BC%8C%E5%B9%B6%E4%B8%94%E6%B3%A8%E6%84%8F%E6%98%AF%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%EF%BC%8C%E4%BD%86%E6%98%AF%E5%9C%A8%E8%BF%9B%E8%A1%8C%E6%AD%A4%E5%AE%9E%E9%AA%8C%E7%9A%84%E5%85%B7%E4%BD%93%E8%BF%87%E7%A8%8B%E4%B8%AD%EF%BC%8C%E6%88%91%E8%AE%A4%E4%B8%BA%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7Sand-Box%E7%9A%84%E5%AE%89%E8%A3%85%E6%98%AF%E6%9C%80%E4%B8%BA%E9%87%8D%E8%A6%81%E5%92%8C%E6%9C%80%E4%B8%BA%E5%9B%B0%E9%9A%BE%E7%9A%84%EF%BC%8C%E6%9C%AC%E6%AC%A1%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E4%BD%BF%E7%94%A8%E7%9A%84cape-SandBox%E5%B7%A5%E5%85%B7%E5%88%99%E6%98%AFubuntu%EF%BC%8Cwindows%E5%92%8Ccuckoo%E4%B8%89%E4%B8%AA%E7%8E%AF%E5%A2%83%E7%9A%84%E5%B1%82%E5%B1%82%E5%B5%8C%E5%A5%97%EF%BC%8C%E6%88%91%E5%9C%A8%E9%85%8D%E7%BD%AEcape%E5%B7%A5%E5%85%B7%E7%9A%84%E5%90%8C%E6%97%B6%E4%B9%9F%E5%AD%A6%E5%88%B0%E4%BA%86%E8%AE%B8%E5%A4%9A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E6%93%8D%E7%9A%84%E7%9F%A5%E8%AF%86%E3%80%82%E6%9C%80%E5%90%8E%E5%B0%86%E6%88%91%E4%BB%AC%E5%9C%A8virusshare%E5%BE%97%E5%88%B0%E7%9A%84%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E6%A0%B7%E6%9C%AC%E6%8F%90%E4%BA%A4%E5%88%B0cape%E5%B7%A5%E5%85%B7%E4%B8%AD%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90%EF%BC%8C%E8%AF%A5%E5%B7%A5%E5%85%B7%E5%85%B7%E6%9C%89%E5%8D%81%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%B7%A5%E5%85%B7%EF%BC%8C%E5%AF%B9%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%9C%A8%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%BF%90%E8%A1%8C%E7%89%B9%E5%BE%81%E5%85%A8%E9%83%A8%E5%88%86%E6%9E%90%E5%87%BA%E6%9D%A5%E5%B9%B6%E4%B8%94%E7%BB%99%E5%87%BA%E5%88%86%E6%9E%90%E7%9A%84%E6%80%BB%E7%BB%93%EF%BC%8C"><span class="nav-number">6.0.16.</span> <span class="nav-text">本实验的主旨是要求我们可以使用任意的分析工具去分析任意可以得到的恶意代码样本，并且注意是动态分析，但是在进行此实验的具体过程中，我认为恶意代码分析工具Sand Box的安装是最为重要和最为困难的，本次动态分析使用的cape SandBox工具则是ubuntu，windows和cuckoo三个环境的层层嵌套，我在配置cape工具的同时也学到了许多操作系统的实操的知识。最后将我们在virusshare得到的恶意代码样本提交到cape工具中进行分析，该工具具有十强大的工具，对恶意代码在系统中的运行特征全部分析出来并且给出分析的总结，</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%88%91%E5%9C%A8%E5%8A%A8%E6%80%81%E5%88%86%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%9C%E4%B8%AD%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E7%9A%84%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF%EF%BC%8C%E6%96%87%E4%BB%B6%E7%9A%84%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF%EF%BC%8C%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E7%9A%84exe%E6%96%87%E4%BB%B6%EF%BC%8C%E6%AD%A4%E6%96%87%E4%BB%B6%E4%B9%9F%E6%98%AF%E8%AF%A5%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%9A%84%E4%B8%BB%E8%A6%81%E7%9A%84%E4%BC%A0%E6%92%AD%E6%9C%BA%E7%90%86%EF%BC%9B"><span class="nav-number">6.0.17.</span> <span class="nav-text">我在动态分析的结果中可以看到恶意代码文件的详细信息，文件的签名信息，恶意代码生成的exe文件，此文件也是该恶意代码的主要的传播机理；</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%84%B6%E5%90%8E%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E8%AF%B7%E6%B1%82%E7%9A%84%E7%BD%91%E9%A1%B5%E5%9F%9F%E5%90%8D%EF%BC%8C%E4%BD%86%E6%98%AF%E8%BF%98%E5%8F%AF%E4%BB%A5%E5%8F%91%E7%8E%B0%EF%BC%8C%E8%BF%99%E4%BA%9B%E8%A2%AB%E8%AF%B7%E6%B1%82%E7%9A%84%E5%9F%9F%E5%90%8D%E5%9D%87%E4%BB%A5%E4%B8%8D%E5%AD%98%E5%9C%A8%E4%BA%86%EF%BC%9B"><span class="nav-number">6.0.18.</span> <span class="nav-text">然后可以看到恶意代码请求的网页域名，但是还可以发现，这些被请求的域名均以不存在了；</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E6%98%AF%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C%E5%8A%A8%E6%80%81%E7%89%B9%E5%BE%81%E7%9A%84%E6%80%BB%E7%BB%93%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%AF%B9%E7%B3%BB%E7%BB%9F%E6%B3%A8%E5%86%8C%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B%E3%80%82"><span class="nav-number">6.0.19.</span> <span class="nav-text">最后是恶意代码运行动态特征的总结，可以看到恶意代码对系统注册表的操作过程。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%B2%99%E7%AE%B1%E8%A7%84%E9%81%BF%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94"><span class="nav-number">7.</span> <span class="nav-text">四、沙箱规避技术调研</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8%E4%B8%8A%E8%BF%B0%E4%BB%A3%E7%A0%81%E4%B8%AD%EF%BC%8C%E6%88%91%E4%BD%BF%E7%94%A8%E4%BA%86MinHook%E5%BA%93%E6%9D%A5%E5%AE%9E%E7%8E%B0API%E7%9A%84HOOK%E3%80%82%E9%A6%96%E5%85%88%E5%AE%9A%E4%B9%89%E4%BA%86%E5%8E%9F%E5%A7%8B%E7%9A%84CreateFileW%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84CreateFileW%E5%87%BD%E6%95%B0%E3%80%82%E7%84%B6%E5%90%8E%E9%80%9A%E8%BF%87InitHook%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%8C%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%90%AF%E7%94%A8HOOK%E3%80%82%E5%9C%A8HOOK%E4%B8%AD%EF%BC%8C%E6%88%91%E4%BB%AC%E6%88%AA%E8%8E%B7CreateFileW%E5%87%BD%E6%95%B0%EF%BC%8C%E5%B9%B6%E5%B0%86%E5%85%B6%E6%8C%87%E5%90%91%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84MyCreateFileW%E5%87%BD%E6%95%B0%E3%80%82%E6%9C%80%E5%90%8E%EF%BC%8C%E5%9C%A8DLL%E7%9A%84%E5%85%A5%E5%8F%A3%E5%87%BD%E6%95%B0%E4%B8%AD%E8%BF%9B%E8%A1%8CHOOK%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E5%92%8C%E5%8D%B8%E8%BD%BD%E3%80%82"><span class="nav-number">7.0.1.</span> <span class="nav-text">在上述代码中，我使用了MinHook库来实现API的HOOK。首先定义了原始的CreateFileW函数指针类型和自定义的CreateFileW函数。然后通过InitHook函数进行初始化，创建并启用HOOK。在HOOK中，我们截获CreateFileW函数，并将其指向自定义的MyCreateFileW函数。最后，在DLL的入口函数中进行HOOK的初始化和卸载。</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ang"
+      src="/images/ang.jpg">
+  <p class="site-author-name" itemprop="name">Ang</p>
+  <div class="site-description" itemprop="description">Why do learn?</div>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ang-sagapo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ang-sagapo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

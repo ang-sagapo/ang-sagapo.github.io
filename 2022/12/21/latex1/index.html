@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="%保存为UTF-8编码格式%用xelatex编译 \documentclass[UTF8,a4paper,12pt]{ctexart}\usepackage[left&#x3D;3.18cm, right&#x3D;3.18cm, top&#x3D;2.54cm, bottom&#x3D;2.54cm]{geometry} %页边距\CTEXsetup[format&#x3D;{\Large\bf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Latex_1">
+<meta property="og:url" content="http://example.com/2022/12/21/latex1/index.html">
+<meta property="og:site_name" content="ang&#39;s blog">
+<meta property="og:description" content="%保存为UTF-8编码格式%用xelatex编译 \documentclass[UTF8,a4paper,12pt]{ctexart}\usepackage[left&#x3D;3.18cm, right&#x3D;3.18cm, top&#x3D;2.54cm, bottom&#x3D;2.54cm]{geometry} %页边距\CTEXsetup[format&#x3D;{\Large\bf">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-21T09:41:03.000Z">
+<meta property="article:modified_time" content="2023-07-11T09:28:48.627Z">
+<meta property="article:author" content="Ang">
+<meta property="article:tag" content="Latex">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/12/21/latex1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Latex_1 | ang's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ang's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">en?</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/ang-sagapo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/21/latex1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ang.jpg">
+      <meta itemprop="name" content="Ang">
+      <meta itemprop="description" content="Why do learn?">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ang's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Latex_1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-21 17:41:03" itemprop="dateCreated datePublished" datetime="2022-12-21T17:41:03+08:00">2022-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-11 17:28:48" itemprop="dateModified" datetime="2023-07-11T17:28:48+08:00">2023-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">一些工具的学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>%保存为UTF-8编码格式<br>%用xelatex编译</p>
+<p>\documentclass[UTF8,a4paper,12pt]{ctexart}<br>\usepackage[left&#x3D;3.18cm, right&#x3D;3.18cm, top&#x3D;2.54cm, bottom&#x3D;2.54cm]{geometry} %页边距<br>\CTEXsetup[format&#x3D;{\Large\bfseries}]{section} %设置章标题字号为Large，居左<br>%\CTEXsetup[number&#x3D;{\chinese{section}}]{section}<br>%\CTEXsetup[name&#x3D;{（,）}]{subsection}<br>%\CTEXsetup[number&#x3D;{\chinese{subsection}}]{subsection}<br>%\CTEXsetup[name&#x3D;{（,）}]{subsubsection}<br>%\CTEXsetup[number&#x3D;\arabic{subsubsection}]{subsubsection}  %以上四行为各级标题样式设置，可根据需要做修改</p>
+<p>\linespread{1.25} %设置全文行间距</p>
+<p>%\usepackage[english]{babel}<br>%\usepackage{float}     %放弃美学排版图表<br>\usepackage{fontspec}   %修改字体<br>\usepackage{amsmath, amsfonts, amssymb} % 数学公式相关宏包<br>\usepackage{color}      % color content<br>\usepackage{graphicx}   % 导入图片<br>\usepackage{subfigure}  % 并排子图<br>\usepackage{url}        % 超链接<br>\usepackage{bm}         % 加粗部分公式，比如\bm{aaa}aaa<br>\usepackage{multirow}<br>\usepackage{booktabs}<br>\usepackage{epstopdf}<br>\usepackage{epsfig}<br>\usepackage{longtable}  %长表格<br>\usepackage{supertabular}%跨页表格<br>\usepackage{algorithm}<br>\usepackage{algorithmic}<br>\usepackage{changepage}<br>\usepackage{booktabs}<br>\usepackage{appendix}</p>
+<p>%%%%%%%%%%%%%%%%%%%%%%%<br>% – text font –<br>% compile using Xelatex<br>%%%%%%%%%%%%%%%%%%%%%%%<br>% – 中文字体 –<br>%\setCJKmainfont{Microsoft YaHei}  % 微软雅黑<br>%\setCJKmainfont{YouYuan}  % 幼圆<br>%\setCJKmainfont{NSimSun}  % 新宋体<br>%\setCJKmainfont{KaiTi}    % 楷体<br>\setCJKmainfont[AutoFakeBold&#x3D;true]{SimSun}   % 宋体<br>%\setCJKmainfont{SimHei}   % 黑体</p>
+<p>% – 英文字体 –<br>\setmainfont{Times New Roman}<br>%\setmainfont{DejaVu Sans}<br>%\setmainfont{Latin Modern Mono}<br>%\setmainfont{Consolas}<br>%<br>%<br>\renewcommand{\algorithmicrequire}{ \textbf{Input:}}     % use Input in the format of Algorithm<br>\renewcommand{\algorithmicensure}{ \textbf{Initialize:}} % use Initialize in the format of Algorithm<br>\renewcommand{\algorithmicreturn}{ \textbf{Output:}}     % use Output in the format of Algorithm<br>\renewcommand{\abstractname}{\textbf{\large {摘\quad 要}}} %更改摘要二字的样式<br>\newcommand{\xiaosi}{\fontsize{12pt}{\baselineskip}}     %\xiaosi代替设置12pt字号命令,不加\selectfont,行间距设置无效<br>\newcommand{\wuhao}{\fontsize{10.5pt}{10.5pt}\selectfont}</p>
+<p>\usepackage{fancyhdr} %设置全文页眉、页脚的格式<br>\pagestyle{fancy}<br>\lhead{}           %页眉左边设为空<br>\chead{}           %页眉中间<br>\rhead{}           %页眉右边<br>%\rhead{\includegraphics[width&#x3D;1.2cm]{1.eps}}  %页眉右侧放置logo<br>\lfoot{}          %页脚左边<br>\cfoot{\thepage}  %页脚中间<br>\rfoot{}          %页脚右边</p>
+<p>%%%%%%%%%%%%%%%%%%%%%%%<br>%  设置水印<br>%%%%%%%%%%%%%%%%%%%%%%%<br>%\usepackage{draftwatermark}         % 所有页加水印<br>%\usepackage[firstpage]{draftwatermark} % 只有第一页加水印<br>% \SetWatermarkText{Water-Mark}           % 设置水印内容<br>% \SetWatermarkText{\includegraphics{fig&#x2F;ZJDX-WaterMark.eps}}         % 设置水印logo<br>% \SetWatermarkLightness{0.9}             % 设置水印透明度 0-1<br>% \SetWatermarkScale{1}                   % 设置水印大小 0-1</p>
+<p>\usepackage{hyperref} %bookmarks<br>\hypersetup{colorlinks&#x3D;true, linkcolor&#x3D;black,filecolor&#x3D;black,urlcolor&#x3D;black,citecolor&#x3D;black,bookmarks, unicode} %unicode</p>
+<p>\title{\textbf{\Large{正大所以润矿泉水线上营销策略分析}}}</p>
+<p>\begin{document}</p>
+<pre><code>\maketitle
+%\tableofcontents
+
+\begin&#123;abstract&#125;
+    随着我国居民生活水平的提高，人们对矿泉水的需求不断增长。在今后的一段时期中，我国矿泉水产业发展主要体现在：
+    
+    一是随着消费升级和人们健康意识的提高，未来天然矿泉水将成为第一大饮用水品种，成为饮用水市场的主导力量 ; 二是随着国内市场竞争日趋激烈，矿泉水产业集中度和生产集约化将进一步提高。我国现有矿泉水市场格局基本是以农夫山泉、怡宝、康师傅、娃哈哈等为一 线中低端，昆仑山、5100、恒大冰泉、阿尔山等主中高端，依云、巴黎水等国际品牌为进口高端的，其他二线品牌和地方品牌占据一小部分市场份额。
+    
+    正大饮品(北京)有限公司成立于2021年9月。 公司依托集团百年历史根基，贯彻集团“成为全球最大食饮企业”的发展愿景，秉承“利国、利民、利企业”的经营宗旨，以包装饮用水 为业务切入点，不断开发中国优质水源地，依托正大集团遍布全球的销售网络，把物美价优的水饮产品带给中国和世界的广大消费者。 公司首批上市产品为正大集团品牌背书的“所以润”天然矿泉水。产品品牌主要针对Z时代的年轻客群，以“口感”作为品牌区隔于市场竞品的定位方向。延续这一定位方向，从当下主力年轻消费群体的消费需求及喜好出发，从命名、 包装设计呈现，到后续传播，全方位塑造出差异化、年轻化、个性化的正大全新天然矿泉水品牌。 本次调研内容以z 世代的年轻消费者为出发点，目标是要了解 z 世代对矿泉水营销推广活动的偏好、天然矿泉水在年轻受众群体中的接受程度和发展趋势。发放调查问卷，对问卷得到的数据进行分析。
+    
+    基于 Linear Regression 和 Pearson 相关性分析探究矿泉水购买意愿的影响因素，基于以上分析我们得出以下结论：（1） 对于水的销售取决于价格促销，这与年龄和薪水无关。（2）相关性分析和线性回归都提到了线下这个点，所以消费者更愿意到线下购买。（3）消费者对于互联网直播带货有非常大的兴趣，所以要打开互联网直播营销市场。（4） 消费者需要对品牌联动也有足够的消费意愿。（5） 相关性分析和线性回归都有赠送赠品，说明gift 能提升消费者的购买意愿。
+    
+    为了解决所以润矿泉水目前存在的问题，本文通过4P营销组合理论，从产品策略，价格策略，渠道策略，促销策略等方面提出了具体的营销策略，具体包括基于各类媒体的广告投放，品牌推广，开拓网络营销渠道，采用品牌联动营销打法等。
+    
+    本论文研究的开展既有助于提升所以润矿泉水品牌的营销水平，为所以润矿泉水扩大在年轻群体的市场份额提供策略，又可丰富国内其他类似品牌的营销实践。
+    
+    关键词：矿泉水 \ \ 年轻群体\ \  营销策略 \ \  相关性分析
+\end&#123;abstract&#125;
+
+\begin&#123;center&#125;
+    \large&#123;\textbf&#123;Abstract&#125;&#125;
+\end&#123;center&#125;
+
+\begin&#123;adjustwidth&#125;&#123;1cm&#125;&#123;1cm&#125;
+    \noindent\hspace&#123;1.5em&#125;With the improvement of the living standard of Chinese residents, people&#39;s demand for mineral water continues to grow. In the next period of time, the development of my country&#39;s mineral water industry is mainly reflected in:
+    
+    First, with the upgrading of consumption and the improvement of people&#39;s health awareness, natural mineral water will become the largest drinking water variety in the future and become the leading force in the drinking water market; second, with the increasingly fierce competition in the domestic market, the concentration and Production intensification will be further enhanced. my country&#39;s existing mineral water market structure is basically based on Nongfu Spring, Yibao, Master Kong, Wahaha, etc. as the first-tier mid-to-low end, Kunlun Mountain, 5100, Evergrande Bingquan, Aershan, etc. The brands are imported high-end, and other second-tier brands and local brands occupy a small market share.
+    
+    Zhengda Beverage (Beijing) Co., Ltd. was established in September 2021. Relying on the group&#39;s century-old foundation, the company implements the group&#39;s development vision of &quot;becoming the world&#39;s largest catering enterprise&quot;, adheres to the business purpose of &quot;benefiting the country, benefiting the people, and benefiting the enterprise&quot;, takes packaged drinking water as the business entry point, and continuously develops high-quality water sources in China Locally, relying on the global sales network of CP Group, it brings high-quality and affordable drinking water products to consumers in China and the world. The company&#39;s first listed products are &quot;So Run&quot; natural mineral water endorsed by the Chia Tai Group brand. The product brand is mainly aimed at the young customer groups in the Z era, and uses &quot;taste&quot; as the positioning direction to differentiate the brand from competing products in the market. Continuing this positioning direction, starting from the consumption needs and preferences of the current main young consumer groups, from naming, packaging design presentation, to follow-up communication, we will create a differentiated, younger and personalized Chia Tai new natural mineral water brand in an all-round way. The content of this survey is based on the young consumers of Generation Z. The goal is to understand the preferences of Generation Z for mineral water marketing and promotion activities, the acceptance and development trend of natural mineral water among young audiences. Distribute questionnaires and analyze the data obtained from the questionnaires.
+    
+    Based on Linear Regression and Pearson correlation analysis to explore the influencing factors of mineral water purchase intention, based on the above analysis we draw the following conclusions: (1) The sale of water depends on price promotion, which has nothing to do with age and salary. (2) Correlation analysis and linear regression both mentioned the offline point, so consumers are more willing to buy offline. (3) Consumers are very interested in online live streaming, so it is necessary to open up the Internet live streaming marketing market. (4) Consumers need to have enough willingness to spend on brand linkage. (5) Correlation analysis and linear regression both have gifts, indicating that gifts can increase consumers&#39; willingness to purchase.
+    
+    In order to solve the current problems of Sorun Mineral Water, this paper puts forward specific marketing strategies from the aspects of product strategy, price strategy, channel strategy and promotion strategy through the 4P marketing mix theory, including advertising placement based on various media, brand Promote, develop online marketing channels, adopt brand linkage marketing methods, etc.
+    The development of the research in this paper will not only help to improve the marketing level of Sorun mineral water brand, provide strategies for Sorun mineral water to expand the market share in young people, but also enrich the marketing practice of other similar domestic brands.
+    
+    \textbf&#123;KeyWords&#125;：Mineral water, Young people, Marketing strategy, Correlation analysis
+\end&#123;adjustwidth&#125;
+$\\
+\\
+\\
+\\
+\\
+\\$
+%\thispagestyle&#123;empty&#125;       %本页不显示页码
+%\newpage                    %分页
+%%\tableofcontents\thispagestyle&#123;empty&#125;
+%\newpage
+%\setcounter&#123;page&#125;&#123;1&#125;        %从下面开始编页，页脚格式为导言部分设置的格式
+
+\tableofcontents
+$\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+$
+\section&#123;引言&#125;
+
+\subsection&#123;调查背景及选题意义 &#125;
+
+\subsubsection&#123;调查背景&#125;
+
+ 随着我国居民生活水平的提高，人们对矿泉水的需求也在不断增加，矿泉水呈现出替代&quot;矿物质水&quot;和&quot;纯净水&quot;的趋势，增长潜力巨大。在今后的一段时期中，我国矿泉水产业发展主要体现在：一是随着消费升级和人们健康意识的提高，未来天然矿泉水将成为第一大饮用水品种，成为饮用水市场的主导力量;二是随着国内市场竞争日趋激烈，矿泉水产业集中度和生产集约化将进一步提高。
+ 
+随着健康意识的增强，消费者倾向于选择来源于优质天然水源、含有天然矿物元素的包装饮用水及低卡路里、低糖等的饮料。消费升级。随着收入水平及购买力的持续提升，消费者在选择产品时，对价格的敏感度降低，转而更关注产品质量、口味以及便利性等。消费者差异化需求的增加，推动了对优质产品进行更多消费。矿泉水作为健康饮食的重要组成部分，顺应&quot;天然、营养、无公害、绿色&quot; 消费趋势，是都市健康生活的首要选择，未来矿泉水产业发展具有广阔的市场前景。
+
+而随着科技的发展以及数字化时代网络时代的到来，矿泉水的销售渠道也日益多元化，不再仅仅局限于线下的便利店，超市等途径。日益多元化的销售渠道，如电商平台，直播带货，自动贩卖机等。增加了消费者购买产品的便利性，从而增加了产品的消费频率。随着中国消费者健康意识增强及消费能力的提升，近年来矿泉水在包装饮用水类别中增长最快。矿泉水作为健康饮食的重要组成部分，顺应&quot;天然、营养、无公害、绿色&quot; 消费趋势，是都市健康生活的首要选择，未来矿泉水产业发展具有广阔的市场前景。
+
+根据网络调查搜集的一些数据，2022年在京东平台上，饮用水的总销量6600多万件，同比增长了50 \% ；饮用水产品的销售额也将近突破30亿元，同比去年增长了46.7\%。目前，在京东平台上，饮用水相关品牌数共计450个。饮用矿泉水市场规模不断增长，饮用水产品的产销量增速较快。
+
+随着饮用水行业的逐渐成熟，相关品牌也越来越多，因此，饮用水市场在繁荣发展的同时，竞争也会异常激烈。现阶段，饮用水市场的集中度相对较高，销量TOP10品牌的市场占比共计85.5\%。 目前，市场上的矿泉水品牌较多，包括国内外各大知名品牌，如法国依云、法国巴黎水、百岁山、怡宝、农夫山泉等。而一些新锐品牌的矿泉水，如何能扩大自己的知名度和影响力，在老牌矿泉水中突出重围，以线上营销的方式开展推广活动，在年轻人群体中开展营销扩大销量则成为本项目组的重要研究问题。
+
+饮用水作为高消耗品，有着旺盛的市场需求。并且，随着饮用水产业的迅速发展，饮用水市场整体的产销量快速增长，消费人群也不断扩大。同时，随着饮用水行业的相对成熟，门槛偏低的现实让入局的品牌越来越多，竞争愈发激烈。因此，相关品牌需要及时捕捉到消费者需求的变化，做好新品布局、投入研发等，以在行业中更有竞争力。
+
+\subsubsection&#123;研究目的&#125;
+
+随着中国消费者健康意识的增强及消费能力的提升，近年来天然水及天然矿泉水在包装饮用水类别中增长最快。2014年至2019年，天然水及天然矿泉水的复合年增长率分别为24.8\%、18.4\%左右;按零售额计算，2019年市场规模分别达到372亿元、151亿元。而2019年至2024年，预计天然水及天然矿泉水的复合年增长率分别为15.4\%、14.2\%左右。从2020年开始，中国矿泉水保持在8\%～9\%的年均增速持续增长。2025年市场规模有望突破3000亿元。年轻化，时尚化的客群结构打破了矿泉水，纯净水，天然水的老叁样格局，更多的新品类如苏打水，气泡水，电解质水等瞄准了年轻消费者群体。到2021年，据尼尔森数据，包装饮用水行业市占率排名为农夫山泉(33\%)、华润怡宝(26\%)、百岁山(13\%)、 康师傅(12\%)、娃哈哈(9\%)、可口可乐(7\%)，农夫山泉和怡宝合计占一半以上的市场份额。稳坐行业龙头位置后，农夫山泉继续在包装饮用水领域继续深耕用户需求，推出针对特定人群和特定场景的包装饮用水。
+为了展现我国矿泉水市场的庞大规模和巨大的发展潜力，便于正大品牌所以润矿泉水在迅速发展的矿泉水市场中抓住机遇，本项目研究目的具体如下：
+
+\begin&#123;itemize&#125;
+    \item 调查年轻消费者对矿泉水产品的看法理解，关注因素，购买意愿。
+    \item 了解年轻消费者对矿泉水产品的品质需求，功能需求，外延需求，价格需求。研究消费者的购买习惯，消费者未被满足的需求。
+    \item 一些新锐矿泉水品牌是如何在线上进行品牌营销活动来扩大知名度、影响力调查消费者买矿泉水的主要渠道，了解各渠道所占比例。
+    \item z世代目标群体对营销推广活动的偏好，更喜爱哪种类型的营销活动。
+    \item 天然矿泉水在年轻受众群体中的接受程度和发展趋势。
+\end&#123;itemize&#125;
+
+\subsubsection&#123;研究意义&#125;
+
+通过本次调研，本项目组获得以下几点意义：
+
+\textbf&#123;(1)&#125; 针对消费者对矿泉水产品的关注因素，了解正大所以润产品在竞争中的优势和劣势所在，为企业扩大销量提供基础；
+
+\textbf&#123;(2)&#125; 抓住消费者的真实需求，增强产品特点，为企业提高市场表现力、开发新产品打开思路； 
+
+\textbf&#123;(3)&#125; 根据销售渠道特性，选择不同的销售宣传方式，为企业制定合理的营销计划。
+
+\textbf&#123;(4)&#125; 对年轻消费者客户群体再进行细分，为企业转化潜在消费者、巩固现有客户从而提升企业竞争水平提供指导。
+
+\subsection&#123;理论基础与文献综述&#125;
+\subsubsection&#123;理论基础&#125;
+
+1．TDS 值代表水中总固体溶解量，单位是 PPM。相对来说，水越纯净，它的 TDS
+数值就越低，反之就越高。一般来说 TDS40 以内，水质饮用都是安全的。影响 TDS 值测试的因素：
+
+水温：TDS 笔不可用于测量高温水体（例如：热开水）。
+
+水的流速：TDS 笔不能用于测量晃动较大的水体。
+
+水质污染：TDS 笔不能用于测量污染浓度较高的水体。
+
+2.KOL：在营销学上，为各⼚家宣传的专家或权威被称为“关键意见领袖“，通常被定义为：拥有更多、更准确的产品信息，且为相关群体所接受或信任，并对该群体的购买行为有较大影响力的人。把可以扮演不同“价值角色”的人叫做“关键人”，这些人中，其意见具有核心影响力的人即为“关键意见领袖”。“关键人”和“关键意见领袖”是销售过程中价值形成和交换的源点，他们是销售工作的着力点。KOL 作为移动互联网重点关注的人群，不同的 KOL 有着独特的人格属性和内容特质，通过对其受众画像的洞察，能够帮助品牌营销挖掘更精准的商业机会。第一是持久介入特征：KOL 对某类产品较之群体中的其他人有着更为长期和深入的介入，因此对产品更了解，有更广的信息来源、更多的知识和更丰富的经验。第二是人际沟通特征：KOL较常人更合群和健谈，他们具有极强的社交能力和人际沟通技巧，且积极参加各类活动，善于交朋结友，喜欢⾼谈阔论，是群体的舆论中心和信息发布中心，对他人有强大的感染力。第三是性格特征：KOL 观念开放，接受新事物快，关心时尚、流行趋势的变化，愿意优先使用新产品，是营销学上新产品的早期使用者。
+
+3.艾克模型: 艾克从消费者的视角提出了品牌资产的模型。将品牌资产分为了品牌忠诚度（Brand	Loyalty）、品牌知名度（Brand Awareness）、品牌联想（Brand
+Association）、感知质量（Perceived Quality）和其它品牌专有资产（other proprietary brand  assets）5 个维度。艾克认为，消费者（尤其是周期性购买的消费者）对企业品牌资产的构建起到决定性作用。
+
+4．顾客满意度理论：顾客满意度是对顾客满意程度的衡量指标。常常通过随机调查获取样本，以顾客对特定满意度指标的打分数据为基础，运用加权平均法得出相应结果。顾客满意度管理是 20 世纪 90 年代兴起的营销管理战略，不仅要求了解外部顾客的满意度，而且要求了解内部顾客，即员工的满意度状况，从而揭
+示企业在顾客价值创造和传递方面存在的问题，并以实现全面的顾客满意为目标，探究、分析和解决这些问题[3]。
+
+5.营销基础理论
+
+5.1,STP 理论：市场细分（MarketSegmentation）[5]的概念是美国营销学家温德尔·史密斯(Wendell Smith)在 1956 年最早提出的，此后，美国营销学家菲利浦·科特勒进一步发展和完善了温德尔·史密斯的理论并最终形成了成熟的 STP 理论——市场细分（Segmentation）、选择适当的市场目标（Targeting）和定位（Positioning）。它是战略营销的核心内容，指企业在一定的市场细分的基础上，确定自己的目标市场，最后把产品或服务定位在目标市场中的确定位置上。其中，市场细分(Segmentation)指企业根据消费者需求上的差异将产品 或服务的市场进行逐一细分的过程。其中包括了三个阶段，一是对消费者的需求进行市场调研，⼆是对市场调查的结果进行分析，最后是根据分析结果进行市场细分。通过市场细分，企业在目标市场的选择和营销策略的制定上更占优势。同时，还有利于企业发掘更多的市场机会，开拓新市场。另外，在市场细分下，企业可以集中人力、物理投入目标市场，争取局部市场上的优势，提高了企业的经济效益。
+
+5.2,营销组合理论：营销组合理论(4P 理论)于 20 世纪 60 年代，由杰罗姆•麦肯锡在《基础 营销》(Basic Marketing)中提出。包括了:产品(Product)、价格(Price)、 渠道(Place)、促销(Promotion)，该理论核心在于，企业通过对这些要素进⾏有效组合，获得一定的市场反应，从而满足市场需求，使企业获得最大利润[6]。
+
+\subsubsection&#123;文献综述&#125;
+
+姚云萍（2019）[2]提出，众多定位同质化品牌的入局导致品牌可替代性增强，消费者选择余地越来越大；同时这种情况极有可能引发恶性价格战，不仅会导致品牌获利空间减小，影响企业发展，而且会使品牌资产受损，品牌形象坍塌。同时矿泉水市场消费需求的变化。消费者的消费观念，需求和品位都在发生着变化。传统的用户不再满足于大众化的品味和品质。年轻人则更不喜欢老旧的选择。
+
+所以润品牌如果不能紧跟时代潮流为品牌注入新的元素，满组年轻消费者日益增长的需求，那么将会被贴上“落伍”的标签，失去消费者的关注，甚至消费者的印象将会随着时间的流逝而将品牌遗忘，最终使品牌黯然退出市场。[3]同时，在 z时代，消费渠道也更加多元，所以润品牌新媒体运营有待提高。李桂华（2021）[4]认为，在当今互联网迅猛发展的时代，消费渠道选择越来越多元化。除传统线下门店外，线上淘宝、京东等电商平台给了消费者更多的选择渠道，加之抖音等新媒体的助推，年轻一代消的消费观“互联网”化特征十分明显。[5]所以润品牌也应该抓住互联网消费的浪潮，推动线上营销。
+</code></pre>
+<p>​	<br>​	<br>​	\section{调查策划与实施}<br>​	<br>​	\subsection{调查方案设计}<br>​	<br>​	\subsubsection{调研内容}<br>​	<br>​	本次调研内容以z世代的年轻消费者为出发点，目标是要了解z世代对矿泉水营销推广活动的偏好、天然矿泉水在年轻受众群体中的接受程度和发展趋势。有以下几个部分：第一，分析了当下矿泉水销售行业的宏观背景和各个品牌在市场上的表现；第二，基于市场调研的成果，分析了西安市年轻消费者对于矿泉水购买的一些个人倾向性喜好，并结合了消费者的态度，对消费者群体进行了进一步的划分，使得调研结果更加具有针对性以及准确性；第三，调研西安市年轻消费者对线上购买矿泉水的消费驱动力；第四。从产品本身的客观因素、消费者个人喜好的主观因素两个不同的角度分析目前在线上营销矿泉水的障碍与优势。<br>​	<br>​	最终，立足于我们的调研结果，决策相对更合适的线上营销策略，开展更有效的天然矿泉水新锐品牌“正大所以润”的线上营销活动。<br>​	\begin{figure}[htbp]<br>​		\centering<br>​		\includegraphics[width&#x3D;1.0\textwidth]{3.png} 	% 图片相对位置<br>​		\caption{Model1 specific process}		% 图片标题<br>​		\label{Model1 flowchart}							% 图片标签<br>​	\end{figure}<br>​	\subsubsection{调研工作流程}<br>​	\begin{figure}[htbp]<br>​		\centering<br>​		\includegraphics[width&#x3D;.6\textwidth]{4.png} 	% 图片相对位置<br>​		\caption{Model1 specific process}		% 图片标题<br>​		\label{Model1 flowchart}							% 图片标签<br>​	\end{figure}<br>​	\subsubsection{线上电商平台事前调研}<br>​	<br>​	目前在中国大陆地区的主要线上电子商务平台有淘宝、天猫、京东、拼多多等。这几个app在中国大陆地区市场占有率非常高，并且每一个平台都有一定量的消费用户。我们采用在这些app进行搜索调研的方式，从多个角度，了解天然矿泉水的线上销售情况，同时有助于我们接下来的问卷设计。<br>​	<br>​	在调查中，我们发现，销售量大、点评数高、品牌知名度高的天然矿泉水产品更容易被电商平台在前列显示。各种天然矿泉水的展示图大多都十分简洁、无太多花哨的修饰、背景以白色或浅色为主。我们认为，这有助于消费者更加关注矿泉水本身，且有助于商家给消费者营造一种我们的矿泉水更天然更纯净的氛围。<br>​	<br>    除此之外，部分被电商平台显示在前列的天然矿泉水产品右下角有“广告”标识，这引起我们思考，对于一些品牌，与电子商务平台达成商业广告合作，有助于自己的产品更加容易被消费者看到，获得更大的了解度、曝光度和关注度。</p>
+<pre><code>线上销售天然矿泉水少有单瓶零售的，有量大销售的特点，一般是整箱销售或者按一提来销售的居多。
+各品牌的直营旗舰店是主要的线上销售店铺，这表面，线上平台具有中间商发挥作用较小的特点。
+另外，在营销活动上，我们关注到了，一些店铺或品牌会采取直接在电商平台开直播的方式促进销售，这给我们的调研提供了一个新的思路，直播带货这一近年来非常火爆的方式是否在天然矿泉水销售中对Z世代年轻人产生购买的欲望。
+
+一些电子商务平台会对包括天然矿泉水在内的食品类产品开辟自营销售方式，如天猫app有专门的“天猫超市”来销售天然矿泉水。
+
+线上平台销售天然矿泉水在价格上会有一定优惠，“双11”、“618”等全平台的购物节、品牌店铺自己的促销都会有一定的折扣以促进产品销售。一般的形式有送消费券、送赠品、满减优惠等等。
+
+\subsubsection&#123;深度了解产品&#125;
+
+我们事先关注了新锐天然矿泉水品牌”正大所以润“的官方公众号，官方视频号。了解了该新锐天然矿泉水品牌已有的一些营销活动和产品特色。了解了该品牌目前面临的一些现状。
+
+在我们的深度了解产品过程中，我们了解到该品牌天然矿泉水品牌想要有所突破的产品营销目标，主要想从年轻的消费者群体中打开知名度，逐渐形成稳定的消费者群体。
+
+该矿泉水品牌是由目前在市场上的一线食品制造商“正大集团”出品，有大公司信誉背书。水源地产自世界级矿泉水产地，中国东北吉林省长白山，水源优质，矿泉水具有高品质的特点，适宜长期饮用。公司总部位于北京市。
+
+同时，该品牌成立时间不长，是新锐品牌，具有比较广阔的销售前景和销售面扩大的空间。该品牌天然矿泉水在中国大陆地区市场上具有较大的发展潜力。
+
+\subsubsection&#123;问卷设计&#125;
+本次调查问卷以本次项目的研究目的——“天然矿泉水新锐品牌正大所以润的线上营销”为出发点和落脚点，结合前期调研准备，基本确定了问卷选项：
+\begin&#123;itemize&#125;
+    \item 	平时购买矿泉水多吗？
+    \item 	购买矿泉水的场所主要是线上还是线下？
+    \item 	有长期饮用矿泉水的习惯吗？
+    \item 	购买天然矿泉水时注重品牌吗？
+    \item 	线上营销活动影响对天然矿泉水的选择程度如何？
+    \item	线上购买天然矿泉水时最注重的因素是什么？
+\end&#123;itemize&#125;
+为了更加全面地了解年轻消费者对天然矿泉水的消费情况，我们根据购买矿泉水的频率，将问卷设计为A卷和B卷，前者供偶尔或从不购买天然矿泉水的消费者填写，后者供经常购买天然矿泉水的消费者填写。本次调查目的是帮助形成新锐矿泉水品牌在线上对年轻消费者的营销活动决策。问卷的内容包括以下几个方面:
+
+ (1)年轻消费者饮用天然矿泉水的消费习惯：品牌偏好、线上线下偏好、营销活动偏好等
+ 
+ (2)年轻消费者选购天然矿泉水的考虑因素：价格、品质、品牌、包装等
+ 
+(3)年轻消费者对品牌的认知程度
+
+ (4)受调研者的基本信息：年龄、性别、收入情况等
+</code></pre>
+<p>为了减轻受访者的一些顾虑，对填写问卷有抗拒心理，问卷个人信息可能出现的漏填，因此将个人信息板块放在了问卷最后部分。</p>
+<pre><code>\subsubsection&#123;预调查&#125;
+
+为了检验问卷可行性以及可靠性，在正式问卷调查之前，我们在网络上进行了一次预调查，一共发放了42份问卷，回收了40份，被调查者均居住在西安市，且为年轻消费者。根据预调查所产生的结果，发现问卷存在以下问题，部分题设并不合理、措辞不够精准委婉、受调查者对于一些题目的理解存在不解等。最后，针对以上问题，对问卷进行了一些完善。
+</code></pre>
+<p>​	<br>​	\subsubsection{抽样设计}<br>​	<br>​	\textbf{（1）调研对象与范围}<br>​	<br>​	本次调研是具有一定针对性的调研，主要为Z世代年轻消费者对新锐天然矿泉水品牌线上营销活动开展提供决策支持，销售地域为西安市。因此，调研对象以长期居住在西安市的年轻消费群体为总体。为了更加全面地了解Z世代年轻消费者对新锐天然矿泉水品牌线上营销活动开展的喜好程度，以调研有购买天然矿泉水习惯的年轻消费者为主，以没有购买天然矿泉水习惯的年轻消费者为辅。<br>​	<br>​	\textbf{(2)抽样方法}<br>​	<br>​	为了我们的调研结果更加准确，对天然矿泉水消费市场具有进一步的把握，以便制定合理且有效的线上营销方案，本次调研采用线上随机抽样。为了可以保证样本分布更加均匀，充分了解西安市年轻消费者对天然矿泉水的喜好，我们按照行政区和功能区划进行分层抽样。<br>​	<br>​	\textbf{(3)样本量的确定}<br>​	<br>​	在总体样本量较大时，最低样本量与被调查者总数没有必然联系，会受到误差和置信水平的影响，通过样本量计算公式，得出样本量为96。<br>​	\begin{align}<br>​		N\ &#x3D; \ \frac{[Z^2 p(1-p)]}{e^2}<br>​	\end{align}<br>​	<br>    具体计算流程如下：本次调查的最低样本根据公式（1）(其中N为样本量，Z为当置信度为1.96时的Z统计量的值，e为极限误差，p为抽样比例)确定，保证在95% 的置信水平，极限误差小于10 % ，抽样比例为0.5的前提下，计算出最低样本量为96.04，同时考虑到问卷回收后可能出现的有效问卷率及误差，故实际抽样数量为最低样本量的1.1倍，即106份。</p>
+<pre><code>公式1：
+
+根据西安市统计局、西安市第七次全国人口普查领导小组办公室公布的西安市第七次全国人口普查主要数据公报（第二号） ——分区域常住人口情况[西安市统计局、西安市第七次全国人口普查领导小组办公室.西安市第七次全国人口普查主要数据公报（第二号），2021
+]公开资料，具体如下表显示，居住在城区（包括六城区、高新区、经开区、曲江新区、浐灞生态区、国际港务区、航天产业基地）的占比约为60 \% ，居住在郊区（除城区之外的所有区）的占比约为40 \% ，因此我们的问卷发放也符合6：4的比例，达到分层抽样的效果。
+
+\begin&#123;figure&#125;[htbp]
+    \centering
+    \includegraphics[width=.8\textwidth]&#123;1.png&#125; 	% 图片相对位置
+    \caption&#123;Model1 specific process&#125;		% 图片标题 
+    \label&#123;Model1 flowchart&#125;							% 图片标签
+\end&#123;figure&#125;
+\begin&#123;figure&#125;[htbp]
+    \centering
+    \includegraphics[width=.8\textwidth]&#123;2.png&#125; 	% 图片相对位置
+    \caption&#123;Model1 specific process&#125;		% 图片标题 
+    \label&#123;Model1 flowchart&#125;							% 图片标签
+\end&#123;figure&#125;
+
+\subsection&#123;调查资料整理&#125;
+
+\subsubsection&#123;调查问卷回收&#125;
+本次问卷发放通过大赛组委会提供的线上问卷网站“腾讯问卷”进行，按照公式所计算的样本量发放，力求更进一步地掌握西安市年轻消费者群体对天然矿泉水的消费情况。每天检查问卷回收的数量，通过小组成员的审核，确认回收的问卷是否具有有效性。
+
+\subsubsection&#123;问卷数据的校订&#125;
+
+我们对数据进行了以下检查：检查问卷前后是否具有逻辑上的一致性、检查受调查者在填写问卷时所花费的时间。因此，我们剔除了一些无效问卷，以免干扰最终的结果，这些问卷存在前后逻辑不一致、填写问卷花费时间过短的问题。
+
+\subsubsection&#123;数据的编码及录入&#125;
+
+本次问卷采用线上平台统一发放，利用线上平台已有的功能进行数据的收集，通过问卷平台以excel和spss导出，修改部分变量的名称，对问卷重新编码，令数据更加清晰明了，有便于我们后期的统计分析。
+
+\section&#123;基于Linear Regression和Pearson相关性分析探究奶茶购买意愿的影响因素&#125;
+\subsection&#123;模型简介&#125;
+\subsubsection&#123;Linear Regression模型简介&#125;
+
+线性回归分析是一种寻求变量之间近似的线性函数关系的回归方法，适用于离散型变量之间的线性关系的分析，在本题中我们根据问卷的数据使用了14元的线性回归模型对数据进行回归分析。
+
+其中回归函数为：
+\begin&#123;align&#125;
+    y\ = \ w_0\ +\ w_1 x_1\ +\ w_2 x_2 \ +\...+\ w_n x_&#123;14&#125;\ +\ b  
+\end&#123;align&#125;
+其中b为常数随机误差。
+
+现在对$x_1 x_2,...x_14$进行观察（即为收到的一份问卷数据），第i份问卷数据取值为别为$x_1^i,x_2^i...x_&#123;14&#125;^i和y^i$,随机误差为$b^i$，则得到方程：
+\begin&#123;align&#125;
+    y^i \ =  \ w_o \ +\ w_1 x_1^i\ +\ w_2 x_2^i\ +\ ...+w_&#123;14&#125; x_&#123;14&#125;^i\ +\ b^i
+\end&#123;align&#125;
+ 
+ 然后应用损失函数对模型一次预测的好坏进行评估，即为真实值和预测值的误差，具体定义为：
+ \begin&#123;align&#125;
+ 	L\ = \ \frac&#123;1&#125;&#123;2&#125; (y-y^i)^2
+ \end&#123;align&#125;
+
+\subsubsection&#123;Pearson相关分析模型简介&#125;
+
+假设有两组数据$X:&#123;X_1,X_2,X_3...X_n&#125; ,\ Y:&#123;Y_1,Y_2,Y_3..Y_n&#125;$这些数据在本模型中均为调查问卷得到
+则有样本均值为：
+\begin&#123;align&#125;
+    \bar&#123;X&#125;\ = \ \frac&#123;\sum_&#123;i=1&#125;^&#123;n&#125;X_i&#125;&#123;n&#125; \\
+    \bar&#123;Y&#125;\ = \ \frac&#123;\sum_&#123;i=1&#125;^&#123;n&#125;Y_i&#125;&#123;n&#125;
+\end&#123;align&#125;
+则样本协方差为：
+\begin&#123;align&#125;
+    Cov(X,Y)\ = \ \frac&#123;\sum_&#123;i=1&#125;^&#123;n&#125; (X_i - \bar&#123;Xz&#125;)(Y_i- \bar&#123;Y&#125;)&#125;&#123;n-1&#125;
+\end&#123;align&#125;
+则得到样本的Pearson系数为：
+\begin&#123;align&#125;
+    r_&#123;XY&#125;\ = \ \frac&#123;Cov(X,Y)&#125;&#123;S_X S_Y&#125;\\
+    S_X = \ \sqrt&#123;\frac&#123;\sum_&#123;i=1&#125;^&#123;n&#125;(X_i - \bar&#123;X&#125;)^2&#125;&#123;n-1&#125;&#125;\\
+    S_Y\ = \ \sqrt&#123;\frac&#123;\sum_&#123;i=1&#125;^&#123;n&#125;(Yi - \bar&#123;Y&#125;)^2&#125;&#123;n-1&#125;&#125;
+\end&#123;align&#125;
+
+\subsection&#123;模型变量的解释&#125;
+将最终的因变量设置为矿泉水的购买意愿，设置购买意愿为三档，分别为不愿意购买，偶尔购买，经常购买三档，对与问卷的自变量promotion,age,place,habit,usual,salary,
+wrap,live-commerce,gift,represent,brand-linkage,price,brand,quality.
+\\
+
+\begin&#123;tabular&#125;&#123;cccccc&#125;
+    \toprule
+    变量名&amp; &amp; &amp; &amp;变量定义\\
+    \midrule
+    Y &amp; &amp; &amp; &amp; 消费者购买意愿参数\\
+    \\
+    \midrule
+    promotion&amp;&amp;&amp;&amp; 矿泉水饮用意愿参数\\
+    \\
+    \midrule
+    place&amp;&amp;&amp;&amp;  矿泉水购买场所参数\\
+    \\
+    \midrule
+    habit&amp;&amp;&amp;&amp;  矿泉水饮用习惯参数\\
+    \\
+    \midrule
+    price&amp;&amp;&amp;&amp;  价格影响参数\\
+    \\
+    \midrule
+    represent&amp; &amp;&amp;&amp; 营销活动影响参数\\
+    \\
+    \midrule
+    brand-linkage&amp; &amp;&amp;&amp; 品牌联动影响参数\\
+    \\
+    \midrule
+    brand&amp; &amp;&amp;&amp; 自身品牌影响参数\\
+    \\
+    \midrule
+    wrap&amp;&amp;&amp;&amp;  包装影响参数\\
+    \\
+    \midrule
+    quality&amp;&amp;&amp;&amp;  矿泉水自身品质影响参数\\
+    \\
+    \midrule
+    age&amp;&amp;&amp;&amp;  消费者年龄影响参数\\
+    \\
+    \midrule
+    salary&amp;&amp;&amp;&amp;  消费者收入影响参数\\
+    \\
+    \midrule
+    gift&amp;&amp;&amp;&amp;  礼物赠送影响参数\\
+    \\
+    \bottomrule
+\end&#123;tabular&#125;
+
+
+综上所述，最终消费者购买意愿可表示为：
+
+\begin&#123;align&#125;
+    Y\ = \ w_0 +w_1 promotion + w_2 live-commerce + w_3 gift + w_4 place + w_5 habit
+    \\ +w_6 salary + w_7 represent + w_8 brand-linkage + w_9 price +w_&#123;10&#125; brand \\
+    + w_&#123;11&#125; quality + w_&#123;12&#125; wrap + w_&#123;13&#125; age +w_&#123;14&#125; usual 
+\end&#123;align&#125;
+</code></pre>
+<p>\subsection{结果分析}</p>
+<pre><code>下面是我们的问卷数据分析图：
+\begin&#123;figure&#125;[htbp]
+    \centering 									%图片全局居中
+    %并排几个图，就要写几个minipage
+    \begin&#123;minipage&#125;[b]&#123;0.3\textwidth&#125; 		%所有minipage宽度之和小于1
+        \centering 								%图片局部居中
+        \includegraphics[width=0.9\textwidth]&#123;5.png&#125; 
+        %此时的图片宽度比例是相对于这个minipage的，不是全局
+        \caption&#123;&#125;
+        \label&#123;fig:1&#125;
+    \end&#123;minipage&#125;
+    \begin&#123;minipage&#125;[b]&#123;0.3\textwidth&#125; 
+        \centering 									%图片局部居中
+        \includegraphics[width=0.9\textwidth]&#123;6.png&#125;
+        \caption&#123;&#125;
+        \label&#123;fig:2&#125;
+    \end&#123;minipage&#125;
+    \begin&#123;minipage&#125;[b]&#123;0.3\textwidth&#125; 		%所有minipage宽度之和小于1
+    \centering 								%图片局部居中
+    \includegraphics[width=0.9\textwidth]&#123;7.png&#125; 
+    %此时的图片宽度比例是相对于这个minipage的，不是全局
+    \caption&#123;&#125;
+    \label&#123;fig:1&#125;
+    \end&#123;minipage&#125;
+\end&#123;figure&#125;
+</code></pre>
+<p>\begin{figure}[htbp]<br>    \centering 									%图片全局居中<br>    %并排几个图，就要写几个minipage<br>    \begin{minipage}[b]{0.3\textwidth} 		%所有minipage宽度之和小于1<br>        \centering 								%图片局部居中<br>        \includegraphics[width&#x3D;0.9\textwidth]{8.png}<br>        %此时的图片宽度比例是相对于这个minipage的，不是全局<br>        \caption{}<br>        \label{fig:1}<br>    \end{minipage}<br>    \begin{minipage}[b]{0.3\textwidth}<br>        \centering 									%图片局部居中<br>        \includegraphics[width&#x3D;0.9\textwidth]{9.png}<br>        \caption{}<br>        \label{fig:2}<br>    \end{minipage}<br>    \begin{minipage}[b]{0.3\textwidth} 		%所有minipage宽度之和小于1<br>        \centering 								%图片局部居中<br>        \includegraphics[width&#x3D;0.9\textwidth]{10.png}<br>        %此时的图片宽度比例是相对于这个minipage的，不是全局<br>        \caption{}<br>        \label{fig:1}<br>    \end{minipage}<br>\end{figure}<br>\begin{figure}[htbp]<br>    \centering 									%图片全局居中<br>    %并排几个图，就要写几个minipage<br>    \begin{minipage}[b]{0.3\textwidth} 		%所有minipage宽度之和小于1<br>        \centering 								%图片局部居中<br>        \includegraphics[width&#x3D;0.9\textwidth]{11.png}<br>        %此时的图片宽度比例是相对于这个minipage的，不是全局<br>        \caption{}<br>        \label{fig:1}<br>    \end{minipage}<br>    \begin{minipage}[b]{0.3\textwidth}<br>        \centering 									%图片局部居中<br>        \includegraphics[width&#x3D;0.9\textwidth]{12.png}<br>        \caption{}<br>        \label{fig:2}<br>    \end{minipage}<br>    \begin{minipage}[b]{0.3\textwidth} 		%所有minipage宽度之和小于1<br>        \centering 								%图片局部居中<br>        \includegraphics[width&#x3D;0.9\textwidth]{13.png}<br>        %此时的图片宽度比例是相对于这个minipage的，不是全局<br>        \caption{}<br>        \label{fig:1}<br>    \end{minipage}</p>
+<p>\end{figure}</p>
+<p>通过图表可以得出：<br>\begin{itemize}<br>    \item 消费者有很大的饮用矿泉水的需求。<br>    \item 由数据显示，消费者一般都是在线下买矿泉水比较多，如何开展线上销售，首先是广告，其次是价格战争。对于开展线上销售，大家普遍是解决当前的喝水需求而进行线下购买，如何打开线上销售，我们需要进行定义“新线上”，也就是说我们可以进行自动售货机打开线上销售的新局面。价格战争，对于一般人而言，只有很少一部分人才会考虑水的口感（调查问卷缺少数据），大部分人主要是喝水购买水。<br>    \item 由数据所示，我们能看到还是有消费者长期饮用矿泉水。<br>    \item 从数据能看出，重要程度为1和3接近数据的30%，程度4为20%，说明线上营销还是会有一定影响购买量。<br>    \item 对于价格是影响购买产品的主要因素，其次就是购买后赠送赠品，主播直播带货和流量明星代言对产品的购买影响力是比较低的。<br>    \item 最注重的因素有两个，价格和水的品质。<br>    \item 是否听说过正大所以润，只有20%，说明产品宣传度不够。<br>    \item 年龄分布大部分人在17-19 之间和20-21之间，只有少数部分是大于22的人填写了问卷，符合我们对于年轻群体的调查分析。<br>    \item 男女比约为1：1，调查结果没有男女差异。<br>    \item 大部分是学生，没有基本收入，能解释对价格的看重程度，可指导线上对年轻人的营销策划。<br>\end{itemize}<br>\subsubsection{Pearson分析结果}</p>
+<p>\begin{figure}[htbp]<br>    \centering<br>    \includegraphics[width&#x3D;.3\textwidth]{14.png} 	% 图片相对位置<br>    \caption{Pearson相关系数}		% 图片标题<br>    \label{Model1 flowchart}							% 图片标签<br>\end{figure}<br>具体大小分析图为：<br>\begin{figure}[htbp]<br>    \centering<br>    \includegraphics[width&#x3D;.8\textwidth]{15.png} 	% 图片相对位置<br>    \caption{Pearson相关系数可视化}		% 图片标题<br>    \label{Model1 flowchart}							% 图片标签<br>\end{figure}</p>
+<p>从上表可知，利用相关分析去研究willingness分别和promotion, age, place, habit, usual, salary, wrap, live-commerce, gift, represent, brand-linkage, price, brand, quality共14项之间的相关关系，使用Pearson相关系数去表示相关关系的强弱情况。具体分析可知：</p>
+<p>willingness和promotion之间的相关系数值为0.466，并且呈现出0.01水平的显著性，因而说明willingness和promotion之间有着显著的正相关关系。willingness和age之间的相关系数值为0.173，接近于0，并且p值为0.085&gt;0.05，因而说明willingness和age之间并没有相关关系。willingness和place之间的相关系数值为0.332，并且呈现出0.01水平的显著性，因而说明willingness和place之间有着显著的正相关关系。willingness和habit之间的相关系数值为0.286，并且呈现出0.01水平的显著性，因而说明willingness和habit之间有着显著的正相关关系。willingness和usual之间的相关系数值为0.154，接近于0，并且p值为0.125&gt;0.05，因而说明willingness和usual之间并没有相关关系。willingness和salary之间的相关系数值为0.156，接近于0，并且p值为0.121&gt;0.05，因而说明willingness和salary之间并没有相关关系。willingness和wrap之间的相关系数值为-0.052，接近于0，并且p值为0.608&gt;0.05，因而说明willingness和wrap之间并没有相关关系。willingness和live-commerce之间的相关系数值为0.424，并且呈现出0.01水平的显著性，因而说明willingness和live-commerce之间有着显著的正相关关系。willingness和gift之间的相关系数值为0.369，并且呈现出0.01水平的显著性，因而说明willingness和gift之间有着显著的正相关关系。willingness和represent之间的相关系数值为0.168，接近于0，并且p值为0.095&gt;0.05，因而说明willingness和represent之间并没有相关关系。willingness和brand-linkage之间的相关系数值为0.331，并且呈现出0.01水平的显著性，因而说明willingness和brand-linkage之间有着显著的正相关关系。willingness和price之间的相关系数值为0.139，接近于0，并且p值为0.168&gt;0.05，因而说明willingness和price之间并没有相关关系。willingness和brand之间的相关系数值为-0.064，接近于0，并且p值为0.526&gt;0.05，因而说明willingness和brand之间并没有相关关系。willingness和quality之间的相关系数值为0.013，接近于0，并且p值为0.899&gt;0.05，因而说明willingness和quality之间并没有相关关系。</p>
+<p>\subsubsection{Linear Regression分析结果}<br>回归分析结果为：<br>\begin{figure}[htbp]<br>    \centering<br>    \includegraphics[width&#x3D;.6\textwidth]{16.png} 	% 图片相对位置<br>    \caption{Linear Regression分析结果}		% 图片标题<br>    \label{Model1 flowchart}							% 图片标签<br>\end{figure}</p>
+<p>从上表可知，对模型进行F检验时发现模型通过F检验(F&#x3D;5.705，p&#x3D;0.000&lt;0.05)，也即说明模型构建有意义。</p>
+<p>从上表可知，将promotion，live-commerce，gift，place，habit，salary，represent，brand-linkage，price，brand，quality，wrap，age，usuall作为自变量，而将willingness作为因变量进行线性回归分析，从上表可以看出，模型R方值为0.484，意味着promotion，live-commerce，gift，place，habit，salary，represent，brand-linkage，price，brand，quality，wrap，age，usuall可以解释willingness的48.4%变化原因。</p>
+<p>从上表可知，将promotion，live-commerce，gift，place，habit，salary，represent，brand-linkage，price，brand，quality，wrap，age，usual作为自变量，而将willingness作为因变量进行线性回归分析，从上表可以看出，模型公式为：</p>
+<p>\begin{align}<br>    willingness\ &#x3D;\ -0.682 + 0.261promotion + 0.288live-commerce + 0.203<em>gift<br>    \<br>    + 0.750</em>place + 0.476<em>habit + 0.034</em>salary-0.174<em>represent+0.187</em>brand-linkage<br>    \-0.181<em>price-0.054</em>brand-0.050<em>quality-0.175</em>wrap + 0.222<em>age-0.060</em>usual<br>\end{align}</p>
+<p>模型R方值为0.484，意味着promotion，live-commerce，gift，place，habit，salary，represent，brand-linkage，price，brand，quality，wrap，age，usuall可以解释willingness的48.4%变化原因。对模型进行F检验时发现模型通过F检验(F&#x3D;5.705，p&#x3D;0.000&lt;0.05)，也即说明promotion，live-commerce，gift，place，habit，salary，represent，brand-linkage，price，brand，quality，wrap，age，usuall中至少一项会对willingness产生影响关系，另外，针对模型的多重共线性进行检验发现，模型中VIF值全部均小于5，意味着不存在着共线性问题；并且D-W值在数字2附近，因而说明模型不存在自相关性，样本数据之间并没有关联关系，模型较好。最终具体分析可知：</p>
+<p>\begin{itemize}<br>    \item promotion的回归系数值为0.261(t&#x3D;2.853，p&#x3D;0.005&lt;0.01)，意味着promotion会对willingness产生显著的正向影响关系。<br>    \item live-commerce的回归系数值为0.288(t&#x3D;2.514，p&#x3D;0.014&lt;0.05)，意味着live-commerce会对willingness产生显著的正向影响关系。<br>    \item gift的回归系数值为0.203(t&#x3D;2.073，p&#x3D;0.041&lt;0.05)，意味着gift会对willingness产生显著的正向影响关系。<br>    \item place的回归系数值为0.750(t&#x3D;2.185，p&#x3D;0.032&lt;0.05)，意味着place会对willingness产生显著的正向影响关系。<br>    \item habit的回归系数值为0.476(t&#x3D;1.678，p&#x3D;0.097&gt;0.05)，意味着habit并不会对willingness产生影响关系。<br>    \item salary的回归系数值为0.034(t&#x3D;0.431，p&#x3D;0.667&gt;0.05)，意味着salary并不会对willingness产生影响关系。<br>    \item represent的回归系数值为-0.174(t&#x3D;-1.634，p&#x3D;0.106&gt;0.05)，意味着represent并不会对willingness产生影响关系。<br>    \item brand-linkage的回归系数值为0.187(t&#x3D;1.495，p&#x3D;0.139&gt;0.05)，意味着brand-linkage并不会对willingness产生影响关系。<br>    \item price的回归系数值为-0.181(t&#x3D;-0.681，p&#x3D;0.497&gt;0.05)，意味着price并不会对willingness产生影响关系。<br>    \item brand的回归系数值为-0.054(t&#x3D;-0.203，p&#x3D;0.840&gt;0.05)，意味着brand并不会对willingness产生影响关系。<br>    \item quality的回归系数值为-0.050(t&#x3D;-0.188，p&#x3D;0.852&gt;0.05)，意味着quality并不会对willingness产生影响关系。<br>    \item wrap的回归系数值为-0.175(t&#x3D;-0.697，p&#x3D;0.488&gt;0.05)，意味着wrap并不会对willingness产生影响关系。<br>    \item age的回归系数值为0.222(t&#x3D;1.507，p&#x3D;0.136&gt;0.05)，意味着age并不会对willingness产生影响关系。<br>    \item usual的回归系数值为-0.060(t&#x3D;-0.253，p&#x3D;0.801&gt;0.05)，意味着usual并不会对willingness产生影响关系。<br>\end{itemize}</p>
+<p>总结分析可知：promotion, live-commerce, gift, place会对willingness产生显著的正向影响。</p>
+<p>\begin{figure}[htbp]<br>    \centering<br>    \includegraphics[width&#x3D;.8\textwidth]{17.png} 	% 图片相对位置<br>    \caption{分析结果差异可视化}		% 图片标题<br>    \label{Model1 flowchart}							% 图片标签<br>\end{figure}<br>\begin{figure}[htbp]<br>    \centering<br>    \includegraphics[width&#x3D;.3\textwidth]{18.png} 	% 图片相对位置<br>    \caption{各参数影响因子}		% 图片标题<br>    \label{Model1 flowchart}							% 图片标签<br>\end{figure}</p>
+<p>\subsubsection{决策结果}</p>
+<p>由相关性分析</p>
+<p>\begin{itemize}<br>    \item willingness和promotion之间的相关系数值为0.466<br>    \item willingness和place之间的相关系数值为0.332<br>    \item willingness和live-commerce之间的相关系数值为0.424<br>    \item willingness和brand-linkage之间的相关系数值为0.331<br>    \item willingness和gift之间的相关系数值为0.369<br>\end{itemize}</p>
+<p>由线性回归分析</p>
+<p>\begin{itemize}<br>    \item gift的回归系数值为0.203(t&#x3D;2.073，p&#x3D;0.041&lt;0.05)，意味着gift会对willingness产生显著的正向影响关系。<br>    \item place的回归系数值为0.750(t&#x3D;2.185，p&#x3D;0.032&lt;0.05)，意味着place会对willingness产生显著的正向影响关系。<br>\end{itemize}</p>
+<p>基于以上分析我们得出以下结论：</p>
+<p>\textbf{（1）对于水的销售取决于价格促销，这与年龄和薪水无关。}</p>
+<p>\textbf{（2）相关性分析和线性回归都提到了线下这个点，所以消费者更愿意到线下购买。}</p>
+<p>\textbf{（3）消费者对于互联网直播带货有非常大的兴趣，所以要打开互联网直播营销市场。}</p>
+<p>\textbf{（4）消费者需要对品牌联动也有足够的消费意愿。}</p>
+<p>\textbf{（5）相关性分析和线性回归都有赠送赠品，说明gift能提升消费者的购买意愿。}</p>
+<pre><code>\section&#123;结合数据分析结果的4P营销组合策略&#125;
+
+\subsection&#123;产品策略（products）&#125;
+通过我们数据分析的结果，我们可以得知，产品的水源品质是最重要的因素，占到了（此处插入数据）是受到年轻消费者最重视的因素。因此，我们可以得到一个这样的判断，产品的品质是产品策略需要考虑的第一要素。
+
+我们在网络上查找了新锐天然矿泉水品牌“正大所以润”的一些资料，所以润天然矿泉水臻选北纬36°-46°世界级三大黄金水源地之一长白山、地下深层1600米的优质水源。富含天然矿物质、微量元素，低TDS值，水质轻盈柔软，口感绵软清冽、顺滑甘甜，呈天然弱碱性，适宜长期饮用。
+
+产品的水源地经过了精选，水源纯净优质，口感好。同时，我们也调查了市面上其他品牌生产的矿泉水，相对而言，很多品牌的水源地选择并没有那么严格。例如西安市本地消费者经常饮用的某矿泉水品牌，水源来自长安区某秦岭峪口。秦岭北麓靠近西安市，西安市作为新一线城市和国家中心城市，工业所带来污染和大量人口所产生的环境不利因素比远离核心经济区的长白山自然保护区更多，因此秦岭的水源相对而言是不如长白山水源优质的。所以该产品的水源品质是高于大多数西安市年轻消费者现在所饮用矿泉水产品的平均水平的。
+
+既然我们需要营销的产品在产品本身的水源品质上已经具有比较大的优势，那么我们给出以下的策略，在营销上我们需要突出强调品牌水源优质的优势。从而吸引年轻消费者对本品牌的信任和喜爱。
+
+我们认为在营销活动之中，强调“长白山”这一卖点是非常有利的。长白山作为我国吉林省的旅游胜地，本身知名度高，能给人一种纯净的心理暗示能够最大程度帮助品牌，构建水源优质的品牌形象，吸引更多年轻消费者购买。
+
+目前也有越来越多的年轻人重视健康管理，强调产品本身富含微量元素，会对产品的销售有利。
+
+而在产品的附加价值上面，令我们感到意外的是，年轻的受访者给出的答案对产品的包装外观关注度是比较小的，这和我们的预想有所差异。因此，我们认为，在产品包装外观上并不需要做得太过花哨，要让产品包装外观回归产品本质，作为天然矿泉水产品，在外观上运用现代化的极简风格，更大透明度的材质包装，可能会给消费者带来更多的水源纯净的心理暗示，对产品营销有利。
+
+\subsection&#123;价格策略（price）&#125;
+
+在我们的调研结果中可以显示，各类营销活动中，价格因素是大家考虑更多的。价格因素的占比是（此处插入数据）也就是说，在营销活动中，更实惠的价格将对产品的销售有利。同时，根据我们收集到的数据，Z世代的年轻人年龄并不大，很多受访者还是在校学生，并没有稳定收入，大多数同学家长提供的生活费也是相对有限的。有少部分受访者已经就业，但作为刚毕业不久的年轻人，收入区间大多数都分布在较低的区段，因此我们目标的Z世代年轻消费者群体有相当大一部分是价格敏感型消费者。我们在营销活动上在价格方面需要进行一些更大程度的优惠，这样我们的营销活动才更加有效。z
+
+在成本分析方面，主要产生的费用有工厂取水费用、包装费用、运输费用、广告费用等等。
+
+我们由于需要在价格上进行比较大的优惠这样才能更好的营销，我们认为可以一定程度上削减运输成本，从水源地吉林省到陕西省销售分区域，路程较远，可能产生的运输成本较高，从消费者的角度上来讲，在价格上并不实惠。尤其是当价格敏感的消费者在线上购物时，虽然网购价格比线下零售具有一定程度的价格优惠，但如果需要支付邮费的话，这会增加消费者的费用支出，消费成本上升，消费者取消订单的概率就增加了。我们在价格策略上需要尽可能减少这种情况的发生。我们可以联合电子商务平台，在陕西省本地设立存储仓库，先将大批量的天然矿泉水从吉林长白山运输到陕西省省会西安市，降低单位运输成本，西安市的消费者下单的时候，可以就近运输，在价格上可以实现包邮价，这样的价格策略会使得消费者获得更多的实惠感，有利于形成稳定的年轻消费者客户群体。总而言之，在营销活动中实行包邮价的价格策略，我们认为会对产品的推广和销售有帮助的。
+
+\subsection&#123;渠道策略（place）&#125;
+
+在我们的调研中，我们可以分析到，大多数的年轻消费者在选择消费天然矿泉水时，更多的是通过线下的渠道。回收的问卷中，主要通过线下渠道的超过了（此处插入数据）这些渠道包括了超市、商场、送水师傅等。因此我们在制定线上的营销活动打法时，不单单是只关注线上渠道的营销活动，也需要线下线上相结合。
+
+在超市、便利店等环境中，我们可以与便利店进行商业合作，在产品推出的初期，为了尽快打开产品的知名度，把我们需要推广的天然矿泉水产品放在冰柜里中间层，获得更高的关注度，在消费者心中留下一定印象，下次在网络上选购时，消费者将更倾向于自己曾见到过的品牌产品。
+
+在商场环境中，进行一些试喝、品尝的活动也是有利于营销活动的开展的。
+
+我们尤其需要关注到送水师傅这一渠道，经过我们的进一步调研，我们发现目前送水师傅这一渠道仍然停留在比较原始的状态，用水票来兑换矿泉水。与此同时，送水师傅这一渠道具有量大的特点。Z世代的消费者大多目前还居住在校园宿舍，或是大城市的出租房里，购买专业净水器的是比较少的，很多年轻消费者在饮用天然矿泉水方面还是比较依赖于送水师傅这一渠道，我们认为可以在这一渠道上与送水师傅打“联合战”。消费者在线上电子商务平台或线上社区团购平台下优惠订单，送水师傅立即送水上楼。
+
+在线上平台的渠道本身，直播带货是目前比较新颖也是有效的营销活动方式，根据我们的调研，认为直播带货这一渠道会影响自己选购天然矿泉水产品的程度处于一个比较适中的程度。也就是说，我们可以分析得到，直播带货在年轻人当中的受众也并不是那么广的，但与此同时也有一部分的年轻消费者会通过主播开直播带货下单产品，因此为了全方位的进行营销活动，直播带货这一渠道也是不容忽略的。直播带货除了直接在购物app旗舰店里直接开直播以外，还可以使用b站、抖音、快手等直播渠道。
+
+在直播带货当中，我们引入KOL这一新的概念，KOL即Key Opinion Leader的缩写，中文翻译过来是意见领袖的意思，是指在某个领域发表观点、有一定影响力的人。其实KOL在我们的生活中，不仅仅是某个特定领域的领袖，也是各类网红、博主、主播等等。利用KOL的影响力，进行直播带货，往往能达到事半功倍的效果。
+
+我们在事前的市场调研中也发现，存在一种方式即生产商自己的网络旗舰店可以和购物app达成推广合作，购物app通过广告的形式将产品推送到更考前的位置，这是一种非常简单直接但又有效的营销办法。
+
+\subsection&#123;促销策略（promotion）&#125;
+
+在我们收回的问卷中，还有一点是非常值得关注的，年轻消费者对品牌联动的关注度是要高于我们的预期（此处插入数据），并且与此同时前面也提到了年轻消费者在天然矿泉水的选购过程当中是相对来说不那么看中品牌而是水源品质本身的。这就启示我们，如果天然矿泉水本身的品牌较难构建较大的选购吸引力，我们可以尝试与其他领域的品牌进行联动，通过其他品牌的联动价值为我们的产品引流。因此我们认为在促销策略当中注重品牌联动的打法也是比较重要的，能够吸引到一部分的Z世代年轻消费者。  
+
+Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我们对其他品牌的观察调研中我们也发现，一些与大热电视剧、动漫、网络小说、手游的联动将会带来很高的话题度。这种促销策略是值得去借鉴的。
+
+我们也收集到了数据显示，赠送赠品的产品会产生比较大的吸引力。其实并不是只有年级较长的消费者会看中赠品这一促销形式，在我们的问卷里，许多年轻的消费者也对赠送赠品展现了较大的兴趣（此处插入数据）。因此我们在促销活动上可以充分考虑赠送赠品这一方式。我们在事前的调研也发现，线上销售相比线下的零售具有量大的特点，因此对于购买整箱天然矿泉水的顾客在促销活动时给他们赠送一些赠品（如果这些赠品可以与其他品牌进行联动效果尤佳），我们认为可以纳入在制定营销活动时的考虑范围。
+
+除此之外，天然矿泉水本身也可以作为赠品来营销，我们在调研中了解到，正大集团作为市场领先的食品供应商，旗下有多款已经非常成熟的销售产品，在营销活动时，将新锐品牌“正大所以润”天然矿泉水作为赠品赠出，既能够让消费者感到实惠，又能让消费者了解到“正大所以润”这款产品，并进行初次的品尝，有利于消费者真实感受到产品的水源品质和良好的口感，在下次购买天然矿泉水时选购“正大所以润”，将天然矿泉水在营销活动时作为赠品赠送出，对天然矿泉水产品消费者群体的构建和知名度打开都是非常有利的。
+
+\section&#123;可行性建议&#125;
+
+本次调研立足“更受Z世代目标群体欢迎的天然矿泉水品牌营销活动”，以正大集团旗下出品品牌“正大所以润”为例，并通过网络搜索引擎调研了目前市面上的优秀营销参考案例、其他品牌的整体行业情况，通过问卷倾听了潜在消费者的声音，了解他们在消费天然矿泉水时的一些消费习惯和消费喜好，我们给出了以下一些可行性建议，希望能够对具体营销活动开展的决策起到一定的帮助。
+
+\subsection&#123;立足产品本身优良水源品质&#125;
+
+品质是消费者在消费天然矿泉水时非常注重的一点。人每天都需要饮用大量的饮用水，水是人们生活的必需品，并且水需要进入人类的口中和体内，人们对喝进和吃进去的东西往往是很关注的。水源品质是我们营销的一大卖点，也是能够获得消费者青睐的非常重要的因素。在营销活动中，将本产品优良的水源地——长白山、水富含的微量元素等等通过各种形式给展示出来，我们认为是对营销活动帮助非常大的。
+我们也了解到“正大所以润”产品本身也具有较高的品质，重点立足优良水源品质进行营销活动是十分可行且吸引消费者的。
+
+\subsection&#123;在新锐品牌打入市场初期价格上让利顾客&#125;
+
+“正大所以润”作为新锐品牌，在投入市场初期可能会面临知名度不够高等等问题，并且天然矿泉水市场目前已经有非常多其他公司推出的成熟的品牌。要逐渐打入市场，就需要让消费者感受到本产品的竞争力。除了水源优质的核心竞争力外，根据我们调研所知，价格仍然是年轻消费者考虑的重要因素，我们还需要结合价格打法。无论多么新颖的营销活动战术，倘若消费者感受不到消费的实惠的话，营销活动的效果都会大大打折扣。消费者在最终消费时可能会考虑到价格不够实惠而止步，取消订单。
+新锐天然矿泉水品牌打入市场要抢占已有品牌的市场，在价格上给顾客更多的让利空间，更快地在年轻消费者群体中形成知名度和好口碑。
+年轻消费者具有很强的社交属性，同时“捡实惠”在Z世代的消费观念中也占有很大的地位。例如知名购物app“拼多多”成立时间比老牌购物app“淘宝”等要晚很多，但拼多多靠自己的低价实惠战术和社交传播享优惠战术迅速赢得了消费市场，不仅是年长的消费者群体，在年轻的消费者群体中，使用拼多多app的也占相当大的比例。拼多多的低价营销战略和社交传播战略无疑是非常成功的，这为我们新锐天然矿泉水品牌要在线上开展营销活动提供了相当大的借鉴作用。新锐品牌打入市场初期，在价格上让利顾客更多，如果能将价格战术与社交传播战术相结合，将会发挥1+1&gt;2的爆炸式营销效果。
+在让利顾客的具体做法上，可以使用“包邮价”这一营销活动，这符合消费者的网购心理研究，消费者在网购时会对包邮活动的产品产生更多的实惠获得感心理。
+
+\subsection&#123;采用具有信息化时代特征与时俱进的营销活动方式&#125;
+
+近年来，随着通信技术的进一步发展，移动设备的进一步普及，流量资费水平的降低，视频类流媒体掀起了信息传播的一场新的革命。线上商品的营销的从简单的文字、到图文并茂的图片、到现在多感官刺激的视频，更新颖的营销方式产生并流行了。Z世代是网络时代的“原住民”，对视频类的营销活动这一新鲜的方式展现出更大的兴趣，我们在调研中发现有很多的年轻消费者相比传统的流量明星代言更受到网络直播带货的影响，这一点对我们进行营销活动有一定的启示。
+因此我们认为，适当地开展网络直播带货这一具有信息化时代特征与时俱进的营销活动方式是可行的，能为产品的营销带来较好的效果。
+具体网络直播带货的形式可以多样，既可以直接通过购物app正大品牌官方旗舰网店开直播，也可以在抖音、快手、b站之类的视频网站开直播，相比传统的流量明星站台法，虽然流量明星会有一定的号召力，但瞄准的群体更多的是粉丝群体，对于更广大的消费者群体覆盖面是相对有限的。商务主播带货的口播业务能力强，通过直播直接与消费者实时互动情绪感染力强，覆盖面更广，除了头部主播，达成商务的成本也比流量明星低很多。是可行且有效的营销活动方案。
+
+\subsection&#123;适当采用品牌联动营销打法&#125;
+
+天然矿泉水作为一种生活必需品和简单消耗品，本身在品牌上深挖的空间是相对有限的。在调研结果的数据分析中我们也可以得知，年轻消费者在选购天然矿泉水是，相对价格、水源品质等因素，是不那么关注品牌的。那么如何在品牌方面营销吸引到更多的年轻消费者，我们认为，“借力”是一种双赢且有效的方法。
+借其他领域品牌的影响力，跨界联动，品牌联动营销也是目前市面上最近一段时间新兴的营销活动，品牌联动会带来消费者更多的关注。例如我们在调研中发现茶饮品牌“喜茶”长期与各种意想不到的领域的品牌进行联动，头部新能源车企“特斯拉”、网络游戏独角兽企业“上海米哈游”、热播影视连续剧“梦华录”、商务办公软件“wps”……都为保持喜茶的营销热度起到了非常大的作用。作为茶饮行业的喜茶，竞争对手多，产品本质与竞争对手难以形成非同质化的差异，和我们的天然矿泉水具有相似性，我们认为可以进行这种“借力”的品牌打法，为新锐品牌赢得更多的关注度，逐渐走进消费者的了解范围中。
+年轻的Z世代消费者对新奇的事物更感兴趣，他们热衷于尝试各种异想天开的跨界混搭，品牌联动的营销打法对年轻消费者的吸引力非常强，能够弥补天然矿泉水品牌本身的品牌吸引力有限的客观缺陷。同时，“正大所以润”母公司正大集团作为大型跨国企业以及食品领域的领头羊企业，在商务合作中有大公司品质保障和商业知名度高的优势，合作方会更青睐和有头有名的大公司进行品牌联动营销，因此我们有理由认为“正大所以润”在营销活动中采取一些品牌联动的方式是可行的、效果好的。是可以尝试的办法。
+</code></pre>
+<p>​	<br>​	%引用：图\ref{fig},式\eqref{eq},表\ref{tab}<br>​	<br>​	\begin{thebibliography}{99}<br>​		\setlength{\parskip}{0.5pt} %段落之间的竖直距离<br>​		\bibitem{ref1}原祎航,基于国潮的兴起浅谈管理品牌资产的重要意义——以花西子品牌为例[.现代销(学苑版）,2021(11):43-45<br>​		\bibitem{ref2} 姚云萍,中华老宇号品牌活化策略研究[D]湖南大学,2019.<br>​		\bibitem{ref3}电商新生态助力经济复苏后疫情时代零售消费洞察报告 2020 年[C].艾瑞咨询系列研究报告（2020 年第 7 期）[出版者不详],2020:129-173.<br>​		\bibitem{ref4}李桂华,胡纪雯,品牌年轻化：老字号如何迎接新世代[J],⾦融博览,2021(05):62-64.<br>​		\bibitem{ref5}Smith, Wendell. (1956).Product Differentiation and Market Segmentation as Alternative Marketing Strategies [M]. Journal of Marketing, 21(July 1956)3-8.<br>​		\bibitem{ref6}Williuam D. Perreault.Jr, JosephP.Cannon, E. JeromeMccarthy. Basic marketing: a marketing.<br>​		\bibitem{ref7}Hauke J, Kossowski T. Comparison of Values of Pearson’s and Spearman’s Correlation Coefficients on the Same Sets of Data[J]. Quaestiones Geographicae, 2011, 30(2):87-93.<br>​		\bibitem{ref8}Arndt S, Turvey C, Andreasen N C. Correlating and predicting psychiatric symptom ratings: Spearmans r versus Kendalls tau correlation[J]. Journal of Psychiatric Research, 1999, 33(2):97-104.<br>​		\bibitem{ref9}Sun Dao-de. Selection of the Linear Regression Model According to the Parameter Estimation[J]. Wuhan University Journal of Natural Sciences, 2000, 5(4):400-405.<br>​		\bibitem{ref10}Barassi M R. Microeconometrics; Methods and Applications by A. Colin Cameron; Pravin K. Trivedi[J]. 2005.<br>​		\bibitem{ref11}威廉H·格林.经济计量分析[M].北京:中国社会科学出版社,1998.<br>​		\bibitem{ref12}张厚粲, 徐建平. 现代心理与教育统计学.第3版[M]. 北京师范大学出版社, 2009.<br>​		\bibitem{ref13}Hosmane B S. Improved likelihood ratio tests and pearson chi-square tests for independence in two dimensional contingency tables[J]. Communications in Statistics, 1986, 15(6):1875-1888.<br>​		\bibitem{ref14}MatthewGoldstein, EdwardWolf, WilliamDillon. On a test of independence for contingency tables[J]. Communications in Statistics, 1976, 5(2):159-169.<br>​	\end{thebibliography}<br>​	<br>​	\appendix<br>​	\section{附录}<br>​	\subsection{问卷}<br>​	\textbf{1.您经常饮用矿泉水吗？[单选题]}<br>​	<br>​	从不<br>​	<br>​	偶尔<br>​	<br>​	经常<br>​	<br>​	\textbf{2.您一般在什么场所购买天然矿泉水？[单选题]}<br>​	<br>    线下（超市、商场、送水师傅等）</p>
+<pre><code>线上
+
+\textbf&#123;3.您有长期饮用矿泉水的习惯吗？[单选题]&#125;
+
+有
+
+没有
+
+\textbf&#123;4.线上营销活动影响会影响您选购天然矿泉水吗？[量表题]&#125;
+
+(5分表示影响较大，1分表示影响较小，分值越低表示影响越低)
+
+    \begin&#123;figure&#125;[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]&#123;19.png&#125; 	% 图片相对位置
+    \caption&#123;&#125;		% 图片标题 
+    \label&#123;Model1 flowchart&#125;							% 图片标签
+\end&#123;figure&#125;
+
+\textbf&#123;5.哪些营销活动对您选购天然矿泉水产品影响较大[矩阵量表题]&#125;
+
+\begin&#123;figure&#125;[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]&#123;20.png&#125; 	% 图片相对位置
+    \caption&#123;&#125;		% 图片标题 
+    \label&#123;Model1 flowchart&#125;							% 图片标签
+\end&#123;figure&#125;
+
+\textbf&#123;6.线上购买天然矿泉水时最注重的因素是什么？[多选题]&#125;
+
+价格
+
+品牌
+
+水源品质
+
+包装美观
+
+产品所带来的其他价值:
+
+\textbf&#123;7.您听说过“正大所以润”吗？[单选题]&#125;
+
+是
+
+否
+
+\textbf&#123;8.您的年龄[单选题]&#125;
+
+17-19
+
+20-21
+
+22-23
+
+\textbf&#123;9.您的性别[单选题]&#125;
+
+男
+
+女
+
+\textbf&#123;10.您的年收入情况[单选题](人民币\ 元\ 年)&#125;
+
+我是学生，暂无稳定收入
+
+低于50000
+
+50000-99999
+
+100000-149999
+
+150000-199999
+
+200000-299999
+
+300000及以上
+</code></pre>
+<p>​	<br>​	\textbf{备注：}为了更好反映消费者选购天然矿泉水的情况，更加符合问卷填写的逻辑。问卷增加了逻辑设置。分为A、B卷，AB卷的识别通过第一题来判断，选择“从不”的受访者完成A卷，选择“偶尔”、“经常”的受访者完成B卷。<br>​	<br>​	A卷包含1、4、5、7、8、9、10题，B卷包括全部题。</p>
+<p>\end{document}</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Latex/" rel="tag"># Latex</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/" rel="prev" title="第一次组会">
+      <i class="fa fa-chevron-left"></i> 第一次组会
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/03/26/coppersmith/" rel="next" title="Ctf练习">
+      Ctf练习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ang"
+      src="/images/ang.jpg">
+  <p class="site-author-name" itemprop="name">Ang</p>
+  <div class="site-description" itemprop="description">Why do learn?</div>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ang-sagapo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ang-sagapo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

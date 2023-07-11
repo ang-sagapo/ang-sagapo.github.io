@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="编译原理上机实验报告一、 上机题目：简单函数绘图语言解释器1.1题目简述题目：为函数绘图语言编写一个解释器 解释器接受用绘图语言编写的源程序，经语法和语义分析之后，将源程序所规定的图形显示在显示屏 （或窗口）中。 目的：通过自己动手编写解释器，掌握语言翻译特别是语言识别的基本方法。 &lt;1&gt;实现简单的函数绘图语句循环绘图（FOR-DRAW） 比例设置（SCALE） 角度旋转（ROT） 坐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译原理上机报告">
+<meta property="og:url" content="http://example.com/2022/12/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E4%B8%8A%E6%9C%BA%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="ang&#39;s blog">
+<meta property="og:description" content="编译原理上机实验报告一、 上机题目：简单函数绘图语言解释器1.1题目简述题目：为函数绘图语言编写一个解释器 解释器接受用绘图语言编写的源程序，经语法和语义分析之后，将源程序所规定的图形显示在显示屏 （或窗口）中。 目的：通过自己动手编写解释器，掌握语言翻译特别是语言识别的基本方法。 &lt;1&gt;实现简单的函数绘图语句循环绘图（FOR-DRAW） 比例设置（SCALE） 角度旋转（ROT） 坐">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20221115190847886.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20221114172645315.png">
+<meta property="article:published_time" content="2022-12-21T01:15:42.000Z">
+<meta property="article:modified_time" content="2023-07-11T10:00:57.528Z">
+<meta property="article:author" content="Ang">
+<meta property="article:tag" content="大学大作业">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20221115190847886.png">
+
+<link rel="canonical" href="http://example.com/2022/12/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E4%B8%8A%E6%9C%BA%E6%8A%A5%E5%91%8A/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>编译原理上机报告 | ang's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ang's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">en?</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/ang-sagapo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E4%B8%8A%E6%9C%BA%E6%8A%A5%E5%91%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ang.jpg">
+      <meta itemprop="name" content="Ang">
+      <meta itemprop="description" content="Why do learn?">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ang's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          编译原理上机报告
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-21 09:15:42" itemprop="dateCreated datePublished" datetime="2022-12-21T09:15:42+08:00">2022-12-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-11 18:00:57" itemprop="dateModified" datetime="2023-07-11T18:00:57+08:00">2023-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">编译原理</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="编译原理上机实验报告"><a href="#编译原理上机实验报告" class="headerlink" title="编译原理上机实验报告"></a>编译原理上机实验报告</h1><h3 id="一、-上机题目：简单函数绘图语言解释器"><a href="#一、-上机题目：简单函数绘图语言解释器" class="headerlink" title="一、 上机题目：简单函数绘图语言解释器"></a>一、 上机题目：简单函数绘图语言解释器</h3><h4 id="1-1题目简述"><a href="#1-1题目简述" class="headerlink" title="1.1题目简述"></a>1.1题目简述</h4><p>题目：为函数绘图语言编写一个解释器</p>
+<p>解释器接受用绘图语言编写的源程序，经语法和语义分析之后，将源程序所规定的图形显示在显示屏</p>
+<p>（或窗口）中。</p>
+<p>目的：通过自己动手编写解释器，掌握语言翻译特别是语言识别的基本方法。</p>
+<h5 id="lt-1-gt-实现简单的函数绘图语句"><a href="#lt-1-gt-实现简单的函数绘图语句" class="headerlink" title="&lt;1&gt;实现简单的函数绘图语句"></a>&lt;1&gt;实现简单的函数绘图语句</h5><p>循环绘图（FOR-DRAW）</p>
+<p>比例设置（SCALE）</p>
+<p>角度旋转（ROT）</p>
+<p>坐标平移（ORIGIN）</p>
+<p>注释</p>
+<h5 id="lt-2-gt-屏幕的坐标系"><a href="#lt-2-gt-屏幕的坐标系" class="headerlink" title="&lt;2&gt;屏幕的坐标系"></a>&lt;2&gt;屏幕的坐标系</h5><p>左上角为原点</p>
+<p>X方向从左向右增长</p>
+<p>Y方向从上到下增长</p>
+<h5 id="lt-3-gt-函数绘图源程序"><a href="#lt-3-gt-函数绘图源程序" class="headerlink" title="&lt;3&gt;函数绘图源程序"></a>&lt;3&gt;函数绘图源程序</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">origin is (100,300);</span><br><span class="line">rot is 0;</span><br><span class="line">scale is (1,1);</span><br><span class="line">for T from 0 to 200 step 1 draw (t,0);</span><br><span class="line">								--横坐标的轨迹</span><br><span class="line">for T from 0 to 150 step 1 draw (0,-t);</span><br><span class="line">for T from 0 to 120 step 1 draw (t,-t);</span><br><span class="line">									--f(t) = t 的轨迹</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2语句的语法和语义"><a href="#1-2语句的语法和语义" class="headerlink" title="1.2语句的语法和语义"></a>1.2语句的语法和语义</h4><p>语句满足下述规则</p>
+<h5 id="lt-1-gt-各类语句可以按任意次序书写，且语句以分号结尾，源程序中的语句以他们出现的先后顺处理。"><a href="#lt-1-gt-各类语句可以按任意次序书写，且语句以分号结尾，源程序中的语句以他们出现的先后顺处理。" class="headerlink" title="&lt;1&gt;各类语句可以按任意次序书写，且语句以分号结尾，源程序中的语句以他们出现的先后顺处理。"></a>&lt;1&gt;各类语句可以按任意次序书写，且语句以分号结尾，源程序中的语句以他们出现的先后顺处理。</h5><h5 id="lt-2-gt-ORIGIN-ROT和SCALE语句只能影响其后的绘图语句，且循环最后出现的语句有效的原则。"><a href="#lt-2-gt-ORIGIN-ROT和SCALE语句只能影响其后的绘图语句，且循环最后出现的语句有效的原则。" class="headerlink" title="&lt;2&gt;ORIGIN,ROT和SCALE语句只能影响其后的绘图语句，且循环最后出现的语句有效的原则。"></a>&lt;2&gt;ORIGIN,ROT和SCALE语句只能影响其后的绘图语句，且循环最后出现的语句有效的原则。</h5><h5 id="lt-3-gt-无论ORIGIN，ROT和SCALE语句出现的顺序如何，图像的变换顺序总是：比例变换——旋转变换——平移变换。"><a href="#lt-3-gt-无论ORIGIN，ROT和SCALE语句出现的顺序如何，图像的变换顺序总是：比例变换——旋转变换——平移变换。" class="headerlink" title="&lt;3&gt;无论ORIGIN，ROT和SCALE语句出现的顺序如何，图像的变换顺序总是：比例变换——旋转变换——平移变换。"></a>&lt;3&gt;无论ORIGIN，ROT和SCALE语句出现的顺序如何，图像的变换顺序总是：比例变换——旋转变换——平移变换。</h5><h5 id="lt-4-gt-语言对大小写不敏感，即for，For，FOR等均被认为是同一个语句。"><a href="#lt-4-gt-语言对大小写不敏感，即for，For，FOR等均被认为是同一个语句。" class="headerlink" title="&lt;4&gt;语言对大小写不敏感，即for，For，FOR等均被认为是同一个语句。"></a>&lt;4&gt;语言对大小写不敏感，即for，For，FOR等均被认为是同一个语句。</h5><h5 id="lt-5-gt-语句表达式中的数字为双精度类型，旋转角度以弧度为单位且逆时针旋转，平移单位为点。"><a href="#lt-5-gt-语句表达式中的数字为双精度类型，旋转角度以弧度为单位且逆时针旋转，平移单位为点。" class="headerlink" title="&lt;5&gt;语句表达式中的数字为双精度类型，旋转角度以弧度为单位且逆时针旋转，平移单位为点。"></a>&lt;5&gt;语句表达式中的数字为双精度类型，旋转角度以弧度为单位且逆时针旋转，平移单位为点。</h5><h4 id="1-2-1-循环绘图语句具体解释"><a href="#1-2-1-循环绘图语句具体解释" class="headerlink" title="1.2.1 循环绘图语句具体解释"></a>1.2.1 循环绘图语句具体解释</h4><h5 id="语法为"><a href="#语法为" class="headerlink" title="语法为"></a>语法为</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for t from 起点 to 终点 step 步长 draw(横坐标，纵坐标)；</span><br></pre></td></tr></table></figure>
+
+<h5 id="语义为"><a href="#语义为" class="headerlink" title="语义为"></a>语义为</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">另T从起点到终点，每次改变一个步长，绘制出由给定坐标所规定的点的路线痕迹；</span><br></pre></td></tr></table></figure>
+
+<h5 id="举例为"><a href="#举例为" class="headerlink" title="举例为"></a>举例为</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for t from 0 to 2*pi step pi/90 draw (cos(t),sin(t));</span><br></pre></td></tr></table></figure>
+
+<p>该语句的具体含义为绘制出一个单位圆，从0到2*pi，以pi&#x2F;60为一个步长</p>
+<h4 id="1-2-2比例设置语句"><a href="#1-2-2比例设置语句" class="headerlink" title="1.2.2比例设置语句"></a>1.2.2比例设置语句</h4><h5 id="语法为-1"><a href="#语法为-1" class="headerlink" title="语法为"></a>语法为</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scale is (横坐标比例系数，纵坐标比例系数);</span><br></pre></td></tr></table></figure>
+
+<h5 id="语义为-1"><a href="#语义为-1" class="headerlink" title="语义为"></a>语义为</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设置纵坐标以及横坐标的比例，并分别按照比例因子进行缩放。</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-3坐标平移语句"><a href="#1-2-3坐标平移语句" class="headerlink" title="1.2.3坐标平移语句"></a>1.2.3坐标平移语句</h4><h5 id="语法为-2"><a href="#语法为-2" class="headerlink" title="语法为"></a>语法为</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">origin is (横坐标，纵坐标);</span><br></pre></td></tr></table></figure>
+
+<h5 id="语义为-2"><a href="#语义为-2" class="headerlink" title="语义为"></a>语义为</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将坐标系的原点平移到横坐标和纵坐标规定的点处。</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-4角度旋转语句"><a href="#1-2-4角度旋转语句" class="headerlink" title="1.2.4角度旋转语句"></a>1.2.4角度旋转语句</h4><h5 id="语法为-3"><a href="#语法为-3" class="headerlink" title="语法为"></a>语法为</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rot is 具体角度;</span><br></pre></td></tr></table></figure>
+
+<h5 id="语义为-3"><a href="#语义为-3" class="headerlink" title="语义为"></a>语义为</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">逆时针旋转角度所规定的弧度值，具体计算公式为：</span><br><span class="line">	●旋转后X=旋转前XCOS(角度)+旋转前YSIN(角度)</span><br><span class="line">	●旋转后Y=旋转前YCOS(角度)-旋转前XSIN(角度)</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="1-3记号的语法和语义"><a href="#1-3记号的语法和语义" class="headerlink" title="1.3记号的语法和语义"></a>1.3记号的语法和语义</h3><p>记号的种类有：常数，参数，函数，保留字，运算符、分隔符。</p>
+<h5 id="lt-1-gt-常数"><a href="#lt-1-gt-常数" class="headerlink" title="&lt;1&gt;常数"></a>&lt;1&gt;常数</h5><p>常数字面量和标识符形式的常量名均称为常数。字面量的形式为普通的数值，如果没有小数部分，可以</p>
+<p>省略小数点。例如2、2.、2.0都是合法的常数。 标识符PI、E也是常数，它们分别代表圆周率和自然对数</p>
+<p>的底。常数不能有符号位，如-1和+2不是常数而是（一元运算的）表达式。</p>
+<h5 id="lt-2-gt-参数"><a href="#lt-2-gt-参数" class="headerlink" title="&lt;2&gt;参数"></a>&lt;2&gt;参数</h5><p>本作图语言中唯一的、已经被定义好的变量名T被称为参数，它也是一个表达式。</p>
+<p>除了预留参数 T 之外本作图语言还支持自定义参数。</p>
+<h5 id="lt-3-gt-函数"><a href="#lt-3-gt-函数" class="headerlink" title="&lt;3&gt;函数"></a>&lt;3&gt;函数</h5><p>目前已经编写的函数有：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sin;</span><br><span class="line">cos;</span><br><span class="line">tan;</span><br><span class="line">sqrt;</span><br><span class="line">exp;</span><br><span class="line">ln;</span><br></pre></td></tr></table></figure>
+
+<h5 id="lt-4-gt-保留字（标识符）"><a href="#lt-4-gt-保留字（标识符）" class="headerlink" title="&lt;4&gt;保留字（标识符）"></a>&lt;4&gt;保留字（标识符）</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ORIGIN;SCALE;IS;TO;STEP;FROM;DRAW;FOR;</span><br></pre></td></tr></table></figure>
+
+<h5 id="lt-5-gt-运算符"><a href="#lt-5-gt-运算符" class="headerlink" title="&lt;5&gt;运算符"></a>&lt;5&gt;运算符</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PLUS(+);MINUS(-);MUL(*);DIV(/);POWER(^);</span><br></pre></td></tr></table></figure>
+
+<h5 id="lt-6-gt-分隔符"><a href="#lt-6-gt-分隔符" class="headerlink" title="&lt;6&gt;分隔符"></a>&lt;6&gt;分隔符</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SEMICO(;) L_brackt(() R_bracke()) COMMA(,)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="二：开发环境以及配置"><a href="#二：开发环境以及配置" class="headerlink" title="二：开发环境以及配置"></a>二：开发环境以及配置</h2><p>使用c++进行主要类以及相应库的编写，利用cmake进行整个项目的构建，整个项目中使用与平台无关的标准库函数，最终生成python代码利用tkinker进行绘图。</p>
+<h2 id="三：解决思路与关键类"><a href="#三：解决思路与关键类" class="headerlink" title="三：解决思路与关键类"></a>三：解决思路与关键类</h2><h4 id="1：结构设计"><a href="#1：结构设计" class="headerlink" title="1：结构设计"></a>1：结构设计</h4><p>此编译器采用一次扫描，以语法分析器为核心，语法分析器是通过词法分析器从代码源文件中读入与分析词素，通过递归下降分析生成对应的抽象语法树（Abstract Syntax Tree），并检测代码中的语法错误。</p>
+<p>语法分析器在生成抽象语法树后将其传递给语义分析器，由语义分析器进行语义分析，生成最终的可执行代码，最终生成python代码使用tkinter库进行绘图。</p>
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20221115190847886.png"  />
+
+<h4 id="2：词法分析器"><a href="#2：词法分析器" class="headerlink" title="2：词法分析器"></a>2：词法分析器</h4><h5 id="lt-1-gt-词法分析器的主要功能"><a href="#lt-1-gt-词法分析器的主要功能" class="headerlink" title="&lt;1&gt;词法分析器的主要功能"></a>&lt;1&gt;词法分析器的主要功能</h5><p>​	词法分析器的主要功能为识别输入序列，并为语法分析器提供记号</p>
+<p>​	过滤掉源程序中的空白字符、注释等编译无关字符</p>
+<p>​	输出**记号供语法分析器使用</p>
+<p>​	识别非法输出，将其标记为错误记号</p>
+<h5 id="lt-2-gt-记号定义"><a href="#lt-2-gt-记号定义" class="headerlink" title="&lt;2&gt;记号定义"></a>&lt;2&gt;记号定义</h5><p>在此解释器中，记号定义为如下形式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">token</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">enum</span> <span class="title class_">token_type</span> type;</span><br><span class="line">    <span class="type">char</span> *lexme;</span><br><span class="line">    <span class="type">double</span> val;</span><br><span class="line">    <span class="built_in">double</span> (*func_ptr)(<span class="type">double</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>其中的token_type为各种类型，即为记号种类，具体定义如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">token_type</span></span><br><span class="line">&#123;</span><br><span class="line">    ORIGIN,SCALE,ROT,IS,TO,FROM,FOR,DRAW,T,</span><br><span class="line">    </span><br><span class="line">    SEMICO,L_brackt,R_bracke,COMMA,</span><br><span class="line">    </span><br><span class="line">    PLUS,MINUS,MUL,DIV,POWER,</span><br><span class="line">    </span><br><span class="line">    FUNC,</span><br><span class="line">    </span><br><span class="line">    CONST_ID,</span><br><span class="line">    </span><br><span class="line">	NONTOKEN,</span><br><span class="line">    </span><br><span class="line">    ERRORTOKEN;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="lt-3-gt-词法分析的主要流程"><a href="#lt-3-gt-词法分析的主要流程" class="headerlink" title="&lt;3&gt;词法分析的主要流程"></a>&lt;3&gt;词法分析的主要流程</h5><p>选取有限自动机来实现语法分词器</p>
+<p>​	●清除前导空白字符</p>
+<p>​	●获取第一个非空白字符进行判断</p>
+<p>​	●若第一个非空白字符为字母则不断读取单个字符到缓冲区直到遇到非数字或非字母字符，将之放回</p>
+<p>输入流，缓冲区内存留字符作为一个记号，查询符号表并返回对应的记号（若符号表中不存在则视</p>
+<p>为新的变量，追加到符号表中）</p>
+<p>​	●若第一个非空白字符为数字则不断读取单个字符到缓冲区直到遇到非数字字符（若遇到小数点符号</p>
+<p>. 则重复读取单个字符到缓冲区直到遇到非数字字符），将之放回输入流，通过 atof() 将缓冲</p>
+<p>​	●区内字符转换为浮点值赋给一个新的数字记号并返回</p>
+<p>​	●若第一个非空白字符为其他分隔字符则进行针对性的模式匹配</p>
+<p>​	●其余则为非法字符，进行报错</p>
+<h4 id="3：语法分析器"><a href="#3：语法分析器" class="headerlink" title="3：语法分析器"></a>3：语法分析器</h4><h5 id="适合递归下降分析算法如下："><a href="#适合递归下降分析算法如下：" class="headerlink" title="适合递归下降分析算法如下："></a>适合递归下降分析算法如下：</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Express on → Term    PLUS   MINUS  Term  </span><br><span class="line">Term → Factor &#123; (MUL | DIV) Factor &#125;</span><br><span class="line">Factor → PLUS Factor | MINUS Factor | Component</span><br><span class="line">Component → Atom [POWER Component]</span><br><span class="line">Atom → CONST_ID</span><br><span class="line">| T</span><br><span class="line">| FUNC L_BRACKET Expression R_BRACKET</span><br><span class="line">| L_BRACKET Expression R_BRACKET</span><br></pre></td></tr></table></figure>
+
+<h5 id="其中语法树的数据结构为："><a href="#其中语法树的数据结构为：" class="headerlink" title="其中语法树的数据结构为："></a>其中语法树的数据结构为：</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span>  <span class="title class_">expr_node</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">token_type</span> opcode;</span><br><span class="line"><span class="keyword">union</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">struct</span> <span class="comment">// tree node</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">expr_node</span> *left;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">expr_node</span> *right;</span><br><span class="line">&#125;case_operator; <span class="comment">// the node is a operator</span></span><br><span class="line"><span class="keyword">struct</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">expr_node</span> *child;</span><br><span class="line"><span class="built_in">double</span> (*func_ptr)(<span class="type">double</span>);</span><br><span class="line">&#125;case_func; <span class="comment">// the node is a call of function</span></span><br><span class="line"><span class="type">double</span> case_const; <span class="comment">// the node is a const value (right</span></span><br><span class="line">val)</span><br><span class="line"><span class="type">double</span> *case_param; <span class="comment">// the node is a param (left</span></span><br><span class="line">val)</span><br><span class="line">&#125;content;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-语义分析器"><a href="#4-语义分析器" class="headerlink" title="4:语义分析器"></a>4:语义分析器</h4><h5 id="辅助语义函数为："><a href="#辅助语义函数为：" class="headerlink" title="辅助语义函数为："></a>辅助语义函数为：</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">get_expr_val</span><span class="params">(<span class="keyword">struct</span> expr_node *tree)</span> ：计算表达式的值</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">get_coordinate</span><span class="params">(<span class="keyword">struct</span> expr_node *exp_x, <span class="keyword">struct</span> expr_node *exp_y, <span class="type">double</span></span></span></span><br><span class="line"><span class="params"><span class="function">&amp;x, <span class="type">double</span> &amp;y)</span> ：获得一个点的坐标</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">draw_loop</span><span class="params">(<span class="keyword">struct</span> token *param, <span class="type">double</span> start, <span class="type">double</span> end, <span class="type">double</span> step,</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="keyword">struct</span> expr_node *exp_x, <span class="keyword">struct</span> expr_node *exp_y)</span> ：由语法树绘制该表达式中所有的点</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">draw_pixel</span><span class="params">(<span class="type">double</span> x, <span class="type">double</span> y, <span class="type">double</span> step)</span> ：核心绘图函数，生成绘制一个点的python 代码</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="四-实验结果以及测试截图"><a href="#四-实验结果以及测试截图" class="headerlink" title="四:实验结果以及测试截图"></a>四:实验结果以及测试截图</h2><p>测试代码为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">rot is <span class="number">0</span>;</span><br><span class="line"><span class="function">origin <span class="title">is</span> <span class="params">(<span class="number">50</span>, <span class="number">400</span>)</span></span>;</span><br><span class="line"><span class="function">scale <span class="title">is</span> <span class="params">(<span class="number">2</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span> T from <span class="number">0</span> to <span class="number">300</span> step <span class="number">0.01</span> <span class="built_in">draw</span> (t, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">for</span> T from <span class="number">0</span> to <span class="number">300</span> step <span class="number">0.01</span> <span class="built_in">draw</span> (<span class="number">0</span>, -t);</span><br><span class="line"><span class="keyword">for</span> T from <span class="number">0</span> to <span class="number">300</span> step <span class="number">0.01</span> <span class="built_in">draw</span> (t, -t);</span><br><span class="line"><span class="function">scale <span class="title">is</span> <span class="params">(<span class="number">2</span>, <span class="number">0.1</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span> T from <span class="number">0</span> to <span class="number">55</span> step <span class="number">0.01</span> <span class="built_in">draw</span> (t, -(t*t));</span><br><span class="line"><span class="function">scale <span class="title">is</span> <span class="params">(<span class="number">10</span>, <span class="number">5</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span> T from <span class="number">0</span> to <span class="number">60</span> step <span class="number">0.01</span> <span class="built_in">draw</span> (t, -<span class="built_in">sqrt</span>(t));</span><br><span class="line"><span class="function">scale <span class="title">is</span> <span class="params">(<span class="number">20</span>, <span class="number">0.1</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span> T from <span class="number">0</span> to <span class="number">8</span> step <span class="number">0.01</span> <span class="built_in">draw</span> (t, -<span class="built_in">exp</span>(t));</span><br><span class="line"><span class="function">scale <span class="title">is</span> <span class="params">(<span class="number">2</span>, <span class="number">20</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span> T from <span class="number">0</span> to <span class="number">300</span> step <span class="number">0.01</span> <span class="built_in">draw</span> (t, -<span class="built_in">ln</span>(t));</span><br></pre></td></tr></table></figure>
+
+
+
+<p>测试结果为：</p>
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20221114172645315.png" alt="image-20221114172645315" style="zoom: 67%;" />
+
+
+
+<h2 id="五：心得体会"><a href="#五：心得体会" class="headerlink" title="五：心得体会"></a>五：心得体会</h2><p>从刚开始枯燥无聊的编译原理课程，到为了完成大作业的一步步学习，体会到了独立完成整个编译器的过程，让我从更深的层次上了解了代码的编译过程，同时独立完成一个“传说中”的编译器满满的成就感。</p>
+<p>遇到了太多的困难，从一个个库的编写（第一次自己手动编写一个自己需要的库），到编写完毕之后的运行失败，再到学长的引导下，把自己的各个文件用cmake系统的构建起来，以便后续的使用，最后到写入python文件的路径问题，从毫无头绪到一步步的完成，对我自己的能力提升很有帮助，不仅体现在这门课上面，更体现在自己对于计算机编译的理解和运行上面。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E5%AD%A6%E5%A4%A7%E4%BD%9C%E4%B8%9A/" rel="tag"># 大学大作业</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/29/cmake-learn/" rel="prev" title="cmake_learn">
+      <i class="fa fa-chevron-left"></i> cmake_learn
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/21/ctf%E5%AF%86%E7%A0%81er%E7%95%99%E6%A0%A1%E5%88%B7%E9%A2%98/" rel="next" title="ctf密码er留校刷题">
+      ctf密码er留校刷题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E4%B8%8A%E6%9C%BA%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A"><span class="nav-number">1.</span> <span class="nav-text">编译原理上机实验报告</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E4%B8%8A%E6%9C%BA%E9%A2%98%E7%9B%AE%EF%BC%9A%E7%AE%80%E5%8D%95%E5%87%BD%E6%95%B0%E7%BB%98%E5%9B%BE%E8%AF%AD%E8%A8%80%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、 上机题目：简单函数绘图语言解释器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1%E9%A2%98%E7%9B%AE%E7%AE%80%E8%BF%B0"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">1.1题目简述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-1-gt-%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E5%87%BD%E6%95%B0%E7%BB%98%E5%9B%BE%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.0.1.1.1.</span> <span class="nav-text">&lt;1&gt;实现简单的函数绘图语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-2-gt-%E5%B1%8F%E5%B9%95%E7%9A%84%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="nav-number">1.0.1.1.2.</span> <span class="nav-text">&lt;2&gt;屏幕的坐标系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-3-gt-%E5%87%BD%E6%95%B0%E7%BB%98%E5%9B%BE%E6%BA%90%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.0.1.1.3.</span> <span class="nav-text">&lt;3&gt;函数绘图源程序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2%E8%AF%AD%E5%8F%A5%E7%9A%84%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E4%B9%89"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">1.2语句的语法和语义</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-1-gt-%E5%90%84%E7%B1%BB%E8%AF%AD%E5%8F%A5%E5%8F%AF%E4%BB%A5%E6%8C%89%E4%BB%BB%E6%84%8F%E6%AC%A1%E5%BA%8F%E4%B9%A6%E5%86%99%EF%BC%8C%E4%B8%94%E8%AF%AD%E5%8F%A5%E4%BB%A5%E5%88%86%E5%8F%B7%E7%BB%93%E5%B0%BE%EF%BC%8C%E6%BA%90%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E8%AF%AD%E5%8F%A5%E4%BB%A5%E4%BB%96%E4%BB%AC%E5%87%BA%E7%8E%B0%E7%9A%84%E5%85%88%E5%90%8E%E9%A1%BA%E5%A4%84%E7%90%86%E3%80%82"><span class="nav-number">1.0.1.2.1.</span> <span class="nav-text">&lt;1&gt;各类语句可以按任意次序书写，且语句以分号结尾，源程序中的语句以他们出现的先后顺处理。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-2-gt-ORIGIN-ROT%E5%92%8CSCALE%E8%AF%AD%E5%8F%A5%E5%8F%AA%E8%83%BD%E5%BD%B1%E5%93%8D%E5%85%B6%E5%90%8E%E7%9A%84%E7%BB%98%E5%9B%BE%E8%AF%AD%E5%8F%A5%EF%BC%8C%E4%B8%94%E5%BE%AA%E7%8E%AF%E6%9C%80%E5%90%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E8%AF%AD%E5%8F%A5%E6%9C%89%E6%95%88%E7%9A%84%E5%8E%9F%E5%88%99%E3%80%82"><span class="nav-number">1.0.1.2.2.</span> <span class="nav-text">&lt;2&gt;ORIGIN,ROT和SCALE语句只能影响其后的绘图语句，且循环最后出现的语句有效的原则。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-3-gt-%E6%97%A0%E8%AE%BAORIGIN%EF%BC%8CROT%E5%92%8CSCALE%E8%AF%AD%E5%8F%A5%E5%87%BA%E7%8E%B0%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%A6%82%E4%BD%95%EF%BC%8C%E5%9B%BE%E5%83%8F%E7%9A%84%E5%8F%98%E6%8D%A2%E9%A1%BA%E5%BA%8F%E6%80%BB%E6%98%AF%EF%BC%9A%E6%AF%94%E4%BE%8B%E5%8F%98%E6%8D%A2%E2%80%94%E2%80%94%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2%E2%80%94%E2%80%94%E5%B9%B3%E7%A7%BB%E5%8F%98%E6%8D%A2%E3%80%82"><span class="nav-number">1.0.1.2.3.</span> <span class="nav-text">&lt;3&gt;无论ORIGIN，ROT和SCALE语句出现的顺序如何，图像的变换顺序总是：比例变换——旋转变换——平移变换。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-4-gt-%E8%AF%AD%E8%A8%80%E5%AF%B9%E5%A4%A7%E5%B0%8F%E5%86%99%E4%B8%8D%E6%95%8F%E6%84%9F%EF%BC%8C%E5%8D%B3for%EF%BC%8CFor%EF%BC%8CFOR%E7%AD%89%E5%9D%87%E8%A2%AB%E8%AE%A4%E4%B8%BA%E6%98%AF%E5%90%8C%E4%B8%80%E4%B8%AA%E8%AF%AD%E5%8F%A5%E3%80%82"><span class="nav-number">1.0.1.2.4.</span> <span class="nav-text">&lt;4&gt;语言对大小写不敏感，即for，For，FOR等均被认为是同一个语句。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-5-gt-%E8%AF%AD%E5%8F%A5%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%97%E4%B8%BA%E5%8F%8C%E7%B2%BE%E5%BA%A6%E7%B1%BB%E5%9E%8B%EF%BC%8C%E6%97%8B%E8%BD%AC%E8%A7%92%E5%BA%A6%E4%BB%A5%E5%BC%A7%E5%BA%A6%E4%B8%BA%E5%8D%95%E4%BD%8D%E4%B8%94%E9%80%86%E6%97%B6%E9%92%88%E6%97%8B%E8%BD%AC%EF%BC%8C%E5%B9%B3%E7%A7%BB%E5%8D%95%E4%BD%8D%E4%B8%BA%E7%82%B9%E3%80%82"><span class="nav-number">1.0.1.2.5.</span> <span class="nav-text">&lt;5&gt;语句表达式中的数字为双精度类型，旋转角度以弧度为单位且逆时针旋转，平移单位为点。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-%E5%BE%AA%E7%8E%AF%E7%BB%98%E5%9B%BE%E8%AF%AD%E5%8F%A5%E5%85%B7%E4%BD%93%E8%A7%A3%E9%87%8A"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">1.2.1 循环绘图语句具体解释</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E4%B8%BA"><span class="nav-number">1.0.1.3.1.</span> <span class="nav-text">语法为</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89%E4%B8%BA"><span class="nav-number">1.0.1.3.2.</span> <span class="nav-text">语义为</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B%E4%B8%BA"><span class="nav-number">1.0.1.3.3.</span> <span class="nav-text">举例为</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2%E6%AF%94%E4%BE%8B%E8%AE%BE%E7%BD%AE%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.0.1.4.</span> <span class="nav-text">1.2.2比例设置语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E4%B8%BA-1"><span class="nav-number">1.0.1.4.1.</span> <span class="nav-text">语法为</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89%E4%B8%BA-1"><span class="nav-number">1.0.1.4.2.</span> <span class="nav-text">语义为</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3%E5%9D%90%E6%A0%87%E5%B9%B3%E7%A7%BB%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.0.1.5.</span> <span class="nav-text">1.2.3坐标平移语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E4%B8%BA-2"><span class="nav-number">1.0.1.5.1.</span> <span class="nav-text">语法为</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89%E4%B8%BA-2"><span class="nav-number">1.0.1.5.2.</span> <span class="nav-text">语义为</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4%E8%A7%92%E5%BA%A6%E6%97%8B%E8%BD%AC%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.0.1.6.</span> <span class="nav-text">1.2.4角度旋转语句</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E4%B8%BA-3"><span class="nav-number">1.0.1.6.1.</span> <span class="nav-text">语法为</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89%E4%B8%BA-3"><span class="nav-number">1.0.1.6.2.</span> <span class="nav-text">语义为</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.0.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3%E8%AE%B0%E5%8F%B7%E7%9A%84%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E4%B9%89"><span class="nav-number">1.0.3.</span> <span class="nav-text">1.3记号的语法和语义</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-1-gt-%E5%B8%B8%E6%95%B0"><span class="nav-number">1.0.3.0.1.</span> <span class="nav-text">&lt;1&gt;常数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-2-gt-%E5%8F%82%E6%95%B0"><span class="nav-number">1.0.3.0.2.</span> <span class="nav-text">&lt;2&gt;参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-3-gt-%E5%87%BD%E6%95%B0"><span class="nav-number">1.0.3.0.3.</span> <span class="nav-text">&lt;3&gt;函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-4-gt-%E4%BF%9D%E7%95%99%E5%AD%97%EF%BC%88%E6%A0%87%E8%AF%86%E7%AC%A6%EF%BC%89"><span class="nav-number">1.0.3.0.4.</span> <span class="nav-text">&lt;4&gt;保留字（标识符）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-5-gt-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.0.3.0.5.</span> <span class="nav-text">&lt;5&gt;运算符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-6-gt-%E5%88%86%E9%9A%94%E7%AC%A6"><span class="nav-number">1.0.3.0.6.</span> <span class="nav-text">&lt;6&gt;分隔符</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%EF%BC%9A%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%BB%A5%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="nav-number">1.1.</span> <span class="nav-text">二：开发环境以及配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%EF%BC%9A%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF%E4%B8%8E%E5%85%B3%E9%94%AE%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">三：解决思路与关键类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%EF%BC%9A%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">1：结构设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%EF%BC%9A%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">2：词法分析器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-1-gt-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="nav-number">1.2.0.2.1.</span> <span class="nav-text">&lt;1&gt;词法分析器的主要功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-2-gt-%E8%AE%B0%E5%8F%B7%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.0.2.2.</span> <span class="nav-text">&lt;2&gt;记号定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lt-3-gt-%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E7%9A%84%E4%B8%BB%E8%A6%81%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.0.2.3.</span> <span class="nav-text">&lt;3&gt;词法分析的主要流程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%EF%BC%9A%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">3：语法分析器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%82%E5%90%88%E9%80%92%E5%BD%92%E4%B8%8B%E9%99%8D%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">1.2.0.3.1.</span> <span class="nav-text">适合递归下降分析算法如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B6%E4%B8%AD%E8%AF%AD%E6%B3%95%E6%A0%91%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%BA%EF%BC%9A"><span class="nav-number">1.2.0.3.2.</span> <span class="nav-text">其中语法树的数据结构为：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90%E5%99%A8"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">4:语义分析器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E8%AF%AD%E4%B9%89%E5%87%BD%E6%95%B0%E4%B8%BA%EF%BC%9A"><span class="nav-number">1.2.0.4.1.</span> <span class="nav-text">辅助语义函数为：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B-%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E4%BB%A5%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%88%AA%E5%9B%BE"><span class="nav-number">1.3.</span> <span class="nav-text">四:实验结果以及测试截图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%EF%BC%9A%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A"><span class="nav-number">1.4.</span> <span class="nav-text">五：心得体会</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ang"
+      src="/images/ang.jpg">
+  <p class="site-author-name" itemprop="name">Ang</p>
+  <div class="site-description" itemprop="description">Why do learn?</div>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ang-sagapo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ang-sagapo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
