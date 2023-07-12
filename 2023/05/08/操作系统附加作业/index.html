@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="一、实验题目：使用已有动态分析工具（沙箱）对恶意软件的操作系统资源使用情况进行分析注意：恶意软件不限制平台（Windows、Android、Linux），可从 Virusshare 等平台下载；动态分析工具不作要求，可使用（Windows - Cuckoo Sandbox，Android - Appmon，Linux - Dtrace）；动态分析要求运行环境满足恶意软件执行要求，可能存在缺少运行环">
@@ -75,7 +75,7 @@
 <meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524100951701.png">
 <meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230524101027136.png">
 <meta property="article:published_time" content="2023-05-08T04:46:39.318Z">
-<meta property="article:modified_time" content="2023-07-11T09:28:09.509Z">
+<meta property="article:modified_time" content="2023-07-12T02:24:11.811Z">
 <meta property="article:author" content="Ang">
 <meta property="article:tag" content="大学大作业">
 <meta name="twitter:card" content="summary">
@@ -153,6 +153,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -187,11 +188,38 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -201,6 +229,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
   <a href="https://github.com/ang-sagapo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
@@ -247,7 +276,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-11 17:28:09" itemprop="dateModified" datetime="2023-07-11T17:28:09+08:00">2023-07-11</time>
+                <time title="修改时间：2023-07-12 10:24:11" itemprop="dateModified" datetime="2023-07-12T10:24:11+08:00">2023-07-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,6 +302,8 @@
         <h3 id="一、实验题目："><a href="#一、实验题目：" class="headerlink" title="一、实验题目："></a>一、实验题目：</h3><p>使用已有动态分析工具（沙箱）对恶意软件的操作系统资源使用情况进行分析<br>注意：<br>恶意软件不限制平台（Windows、Android、Linux），可从 Virusshare 等平台下载；<br>动态分析工具不作要求，可使用（Windows - Cuckoo Sandbox，Android - Appmon，Linux - Dtrace）；<br>动态分析要求运行环境满足恶意软件执行要求，可能存在缺少运行环境无法执行的情况，选择可以成功运行的恶意软件分析即可；<br>动态分许需要自动化测试工具，触发恶意软件的模拟执行；</p>
 <p>选择若干种典型恶意软件，要求已知其恶意行为特征，并提供相应的恶意行为证明材料（如某安全公司分析报告），并与动态分析工具的结果进行对应；<br>恶意软件采用沙箱规避技术以绕过动态分析工具，请详细调研几种典型沙箱规避技术，并提出相应的对抗规避机制；<br>对于对抗规避机制，请通过实验结果证明可以对抗沙箱规避技术；对于实现困难的对抗机制，请详细描述相应的对抗规避原理，并提供相应的参考文献（如学术论文）；</p>
 <p>调研现有的沙箱规避技术（主要通过哪些 API 来检测在沙箱环境中），然后设计一些检测的防规避技术，最简单的就是采用Windows API HOOK技术，返回虚假的返回值即可</p>
+<span id="more"></span>
+
 <h3 id="二、实验原理"><a href="#二、实验原理" class="headerlink" title="二、实验原理"></a>二、实验原理</h3><h5 id="检测用户交互是沙箱环境中常用的一种规避技术，用于规避沙箱环境中的检测机制，使得恶意代码可以欺骗沙箱环境。下面介绍一些常用的检测用户交互的沙盒规避技术及对抗方法："><a href="#检测用户交互是沙箱环境中常用的一种规避技术，用于规避沙箱环境中的检测机制，使得恶意代码可以欺骗沙箱环境。下面介绍一些常用的检测用户交互的沙盒规避技术及对抗方法：" class="headerlink" title="检测用户交互是沙箱环境中常用的一种规避技术，用于规避沙箱环境中的检测机制，使得恶意代码可以欺骗沙箱环境。下面介绍一些常用的检测用户交互的沙盒规避技术及对抗方法："></a>检测用户交互是沙箱环境中常用的一种规避技术，用于规避沙箱环境中的检测机制，使得恶意代码可以欺骗沙箱环境。下面介绍一些常用的检测用户交互的沙盒规避技术及对抗方法：</h5><ol>
 <li>检测键盘鼠标事件：检测沙箱环境中的键盘鼠标事件，并判断其是否真实，如果检测到虚拟键盘鼠标事件，则认为是在沙箱环境中运行。对抗方法：欺骗检测程序，让其认为键盘鼠标事件是真实的，可以通过修改虚拟机的配置文件或使用第三方工具来达到目的。</li>
 <li>检测鼠标位置：检测鼠标在屏幕上的位置，如果位置没有变化或者只是做了一些固定的循环运动，则认为是在沙箱环境中运行。对抗方法：欺骗检测程序，让其认为鼠标位置是真实的，可以通过修改虚拟机的配置文件或使用第三方工具来达到目的。</li>
@@ -438,6 +469,16 @@
     
     
     
+      <div>
+        
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">本文结束，感谢您的阅读</div>
+    
+</div>
+
+        
+      </div>
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -531,6 +572,9 @@
         <a href="https://github.com/ang-sagapo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ang-sagapo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
   </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -598,6 +642,10 @@
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 

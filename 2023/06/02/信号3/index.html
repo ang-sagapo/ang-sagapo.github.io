@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="西安电子科技大学信 号 与 系 统实验报告2023年6月2日一、实验题目：信号与系统实验三二、实验摘要&lt;1&gt;题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。&lt;2&gt;题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移">
@@ -42,7 +42,7 @@
 <meta property="og:image" content="c:\Z.Sagapo\code\matlab\expriment3\f65.png">
 <meta property="og:image" content="c:\Z.Sagapo\code\matlab\expriment3\f61.png">
 <meta property="article:published_time" content="2023-06-02T12:27:19.381Z">
-<meta property="article:modified_time" content="2023-07-11T09:28:20.286Z">
+<meta property="article:modified_time" content="2023-07-12T02:26:02.364Z">
 <meta property="article:author" content="Ang">
 <meta property="article:tag" content="大学大作业">
 <meta name="twitter:card" content="summary">
@@ -120,6 +120,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -154,11 +155,38 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -168,6 +196,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
   <a href="https://github.com/ang-sagapo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
@@ -214,7 +243,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-11 17:28:20" itemprop="dateModified" datetime="2023-07-11T17:28:20+08:00">2023-07-11</time>
+                <time title="修改时间：2023-07-12 10:26:02" itemprop="dateModified" datetime="2023-07-12T10:26:02+08:00">2023-07-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,7 +266,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="西安电子科技大学"><a href="#西安电子科技大学" class="headerlink" title="西安电子科技大学"></a>西安电子科技大学</h1><h3 id="信-号-与-系-统实验报告"><a href="#信-号-与-系-统实验报告" class="headerlink" title="信 号 与 系 统实验报告"></a>信 号 与 系 统实验报告</h3><h5 id="2023年6月2日"><a href="#2023年6月2日" class="headerlink" title="2023年6月2日"></a>2023年6月2日</h5><h4 id="一、实验题目：信号与系统实验三"><a href="#一、实验题目：信号与系统实验三" class="headerlink" title="一、实验题目：信号与系统实验三"></a>一、实验题目：信号与系统实验三</h4><h4 id="二、实验摘要"><a href="#二、实验摘要" class="headerlink" title="二、实验摘要"></a>二、实验摘要</h4><h5 id="lt-1-gt-题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"><a href="#lt-1-gt-题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。" class="headerlink" title="&lt;1&gt;题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"></a>&lt;1&gt;题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。</h5><h5 id="lt-2-gt-题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。"><a href="#lt-2-gt-题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。" class="headerlink" title="&lt;2&gt;题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。"></a>&lt;2&gt;题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。</h5><h5 id="lt-3-gt-此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。"><a href="#lt-3-gt-此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。" class="headerlink" title="&lt;3&gt;此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。"></a>&lt;3&gt;此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。</h5><h5 id="lt-4-gt-本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。"><a href="#lt-4-gt-本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。" class="headerlink" title="&lt;4&gt;本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。"></a>&lt;4&gt;本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。</h5><h4 id="三、题目描述"><a href="#三、题目描述" class="headerlink" title="三、题目描述"></a>三、题目描述</h4><h5 id="lt-1-gt-题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。"><a href="#lt-1-gt-题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。" class="headerlink" title="&lt;1&gt;题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。"></a>&lt;1&gt;题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。</h5><h5 id="lt-2-gt-题目二要求-求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。"><a href="#lt-2-gt-题目二要求-求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。" class="headerlink" title="&lt;2&gt;题目二要求 求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。"></a>&lt;2&gt;题目二要求 求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。</h5><h5 id="lt-3-gt-题目三要求-求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。"><a href="#lt-3-gt-题目三要求-求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。" class="headerlink" title="&lt;3&gt;题目三要求 求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。"></a>&lt;3&gt;题目三要求 求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。</h5><h5 id="lt-4-gt-题目四要求-对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。"><a href="#lt-4-gt-题目四要求-对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。" class="headerlink" title="&lt;4&gt;题目四要求 对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。"></a>&lt;4&gt;题目四要求 对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。</h5><h4 id="四、实验内容"><a href="#四、实验内容" class="headerlink" title="四、实验内容"></a>四、实验内容</h4><h5 id="题目一："><a href="#题目一：" class="headerlink" title="题目一："></a>题目一：</h5><h5 id="实验过程："><a href="#实验过程：" class="headerlink" title="实验过程："></a>实验过程：</h5><h5 id="利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"><a href="#利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。" class="headerlink" title="利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"></a>利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。</h5><h5 id="但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。"><a href="#但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。" class="headerlink" title="但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。"></a>但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。</h5><h5 id="实验结果："><a href="#实验结果：" class="headerlink" title="实验结果："></a>实验结果：</h5><img src="C:\Z.Sagapo\code\matlab\expriment3\f12.png" alt="f12" style="zoom:80%;" />
+        <h1 id="西安电子科技大学"><a href="#西安电子科技大学" class="headerlink" title="西安电子科技大学"></a>西安电子科技大学</h1><h3 id="信-号-与-系-统实验报告"><a href="#信-号-与-系-统实验报告" class="headerlink" title="信 号 与 系 统实验报告"></a>信 号 与 系 统实验报告</h3><h5 id="2023年6月2日"><a href="#2023年6月2日" class="headerlink" title="2023年6月2日"></a>2023年6月2日</h5><h4 id="一、实验题目：信号与系统实验三"><a href="#一、实验题目：信号与系统实验三" class="headerlink" title="一、实验题目：信号与系统实验三"></a>一、实验题目：信号与系统实验三</h4><h4 id="二、实验摘要"><a href="#二、实验摘要" class="headerlink" title="二、实验摘要"></a>二、实验摘要</h4><h5 id="lt-1-gt-题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"><a href="#lt-1-gt-题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。" class="headerlink" title="&lt;1&gt;题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"></a>&lt;1&gt;题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。</h5><h5 id="lt-2-gt-题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。"><a href="#lt-2-gt-题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。" class="headerlink" title="&lt;2&gt;题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。"></a>&lt;2&gt;题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。</h5><h5 id="lt-3-gt-此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。"><a href="#lt-3-gt-此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。" class="headerlink" title="&lt;3&gt;此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。"></a>&lt;3&gt;此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。</h5><h5 id="lt-4-gt-本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。"><a href="#lt-4-gt-本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。" class="headerlink" title="&lt;4&gt;本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。"></a>&lt;4&gt;本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。</h5><span id="more"></span>
+
+<h4 id="三、题目描述"><a href="#三、题目描述" class="headerlink" title="三、题目描述"></a>三、题目描述</h4><h5 id="lt-1-gt-题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。"><a href="#lt-1-gt-题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。" class="headerlink" title="&lt;1&gt;题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。"></a>&lt;1&gt;题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。</h5><h5 id="lt-2-gt-题目二要求-求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。"><a href="#lt-2-gt-题目二要求-求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。" class="headerlink" title="&lt;2&gt;题目二要求 求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。"></a>&lt;2&gt;题目二要求 求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。</h5><h5 id="lt-3-gt-题目三要求-求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。"><a href="#lt-3-gt-题目三要求-求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。" class="headerlink" title="&lt;3&gt;题目三要求 求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。"></a>&lt;3&gt;题目三要求 求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。</h5><h5 id="lt-4-gt-题目四要求-对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。"><a href="#lt-4-gt-题目四要求-对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。" class="headerlink" title="&lt;4&gt;题目四要求 对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。"></a>&lt;4&gt;题目四要求 对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。</h5><h4 id="四、实验内容"><a href="#四、实验内容" class="headerlink" title="四、实验内容"></a>四、实验内容</h4><h5 id="题目一："><a href="#题目一：" class="headerlink" title="题目一："></a>题目一：</h5><h5 id="实验过程："><a href="#实验过程：" class="headerlink" title="实验过程："></a>实验过程：</h5><h5 id="利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"><a href="#利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。" class="headerlink" title="利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"></a>利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。</h5><h5 id="但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。"><a href="#但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。" class="headerlink" title="但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。"></a>但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。</h5><h5 id="实验结果："><a href="#实验结果：" class="headerlink" title="实验结果："></a>实验结果：</h5><img src="C:\Z.Sagapo\code\matlab\expriment3\f12.png" alt="f12" style="zoom:80%;" />
 
 <img src="C:\Z.Sagapo\code\matlab\expriment3\f13.png" alt="f13" style="zoom:80%;" />
 
@@ -310,6 +341,16 @@
     
     
     
+      <div>
+        
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">本文结束，感谢您的阅读</div>
+    
+</div>
+
+        
+      </div>
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -403,6 +444,9 @@
         <a href="https://github.com/ang-sagapo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ang-sagapo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
   </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -470,6 +514,10 @@
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 

@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="%保存为UTF-8编码格式%用xelatex编译 \documentclass[UTF8,a4paper,12pt]{ctexart}\usepackage[left&#x3D;3.18cm, right&#x3D;3.18cm, top&#x3D;2.54cm, bottom&#x3D;2.54cm]{geometry} %页边距\CTEXsetup[format&#x3D;{\Large\bf">
+  <meta name="description" content="有关latex各种格式的解释">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Latex_1">
 <meta property="og:url" content="http://example.com/2022/12/21/latex1/index.html">
 <meta property="og:site_name" content="ang&#39;s blog">
-<meta property="og:description" content="%保存为UTF-8编码格式%用xelatex编译 \documentclass[UTF8,a4paper,12pt]{ctexart}\usepackage[left&#x3D;3.18cm, right&#x3D;3.18cm, top&#x3D;2.54cm, bottom&#x3D;2.54cm]{geometry} %页边距\CTEXsetup[format&#x3D;{\Large\bf">
+<meta property="og:description" content="有关latex各种格式的解释">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-21T09:41:03.000Z">
-<meta property="article:modified_time" content="2023-07-11T09:28:48.627Z">
+<meta property="article:modified_time" content="2023-07-12T02:28:48.201Z">
 <meta property="article:author" content="Ang">
 <meta property="article:tag" content="Latex">
 <meta name="twitter:card" content="summary">
@@ -105,6 +105,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -139,11 +140,38 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -153,6 +181,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
   <a href="https://github.com/ang-sagapo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
@@ -199,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-11 17:28:48" itemprop="dateModified" datetime="2023-07-11T17:28:48+08:00">2023-07-11</time>
+                <time title="修改时间：2023-07-12 10:28:48" itemprop="dateModified" datetime="2023-07-12T10:28:48+08:00">2023-07-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -212,6 +241,7 @@
             </span>
 
           
+            <div class="post-description">有关latex各种格式的解释</div>
 
         </div>
       </header>
@@ -381,14 +411,8 @@ Association）、感知质量（Perceived Quality）和其它品牌专有资产�
 
 所以润品牌如果不能紧跟时代潮流为品牌注入新的元素，满组年轻消费者日益增长的需求，那么将会被贴上“落伍”的标签，失去消费者的关注，甚至消费者的印象将会随着时间的流逝而将品牌遗忘，最终使品牌黯然退出市场。[3]同时，在 z时代，消费渠道也更加多元，所以润品牌新媒体运营有待提高。李桂华（2021）[4]认为，在当今互联网迅猛发展的时代，消费渠道选择越来越多元化。除传统线下门店外，线上淘宝、京东等电商平台给了消费者更多的选择渠道，加之抖音等新媒体的助推，年轻一代消的消费观“互联网”化特征十分明显。[5]所以润品牌也应该抓住互联网消费的浪潮，推动线上营销。
 </code></pre>
-<p>​	<br>​	<br>​	\section{调查策划与实施}<br>​	<br>​	\subsection{调查方案设计}<br>​	<br>​	\subsubsection{调研内容}<br>​	<br>​	本次调研内容以z世代的年轻消费者为出发点，目标是要了解z世代对矿泉水营销推广活动的偏好、天然矿泉水在年轻受众群体中的接受程度和发展趋势。有以下几个部分：第一，分析了当下矿泉水销售行业的宏观背景和各个品牌在市场上的表现；第二，基于市场调研的成果，分析了西安市年轻消费者对于矿泉水购买的一些个人倾向性喜好，并结合了消费者的态度，对消费者群体进行了进一步的划分，使得调研结果更加具有针对性以及准确性；第三，调研西安市年轻消费者对线上购买矿泉水的消费驱动力；第四。从产品本身的客观因素、消费者个人喜好的主观因素两个不同的角度分析目前在线上营销矿泉水的障碍与优势。<br>​	<br>​	最终，立足于我们的调研结果，决策相对更合适的线上营销策略，开展更有效的天然矿泉水新锐品牌“正大所以润”的线上营销活动。<br>​	\begin{figure}[htbp]<br>​		\centering<br>​		\includegraphics[width&#x3D;1.0\textwidth]{3.png} 	% 图片相对位置<br>​		\caption{Model1 specific process}		% 图片标题<br>​		\label{Model1 flowchart}							% 图片标签<br>​	\end{figure}<br>​	\subsubsection{调研工作流程}<br>​	\begin{figure}[htbp]<br>​		\centering<br>​		\includegraphics[width&#x3D;.6\textwidth]{4.png} 	% 图片相对位置<br>​		\caption{Model1 specific process}		% 图片标题<br>​		\label{Model1 flowchart}							% 图片标签<br>​	\end{figure}<br>​	\subsubsection{线上电商平台事前调研}<br>​	<br>​	目前在中国大陆地区的主要线上电子商务平台有淘宝、天猫、京东、拼多多等。这几个app在中国大陆地区市场占有率非常高，并且每一个平台都有一定量的消费用户。我们采用在这些app进行搜索调研的方式，从多个角度，了解天然矿泉水的线上销售情况，同时有助于我们接下来的问卷设计。<br>​	<br>​	在调查中，我们发现，销售量大、点评数高、品牌知名度高的天然矿泉水产品更容易被电商平台在前列显示。各种天然矿泉水的展示图大多都十分简洁、无太多花哨的修饰、背景以白色或浅色为主。我们认为，这有助于消费者更加关注矿泉水本身，且有助于商家给消费者营造一种我们的矿泉水更天然更纯净的氛围。<br>​	<br>    除此之外，部分被电商平台显示在前列的天然矿泉水产品右下角有“广告”标识，这引起我们思考，对于一些品牌，与电子商务平台达成商业广告合作，有助于自己的产品更加容易被消费者看到，获得更大的了解度、曝光度和关注度。</p>
-<pre><code>线上销售天然矿泉水少有单瓶零售的，有量大销售的特点，一般是整箱销售或者按一提来销售的居多。
-各品牌的直营旗舰店是主要的线上销售店铺，这表面，线上平台具有中间商发挥作用较小的特点。
-另外，在营销活动上，我们关注到了，一些店铺或品牌会采取直接在电商平台开直播的方式促进销售，这给我们的调研提供了一个新的思路，直播带货这一近年来非常火爆的方式是否在天然矿泉水销售中对Z世代年轻人产生购买的欲望。
-
-一些电子商务平台会对包括天然矿泉水在内的食品类产品开辟自营销售方式，如天猫app有专门的“天猫超市”来销售天然矿泉水。
-
-线上平台销售天然矿泉水在价格上会有一定优惠，“双11”、“618”等全平台的购物节、品牌店铺自己的促销都会有一定的折扣以促进产品销售。一般的形式有送消费券、送赠品、满减优惠等等。
+<p>​	<br>​	<br>​	\section{调查策划与实施}<br>​	<br>​	\subsection{调查方案设计}<br>​	<br>​	\subsubsection{调研内容}<br>​	<br>​	本次调研内容以z世代的年轻消费者为出发点，目标是要了解z世代对矿泉水营销推广活动的偏好、天然矿泉水在年轻受众群体中的接受程度和发展趋势。有以下几个部分：第一，分析了当下矿泉水销售行业的宏观背景和各个品牌在市场上的表现；第二，基于市场调研的成果，分析了西安市年轻消费者对于矿泉水购买的一些个人倾向性喜好，并结合了消费者的态度，对消费者群体进行了进一步的划分，使得调研结果更加具有针对性以及准确性；第三，调研西安市年轻消费者对线上购买矿泉水的消费驱动力；第四。从产品本身的客观因素、消费者个人喜好的主观因素两个不同的角度分析目前在线上营销矿泉水的障碍与优势。<br>​	<br>​	最终，立足于我们的调研结果，决策相对更合适的线上营销策略，开展更有效的天然矿泉水新锐品牌“正大所以润”的线上营销活动。<br>​	\begin{figure}[htbp]<br>​		\centering<br>​		\includegraphics[width&#x3D;1.0\textwidth]{3.png} 	% 图片相对位置<br>​		\caption{Model1 specific process}		% 图片标题<br>​		\label{Model1 flowchart}							% 图片标签<br>​	\end{figure}<br>​	\subsubsection{调研工作流程}<br>​	\begin{figure}[htbp]<br>​		\centering<br>​		\includegraphics[width&#x3D;.6\textwidth]{4.png} 	% 图片相对位置<br>​		\caption{Model1 specific process}		% 图片标题<br>​		\label{Model1 flowchart}							% 图片标签<br>​	\end{figure}<br>​	\subsubsection{线上电商平台事前调研}<br>​	<br>​	目前在中国大陆地区的主要线上电子商务平台有淘宝、天猫、京东、拼多多等。这几个app在中国大陆地区市场占有率非常高，并且每一个平台都有一定量的消费用户。我们采用在这些app进行搜索调研的方式，从多个角度，了解天然矿泉水的线上销售情况，同时有助于我们接下来的问卷设计。<br>​	<br>​	在调查中，我们发现，销售量大、点评数高、品牌知名度高的天然矿泉水产品更容易被电商平台在前列显示。各种天然矿泉水的展示图大多都十分简洁、无太多花哨的修饰、背景以白色或浅色为主。我们认为，这有助于消费者更加关注矿泉水本身，且有助于商家给消费者营造一种我们的矿泉水更天然更纯净的氛围。<br>​	<br>​	除此之外，部分被电商平台显示在前列的天然矿泉水产品右下角有“广告”标识，这引起我们思考，对于一些品牌，与电子商务平台达成商业广告合作，有助于自己的产品更加容易被消费者看到，获得更大的了解度、曝光度和关注度。<br>​	<br>​	线上销售天然矿泉水少有单瓶零售的，有量大销售的特点，一般是整箱销售或者按一提来销售的居多。<br>​	各品牌的直营旗舰店是主要的线上销售店铺，这表面，线上平台具有中间商发挥作用较小的特点。<br>​	另外，在营销活动上，我们关注到了，一些店铺或品牌会采取直接在电商平台开直播的方式促进销售，这给我们的调研提供了一个新的思路，直播带货这一近年来非常火爆的方式是否在天然矿泉水销售中对Z世代年轻人产生购买的欲望。<br>​	<br>    一些电子商务平台会对包括天然矿泉水在内的食品类产品开辟自营销售方式，如天猫app有专门的“天猫超市”来销售天然矿泉水。</p>
+<pre><code>线上平台销售天然矿泉水在价格上会有一定优惠，“双11”、“618”等全平台的购物节、品牌店铺自己的促销都会有一定的折扣以促进产品销售。一般的形式有送消费券、送赠品、满减优惠等等。
 
 \subsubsection&#123;深度了解产品&#125;
 
@@ -425,13 +449,8 @@ Association）、感知质量（Perceived Quality）和其它品牌专有资产�
 
 为了检验问卷可行性以及可靠性，在正式问卷调查之前，我们在网络上进行了一次预调查，一共发放了42份问卷，回收了40份，被调查者均居住在西安市，且为年轻消费者。根据预调查所产生的结果，发现问卷存在以下问题，部分题设并不合理、措辞不够精准委婉、受调查者对于一些题目的理解存在不解等。最后，针对以上问题，对问卷进行了一些完善。
 </code></pre>
-<p>​	<br>​	\subsubsection{抽样设计}<br>​	<br>​	\textbf{（1）调研对象与范围}<br>​	<br>​	本次调研是具有一定针对性的调研，主要为Z世代年轻消费者对新锐天然矿泉水品牌线上营销活动开展提供决策支持，销售地域为西安市。因此，调研对象以长期居住在西安市的年轻消费群体为总体。为了更加全面地了解Z世代年轻消费者对新锐天然矿泉水品牌线上营销活动开展的喜好程度，以调研有购买天然矿泉水习惯的年轻消费者为主，以没有购买天然矿泉水习惯的年轻消费者为辅。<br>​	<br>​	\textbf{(2)抽样方法}<br>​	<br>​	为了我们的调研结果更加准确，对天然矿泉水消费市场具有进一步的把握，以便制定合理且有效的线上营销方案，本次调研采用线上随机抽样。为了可以保证样本分布更加均匀，充分了解西安市年轻消费者对天然矿泉水的喜好，我们按照行政区和功能区划进行分层抽样。<br>​	<br>​	\textbf{(3)样本量的确定}<br>​	<br>​	在总体样本量较大时，最低样本量与被调查者总数没有必然联系，会受到误差和置信水平的影响，通过样本量计算公式，得出样本量为96。<br>​	\begin{align}<br>​		N\ &#x3D; \ \frac{[Z^2 p(1-p)]}{e^2}<br>​	\end{align}<br>​	<br>    具体计算流程如下：本次调查的最低样本根据公式（1）(其中N为样本量，Z为当置信度为1.96时的Z统计量的值，e为极限误差，p为抽样比例)确定，保证在95% 的置信水平，极限误差小于10 % ，抽样比例为0.5的前提下，计算出最低样本量为96.04，同时考虑到问卷回收后可能出现的有效问卷率及误差，故实际抽样数量为最低样本量的1.1倍，即106份。</p>
-<pre><code>公式1：
-
-根据西安市统计局、西安市第七次全国人口普查领导小组办公室公布的西安市第七次全国人口普查主要数据公报（第二号） ——分区域常住人口情况[西安市统计局、西安市第七次全国人口普查领导小组办公室.西安市第七次全国人口普查主要数据公报（第二号），2021
-]公开资料，具体如下表显示，居住在城区（包括六城区、高新区、经开区、曲江新区、浐灞生态区、国际港务区、航天产业基地）的占比约为60 \% ，居住在郊区（除城区之外的所有区）的占比约为40 \% ，因此我们的问卷发放也符合6：4的比例，达到分层抽样的效果。
-
-\begin&#123;figure&#125;[htbp]
+<p>​	<br>​	\subsubsection{抽样设计}<br>​	<br>​	\textbf{（1）调研对象与范围}<br>​	<br>​	本次调研是具有一定针对性的调研，主要为Z世代年轻消费者对新锐天然矿泉水品牌线上营销活动开展提供决策支持，销售地域为西安市。因此，调研对象以长期居住在西安市的年轻消费群体为总体。为了更加全面地了解Z世代年轻消费者对新锐天然矿泉水品牌线上营销活动开展的喜好程度，以调研有购买天然矿泉水习惯的年轻消费者为主，以没有购买天然矿泉水习惯的年轻消费者为辅。<br>​	<br>​	\textbf{(2)抽样方法}<br>​	<br>​	为了我们的调研结果更加准确，对天然矿泉水消费市场具有进一步的把握，以便制定合理且有效的线上营销方案，本次调研采用线上随机抽样。为了可以保证样本分布更加均匀，充分了解西安市年轻消费者对天然矿泉水的喜好，我们按照行政区和功能区划进行分层抽样。<br>​	<br>​	\textbf{(3)样本量的确定}<br>​	<br>​	在总体样本量较大时，最低样本量与被调查者总数没有必然联系，会受到误差和置信水平的影响，通过样本量计算公式，得出样本量为96。<br>​	\begin{align}<br>​		N\ &#x3D; \ \frac{[Z^2 p(1-p)]}{e^2}<br>​	\end{align}<br>​	<br>​	具体计算流程如下：本次调查的最低样本根据公式（1）(其中N为样本量，Z为当置信度为1.96时的Z统计量的值，e为极限误差，p为抽样比例)确定，保证在95% 的置信水平，极限误差小于10 % ，抽样比例为0.5的前提下，计算出最低样本量为96.04，同时考虑到问卷回收后可能出现的有效问卷率及误差，故实际抽样数量为最低样本量的1.1倍，即106份。<br>​	<br>​	公式1：<br>​	<br>    根据西安市统计局、西安市第七次全国人口普查领导小组办公室公布的西安市第七次全国人口普查主要数据公报（第二号） ——分区域常住人口情况[西安市统计局、西安市第七次全国人口普查领导小组办公室.西安市第七次全国人口普查主要数据公报（第二号），2021<br>    ]公开资料，具体如下表显示，居住在城区（包括六城区、高新区、经开区、曲江新区、浐灞生态区、国际港务区、航天产业基地）的占比约为60 % ，居住在郊区（除城区之外的所有区）的占比约为40 % ，因此我们的问卷发放也符合6：4的比例，达到分层抽样的效果。</p>
+<pre><code>\begin&#123;figure&#125;[htbp]
     \centering
     \includegraphics[width=.8\textwidth]&#123;1.png&#125; 	% 图片相对位置
     \caption&#123;Model1 specific process&#125;		% 图片标题 
@@ -689,12 +708,8 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
 借其他领域品牌的影响力，跨界联动，品牌联动营销也是目前市面上最近一段时间新兴的营销活动，品牌联动会带来消费者更多的关注。例如我们在调研中发现茶饮品牌“喜茶”长期与各种意想不到的领域的品牌进行联动，头部新能源车企“特斯拉”、网络游戏独角兽企业“上海米哈游”、热播影视连续剧“梦华录”、商务办公软件“wps”……都为保持喜茶的营销热度起到了非常大的作用。作为茶饮行业的喜茶，竞争对手多，产品本质与竞争对手难以形成非同质化的差异，和我们的天然矿泉水具有相似性，我们认为可以进行这种“借力”的品牌打法，为新锐品牌赢得更多的关注度，逐渐走进消费者的了解范围中。
 年轻的Z世代消费者对新奇的事物更感兴趣，他们热衷于尝试各种异想天开的跨界混搭，品牌联动的营销打法对年轻消费者的吸引力非常强，能够弥补天然矿泉水品牌本身的品牌吸引力有限的客观缺陷。同时，“正大所以润”母公司正大集团作为大型跨国企业以及食品领域的领头羊企业，在商务合作中有大公司品质保障和商业知名度高的优势，合作方会更青睐和有头有名的大公司进行品牌联动营销，因此我们有理由认为“正大所以润”在营销活动中采取一些品牌联动的方式是可行的、效果好的。是可以尝试的办法。
 </code></pre>
-<p>​	<br>​	%引用：图\ref{fig},式\eqref{eq},表\ref{tab}<br>​	<br>​	\begin{thebibliography}{99}<br>​		\setlength{\parskip}{0.5pt} %段落之间的竖直距离<br>​		\bibitem{ref1}原祎航,基于国潮的兴起浅谈管理品牌资产的重要意义——以花西子品牌为例[.现代销(学苑版）,2021(11):43-45<br>​		\bibitem{ref2} 姚云萍,中华老宇号品牌活化策略研究[D]湖南大学,2019.<br>​		\bibitem{ref3}电商新生态助力经济复苏后疫情时代零售消费洞察报告 2020 年[C].艾瑞咨询系列研究报告（2020 年第 7 期）[出版者不详],2020:129-173.<br>​		\bibitem{ref4}李桂华,胡纪雯,品牌年轻化：老字号如何迎接新世代[J],⾦融博览,2021(05):62-64.<br>​		\bibitem{ref5}Smith, Wendell. (1956).Product Differentiation and Market Segmentation as Alternative Marketing Strategies [M]. Journal of Marketing, 21(July 1956)3-8.<br>​		\bibitem{ref6}Williuam D. Perreault.Jr, JosephP.Cannon, E. JeromeMccarthy. Basic marketing: a marketing.<br>​		\bibitem{ref7}Hauke J, Kossowski T. Comparison of Values of Pearson’s and Spearman’s Correlation Coefficients on the Same Sets of Data[J]. Quaestiones Geographicae, 2011, 30(2):87-93.<br>​		\bibitem{ref8}Arndt S, Turvey C, Andreasen N C. Correlating and predicting psychiatric symptom ratings: Spearmans r versus Kendalls tau correlation[J]. Journal of Psychiatric Research, 1999, 33(2):97-104.<br>​		\bibitem{ref9}Sun Dao-de. Selection of the Linear Regression Model According to the Parameter Estimation[J]. Wuhan University Journal of Natural Sciences, 2000, 5(4):400-405.<br>​		\bibitem{ref10}Barassi M R. Microeconometrics; Methods and Applications by A. Colin Cameron; Pravin K. Trivedi[J]. 2005.<br>​		\bibitem{ref11}威廉H·格林.经济计量分析[M].北京:中国社会科学出版社,1998.<br>​		\bibitem{ref12}张厚粲, 徐建平. 现代心理与教育统计学.第3版[M]. 北京师范大学出版社, 2009.<br>​		\bibitem{ref13}Hosmane B S. Improved likelihood ratio tests and pearson chi-square tests for independence in two dimensional contingency tables[J]. Communications in Statistics, 1986, 15(6):1875-1888.<br>​		\bibitem{ref14}MatthewGoldstein, EdwardWolf, WilliamDillon. On a test of independence for contingency tables[J]. Communications in Statistics, 1976, 5(2):159-169.<br>​	\end{thebibliography}<br>​	<br>​	\appendix<br>​	\section{附录}<br>​	\subsection{问卷}<br>​	\textbf{1.您经常饮用矿泉水吗？[单选题]}<br>​	<br>​	从不<br>​	<br>​	偶尔<br>​	<br>​	经常<br>​	<br>​	\textbf{2.您一般在什么场所购买天然矿泉水？[单选题]}<br>​	<br>    线下（超市、商场、送水师傅等）</p>
-<pre><code>线上
-
-\textbf&#123;3.您有长期饮用矿泉水的习惯吗？[单选题]&#125;
-
-有
+<p>​	<br>​	%引用：图\ref{fig},式\eqref{eq},表\ref{tab}<br>​	<br>​	\begin{thebibliography}{99}<br>​		\setlength{\parskip}{0.5pt} %段落之间的竖直距离<br>​		\bibitem{ref1}原祎航,基于国潮的兴起浅谈管理品牌资产的重要意义——以花西子品牌为例[.现代销(学苑版）,2021(11):43-45<br>​		\bibitem{ref2} 姚云萍,中华老宇号品牌活化策略研究[D]湖南大学,2019.<br>​		\bibitem{ref3}电商新生态助力经济复苏后疫情时代零售消费洞察报告 2020 年[C].艾瑞咨询系列研究报告（2020 年第 7 期）[出版者不详],2020:129-173.<br>​		\bibitem{ref4}李桂华,胡纪雯,品牌年轻化：老字号如何迎接新世代[J],⾦融博览,2021(05):62-64.<br>​		\bibitem{ref5}Smith, Wendell. (1956).Product Differentiation and Market Segmentation as Alternative Marketing Strategies [M]. Journal of Marketing, 21(July 1956)3-8.<br>​		\bibitem{ref6}Williuam D. Perreault.Jr, JosephP.Cannon, E. JeromeMccarthy. Basic marketing: a marketing.<br>​		\bibitem{ref7}Hauke J, Kossowski T. Comparison of Values of Pearson’s and Spearman’s Correlation Coefficients on the Same Sets of Data[J]. Quaestiones Geographicae, 2011, 30(2):87-93.<br>​		\bibitem{ref8}Arndt S, Turvey C, Andreasen N C. Correlating and predicting psychiatric symptom ratings: Spearmans r versus Kendalls tau correlation[J]. Journal of Psychiatric Research, 1999, 33(2):97-104.<br>​		\bibitem{ref9}Sun Dao-de. Selection of the Linear Regression Model According to the Parameter Estimation[J]. Wuhan University Journal of Natural Sciences, 2000, 5(4):400-405.<br>​		\bibitem{ref10}Barassi M R. Microeconometrics; Methods and Applications by A. Colin Cameron; Pravin K. Trivedi[J]. 2005.<br>​		\bibitem{ref11}威廉H·格林.经济计量分析[M].北京:中国社会科学出版社,1998.<br>​		\bibitem{ref12}张厚粲, 徐建平. 现代心理与教育统计学.第3版[M]. 北京师范大学出版社, 2009.<br>​		\bibitem{ref13}Hosmane B S. Improved likelihood ratio tests and pearson chi-square tests for independence in two dimensional contingency tables[J]. Communications in Statistics, 1986, 15(6):1875-1888.<br>​		\bibitem{ref14}MatthewGoldstein, EdwardWolf, WilliamDillon. On a test of independence for contingency tables[J]. Communications in Statistics, 1976, 5(2):159-169.<br>​	\end{thebibliography}<br>​	<br>​	\appendix<br>​	\section{附录}<br>​	\subsection{问卷}<br>​	\textbf{1.您经常饮用矿泉水吗？[单选题]}<br>​	<br>​	从不<br>​	<br>​	偶尔<br>​	<br>​	经常<br>​	<br>​	\textbf{2.您一般在什么场所购买天然矿泉水？[单选题]}<br>​	<br>​	线下（超市、商场、送水师傅等）<br>​	<br>​	线上<br>​	<br>    \textbf{3.您有长期饮用矿泉水的习惯吗？[单选题]}</p>
+<pre><code>有
 
 没有
 
@@ -774,6 +789,16 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
     
     
     
+      <div>
+        
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">本文结束，感谢您的阅读</div>
+    
+</div>
+
+        
+      </div>
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -866,6 +891,9 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
         <a href="https://github.com/ang-sagapo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ang-sagapo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
   </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -933,6 +961,10 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 

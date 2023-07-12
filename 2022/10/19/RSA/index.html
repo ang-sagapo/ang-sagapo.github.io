@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="​	 第二题——signin ——不会（且和第六题一个德行）（一看原来是同一个出题人）​	这是一个类似于RSA的题目，但是实际上并不是，题目中已经给出了p，q，e以及明文c的情况下，可以很简单的利用RSA进行解密，但是在求欧拉函数的过程中，发现e对于phi_n不存在逆元，于是联想到欧拉函数和e并不是互素的，经检查之后发现的确如此，然后对于此种e和phi_n不互素的情况，发现可以利用 AMM算法 进">
+  <meta name="description" content="​	 第二题——signin ——不会（且和第六题一个德行）（一看原来是同一个出题人）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RSA">
 <meta property="og:url" content="http://example.com/2022/10/19/RSA/index.html">
 <meta property="og:site_name" content="ang&#39;s blog">
-<meta property="og:description" content="​	 第二题——signin ——不会（且和第六题一个德行）（一看原来是同一个出题人）​	这是一个类似于RSA的题目，但是实际上并不是，题目中已经给出了p，q，e以及明文c的情况下，可以很简单的利用RSA进行解密，但是在求欧拉函数的过程中，发现e对于phi_n不存在逆元，于是联想到欧拉函数和e并不是互素的，经检查之后发现的确如此，然后对于此种e和phi_n不互素的情况，发现可以利用 AMM算法 进">
+<meta property="og:description" content="​	 第二题——signin ——不会（且和第六题一个德行）（一看原来是同一个出题人）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-19T03:21:29.000Z">
-<meta property="article:modified_time" content="2023-07-11T09:28:58.042Z">
+<meta property="article:modified_time" content="2023-07-12T02:28:12.099Z">
 <meta property="article:author" content="Ang">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -105,6 +105,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -139,11 +140,38 @@
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -153,6 +181,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
   <a href="https://github.com/ang-sagapo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
@@ -199,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-11 17:28:58" itemprop="dateModified" datetime="2023-07-11T17:28:58+08:00">2023-07-11</time>
+                <time title="修改时间：2023-07-12 10:28:12" itemprop="dateModified" datetime="2023-07-12T10:28:12+08:00">2023-07-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -223,7 +252,9 @@
 
       
         <p>​	</p>
-<h2 id="第二题——signin-——不会（且和第六题一个德行）（一看原来是同一个出题人）"><a href="#第二题——signin-——不会（且和第六题一个德行）（一看原来是同一个出题人）" class="headerlink" title="第二题——signin ——不会（且和第六题一个德行）（一看原来是同一个出题人）"></a>第二题——signin ——不会（且和第六题一个德行）（一看原来是同一个出题人）</h2><p>​	这是一个类似于RSA的题目，但是实际上并不是，题目中已经给出了p，q，e以及明文c的情况下，可以很简单的利用RSA进行解密，但是在求欧拉函数的过程中，发现e对于phi_n不存在逆元，于是联想到欧拉函数和e并不是互素的，经检查之后发现的确如此，然后对于此种e和phi_n不互素的情况，发现可以利用 <em><strong>AMM算法</strong></em> 进行运算。</p>
+<h2 id="第二题——signin-——不会（且和第六题一个德行）（一看原来是同一个出题人）"><a href="#第二题——signin-——不会（且和第六题一个德行）（一看原来是同一个出题人）" class="headerlink" title="第二题——signin ——不会（且和第六题一个德行）（一看原来是同一个出题人）"></a>第二题——signin ——不会（且和第六题一个德行）（一看原来是同一个出题人）</h2><span id="more"></span>
+
+<p>​	这是一个类似于RSA的题目，但是实际上并不是，题目中已经给出了p，q，e以及明文c的情况下，可以很简单的利用RSA进行解密，但是在求欧拉函数的过程中，发现e对于phi_n不存在逆元，于是联想到欧拉函数和e并不是互素的，经检查之后发现的确如此，然后对于此种e和phi_n不互素的情况，发现可以利用 <em><strong>AMM算法</strong></em> 进行运算。</p>
 <p>对此的解释，如果e和phi_n不互素，则二者存在最大公约数，而如果将最大公约数约分掉，则此时两者必然互素，必存在逆元，然后由还没看懂的数论知识，最终得出的铭文m将会是m^e,且e即为伟大公约数，所以此时就会遇到另一个问题，如何对这个大整数明文m^e进行开e次根号，此时AMM算法就开始发挥作用了，AMM算法是一种可以对大整数进行开n次根号的算法，以下附代码</p>
 <p>时间原因，没来得及写注释（</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">language：python3</span><br><span class="line">title: RSA&amp;AMM</span><br><span class="line">mark: <span class="number">29</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> tabnanny <span class="keyword">import</span> check</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line">p = <span class="number">12408795636519868275579286477747181009018504169827579387457997229774738126230652970860811085539129972962189443268046963335610845404214331426857155412988073</span></span><br><span class="line">q = <span class="number">12190036856294802286447270376342375357864587534233715766210874702670724440751066267168907565322961270655972226761426182258587581206888580394726683112820379</span></span><br><span class="line">n = q</span><br><span class="line"><span class="comment">#phi_n = (p-1)*(q-1)</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"><span class="comment">#e_1 = gmpy2.gcd(e,phi_n)</span></span><br><span class="line"><span class="comment">#d = gmpy2.invert(e//e_1,phi_n)</span></span><br><span class="line"></span><br><span class="line">c = <span class="number">68960610962019321576894097705679955071402844421318149418040507036722717269530195000135979777852568744281930839319120003106023209276898286482202725287026853925179071583797231099755287410760748104635674307266042492611618076506037004587354018148812584502385622631122387857218023049204722123597067641896169655595</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#m = gmpy2.powmod(c,d,phi_n)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GF</span>(<span class="params">a</span>):</span><br><span class="line">    <span class="keyword">global</span> p</span><br><span class="line">    p = a</span><br><span class="line"><span class="comment">#乘法取模</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">g</span>(<span class="params">a,b</span>):</span><br><span class="line">    <span class="keyword">global</span> p</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">pow</span>(a,b,p)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">AMM</span>(<span class="params">x,e,p</span>):</span><br><span class="line">    GF(p)</span><br><span class="line">    y = random.randint(<span class="number">1</span>, p-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">while</span> g(y, (p-<span class="number">1</span>)//e) == <span class="number">1</span>:</span><br><span class="line">        y = random.randint(<span class="number">1</span>, p-<span class="number">1</span>)</span><br><span class="line">        <span class="comment">#print(y)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;find&quot;</span>)</span><br><span class="line">    <span class="comment">#p-1 = e^t*s</span></span><br><span class="line">    t = <span class="number">1</span></span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> p % e == <span class="number">0</span>:</span><br><span class="line">        t += <span class="number">1</span></span><br><span class="line">        <span class="comment">#print(t)</span></span><br><span class="line">    s = p // (e**t)</span><br><span class="line"></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    print(&#x27;e&#x27;,e)</span></span><br><span class="line"><span class="string">    print(&#x27;p&#x27;,p)</span></span><br><span class="line"><span class="string">    print(&#x27;s&#x27;,s)</span></span><br><span class="line"><span class="string">    print(&#x27;t&#x27;,t)</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># s|ralpha-1</span></span><br><span class="line">    k = <span class="number">1</span>    </span><br><span class="line">    <span class="keyword">while</span>((s * k + <span class="number">1</span>) % e != <span class="number">0</span>):</span><br><span class="line">        k += <span class="number">1</span></span><br><span class="line">    alpha = (s * k + <span class="number">1</span>) // e</span><br><span class="line">    <span class="comment">#计算a = y^s b = x^s h =1</span></span><br><span class="line">    <span class="comment">#h为e次非剩余部分的积</span></span><br><span class="line">    a = g(y, (e ** (t - <span class="number">1</span>) ) * s)</span><br><span class="line">    b = g(x, e * alpha - <span class="number">1</span>)</span><br><span class="line">    c = g(y, s)</span><br><span class="line">    h = <span class="number">1</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, t-<span class="number">1</span>):</span><br><span class="line">        d = g(b,e**(t-<span class="number">1</span>-i))</span><br><span class="line">        <span class="keyword">if</span> d == <span class="number">1</span>:</span><br><span class="line">            j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j = (-math.log(d,a) % e)</span><br><span class="line">        b = b * (g(g(c, e), j))</span><br><span class="line">        h = h * g(c, j)</span><br><span class="line">        c = g(c,e)</span><br><span class="line">    <span class="keyword">return</span> (g(x,alpha * h)) % p</span><br><span class="line"></span><br><span class="line">mps = AMM(c,e,n)</span><br><span class="line"></span><br><span class="line">flag = long_to_bytes(mps)</span><br><span class="line"><span class="built_in">print</span>(flag.decode(<span class="string">&#x27;utf_8&#x27;</span>,<span class="string">&#x27;ignore&#x27;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -257,6 +288,16 @@
     
     
     
+      <div>
+        
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">本文结束，感谢您的阅读</div>
+    
+</div>
+
+        
+      </div>
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -350,6 +391,9 @@
         <a href="https://github.com/ang-sagapo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ang-sagapo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
   </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -417,6 +461,10 @@
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
