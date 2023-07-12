@@ -116,6 +116,113 @@
       </tags>
   </entry>
   <entry>
+    <title>python_learn</title>
+    <url>/2022/10/04/python-learn/</url>
+    <content><![CDATA[<p>​	字符串前加b表示这是一个bytes对象</p>
+<p>字符串前加f表示这是一个</p>
+<p>大佬博客 <a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html">RSA算法原理（一） - 阮一峰的网络日志 (ruanyifeng.com)</a></p>
+<span id="more"></span>
+
+<p>如果n可以被因数分解，d就可以算出，也就意味着私匙被解密。</p>
+<p>0x -16进制 </p>
+<p>strxor函数对两个等长字符串取异或</p>
+<p>getprime(n) 取一个n位素数</p>
+<p>powmod（m，e，n） &#x3D; m^e%n;</p>
+<p>gcd 取最大公因数</p>
+<p>ord 返回一个字符的ascii值</p>
+<p>map() 函数会根据提供的函数对指定序列做映射。</p>
+<p>append函数：将参数添加在字符串的后面</p>
+<p>第一个参数 function 以参数序列中的每一个元素调用 function 函数，返回包含每次 function 函数返回值的新列表。</p>
+<p>乘发逆元：<a href="https://oi-wiki.org/math/number-theory/inverse/">https://oi-wiki.org/math/number-theory/inverse/</a></p>
+<p>sage使用：</p>
+<p>欧拉函数:euler_phi</p>
+<p>对于rsa算法来说，如果取的两个质数相距很接近，则可以直接对这个大数进行开根号处理</p>
+<p>第二题: 大佬博客·：<a href="https://www.cnblogs.com/nul1/p/13489269.html">CTF中的RSA套路 - _nul1 - 博客园 (cnblogs.com)</a></p>
+<p>Python ljust() 方法返回一个原字符串左对齐,并使用空格填充至指定长度的新字符串。如果指定的长度小于原字符串的长度则返回原字符串</p>
+<p>assert（）相当于一个判断程序是否正确的断言，其实就相当于一个if语句。</p>
+<p>​		1、对于两个相近的随机素数，可以直接进行开根号处理，然后进行判断，算法为费马分解</p>
+<p><a href="https://www.freebuf.com/articles/database/290623.html">浅析RSA因子大小相近时分解因子攻击方法 - FreeBuf网络安全行业门户</a></p>
+<p>​		2、对于n很大而e很小，可以采用低指数加密来对n进行分解  参考博客：<a href="https://blog.csdn.net/fengerxi33/article/details/123353560">(74条消息) CTF_RSA_低加密指数攻击脚本_风二西的博客-CSDN博客_ctf rsa脚本</a></p>
+<p>​		3、给出dp或者dq 参考博客 <a href="https://oceansec.blog.csdn.net/article/details/121023558?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-121023558-blog-95500279.pc_relevant_multi_platform_whitelistv4&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-121023558-blog-95500279.pc_relevant_multi_platform_whitelistv4&utm_relevant_index=2">(74条消息) CTF-Crypto-RSA整理_OceanSec的博客-CSDN博客_ctf ras</a></p>
+<p>dp泄露:<a href="https://blog.csdn.net/weixin_45369385/article/details/109208109">(75条消息) RSA-详解dp泄漏_来梦桃子的博客-CSDN博客_rsa dp</a></p>
+<p>​		4、</p>
+<p>​		1️⃣e和欧拉函数不互素的情况 AMM算法进行开e次根 <a href="https://www.anquanke.com/post/id/262634">RSA中e和phi不互素时的AMM开根-安全客 - 安全资讯平台 (anquanke.com)</a></p>
+<p>​		2️⃣<a href="https://zhuanlan.zhihu.com/p/446499019">RSA中e和phi不互素时的AMM开根 - 知乎 (zhihu.com)</a></p>
+<p>​		3️⃣<a href="https://dgz-cyber.github.io/2020/03/03/RSA%E2%80%94%E2%80%94%E5%BD%93e%E4%B8%8E%CF%86(n)%E4%B8%8D%E4%BA%92%E7%B4%A0%E6%97%B6/">RSA——当e与φ(n)不互素时 · DGZ’s Blog (dgz-cyber.github.io)</a></p>
+<p>进入python第三方库文档命令 </p>
+<p>相关题型：<a href="https://www.freebuf.com/articles/web/287854.html">『CTF』史上最全 RSA 题目总结 - FreeBuf网络安全行业门户</a></p>
+<p>sage使用命令:</p>
+<p><a href="https://chu-kangming.gitee.io/crypto/Use-of-Sagemath-in-CTF-Cryptography.html">sagemath在ctf密码学中的使用 - GAEA (gitee.io)</a></p>
+<p><a href="https://tl2cents.github.io/2022/03/27/SageMath%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/">SageMath简明教程 | tl2cents blog</a></p>
+<h4 id="RSA常用工具博客：-原创-Crypto中RSA常用工具及python库说明-密码应用-看雪论坛-安全社区-安全招聘-bbs-pediy-com"><a href="#RSA常用工具博客：-原创-Crypto中RSA常用工具及python库说明-密码应用-看雪论坛-安全社区-安全招聘-bbs-pediy-com" class="headerlink" title="RSA常用工具博客：[原创]Crypto中RSA常用工具及python库说明-密码应用-看雪论坛-安全社区|安全招聘|bbs.pediy.com"></a>RSA常用工具博客：[<a href="https://bbs.pediy.com/thread-266504.htm">原创]Crypto中RSA常用工具及python库说明-密码应用-看雪论坛-安全社区|安全招聘|bbs.pediy.com</a></h4><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>线性同余生成器：</p>
+<p>zip函数：可以理解为压缩函数，以可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，返回由这些元组组成的对象以达成节约内存的作用。</p>
+<p>%02x：x表示以16进制输出，02表示不足两位，前面补0输出</p>
+]]></content>
+      <categories>
+        <category>一些工具的学习</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据库实验四</title>
+    <url>/2023/07/11/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E3%80%8B%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A4/</url>
+    <content><![CDATA[<h1 id="《数据库原理》实验报告4"><a href="#《数据库原理》实验报告4" class="headerlink" title="《数据库原理》实验报告4"></a>《数据库原理》实验报告4</h1><h4 id="实验内容：数据库图书馆管理系统"><a href="#实验内容：数据库图书馆管理系统" class="headerlink" title="实验内容：数据库图书馆管理系统"></a>实验内容：数据库图书馆管理系统</h4><h3 id="1-实验内容简介"><a href="#1-实验内容简介" class="headerlink" title="1  实验内容简介"></a>1  实验内容简介</h3><p>图书馆借还书系统：图书信息表支持购入同一个ISBN的书籍多本，支持按ISBN、图书名、出版社、作者、图书分类、出版年份进行书籍登记，可查询和删除（这是基本界面功能）</p>
+<span id="more"></span>
+
+<p>支持对内对外借阅；内部人员包括学生、学校职工；外部人员需登记身份证号、姓名等，需要押金；外部人员在借书数量限制2本；内部限制为5本；超期外部人员3元&#x2F;天，内部1元&#x2F;天，有超期的书籍，不让继续借新的。</p>
+<h5 id="首先先对题目进行分析，题目要求设计一个图书馆的借还书系统，则分析此系统的功能有："><a href="#首先先对题目进行分析，题目要求设计一个图书馆的借还书系统，则分析此系统的功能有：" class="headerlink" title="首先先对题目进行分析，题目要求设计一个图书馆的借还书系统，则分析此系统的功能有："></a>首先先对题目进行分析，题目要求设计一个图书馆的借还书系统，则分析此系统的功能有：</h5><p>&lt;1&gt;借阅功能</p>
+<p>设计此功能需要考虑几个问题：</p>
+<p>读者的借阅权限问题</p>
+<p>读者的借阅数量限制</p>
+<p>书库中是否有借阅书籍</p>
+<p>若均满足以上的限制条件，则可以借阅书籍。</p>
+<p>&lt;2&gt;借阅者管理功能</p>
+<p>对于借阅者的信息进行查看，添加，修改，删除并将借阅者分为不同的权限，即题目中要求的对内借阅和对外借阅，同时统计借阅者的借阅时间，对超期行为进行罚款。</p>
+<h5 id="下面设计概念模型"><a href="#下面设计概念模型" class="headerlink" title="下面设计概念模型"></a>下面设计概念模型</h5><p>该数据库需要描述的信息包括以下几种：</p>
+<p>1、读者信息</p>
+<p>2、书籍信息</p>
+<p>3、读者分类信息</p>
+<p>4、读者与书籍之间的关系</p>
+<h5 id="数据库详细设计"><a href="#数据库详细设计" class="headerlink" title="数据库详细设计"></a>数据库详细设计</h5><p>1、读者（借阅者）信息</p>
+<p>属性：编号，姓名，联系电话，权限状况，读者类型</p>
+<p>2、书籍信息</p>
+<p>ISBN、图书名、出版社、作者、图书分类、出版年份</p>
+<p>3、读者类型</p>
+<p>读者编号，读者类型</p>
+<h3 id="1-实验环境描述"><a href="#1-实验环境描述" class="headerlink" title="1 实验环境描述"></a><strong>1</strong> 实验环境描述</h3><h4 id="1-1-硬件配置"><a href="#1-1-硬件配置" class="headerlink" title="1.1 硬件配置"></a><strong>1.1</strong> 硬件配置</h4><h5 id="处理器：11代intel酷睿-i5-11400H"><a href="#处理器：11代intel酷睿-i5-11400H" class="headerlink" title="处理器：11代intel酷睿 i5-11400H;"></a>处理器：11代intel酷睿 i5-11400H;</h5><h4 id="1-2-软件配置"><a href="#1-2-软件配置" class="headerlink" title="1.2 软件配置"></a><strong>1.2</strong> 软件配置</h4><h4 id="1-2-1操作系统"><a href="#1-2-1操作系统" class="headerlink" title="1.2.1操作系统"></a><strong>1.2.1</strong>操作系统</h4><h5 id="Windows11系统"><a href="#Windows11系统" class="headerlink" title="Windows11系统"></a>Windows11系统</h5><h4 id="1-2-2-数据库软件和版本"><a href="#1-2-2-数据库软件和版本" class="headerlink" title="1.2.2 数据库软件和版本"></a><strong>1.2.2</strong> 数据库软件和版本</h4><p><img src="file:///C:\Users\20191\AppData\Local\Temp\ksohtml8368\wps1.png" alt="img"> </p>
+<h5 id="⼈⼤⾦仓ksql-Kingbase-V008R006C007B0012"><a href="#⼈⼤⾦仓ksql-Kingbase-V008R006C007B0012" class="headerlink" title="⼈⼤⾦仓ksql (Kingbase) V008R006C007B0012"></a>⼈⼤⾦仓ksql (Kingbase) V008R006C007B0012</h5><h3 id="3-实验步骤和抓图"><a href="#3-实验步骤和抓图" class="headerlink" title="3  实验步骤和抓图"></a>3  实验步骤和抓图</h3><h5 id="在本实验中，我只实现了书籍的增添，按书籍序号查询，指定删除书籍，实现读者信息录入的功能。"><a href="#在本实验中，我只实现了书籍的增添，按书籍序号查询，指定删除书籍，实现读者信息录入的功能。" class="headerlink" title="在本实验中，我只实现了书籍的增添，按书籍序号查询，指定删除书籍，实现读者信息录入的功能。"></a>在本实验中，我只实现了书籍的增添，按书籍序号查询，指定删除书籍，实现读者信息录入的功能。</h5><h5 id="1、创建book表"><a href="#1、创建book表" class="headerlink" title="1、创建book表"></a>1、创建book表</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519205129012.png" alt="image-20230519205129012"></p>
+<h5 id="2、创建reader表"><a href="#2、创建reader表" class="headerlink" title="2、创建reader表"></a>2、创建reader表</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519205147762.png" alt="image-20230519205147762"></p>
+<h5 id="下面展示PYQT5界面的书籍的增添，查询可借阅书籍，指定删除书籍，实现读者信息录入的功能。"><a href="#下面展示PYQT5界面的书籍的增添，查询可借阅书籍，指定删除书籍，实现读者信息录入的功能。" class="headerlink" title="下面展示PYQT5界面的书籍的增添，查询可借阅书籍，指定删除书籍，实现读者信息录入的功能。"></a>下面展示PYQT5界面的书籍的增添，查询可借阅书籍，指定删除书籍，实现读者信息录入的功能。</h5><h5 id="lt-1-gt-书籍的添加"><a href="#lt-1-gt-书籍的添加" class="headerlink" title="&lt;1&gt;书籍的添加"></a>&lt;1&gt;书籍的添加</h5><p>添加书籍的信息为 </p>
+<p>111,ThreeBody,XiDianPublish,666</p>
+<p>222,The Lonely,XiDianPublish,888</p>
+<p>333,Sagapo,XiDianPublish,999</p>
+<p>444,Ang,XiDianPublish,2222</p>
+<p>555,SKY,XiDianPublish,5555</p>
+<p>101,Polish,XiDianPublish,7777</p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519205302626.png" alt="image-20230519205302626"></p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519211149469.png" alt="image-20230519211149469"></p>
+<p> <img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519211251415.png" alt="image-20230519211251415"></p>
+<h5 id="lt-2-gt-查询可借阅书籍"><a href="#lt-2-gt-查询可借阅书籍" class="headerlink" title="&lt;2&gt;查询可借阅书籍"></a>&lt;2&gt;查询可借阅书籍</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519212226120.png" alt="image-20230519212226120"></p>
+<h5 id="lt-3-gt-指定删除书籍"><a href="#lt-3-gt-指定删除书籍" class="headerlink" title="&lt;3&gt;指定删除书籍"></a>&lt;3&gt;指定删除书籍</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519212307336.png" alt="image-20230519212307336"></p>
+<h5 id="lt-4-gt-实现读者信息录入"><a href="#lt-4-gt-实现读者信息录入" class="headerlink" title="&lt;4&gt;实现读者信息录入"></a>&lt;4&gt;实现读者信息录入</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519212359279.png" alt="image-20230519212359279"></p>
+<h4 id="题目要求功能均已实现"><a href="#题目要求功能均已实现" class="headerlink" title="题目要求功能均已实现"></a>题目要求功能均已实现</h4><p> 最终PYQT5代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> psycopg2</span><br><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">lineEditDemo</span>(<span class="title class_ inherited__">QWidget</span>):</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ButtonSearchClicked</span>(<span class="params">self,gConn,PList1,PEdit1</span>):</span><br><span class="line">        PList1.clear()</span><br><span class="line">        cur = gConn.cursor()</span><br><span class="line">        </span><br><span class="line">        cur.execute(<span class="string">&quot;select * from book;&quot;</span>)</span><br><span class="line">        rows = cur.fetchall()</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> rows:</span><br><span class="line">            PList1.addItem(QListWidgetItem(<span class="built_in">str</span>(row[<span class="number">0</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">1</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">2</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">3</span>])))</span><br><span class="line">        cur.close()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">PButtonInsertClicked</span>(<span class="params">self,gConn,PList1,PEdit1</span>):</span><br><span class="line"> </span><br><span class="line">        gConn = psycopg2.connect(host=<span class="string">&quot;127.0.0.1&quot;</span>, port=<span class="string">&quot;54321&quot;</span>, user=<span class="string">&quot;Sagapo&quot;</span>, password = <span class="string">&quot;201914&quot;</span>, database =<span class="string">&quot;test&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> gConn:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;connected&quot;</span>)</span><br><span class="line">        cur = gConn.cursor()   </span><br><span class="line">        text = PEdit1.text()</span><br><span class="line">        word_list = text.split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">        tuple_text = <span class="built_in">tuple</span>(word_list)</span><br><span class="line">        <span class="built_in">print</span>(tuple_text)</span><br><span class="line">        query = <span class="string">&quot;insert into book values(%s,%s,%s,%s);&quot;</span></span><br><span class="line">        cur.execute(<span class="string">&quot;insert into book values(&quot;</span>+<span class="built_in">str</span>(tuple_text[<span class="number">0</span>])+<span class="string">&#x27;,&#x27;</span>+<span class="built_in">str</span>(tuple_text[<span class="number">1</span>])+<span class="string">&#x27;,&#x27;</span>+<span class="built_in">str</span>(tuple_text[<span class="number">2</span>])+<span class="string">&#x27;,&#x27;</span>+<span class="built_in">str</span>(tuple_text[<span class="number">3</span>])+<span class="string">&#x27;);&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">        gConn.commit()</span><br><span class="line">        cur.execute(<span class="string">&quot;select * from book;&quot;</span>)</span><br><span class="line">        rows = cur.fetchall()</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> rows:</span><br><span class="line">            PList1.addItem(QListWidgetItem(<span class="built_in">str</span>(row[<span class="number">0</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">1</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">2</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">3</span>])))</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ButtonDeleteHaveClicked</span>(<span class="params">self,gConn,PList1,PEdit1</span>):</span><br><span class="line">        selected_items = PList1.selectedItems()</span><br><span class="line">        tuple_text = []</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> selected_items:</span><br><span class="line">            <span class="built_in">print</span>(item.text())</span><br><span class="line">            text = (item.text()).split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">            tuple_text.append(text[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(tuple_text)</span><br><span class="line">        cur = gConn.cursor()</span><br><span class="line">        <span class="keyword">for</span> xt <span class="keyword">in</span> tuple_text:</span><br><span class="line">            cur.execute(<span class="string">&quot;delete from book where bookid = &quot;</span> + <span class="built_in">str</span>(xt)+<span class="string">&#x27;;&#x27;</span>)</span><br><span class="line">        cur.close()</span><br><span class="line">        gConn.commit()</span><br><span class="line">        selected_row = PList1.currentRow()</span><br><span class="line">        item = PList1.takeItem(selected_row)</span><br><span class="line">        <span class="keyword">del</span> item</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ButtonQuitClicked</span>(<span class="params">self,gConn,PList1,PEdit1</span>):</span><br><span class="line">        PList1.clear()</span><br><span class="line">       </span><br><span class="line">        cur = gConn.cursor()</span><br><span class="line"></span><br><span class="line">        text = PEdit1.text()</span><br><span class="line">        cur.execute(text)</span><br><span class="line">        rows = cur.fetchall()</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> rows:</span><br><span class="line">            PList1.addItem(<span class="built_in">str</span>(row[<span class="number">0</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">1</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">2</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">3</span>]))   </span><br><span class="line">        cur.close()</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ButtonSignClicked</span>(<span class="params">self,gConn,PList1,PEdit1</span>):</span><br><span class="line">        PList1.clear()</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        cur = gConn.cursor()</span><br><span class="line"></span><br><span class="line">        text = PEdit1.text()</span><br><span class="line">        text = text.split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">        tuple_text = <span class="built_in">tuple</span>(text)</span><br><span class="line">        cur.execute(<span class="string">&quot;insert into reader values(&quot;</span> + <span class="built_in">str</span>(tuple_text[<span class="number">0</span>])+<span class="string">&#x27;,&#x27;</span>+<span class="built_in">str</span>(tuple_text[<span class="number">1</span>])+<span class="string">&#x27;);&#x27;</span>)</span><br><span class="line">        gConn.commit()</span><br><span class="line">        cur.execute(<span class="string">&quot;select * from reader;&quot;</span>)</span><br><span class="line">        rows = cur.fetchall()</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> rows:</span><br><span class="line">            PList1.addItem(QListWidgetItem(<span class="built_in">str</span>(row[<span class="number">0</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">1</span>])))</span><br><span class="line">        cur.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,parent=<span class="literal">None</span></span>):</span><br><span class="line">        gConn = psycopg2.connect(host=<span class="string">&quot;127.0.0.1&quot;</span>, port=<span class="string">&quot;54321&quot;</span>, user=<span class="string">&quot;Sagapo&quot;</span>, password = <span class="string">&quot;201914&quot;</span>, database =<span class="string">&quot;test&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> gConn:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;connected&quot;</span>)</span><br><span class="line">        <span class="built_in">super</span>(lineEditDemo, self).__init__(parent)</span><br><span class="line">        self.setWindowTitle(<span class="string">&#x27;ang\&#x27;s database&#x27;</span>)</span><br><span class="line">        self.resize(<span class="number">1840</span>, <span class="number">950</span>)  </span><br><span class="line"></span><br><span class="line">        <span class="comment">#实例化表单布局</span></span><br><span class="line">        flo=QFormLayout()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#创建4个文本输入框</span></span><br><span class="line">        PNormalLineEdit=QLineEdit()</span><br><span class="line">        PButtonSearch=QPushButton(<span class="string">&#x27;查询可借阅书籍&#x27;</span>)</span><br><span class="line">        PButtonEnter = QPushButton(<span class="string">&#x27;读者信息登记&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        PButtonInsert=QPushButton(<span class="string">&#x27;添加购进书籍&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        PButtonDeleteHave=QPushButton(<span class="string">&#x27;删除书籍&#x27;</span>)</span><br><span class="line">        PButtonQuit=QPushButton(<span class="string">&#x27;退出程序&#x27;</span>)</span><br><span class="line">        </span><br><span class="line">        PList=QListWidget()</span><br><span class="line"></span><br><span class="line">        PList.setResizeMode(<span class="number">1</span>)</span><br><span class="line">        PButtonSearch.clicked.connect(<span class="keyword">lambda</span>: self.ButtonSearchClicked(gConn,PList,PNormalLineEdit)) </span><br><span class="line">        PButtonInsert.clicked.connect(<span class="keyword">lambda</span>: self.PButtonInsertClicked(gConn,PList,PNormalLineEdit)) </span><br><span class="line">        PButtonEnter.clicked.connect(<span class="keyword">lambda</span>: self.ButtonSignClicked(gConn,PList,PNormalLineEdit))</span><br><span class="line">        PButtonDeleteHave.clicked.connect(<span class="keyword">lambda</span>: self.ButtonDeleteHaveClicked(gConn,PList,PNormalLineEdit)) </span><br><span class="line">        PButtonQuit.clicked.connect(<span class="keyword">lambda</span>: self.ButtonQuitClicked(gConn,PList,PNormalLineEdit)) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">#添加到表单布局中</span></span><br><span class="line">        <span class="comment">#flo.addRow(文本名称（可以自定义），文本框)</span></span><br><span class="line">        flo.addRow(<span class="string">&#x27;如果购进新的书籍，请输入书籍的信息：&#x27;</span>,PNormalLineEdit)</span><br><span class="line">        flo.addRow(<span class="string">&#x27;请点击插入上述书籍信息&#x27;</span>,PButtonInsert)</span><br><span class="line">        flo.addRow(<span class="string">&#x27;请点击查询可供借阅的书籍&#x27;</span>,PButtonSearch)</span><br><span class="line">        flo.addRow(<span class="string">&#x27;如果您想要借阅书籍，请输入您的信息&#x27;</span>,PButtonEnter)</span><br><span class="line">        flo.addRow(<span class="string">&#x27;消息列表&#x27;</span>,PList)</span><br><span class="line">        flo.addRow(<span class="string">&#x27;请选中一行，点击删除该书籍记录&#x27;</span>,PButtonDeleteHave)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">#设置setPlaceholderText()文本框浮现的文字</span></span><br><span class="line">        PNormalLineEdit.setPlaceholderText(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#setEchoMode()：设置显示效果</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#QLineEdit.Normal：正常显示所输入的字符，此为默认选项</span></span><br><span class="line">        PNormalLineEdit.setEchoMode(QLineEdit.Normal)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#设置窗口的布局</span></span><br><span class="line">        self.setLayout(flo)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">resizeEvent</span>(<span class="params">self, e</span>):</span><br><span class="line">            self.PList.height = self.flo.height -<span class="number">20</span></span><br><span class="line">            </span><br><span class="line">        </span><br><span class="line">            </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> QApplication.instance():</span><br><span class="line">        app = QApplication(sys.argv)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        app = QApplication.instance()</span><br><span class="line">    win=lineEditDemo()</span><br><span class="line">    win.show()</span><br><span class="line"></span><br><span class="line">    sys.exit(app.exec_()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="4-作业诚信承诺"><a href="#4-作业诚信承诺" class="headerlink" title="4  作业诚信承诺"></a>4  作业诚信承诺</h1><p>本报告是我个人独立完成的，并非从网上或从其他同学及从其他来源获取得到的，报告中引用他人的成果、数据、观点均已一一注明出处。</p>
+<p>​                    承诺人电子签名：</p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>大学大作业</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ctf密码er留校刷题</title>
     <url>/2022/12/21/ctf%E5%AF%86%E7%A0%81er%E7%95%99%E6%A0%A1%E5%88%B7%E9%A2%98/</url>
     <content><![CDATA[<h1 id="留校刷题喵"><a href="#留校刷题喵" class="headerlink" title="留校刷题喵"></a>留校刷题喵</h1><span id="more"></span>
@@ -254,187 +361,127 @@
       </tags>
   </entry>
   <entry>
-    <title>python_learn</title>
-    <url>/2022/10/04/python-learn/</url>
-    <content><![CDATA[<p>​	字符串前加b表示这是一个bytes对象</p>
-<p>字符串前加f表示这是一个</p>
-<p>大佬博客 <a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html">RSA算法原理（一） - 阮一峰的网络日志 (ruanyifeng.com)</a></p>
-<span id="more"></span>
+    <title>信号4</title>
+    <url>/2023/06/09/%E4%BF%A1%E5%8F%B74/</url>
+    <content><![CDATA[<h1 id="西安电子科技大学"><a href="#西安电子科技大学" class="headerlink" title="西安电子科技大学"></a>西安电子科技大学</h1><h3 id="信-号-与-系-统实验报告"><a href="#信-号-与-系-统实验报告" class="headerlink" title="信 号 与 系 统实验报告"></a>信 号 与 系 统实验报告</h3><h5 id="2023年6月9日"><a href="#2023年6月9日" class="headerlink" title="2023年6月9日"></a>2023年6月9日</h5><h4 id="一、实验题目：信号与系统实验四"><a href="#一、实验题目：信号与系统实验四" class="headerlink" title="一、实验题目：信号与系统实验四"></a>一、实验题目：信号与系统实验四</h4><span id="more"></span>
 
-<p>如果n可以被因数分解，d就可以算出，也就意味着私匙被解密。</p>
-<p>0x -16进制 </p>
-<p>strxor函数对两个等长字符串取异或</p>
-<p>getprime(n) 取一个n位素数</p>
-<p>powmod（m，e，n） &#x3D; m^e%n;</p>
-<p>gcd 取最大公因数</p>
-<p>ord 返回一个字符的ascii值</p>
-<p>map() 函数会根据提供的函数对指定序列做映射。</p>
-<p>append函数：将参数添加在字符串的后面</p>
-<p>第一个参数 function 以参数序列中的每一个元素调用 function 函数，返回包含每次 function 函数返回值的新列表。</p>
-<p>乘发逆元：<a href="https://oi-wiki.org/math/number-theory/inverse/">https://oi-wiki.org/math/number-theory/inverse/</a></p>
-<p>sage使用：</p>
-<p>欧拉函数:euler_phi</p>
-<p>对于rsa算法来说，如果取的两个质数相距很接近，则可以直接对这个大数进行开根号处理</p>
-<p>第二题: 大佬博客·：<a href="https://www.cnblogs.com/nul1/p/13489269.html">CTF中的RSA套路 - _nul1 - 博客园 (cnblogs.com)</a></p>
-<p>Python ljust() 方法返回一个原字符串左对齐,并使用空格填充至指定长度的新字符串。如果指定的长度小于原字符串的长度则返回原字符串</p>
-<p>assert（）相当于一个判断程序是否正确的断言，其实就相当于一个if语句。</p>
-<p>​		1、对于两个相近的随机素数，可以直接进行开根号处理，然后进行判断，算法为费马分解</p>
-<p><a href="https://www.freebuf.com/articles/database/290623.html">浅析RSA因子大小相近时分解因子攻击方法 - FreeBuf网络安全行业门户</a></p>
-<p>​		2、对于n很大而e很小，可以采用低指数加密来对n进行分解  参考博客：<a href="https://blog.csdn.net/fengerxi33/article/details/123353560">(74条消息) CTF_RSA_低加密指数攻击脚本_风二西的博客-CSDN博客_ctf rsa脚本</a></p>
-<p>​		3、给出dp或者dq 参考博客 <a href="https://oceansec.blog.csdn.net/article/details/121023558?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-121023558-blog-95500279.pc_relevant_multi_platform_whitelistv4&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-121023558-blog-95500279.pc_relevant_multi_platform_whitelistv4&utm_relevant_index=2">(74条消息) CTF-Crypto-RSA整理_OceanSec的博客-CSDN博客_ctf ras</a></p>
-<p>dp泄露:<a href="https://blog.csdn.net/weixin_45369385/article/details/109208109">(75条消息) RSA-详解dp泄漏_来梦桃子的博客-CSDN博客_rsa dp</a></p>
-<p>​		4、</p>
-<p>​		1️⃣e和欧拉函数不互素的情况 AMM算法进行开e次根 <a href="https://www.anquanke.com/post/id/262634">RSA中e和phi不互素时的AMM开根-安全客 - 安全资讯平台 (anquanke.com)</a></p>
-<p>​		2️⃣<a href="https://zhuanlan.zhihu.com/p/446499019">RSA中e和phi不互素时的AMM开根 - 知乎 (zhihu.com)</a></p>
-<p>​		3️⃣<a href="https://dgz-cyber.github.io/2020/03/03/RSA%E2%80%94%E2%80%94%E5%BD%93e%E4%B8%8E%CF%86(n)%E4%B8%8D%E4%BA%92%E7%B4%A0%E6%97%B6/">RSA——当e与φ(n)不互素时 · DGZ’s Blog (dgz-cyber.github.io)</a></p>
-<p>进入python第三方库文档命令 </p>
-<p>相关题型：<a href="https://www.freebuf.com/articles/web/287854.html">『CTF』史上最全 RSA 题目总结 - FreeBuf网络安全行业门户</a></p>
-<p>sage使用命令:</p>
-<p><a href="https://chu-kangming.gitee.io/crypto/Use-of-Sagemath-in-CTF-Cryptography.html">sagemath在ctf密码学中的使用 - GAEA (gitee.io)</a></p>
-<p><a href="https://tl2cents.github.io/2022/03/27/SageMath%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/">SageMath简明教程 | tl2cents blog</a></p>
-<h4 id="RSA常用工具博客：-原创-Crypto中RSA常用工具及python库说明-密码应用-看雪论坛-安全社区-安全招聘-bbs-pediy-com"><a href="#RSA常用工具博客：-原创-Crypto中RSA常用工具及python库说明-密码应用-看雪论坛-安全社区-安全招聘-bbs-pediy-com" class="headerlink" title="RSA常用工具博客：[原创]Crypto中RSA常用工具及python库说明-密码应用-看雪论坛-安全社区|安全招聘|bbs.pediy.com"></a>RSA常用工具博客：[<a href="https://bbs.pediy.com/thread-266504.htm">原创]Crypto中RSA常用工具及python库说明-密码应用-看雪论坛-安全社区|安全招聘|bbs.pediy.com</a></h4><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>线性同余生成器：</p>
-<p>zip函数：可以理解为压缩函数，以可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，返回由这些元组组成的对象以达成节约内存的作用。</p>
-<p>%02x：x表示以16进制输出，02表示不足两位，前面补0输出</p>
-]]></content>
-      <categories>
-        <category>一些工具的学习</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>信号3</title>
-    <url>/2023/06/02/%E4%BF%A1%E5%8F%B73/</url>
-    <content><![CDATA[<h1 id="西安电子科技大学"><a href="#西安电子科技大学" class="headerlink" title="西安电子科技大学"></a>西安电子科技大学</h1><h3 id="信-号-与-系-统实验报告"><a href="#信-号-与-系-统实验报告" class="headerlink" title="信 号 与 系 统实验报告"></a>信 号 与 系 统实验报告</h3><h5 id="2023年6月2日"><a href="#2023年6月2日" class="headerlink" title="2023年6月2日"></a>2023年6月2日</h5><h4 id="一、实验题目：信号与系统实验三"><a href="#一、实验题目：信号与系统实验三" class="headerlink" title="一、实验题目：信号与系统实验三"></a>一、实验题目：信号与系统实验三</h4><h4 id="二、实验摘要"><a href="#二、实验摘要" class="headerlink" title="二、实验摘要"></a>二、实验摘要</h4><h5 id="lt-1-gt-题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"><a href="#lt-1-gt-题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。" class="headerlink" title="&lt;1&gt;题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"></a>&lt;1&gt;题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。</h5><h5 id="lt-2-gt-题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。"><a href="#lt-2-gt-题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。" class="headerlink" title="&lt;2&gt;题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。"></a>&lt;2&gt;题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。</h5><h5 id="lt-3-gt-此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。"><a href="#lt-3-gt-此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。" class="headerlink" title="&lt;3&gt;此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。"></a>&lt;3&gt;此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。</h5><h5 id="lt-4-gt-本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。"><a href="#lt-4-gt-本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。" class="headerlink" title="&lt;4&gt;本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。"></a>&lt;4&gt;本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。</h5><span id="more"></span>
-
-<h4 id="三、题目描述"><a href="#三、题目描述" class="headerlink" title="三、题目描述"></a>三、题目描述</h4><h5 id="lt-1-gt-题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。"><a href="#lt-1-gt-题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。" class="headerlink" title="&lt;1&gt;题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。"></a>&lt;1&gt;题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。</h5><h5 id="lt-2-gt-题目二要求-求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。"><a href="#lt-2-gt-题目二要求-求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。" class="headerlink" title="&lt;2&gt;题目二要求 求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。"></a>&lt;2&gt;题目二要求 求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。</h5><h5 id="lt-3-gt-题目三要求-求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。"><a href="#lt-3-gt-题目三要求-求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。" class="headerlink" title="&lt;3&gt;题目三要求 求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。"></a>&lt;3&gt;题目三要求 求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。</h5><h5 id="lt-4-gt-题目四要求-对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。"><a href="#lt-4-gt-题目四要求-对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。" class="headerlink" title="&lt;4&gt;题目四要求 对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。"></a>&lt;4&gt;题目四要求 对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。</h5><h4 id="四、实验内容"><a href="#四、实验内容" class="headerlink" title="四、实验内容"></a>四、实验内容</h4><h5 id="题目一："><a href="#题目一：" class="headerlink" title="题目一："></a>题目一：</h5><h5 id="实验过程："><a href="#实验过程：" class="headerlink" title="实验过程："></a>实验过程：</h5><h5 id="利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"><a href="#利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。" class="headerlink" title="利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"></a>利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。</h5><h5 id="但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。"><a href="#但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。" class="headerlink" title="但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。"></a>但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。</h5><h5 id="实验结果："><a href="#实验结果：" class="headerlink" title="实验结果："></a>实验结果：</h5><img src="C:\Z.Sagapo\code\matlab\expriment3\f12.png" alt="f12" style="zoom:80%;" />
-
-<img src="C:\Z.Sagapo\code\matlab\expriment3\f13.png" alt="f13" style="zoom:80%;" />
-
-<h5 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms t w;</span><br><span class="line">f = <span class="built_in">exp</span>(<span class="number">-2</span>*<span class="built_in">abs</span>(t));</span><br><span class="line">y1 = fourier(f);</span><br><span class="line">y = <span class="number">1</span>/(<span class="number">1</span>+w^<span class="number">2</span>);</span><br><span class="line">y2 = ifourier(y);</span><br><span class="line"></span><br><span class="line"><span class="comment">%fplot(y1);</span></span><br><span class="line">grid on;</span><br><span class="line"></span><br><span class="line">fplot(y2);</span><br><span class="line">grid on;</span><br><span class="line">axis([<span class="number">-6</span> <span class="number">6</span> <span class="number">-0.05</span> <span class="number">0.55</span>])</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="题目二："><a href="#题目二：" class="headerlink" title="题目二："></a>题目二：</h5><h5 id="实验过程：-1"><a href="#实验过程：-1" class="headerlink" title="实验过程："></a>实验过程：</h5><h5 id="题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。其中分别求幅度大小和相位大小是，调用了abs函数和angle函数。并且阶跃函数有heaviside函数直接构造出来。"><a href="#题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。其中分别求幅度大小和相位大小是，调用了abs函数和angle函数。并且阶跃函数有heaviside函数直接构造出来。" class="headerlink" title="题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。其中分别求幅度大小和相位大小是，调用了abs函数和angle函数。并且阶跃函数有heaviside函数直接构造出来。"></a>题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。其中分别求幅度大小和相位大小是，调用了abs函数和angle函数。并且阶跃函数有heaviside函数直接构造出来。</h5><h5 id="实验结果：-1"><a href="#实验结果：-1" class="headerlink" title="实验结果："></a>实验结果：</h5><h5 id="根据理论和图像可以得出，傅里叶变换时移性对函数幅度谱不会产生变化，而相位谱则会发生变化。"><a href="#根据理论和图像可以得出，傅里叶变换时移性对函数幅度谱不会产生变化，而相位谱则会发生变化。" class="headerlink" title="根据理论和图像可以得出，傅里叶变换时移性对函数幅度谱不会产生变化，而相位谱则会发生变化。"></a>根据理论和图像可以得出，傅里叶变换时移性对函数幅度谱不会产生变化，而相位谱则会发生变化。</h5><h5 id="对信号进行时移会导致相位谱在频域上发生线性的变化。这是因为时移实际上是将信号的每个频率成分在时间上移动相同的量。"><a href="#对信号进行时移会导致相位谱在频域上发生线性的变化。这是因为时移实际上是将信号的每个频率成分在时间上移动相同的量。" class="headerlink" title="对信号进行时移会导致相位谱在频域上发生线性的变化。这是因为时移实际上是将信号的每个频率成分在时间上移动相同的量。"></a>对信号进行时移会导致相位谱在频域上发生线性的变化。这是因为时移实际上是将信号的每个频率成分在时间上移动相同的量。</h5><img src="C:\Z.Sagapo\code\matlab\expriment3\f21_1.png" alt="f21_1" style="zoom:80%;" />
-
-<img src="C:\Z.Sagapo\code\matlab\expriment3\f22.png" alt="f22" style="zoom:80%;" />
-
-<h5 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms t w; </span><br><span class="line">y1 = (<span class="number">1</span>/<span class="number">2</span>)*<span class="built_in">exp</span>(<span class="number">-2</span>*t)*heaviside(t);</span><br><span class="line">y2 = (<span class="number">1</span>/<span class="number">2</span>)*<span class="built_in">exp</span>(<span class="number">-2</span>*(t<span class="number">-1</span>))*heaviside(t<span class="number">-1</span>);</span><br><span class="line">outy1 = fourier(y1);</span><br><span class="line">outy2 = fourier(y2);</span><br><span class="line"></span><br><span class="line">fplot(outy1);</span><br><span class="line">fplot(outy2);</span><br><span class="line"></span><br><span class="line">fudu1 = <span class="built_in">abs</span>(outy1);</span><br><span class="line">fudu2 = <span class="built_in">abs</span>(outy2);</span><br><span class="line"></span><br><span class="line">xiang1 = <span class="built_in">angle</span>(outy1);</span><br><span class="line">xiang2 = <span class="built_in">angle</span>(outy2);</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">fplot(fudu1);</span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;幅度谱&#x27;</span>);</span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">fplot(xiang1);</span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;相位谱&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="题目三："><a href="#题目三：" class="headerlink" title="题目三："></a>题目三：</h5><h5 id="实验过程：-2"><a href="#实验过程：-2" class="headerlink" title="实验过程："></a>实验过程：</h5><h5 id="求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。"><a href="#求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。" class="headerlink" title="求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。"></a>求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。</h5><h5 id="实验结果：设函数f-t-的傅里叶变换为F-ω-，幅度谱为-F-ω-，相位谱为ϕ-ω-。同样，函数g-t-的傅里叶变换为G-ω-，幅度谱为-G-ω-，相位谱为φ-ω-。"><a href="#实验结果：设函数f-t-的傅里叶变换为F-ω-，幅度谱为-F-ω-，相位谱为ϕ-ω-。同样，函数g-t-的傅里叶变换为G-ω-，幅度谱为-G-ω-，相位谱为φ-ω-。" class="headerlink" title="实验结果：设函数f(t)的傅里叶变换为F(ω)，幅度谱为|F(ω)|，相位谱为ϕ(ω)。同样，函数g(t)的傅里叶变换为G(ω)，幅度谱为|G(ω)|，相位谱为φ(ω)。"></a>实验结果：设函数f(t)的傅里叶变换为F(ω)，幅度谱为|F(ω)|，相位谱为ϕ(ω)。同样，函数g(t)的傅里叶变换为G(ω)，幅度谱为|G(ω)|，相位谱为φ(ω)。</h5><h5 id="那么，两个函数的乘积h-t-x3D-f-t-g-t-的傅里叶变换的幅度谱为："><a href="#那么，两个函数的乘积h-t-x3D-f-t-g-t-的傅里叶变换的幅度谱为：" class="headerlink" title="那么，两个函数的乘积h(t) &#x3D; f(t) * g(t)的傅里叶变换的幅度谱为："></a>那么，两个函数的乘积h(t) &#x3D; f(t) * g(t)的傅里叶变换的幅度谱为：</h5><p>$$<br>|H(ω)| &#x3D; |F(ω)| * |G(ω)|<br>$$</p>
-<h5 id="即乘积的幅度谱等于两个函数的幅度谱的点乘。"><a href="#即乘积的幅度谱等于两个函数的幅度谱的点乘。" class="headerlink" title="即乘积的幅度谱等于两个函数的幅度谱的点乘。"></a>即乘积的幅度谱等于两个函数的幅度谱的点乘。</h5><h5 id="而相位谱的情况稍微复杂一些。两个函数的乘积的相位谱可以表示为："><a href="#而相位谱的情况稍微复杂一些。两个函数的乘积的相位谱可以表示为：" class="headerlink" title="而相位谱的情况稍微复杂一些。两个函数的乘积的相位谱可以表示为："></a>而相位谱的情况稍微复杂一些。两个函数的乘积的相位谱可以表示为：</h5><p>$$<br>ϕ_h(ω) &#x3D; ϕ_f(ω) + ϕ_g(ω)<br>$$</p>
-<h5 id="即乘积的相位谱等于两个函数的相位谱的点相加。"><a href="#即乘积的相位谱等于两个函数的相位谱的点相加。" class="headerlink" title="即乘积的相位谱等于两个函数的相位谱的点相加。"></a>即乘积的相位谱等于两个函数的相位谱的点相加。</h5><h5 id="这意味着乘积的幅度谱是原始函数幅度谱的乘积，而相位谱是原始函数相位谱的简单相加。"><a href="#这意味着乘积的幅度谱是原始函数幅度谱的乘积，而相位谱是原始函数相位谱的简单相加。" class="headerlink" title="这意味着乘积的幅度谱是原始函数幅度谱的乘积，而相位谱是原始函数相位谱的简单相加。"></a>这意味着乘积的幅度谱是原始函数幅度谱的乘积，而相位谱是原始函数相位谱的简单相加。</h5><h5 id="需要注意的是，以上的关系是在频域上的。在时域上进行函数的乘积会导致频域上的卷积操作，从而改变函数的幅度谱和相位谱。"><a href="#需要注意的是，以上的关系是在频域上的。在时域上进行函数的乘积会导致频域上的卷积操作，从而改变函数的幅度谱和相位谱。" class="headerlink" title="需要注意的是，以上的关系是在频域上的。在时域上进行函数的乘积会导致频域上的卷积操作，从而改变函数的幅度谱和相位谱。"></a>需要注意的是，以上的关系是在频域上的。在时域上进行函数的乘积会导致频域上的卷积操作，从而改变函数的幅度谱和相位谱。</h5><img src="C:\Z.Sagapo\code\matlab\expriment3\f31.png" alt="f31" style="zoom:80%;" />
-
-<h5 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms t w;</span><br><span class="line">w_c = <span class="number">100</span>;</span><br><span class="line">y1 = heaviside(t+<span class="number">2</span>) - heaviside(t<span class="number">-2</span>);</span><br><span class="line">y2 = (<span class="number">1</span>/<span class="number">2</span>)*<span class="built_in">exp</span>(<span class="number">-2</span>*(t<span class="number">-1</span>))*heaviside(t<span class="number">-1</span>);</span><br><span class="line">y3 = y1.*y2;</span><br><span class="line"></span><br><span class="line">y_1 = fourier(y1);</span><br><span class="line">y_2 = fourier(y2);</span><br><span class="line">y_3 = fourier(y3);</span><br><span class="line"></span><br><span class="line">tempy1 = <span class="built_in">abs</span>(y_1);</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">ezplot(tempy1,[-w_c, w_c, <span class="number">0</span>, <span class="number">4</span>]);</span><br><span class="line">grid on;</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">w = <span class="number">-110</span>:<span class="number">0.01</span>:<span class="number">110</span>;</span><br><span class="line"><span class="built_in">plot</span>(w,<span class="built_in">sign</span>(subs(y_2,w)));</span><br><span class="line">fplot(y_2);</span><br><span class="line">grid on;</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">w = <span class="number">-110</span>:<span class="number">110</span>;</span><br><span class="line">fplot(w,subs(<span class="built_in">abs</span>(y_3)));</span><br><span class="line">grid on;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="题目四："><a href="#题目四：" class="headerlink" title="题目四："></a>题目四：</h5><h5 id="实验过程：-3"><a href="#实验过程：-3" class="headerlink" title="实验过程："></a>实验过程：</h5><h5 id="本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。"><a href="#本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。" class="headerlink" title="本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。"></a>本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。</h5><h5 id="通过结果我们发现："><a href="#通过结果我们发现：" class="headerlink" title="通过结果我们发现："></a>通过结果我们发现：</h5><h5 id="由于阶数-n-的不同，低通巴特沃斯滤波器的幅度谱和相位谱图像会有以下特点："><a href="#由于阶数-n-的不同，低通巴特沃斯滤波器的幅度谱和相位谱图像会有以下特点：" class="headerlink" title="由于阶数 n 的不同，低通巴特沃斯滤波器的幅度谱和相位谱图像会有以下特点："></a>由于阶数 n 的不同，低通巴特沃斯滤波器的幅度谱和相位谱图像会有以下特点：</h5><ol>
-<li><h5 id="幅度谱："><a href="#幅度谱：" class="headerlink" title="幅度谱："></a>幅度谱：</h5><ul>
-<li><h5 id="阶数-n-的增加会导致滤波器的陷波特性更加明显，即在截止频率附近会出现更大的衰减。"><a href="#阶数-n-的增加会导致滤波器的陷波特性更加明显，即在截止频率附近会出现更大的衰减。" class="headerlink" title="阶数 n 的增加会导致滤波器的陷波特性更加明显，即在截止频率附近会出现更大的衰减。"></a>阶数 n 的增加会导致滤波器的陷波特性更加明显，即在截止频率附近会出现更大的衰减。</h5></li>
-<li><h5 id="阶数-n-的增加会使滤波器的幅度谱更陡峭，即从通过频率到截止频率之间的幅度变化更加剧烈。"><a href="#阶数-n-的增加会使滤波器的幅度谱更陡峭，即从通过频率到截止频率之间的幅度变化更加剧烈。" class="headerlink" title="阶数 n 的增加会使滤波器的幅度谱更陡峭，即从通过频率到截止频率之间的幅度变化更加剧烈。"></a>阶数 n 的增加会使滤波器的幅度谱更陡峭，即从通过频率到截止频率之间的幅度变化更加剧烈。</h5></li>
-</ul>
-</li>
-<li><h5 id="相位谱："><a href="#相位谱：" class="headerlink" title="相位谱："></a>相位谱：</h5><ul>
-<li><h5 id="阶数-n-的增加不会对滤波器的相位谱产生明显的影响。"><a href="#阶数-n-的增加不会对滤波器的相位谱产生明显的影响。" class="headerlink" title="阶数 n 的增加不会对滤波器的相位谱产生明显的影响。"></a>阶数 n 的增加不会对滤波器的相位谱产生明显的影响。</h5></li>
-<li><h5 id="低通巴特沃斯滤波器的相位谱是线性的，没有随频率变化而产生明显的扭曲或畸变。"><a href="#低通巴特沃斯滤波器的相位谱是线性的，没有随频率变化而产生明显的扭曲或畸变。" class="headerlink" title="低通巴特沃斯滤波器的相位谱是线性的，没有随频率变化而产生明显的扭曲或畸变。"></a>低通巴特沃斯滤波器的相位谱是线性的，没有随频率变化而产生明显的扭曲或畸变。</h5></li>
-</ul>
-</li>
+<h4 id="二、实验摘要"><a href="#二、实验摘要" class="headerlink" title="二、实验摘要"></a>二、实验摘要</h4><h4 id="实验内容简述："><a href="#实验内容简述：" class="headerlink" title="实验内容简述："></a>实验内容简述：</h4><p><strong>题目一：</strong></p>
+<ol>
+<li><strong>使用符号工具箱 (<code>syms</code>) 声明变量 <code>t</code> 作为符号变量。</strong></li>
+<li><strong>定义函数 <code>f</code>，它是变量 <code>t</code> 的线性表达式 <code>t+2</code>。</strong></li>
+<li><strong>使用 <code>laplace</code> 函数对函数 <code>f</code> 进行拉普拉斯变换，结果存储在变量 <code>F</code> 中。</strong></li>
+<li><strong>清除符号变量 <code>t</code>。</strong></li>
+<li><strong>重新声明符号变量 <code>t</code>。</strong></li>
+<li><strong>重新定义函数 <code>f</code>，它是变量 <code>t</code> 的线性表达式 <code>t+2</code>。</strong></li>
+<li><strong>定义向量 <code>a</code>，其元素为 <code>[1,0,1]</code>。</strong></li>
+<li><strong>定义向量 <code>b</code>，其元素为 <code>[3,5,4,6]</code>。</strong></li>
+<li><strong>使用 <code>roots</code> 函数分别计算向量 <code>a</code> 和 <code>b</code> 的根，并将结果分别存储在变量 <code>outa</code> 和 <code>outb</code> 中。</strong></li>
+<li><strong>使用 <code>plot</code> 函数绘制 <code>outa</code> 的实部和虚部作为圆点（<code>o</code>）以及 <code>outb</code> 的实部和虚部作为叉号（<code>x</code>）。</strong></li>
+<li><strong>使用 <code>grid on</code> 打开网格显示。</strong></li>
+<li><strong>使用 <code>axis</code> 函数设置图形的坐标轴范围为 <code>[-2 0.5 -2 2]</code>。</strong></li>
 </ol>
-<h5 id="综上所述，随着阶数-n-的增加，低通巴特沃斯滤波器的幅度谱图像会更加陡峭，截止频率附近的衰减更明显，而相位谱图像保持线性且不变。因此，阶数-n-对于滤波器的频率响应形状和幅度特性具有显著影响，而对相位特性影响较小。"><a href="#综上所述，随着阶数-n-的增加，低通巴特沃斯滤波器的幅度谱图像会更加陡峭，截止频率附近的衰减更明显，而相位谱图像保持线性且不变。因此，阶数-n-对于滤波器的频率响应形状和幅度特性具有显著影响，而对相位特性影响较小。" class="headerlink" title="综上所述，随着阶数 n 的增加，低通巴特沃斯滤波器的幅度谱图像会更加陡峭，截止频率附近的衰减更明显，而相位谱图像保持线性且不变。因此，阶数 n 对于滤波器的频率响应形状和幅度特性具有显著影响，而对相位特性影响较小。"></a>综上所述，随着阶数 n 的增加，低通巴特沃斯滤波器的幅度谱图像会更加陡峭，截止频率附近的衰减更明显，而相位谱图像保持线性且不变。因此，阶数 n 对于滤波器的频率响应形状和幅度特性具有显著影响，而对相位特性影响较小。</h5><img src="C:\Z.Sagapo\code\matlab\expriment3\f52_2.png" alt="f52_2" style="zoom: 80%;" />
+<h5 id="题目二："><a href="#题目二：" class="headerlink" title="题目二："></a>题目二：</h5><ol>
+<li><h5 id="定义了系统的传输函数分子和分母多项式。"><a href="#定义了系统的传输函数分子和分母多项式。" class="headerlink" title="定义了系统的传输函数分子和分母多项式。"></a>定义了系统的传输函数分子和分母多项式。</h5></li>
+<li><h5 id="计算并绘制了系统的单位冲激响应。"><a href="#计算并绘制了系统的单位冲激响应。" class="headerlink" title="计算并绘制了系统的单位冲激响应。"></a>计算并绘制了系统的单位冲激响应。</h5></li>
+<li><h5 id="计算并绘制了系统对单位阶跃信号的响应。"><a href="#计算并绘制了系统对单位阶跃信号的响应。" class="headerlink" title="计算并绘制了系统对单位阶跃信号的响应。"></a>计算并绘制了系统对单位阶跃信号的响应。</h5></li>
+<li><h5 id="使用拉普拉斯变换计算了信号的频域表达式。"><a href="#使用拉普拉斯变换计算了信号的频域表达式。" class="headerlink" title="使用拉普拉斯变换计算了信号的频域表达式。"></a>使用拉普拉斯变换计算了信号的频域表达式。</h5></li>
+<li><h5 id="定义了系统的传递函数，并计算了系统输出的频域表达式。"><a href="#定义了系统的传递函数，并计算了系统输出的频域表达式。" class="headerlink" title="定义了系统的传递函数，并计算了系统输出的频域表达式。"></a>定义了系统的传递函数，并计算了系统输出的频域表达式。</h5></li>
+<li><h5 id="使用逆拉普拉斯变换计算了系统输出的时域表达式，并绘制了其图形。"><a href="#使用逆拉普拉斯变换计算了系统输出的时域表达式，并绘制了其图形。" class="headerlink" title="使用逆拉普拉斯变换计算了系统输出的时域表达式，并绘制了其图形。"></a>使用逆拉普拉斯变换计算了系统输出的时域表达式，并绘制了其图形。</h5></li>
+</ol>
+<h4 id="三、题目描述"><a href="#三、题目描述" class="headerlink" title="三、题目描述"></a><strong>三、题目描述</strong></h4><h5 id="题目一："><a href="#题目一：" class="headerlink" title="题目一："></a>题目一：</h5><h5 id="首先实现给函数的拉普拉斯变换"><a href="#首先实现给函数的拉普拉斯变换" class="headerlink" title="首先实现给函数的拉普拉斯变换"></a>首先实现给函数的拉普拉斯变换</h5><h5 id="然后对给定的因果函数的系统函数进行分析，画出其零点和极点的分布图，从而判断系统的稳定性。"><a href="#然后对给定的因果函数的系统函数进行分析，画出其零点和极点的分布图，从而判断系统的稳定性。" class="headerlink" title="然后对给定的因果函数的系统函数进行分析，画出其零点和极点的分布图，从而判断系统的稳定性。"></a>然后对给定的因果函数的系统函数进行分析，画出其零点和极点的分布图，从而判断系统的稳定性。</h5><h5 id="题目二：-1"><a href="#题目二：-1" class="headerlink" title="题目二："></a>题目二：</h5><h5 id="首先利用ilaplace函数求出给定的系统函数的傅里叶逆变换，利用impulse函数画出其冲激响应的图像，然后调用step函数画出其阶跃响应的图像，最后对于给定的系统激励，计算出其零状态响应，并对图像进行官观察分析。"><a href="#首先利用ilaplace函数求出给定的系统函数的傅里叶逆变换，利用impulse函数画出其冲激响应的图像，然后调用step函数画出其阶跃响应的图像，最后对于给定的系统激励，计算出其零状态响应，并对图像进行官观察分析。" class="headerlink" title="首先利用ilaplace函数求出给定的系统函数的傅里叶逆变换，利用impulse函数画出其冲激响应的图像，然后调用step函数画出其阶跃响应的图像，最后对于给定的系统激励，计算出其零状态响应，并对图像进行官观察分析。"></a>首先利用ilaplace函数求出给定的系统函数的傅里叶逆变换，利用impulse函数画出其冲激响应的图像，然后调用step函数画出其阶跃响应的图像，最后对于给定的系统激励，计算出其零状态响应，并对图像进行官观察分析。</h5><h4 id="四、实验内容"><a href="#四、实验内容" class="headerlink" title="四、实验内容"></a>四、实验内容</h4><h5 id="题目一：-1"><a href="#题目一：-1" class="headerlink" title="题目一："></a>题目一：</h5><h5 id="实验过程："><a href="#实验过程：" class="headerlink" title="实验过程："></a>实验过程：</h5><ol>
+<li><strong>使用符号工具箱 (<code>syms</code>) 声明变量 <code>t</code> 作为符号变量。</strong></li>
+<li><strong>定义函数 <code>f</code>，它是变量 <code>t</code> 的线性表达式 <code>t+2</code>。</strong></li>
+<li><strong>使用 <code>laplace</code> 函数对函数 <code>f</code> 进行拉普拉斯变换，结果存储在变量 <code>F</code> 中。</strong></li>
+<li><strong>清除符号变量 <code>t</code>。</strong></li>
+<li><strong>重新声明符号变量 <code>t</code>。</strong></li>
+<li><strong>重新定义函数 <code>f</code>，它是变量 <code>t</code> 的线性表达式 <code>t+2</code>。</strong></li>
+<li><strong>定义向量 <code>a</code>，其元素为 <code>[1,0,1]</code>。</strong></li>
+<li><strong>定义向量 <code>b</code>，其元素为 <code>[3,5,4,6]</code>。</strong></li>
+<li><strong>使用 <code>roots</code> 函数分别计算向量 <code>a</code> 和 <code>b</code> 的根，并将结果分别存储在变量 <code>outa</code> 和 <code>outb</code> 中。</strong></li>
+<li><strong>使用 <code>plot</code> 函数绘制 <code>outa</code> 的实部和虚部作为圆点（<code>o</code>）以及 <code>outb</code> 的实部和虚部作为叉号（<code>x</code>）。</strong></li>
+<li><strong>使用 <code>grid on</code> 打开网格显示。</strong></li>
+<li><strong>使用 <code>axis</code> 函数设置图形的坐标轴范围为 <code>[-2 0.5 -2 2]</code>。</strong></li>
+</ol>
+<h5 id="最终根据结果分析："><a href="#最终根据结果分析：" class="headerlink" title="最终根据结果分析："></a>最终根据结果分析：</h5><h5 id="由图可得，H1的极点出现在右半开平面，所以H1不稳定；H2的极点都在左半开平面，所以H2是稳定的系统"><a href="#由图可得，H1的极点出现在右半开平面，所以H1不稳定；H2的极点都在左半开平面，所以H2是稳定的系统" class="headerlink" title="由图可得，H1的极点出现在右半开平面，所以H1不稳定；H2的极点都在左半开平面，所以H2是稳定的系统"></a>由图可得，H1的极点出现在右半开平面，所以H1不稳定；H2的极点都在左半开平面，所以H2是稳定的系统</h5><h5 id="实验结果图："><a href="#实验结果图：" class="headerlink" title="实验结果图："></a>实验结果图：</h5><img src="C:\Z.Sagapo\code\matlab\expriment4\f12.png" alt="f12" style="zoom: 80%;" />
 
-<img src="C:\Z.Sagapo\code\matlab\expriment3\f53.png" alt="f53" style="zoom: 80%;" />
+<p><img src="C:\Z.Sagapo\code\matlab\expriment4\f12_3.png" alt="f12_3"></p>
+<img src="C:\Z.Sagapo\code\matlab\expriment4\f13.png" alt="f13"  />
 
-<img src="C:\Z.Sagapo\code\matlab\expriment3\f54.png" alt="f54" style="zoom: 80%;" />
-
-<img src="C:\Z.Sagapo\code\matlab\expriment3\f55.png" alt="f55" style="zoom: 80%;" />
-
-
-
-<img src="C:\Z.Sagapo\code\matlab\expriment3\f52.png" alt="f52"  />
-
-<h5 id="代码：-2"><a href="#代码：-2" class="headerlink" title="代码："></a>代码：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">wc = <span class="number">600</span>*<span class="built_in">pi</span>;  </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">w = <span class="built_in">logspace</span>(<span class="built_in">log10</span>(<span class="number">1</span>), <span class="built_in">log10</span>(<span class="number">10000</span>), <span class="number">10000</span>);  <span class="comment">% 频率范围</span></span><br><span class="line">n = <span class="number">5</span>;</span><br><span class="line">H = <span class="number">1</span> ./ (<span class="number">1</span> - <span class="number">1</span><span class="built_in">i</span> * (w ./ wc).^n);  <span class="comment">% 幅频函数</span></span><br><span class="line">H_mag = <span class="built_in">abs</span>(H);  <span class="comment">% 幅度谱</span></span><br><span class="line">semilogx(w, H_mag)</span><br><span class="line">xlabel(<span class="string">&#x27;频率 (w)&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;|H(jw)|&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;幅度谱&#x27;</span>)</span><br><span class="line">H_phase = <span class="built_in">angle</span>(H);  <span class="comment">% 相位谱</span></span><br><span class="line">grid on;</span><br><span class="line">axis([<span class="number">-0.1</span> <span class="number">10005</span> <span class="number">0</span> <span class="number">1.1</span>]);</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;n=5&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<img src="C:\Z.Sagapo\code\matlab\expriment3\f63.png" alt="f63" style="zoom:80%;" />
-
-<img src="C:\Z.Sagapo\code\matlab\expriment3\f64.png" alt="f64" style="zoom:80%;" />
-
-<img src="C:\Z.Sagapo\code\matlab\expriment3\f65.png" alt="f65" style="zoom:80%;" />
-
-<p><img src="C:\Z.Sagapo\code\matlab\expriment3\f61.png" alt="f61"></p>
-<h5 id="代码：-3"><a href="#代码：-3" class="headerlink" title="代码："></a>代码：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">wc = <span class="number">600</span>*<span class="built_in">pi</span>;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">w = <span class="built_in">logspace</span>(<span class="built_in">log10</span>(<span class="number">1</span>), <span class="built_in">log10</span>(<span class="number">10000</span>), <span class="number">10000</span>);  </span><br><span class="line">n = <span class="number">2</span>;    </span><br><span class="line">H = <span class="number">1</span> ./ (<span class="number">1</span> - <span class="number">1</span><span class="built_in">i</span> * (w ./ wc).^n);  </span><br><span class="line"></span><br><span class="line">H_phase = <span class="built_in">angle</span>(H);  </span><br><span class="line"></span><br><span class="line">semilogx(w, H_phase)</span><br><span class="line">xlabel(<span class="string">&#x27;频率 (w)&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;相位 (弧度)&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;相位谱&#x27;</span>)</span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"></span><br><span class="line">n = <span class="number">3</span>;    </span><br><span class="line">H = <span class="number">1</span> ./ (<span class="number">1</span> - <span class="number">1</span><span class="built_in">i</span> * (w ./ wc).^n); </span><br><span class="line"></span><br><span class="line">H_phase = <span class="built_in">angle</span>(H); </span><br><span class="line"></span><br><span class="line">semilogx(w, H_phase)</span><br><span class="line">xlabel(<span class="string">&#x27;频率 (w)&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;相位 (弧度)&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;相位谱&#x27;</span>)</span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"></span><br><span class="line">n = <span class="number">4</span>;     </span><br><span class="line">H = <span class="number">1</span> ./ (<span class="number">1</span> - <span class="number">1</span><span class="built_in">i</span> * (w ./ wc).^n);  </span><br><span class="line"></span><br><span class="line">H_phase = <span class="built_in">angle</span>(H);  </span><br><span class="line"></span><br><span class="line">semilogx(w, H_phase)</span><br><span class="line">xlabel(<span class="string">&#x27;频率 (w)&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;相位 (弧度)&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;相位谱&#x27;</span>)</span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"></span><br><span class="line">n = <span class="number">5</span>; </span><br><span class="line">H = <span class="number">1</span> ./ (<span class="number">1</span> - <span class="number">1</span><span class="built_in">i</span> * (w ./ wc).^n);</span><br><span class="line"></span><br><span class="line">H_phase = <span class="built_in">angle</span>(H);  </span><br><span class="line"></span><br><span class="line">semilogx(w, H_phase)</span><br><span class="line">xlabel(<span class="string">&#x27;频率 (w)&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;相位 (弧度)&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;相位谱&#x27;</span>)</span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">hold</span> on;</span><br></pre></td></tr></table></figure>
+<p><img src="C:\Z.Sagapo\code\matlab\expriment4\f13_3.png" alt="f13_3"></p>
+<p>实验代码：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms t;</span><br><span class="line">f = t+<span class="number">2</span>;</span><br><span class="line">F = laplace(f);</span><br><span class="line"></span><br><span class="line">b=[<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line">a=[<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">6</span>];</span><br><span class="line">zplane(b,a);</span><br><span class="line">outa=roots(a);</span><br><span class="line">outb=roots(b);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%plot(real(outb),imag(outb),&#x27;o&#x27;,real(outa),imag(outa),&#x27;x&#x27;,&#x27;markersize&#x27;,12);</span></span><br><span class="line"></span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;零点&#x27;</span>,<span class="string">&#x27;极点&#x27;</span>);</span><br><span class="line">axis([<span class="number">-3</span> <span class="number">1</span> <span class="number">-3</span> <span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line">a = [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>];</span><br><span class="line">b = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">6</span>];</span><br><span class="line">zplane(a,b);</span><br><span class="line">outa = roots(a);</span><br><span class="line">outb = roots(b);</span><br><span class="line"></span><br><span class="line"><span class="comment">%plot(real(outa),imag(outa),&#x27;o&#x27;,real(outb),imag(outb),&#x27;x&#x27;,&#x27;MarkerSize&#x27;,12);</span></span><br><span class="line">grid on;</span><br><span class="line">axis([<span class="number">-2</span> <span class="number">0.5</span> <span class="number">-2</span> <span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="五、实验总结"><a href="#五、实验总结" class="headerlink" title="五、实验总结"></a>五、实验总结</h4><p><strong>在第二题一开始直接用fplot()绘制傅里叶变换后的幅度谱和相位谱，得不到结果，而应该绘制abs()模值部分和angle()辅角部分，因此分别定义abs(f1)和angle(f1)来绘制F1的图像，最终得到了结果</strong>。</p>
-<p><strong>乘积的幅度谱是原始函数幅度谱的点乘，而相位谱是原始函数相位谱的简单相加, 这是基于频域分析的结果，而在时域上对函数进行乘积会导致频域上的卷积操作，从而改变函数的幅度谱和相位谱。</strong></p>
-<h5 id="最后对于巴特沃斯滤波器的学习总结阶数-n-对于低通巴特沃斯滤波器的幅度谱图像具有显著影响，阶数的增加会使幅度谱更陡峭并导致更大的衰减。然而，阶数对于相位谱的影响较小，相位谱保持线性且不变。这些特点可以用于设计和分析低通巴特沃斯滤波器的频率响应。"><a href="#最后对于巴特沃斯滤波器的学习总结阶数-n-对于低通巴特沃斯滤波器的幅度谱图像具有显著影响，阶数的增加会使幅度谱更陡峭并导致更大的衰减。然而，阶数对于相位谱的影响较小，相位谱保持线性且不变。这些特点可以用于设计和分析低通巴特沃斯滤波器的频率响应。" class="headerlink" title="最后对于巴特沃斯滤波器的学习总结阶数 n 对于低通巴特沃斯滤波器的幅度谱图像具有显著影响，阶数的增加会使幅度谱更陡峭并导致更大的衰减。然而，阶数对于相位谱的影响较小，相位谱保持线性且不变。这些特点可以用于设计和分析低通巴特沃斯滤波器的频率响应。"></a>最后对于巴特沃斯滤波器的学习总结<strong>阶数 n 对于低通巴特沃斯滤波器的幅度谱图像具有显著影响，阶数的增加会使幅度谱更陡峭并导致更大的衰减。然而，阶数对于相位谱的影响较小，相位谱保持线性且不变。这些特点可以用于设计和分析低通巴特沃斯滤波器的频率响应。</strong></h5><h4 id="六、参考文献"><a href="#六、参考文献" class="headerlink" title="六、参考文献"></a><strong>六、参考文献</strong></h4><p>&lt;1&gt;<a href="https://blog.csdn.net/qq_43786066/article/details/108687806">https://blog.csdn.net/qq_43786066/article/details/108687806</a></p>
-<p>&lt;2&gt;<a href="https://ww2.mathworks.cn/help/matlab/complex-numbers.html">https://ww2.mathworks.cn/help/matlab/complex-numbers.html</a></p>
-<p>&lt;3&gt;<a href="https://blog.csdn.net/weixin_42870380/article/details/113122417?ops_request_misc=&request_id=&biz_id=102&utm_term=%E7%BB%98%E5%88%B6%E5%B7%B4%E7%89%B9%E6%B2%83%E6%96%AF%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E5%B9%85%E9%A2%91%E6%9B%B2%E7%BA%BF&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-113122417.268">https://blog.csdn.net/weixin_42870380/article/details/113122417?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=%E7%BB%98%E5%88%B6%E5%B7%B4%E7%89%B9%E6%B2%83%E6%96%AF%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E5%B9%85%E9%A2%91%E6%9B%B2%E7%BA%BF&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-113122417.268</a></p>
-<p>&lt;4&gt;<a href="https://blog.csdn.net/kissgoodbye2012/article/details/122018004">https://blog.csdn.net/kissgoodbye2012/article/details/122018004</a></p>
-]]></content>
+<h5 id="题目二：-2"><a href="#题目二：-2" class="headerlink" title="题目二："></a>题目二：</h5><h5 id="实验过程：-1"><a href="#实验过程：-1" class="headerlink" title="实验过程："></a>实验过程：</h5><ol>
+<li><strong>创建系统：</strong><ul>
+<li><strong>定义了分子多项式 <code>a = [1, 0]</code> 和分母多项式 <code>b = [1, 3, 2]</code>。</strong></li>
+<li><strong>使用 <code>tf</code> 函数创建系统传递函数 <code>sys</code>，由分子和分母多项式定义。</strong></li>
+</ul>
+</li>
+<li><strong>单位冲激响应：</strong><ul>
+<li><strong>创建时间向量 <code>t</code>，范围从 0 到 10，步长为 0.01。</strong></li>
+<li><strong>使用 <code>impulse</code> 函数计算系统 <code>sys</code> 的单位冲激响应 <code>h</code>，在时间向量 <code>t</code> 上。</strong></li>
+</ul>
+</li>
+<li><strong>单位冲激响应绘图：</strong><ul>
+<li><strong>打开网格显示。</strong></li>
+<li><strong>设置 x 轴标签为 ‘t’，y 轴标签为 ‘h(t)’。</strong></li>
+<li><strong>使用 <code>plot</code> 函数绘制时间向量 <code>t</code> 和单位冲激响应 <code>h</code>（该行代码被注释掉了）。</strong></li>
+</ul>
+</li>
+<li><strong>单位阶跃响应：</strong><ul>
+<li><strong>使用 <code>step</code> 函数计算系统 <code>sys</code> 的单位阶跃响应。</strong></li>
+</ul>
+</li>
+<li><strong>单位阶跃响应绘图：</strong><ul>
+<li><strong>打开网格显示。</strong></li>
+<li><strong>设置图形的 x 轴范围为 0 到 11，y 轴范围为 -0.02 到 0.29。</strong></li>
+</ul>
+</li>
+<li><strong>输入信号与系统响应：</strong><ul>
+<li><strong>创建信号 <code>f</code>，为 <code>cos(20*t)</code> 乘以一个逻辑函数 <code>t &gt; 0</code>。</strong></li>
+<li><strong>使用 <code>lsim</code> 函数计算系统 <code>sys</code> 对信号 <code>f</code> 的响应，并在时间向量 <code>t</code> 上得到结果。</strong></li>
+</ul>
+</li>
+<li><strong>输入信号与系统响应绘图：</strong><ul>
+<li><strong>打开网格显示。</strong></li>
+</ul>
+</li>
+<li><strong>频域分析：</strong><ul>
+<li><strong>声明符号变量 <code>t</code> 和 <code>s</code>。</strong></li>
+<li><strong>定义函数 <code>f</code>，为 <code>cos(20*t)</code> 乘以单位阶跃函数 <code>heaviside(t)</code>。</strong></li>
+<li><strong>使用 <code>laplace</code> 函数计算函数 <code>f</code> 的拉普拉斯变换，并将结果存储在变量 <code>Fs</code> 中。</strong></li>
+<li><strong>定义系统的传递函数 <code>Hs</code>。</strong></li>
+<li><strong>计算系统输出的拉普拉斯变换 <code>Ys</code>，为函数 <code>Fs</code> 与传递函数 <code>Hs</code> 相乘。</strong></li>
+</ul>
+</li>
+<li><strong>逆拉普拉斯变换绘图：</strong><ul>
+<li><strong>使用 <code>ilaplace</code> 函数计算 <code>Ys</code> 的逆拉普拉斯变换，并将结果存储在变量 <code>yzs</code> 中。</strong></li>
+<li><strong>使用 <code>fplot</code> 函数绘制函数 <code>yzs</code> 的图形。</strong></li>
+</ul>
+</li>
+<li><strong>逆拉普拉斯变换绘图范围：</strong></li>
+</ol>
+<ul>
+<li><strong>打开网格显示。</strong></li>
+<li><strong>设置图形的 x 轴范围为 -5 到 5，y 轴范围为 -5.1 到 0.1。</strong></li>
+</ul>
+<h5 id="实验结果图：-1"><a href="#实验结果图：-1" class="headerlink" title="实验结果图："></a>实验结果图：</h5><img src="C:\Z.Sagapo\code\matlab\expriment4\f21.png" alt="f21" style="zoom: 80%;" />
+
+<img src="C:\Z.Sagapo\code\matlab\expriment4\f22.png" alt="f22" style="zoom:80%;" />
+
+<h5 id="实验代码："><a href="#实验代码：" class="headerlink" title="实验代码："></a>实验代码：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">0</span>];</span><br><span class="line">b = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">sys = tf(a,b);</span><br><span class="line">t = <span class="number">0</span>:<span class="number">0.01</span>:<span class="number">10</span>;</span><br><span class="line">h = impulse(sys,t); </span><br><span class="line"><span class="comment">%plot(t,h);</span></span><br><span class="line"></span><br><span class="line">grid on;</span><br><span class="line">xlabel(<span class="string">&#x27;t&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;h(t)&#x27;</span>);</span><br><span class="line"></span><br><span class="line">step(a,b);</span><br><span class="line">grid on;</span><br><span class="line">axis([<span class="number">0</span> <span class="number">11</span> <span class="number">-0.02</span> <span class="number">0.29</span>]);</span><br><span class="line"></span><br><span class="line">f = <span class="built_in">cos</span>(<span class="number">20</span>*t).*(t&gt;<span class="number">0</span>);</span><br><span class="line">lsim(sys,f,t);</span><br><span class="line">grid on;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Z.Sagapo\code\matlab\expriment4\f24.png" alt="f24"></p>
+<p><img src="C:\Z.Sagapo\code\matlab\expriment4\f23.png" alt="f23"></p>
+<h5 id="实验代码：-1"><a href="#实验代码：-1" class="headerlink" title="实验代码："></a>实验代码：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms t s;</span><br><span class="line">f = <span class="built_in">cos</span>(<span class="number">20</span>*t)*heaviside(t);</span><br><span class="line">Fs = laplace(f);</span><br><span class="line">Hs = s/(s^<span class="number">2</span>+<span class="number">3</span>*s+<span class="number">2</span>);</span><br><span class="line">Ys = Fs*Hs;</span><br><span class="line"></span><br><span class="line">yzs = ilaplace(Ys);</span><br><span class="line">fplot(yzs);</span><br><span class="line">grid on;</span><br><span class="line">axis([<span class="number">-5</span> <span class="number">5</span> <span class="number">-5.1</span> <span class="number">0.1</span>]);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="五、实验总结"><a href="#五、实验总结" class="headerlink" title="五、实验总结"></a>五、实验总结</h4><h5 id="题目一：-2"><a href="#题目一：-2" class="headerlink" title="题目一："></a>题目一：</h5><h5 id="展示了如何使用-MATLAB-或类似的数值计算软件进行符号计算和绘图操作。其中，进行了符号函数的拉普拉斯变换、多项式根的计算，以及根的实部和虚部的散点图绘制。通过这些操作，可以实现对函数和多项式的分析、变换和可视化展示。"><a href="#展示了如何使用-MATLAB-或类似的数值计算软件进行符号计算和绘图操作。其中，进行了符号函数的拉普拉斯变换、多项式根的计算，以及根的实部和虚部的散点图绘制。通过这些操作，可以实现对函数和多项式的分析、变换和可视化展示。" class="headerlink" title="展示了如何使用 MATLAB 或类似的数值计算软件进行符号计算和绘图操作。其中，进行了符号函数的拉普拉斯变换、多项式根的计算，以及根的实部和虚部的散点图绘制。通过这些操作，可以实现对函数和多项式的分析、变换和可视化展示。"></a>展示了如何使用 MATLAB 或类似的数值计算软件进行符号计算和绘图操作。其中，进行了符号函数的拉普拉斯变换、多项式根的计算，以及根的实部和虚部的散点图绘制。通过这些操作，可以实现对函数和多项式的分析、变换和可视化展示。</h5><h5 id="题目二：-3"><a href="#题目二：-3" class="headerlink" title="题目二："></a>题目二：</h5><h5 id="主要进行了信号处理和系统响应的实验。通过计算和绘图，展示了系统的单位冲激响应、单位阶跃响应以及对输入信号的响应。同时，进行了频域分析，包括信号的拉普拉斯变换、系统传递函数的定义以及系统输出的拉普拉斯变换。最后，通过逆拉普拉斯变换将频域结果转换为时域结果，并绘制了函数图形。"><a href="#主要进行了信号处理和系统响应的实验。通过计算和绘图，展示了系统的单位冲激响应、单位阶跃响应以及对输入信号的响应。同时，进行了频域分析，包括信号的拉普拉斯变换、系统传递函数的定义以及系统输出的拉普拉斯变换。最后，通过逆拉普拉斯变换将频域结果转换为时域结果，并绘制了函数图形。" class="headerlink" title="主要进行了信号处理和系统响应的实验。通过计算和绘图，展示了系统的单位冲激响应、单位阶跃响应以及对输入信号的响应。同时，进行了频域分析，包括信号的拉普拉斯变换、系统传递函数的定义以及系统输出的拉普拉斯变换。最后，通过逆拉普拉斯变换将频域结果转换为时域结果，并绘制了函数图形。"></a>主要进行了信号处理和系统响应的实验。通过计算和绘图，展示了系统的单位冲激响应、单位阶跃响应以及对输入信号的响应。同时，进行了频域分析，包括信号的拉普拉斯变换、系统传递函数的定义以及系统输出的拉普拉斯变换。最后，通过逆拉普拉斯变换将频域结果转换为时域结果，并绘制了函数图形。</h5><h4 id="六、参考文献"><a href="#六、参考文献" class="headerlink" title="六、参考文献"></a>六、参考文献</h4><h5 id="lt-1-gt-https-blog-csdn-net-jk-101-article-details-106280095"><a href="#lt-1-gt-https-blog-csdn-net-jk-101-article-details-106280095" class="headerlink" title="&lt;1&gt;https://blog.csdn.net/jk_101/article/details/106280095"></a>&lt;1&gt;<a href="https://blog.csdn.net/jk_101/article/details/106280095">https://blog.csdn.net/jk_101/article/details/106280095</a></h5><h5 id="lt-2-gt-https-blog-csdn-net-HKX531317-article-details-124367419"><a href="#lt-2-gt-https-blog-csdn-net-HKX531317-article-details-124367419" class="headerlink" title="&lt;2&gt;https://blog.csdn.net/HKX531317/article/details/124367419"></a>&lt;2&gt;<a href="https://blog.csdn.net/HKX531317/article/details/124367419">https://blog.csdn.net/HKX531317/article/details/124367419</a></h5><h5 id="lt-3-gt-https-blog-csdn-net-m0-46155417-article-details-129364222"><a href="#lt-3-gt-https-blog-csdn-net-m0-46155417-article-details-129364222" class="headerlink" title="&lt;3&gt;https://blog.csdn.net/m0_46155417/article/details/129364222"></a>&lt;3&gt;<a href="https://blog.csdn.net/m0_46155417/article/details/129364222">https://blog.csdn.net/m0_46155417/article/details/129364222</a></h5>]]></content>
       <categories>
         <category>信号</category>
-      </categories>
-      <tags>
-        <tag>大学大作业</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据库实验四</title>
-    <url>/2023/07/11/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86%E3%80%8B%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A4/</url>
-    <content><![CDATA[<h1 id="《数据库原理》实验报告4"><a href="#《数据库原理》实验报告4" class="headerlink" title="《数据库原理》实验报告4"></a>《数据库原理》实验报告4</h1><h4 id="实验内容：数据库图书馆管理系统"><a href="#实验内容：数据库图书馆管理系统" class="headerlink" title="实验内容：数据库图书馆管理系统"></a>实验内容：数据库图书馆管理系统</h4><h3 id="1-实验内容简介"><a href="#1-实验内容简介" class="headerlink" title="1  实验内容简介"></a>1  实验内容简介</h3><p>图书馆借还书系统：图书信息表支持购入同一个ISBN的书籍多本，支持按ISBN、图书名、出版社、作者、图书分类、出版年份进行书籍登记，可查询和删除（这是基本界面功能）</p>
-<span id="more"></span>
-
-<p>支持对内对外借阅；内部人员包括学生、学校职工；外部人员需登记身份证号、姓名等，需要押金；外部人员在借书数量限制2本；内部限制为5本；超期外部人员3元&#x2F;天，内部1元&#x2F;天，有超期的书籍，不让继续借新的。</p>
-<h5 id="首先先对题目进行分析，题目要求设计一个图书馆的借还书系统，则分析此系统的功能有："><a href="#首先先对题目进行分析，题目要求设计一个图书馆的借还书系统，则分析此系统的功能有：" class="headerlink" title="首先先对题目进行分析，题目要求设计一个图书馆的借还书系统，则分析此系统的功能有："></a>首先先对题目进行分析，题目要求设计一个图书馆的借还书系统，则分析此系统的功能有：</h5><p>&lt;1&gt;借阅功能</p>
-<p>设计此功能需要考虑几个问题：</p>
-<p>读者的借阅权限问题</p>
-<p>读者的借阅数量限制</p>
-<p>书库中是否有借阅书籍</p>
-<p>若均满足以上的限制条件，则可以借阅书籍。</p>
-<p>&lt;2&gt;借阅者管理功能</p>
-<p>对于借阅者的信息进行查看，添加，修改，删除并将借阅者分为不同的权限，即题目中要求的对内借阅和对外借阅，同时统计借阅者的借阅时间，对超期行为进行罚款。</p>
-<h5 id="下面设计概念模型"><a href="#下面设计概念模型" class="headerlink" title="下面设计概念模型"></a>下面设计概念模型</h5><p>该数据库需要描述的信息包括以下几种：</p>
-<p>1、读者信息</p>
-<p>2、书籍信息</p>
-<p>3、读者分类信息</p>
-<p>4、读者与书籍之间的关系</p>
-<h5 id="数据库详细设计"><a href="#数据库详细设计" class="headerlink" title="数据库详细设计"></a>数据库详细设计</h5><p>1、读者（借阅者）信息</p>
-<p>属性：编号，姓名，联系电话，权限状况，读者类型</p>
-<p>2、书籍信息</p>
-<p>ISBN、图书名、出版社、作者、图书分类、出版年份</p>
-<p>3、读者类型</p>
-<p>读者编号，读者类型</p>
-<h3 id="1-实验环境描述"><a href="#1-实验环境描述" class="headerlink" title="1 实验环境描述"></a><strong>1</strong> 实验环境描述</h3><h4 id="1-1-硬件配置"><a href="#1-1-硬件配置" class="headerlink" title="1.1 硬件配置"></a><strong>1.1</strong> 硬件配置</h4><h5 id="处理器：11代intel酷睿-i5-11400H"><a href="#处理器：11代intel酷睿-i5-11400H" class="headerlink" title="处理器：11代intel酷睿 i5-11400H;"></a>处理器：11代intel酷睿 i5-11400H;</h5><h4 id="1-2-软件配置"><a href="#1-2-软件配置" class="headerlink" title="1.2 软件配置"></a><strong>1.2</strong> 软件配置</h4><h4 id="1-2-1操作系统"><a href="#1-2-1操作系统" class="headerlink" title="1.2.1操作系统"></a><strong>1.2.1</strong>操作系统</h4><h5 id="Windows11系统"><a href="#Windows11系统" class="headerlink" title="Windows11系统"></a>Windows11系统</h5><h4 id="1-2-2-数据库软件和版本"><a href="#1-2-2-数据库软件和版本" class="headerlink" title="1.2.2 数据库软件和版本"></a><strong>1.2.2</strong> 数据库软件和版本</h4><p><img src="file:///C:\Users\20191\AppData\Local\Temp\ksohtml8368\wps1.png" alt="img"> </p>
-<h5 id="⼈⼤⾦仓ksql-Kingbase-V008R006C007B0012"><a href="#⼈⼤⾦仓ksql-Kingbase-V008R006C007B0012" class="headerlink" title="⼈⼤⾦仓ksql (Kingbase) V008R006C007B0012"></a>⼈⼤⾦仓ksql (Kingbase) V008R006C007B0012</h5><h3 id="3-实验步骤和抓图"><a href="#3-实验步骤和抓图" class="headerlink" title="3  实验步骤和抓图"></a>3  实验步骤和抓图</h3><h5 id="在本实验中，我只实现了书籍的增添，按书籍序号查询，指定删除书籍，实现读者信息录入的功能。"><a href="#在本实验中，我只实现了书籍的增添，按书籍序号查询，指定删除书籍，实现读者信息录入的功能。" class="headerlink" title="在本实验中，我只实现了书籍的增添，按书籍序号查询，指定删除书籍，实现读者信息录入的功能。"></a>在本实验中，我只实现了书籍的增添，按书籍序号查询，指定删除书籍，实现读者信息录入的功能。</h5><h5 id="1、创建book表"><a href="#1、创建book表" class="headerlink" title="1、创建book表"></a>1、创建book表</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519205129012.png" alt="image-20230519205129012"></p>
-<h5 id="2、创建reader表"><a href="#2、创建reader表" class="headerlink" title="2、创建reader表"></a>2、创建reader表</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519205147762.png" alt="image-20230519205147762"></p>
-<h5 id="下面展示PYQT5界面的书籍的增添，查询可借阅书籍，指定删除书籍，实现读者信息录入的功能。"><a href="#下面展示PYQT5界面的书籍的增添，查询可借阅书籍，指定删除书籍，实现读者信息录入的功能。" class="headerlink" title="下面展示PYQT5界面的书籍的增添，查询可借阅书籍，指定删除书籍，实现读者信息录入的功能。"></a>下面展示PYQT5界面的书籍的增添，查询可借阅书籍，指定删除书籍，实现读者信息录入的功能。</h5><h5 id="lt-1-gt-书籍的添加"><a href="#lt-1-gt-书籍的添加" class="headerlink" title="&lt;1&gt;书籍的添加"></a>&lt;1&gt;书籍的添加</h5><p>添加书籍的信息为 </p>
-<p>111,ThreeBody,XiDianPublish,666</p>
-<p>222,The Lonely,XiDianPublish,888</p>
-<p>333,Sagapo,XiDianPublish,999</p>
-<p>444,Ang,XiDianPublish,2222</p>
-<p>555,SKY,XiDianPublish,5555</p>
-<p>101,Polish,XiDianPublish,7777</p>
-<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519205302626.png" alt="image-20230519205302626"></p>
-<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519211149469.png" alt="image-20230519211149469"></p>
-<p> <img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519211251415.png" alt="image-20230519211251415"></p>
-<h5 id="lt-2-gt-查询可借阅书籍"><a href="#lt-2-gt-查询可借阅书籍" class="headerlink" title="&lt;2&gt;查询可借阅书籍"></a>&lt;2&gt;查询可借阅书籍</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519212226120.png" alt="image-20230519212226120"></p>
-<h5 id="lt-3-gt-指定删除书籍"><a href="#lt-3-gt-指定删除书籍" class="headerlink" title="&lt;3&gt;指定删除书籍"></a>&lt;3&gt;指定删除书籍</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519212307336.png" alt="image-20230519212307336"></p>
-<h5 id="lt-4-gt-实现读者信息录入"><a href="#lt-4-gt-实现读者信息录入" class="headerlink" title="&lt;4&gt;实现读者信息录入"></a>&lt;4&gt;实现读者信息录入</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230519212359279.png" alt="image-20230519212359279"></p>
-<h4 id="题目要求功能均已实现"><a href="#题目要求功能均已实现" class="headerlink" title="题目要求功能均已实现"></a>题目要求功能均已实现</h4><p> 最终PYQT5代码如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> psycopg2</span><br><span class="line"><span class="keyword">from</span> PyQt5.QtWidgets <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">lineEditDemo</span>(<span class="title class_ inherited__">QWidget</span>):</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ButtonSearchClicked</span>(<span class="params">self,gConn,PList1,PEdit1</span>):</span><br><span class="line">        PList1.clear()</span><br><span class="line">        cur = gConn.cursor()</span><br><span class="line">        </span><br><span class="line">        cur.execute(<span class="string">&quot;select * from book;&quot;</span>)</span><br><span class="line">        rows = cur.fetchall()</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> rows:</span><br><span class="line">            PList1.addItem(QListWidgetItem(<span class="built_in">str</span>(row[<span class="number">0</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">1</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">2</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">3</span>])))</span><br><span class="line">        cur.close()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">PButtonInsertClicked</span>(<span class="params">self,gConn,PList1,PEdit1</span>):</span><br><span class="line"> </span><br><span class="line">        gConn = psycopg2.connect(host=<span class="string">&quot;127.0.0.1&quot;</span>, port=<span class="string">&quot;54321&quot;</span>, user=<span class="string">&quot;Sagapo&quot;</span>, password = <span class="string">&quot;201914&quot;</span>, database =<span class="string">&quot;test&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> gConn:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;connected&quot;</span>)</span><br><span class="line">        cur = gConn.cursor()   </span><br><span class="line">        text = PEdit1.text()</span><br><span class="line">        word_list = text.split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">        tuple_text = <span class="built_in">tuple</span>(word_list)</span><br><span class="line">        <span class="built_in">print</span>(tuple_text)</span><br><span class="line">        query = <span class="string">&quot;insert into book values(%s,%s,%s,%s);&quot;</span></span><br><span class="line">        cur.execute(<span class="string">&quot;insert into book values(&quot;</span>+<span class="built_in">str</span>(tuple_text[<span class="number">0</span>])+<span class="string">&#x27;,&#x27;</span>+<span class="built_in">str</span>(tuple_text[<span class="number">1</span>])+<span class="string">&#x27;,&#x27;</span>+<span class="built_in">str</span>(tuple_text[<span class="number">2</span>])+<span class="string">&#x27;,&#x27;</span>+<span class="built_in">str</span>(tuple_text[<span class="number">3</span>])+<span class="string">&#x27;);&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">        gConn.commit()</span><br><span class="line">        cur.execute(<span class="string">&quot;select * from book;&quot;</span>)</span><br><span class="line">        rows = cur.fetchall()</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> rows:</span><br><span class="line">            PList1.addItem(QListWidgetItem(<span class="built_in">str</span>(row[<span class="number">0</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">1</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">2</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">3</span>])))</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ButtonDeleteHaveClicked</span>(<span class="params">self,gConn,PList1,PEdit1</span>):</span><br><span class="line">        selected_items = PList1.selectedItems()</span><br><span class="line">        tuple_text = []</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> selected_items:</span><br><span class="line">            <span class="built_in">print</span>(item.text())</span><br><span class="line">            text = (item.text()).split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">            tuple_text.append(text[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(tuple_text)</span><br><span class="line">        cur = gConn.cursor()</span><br><span class="line">        <span class="keyword">for</span> xt <span class="keyword">in</span> tuple_text:</span><br><span class="line">            cur.execute(<span class="string">&quot;delete from book where bookid = &quot;</span> + <span class="built_in">str</span>(xt)+<span class="string">&#x27;;&#x27;</span>)</span><br><span class="line">        cur.close()</span><br><span class="line">        gConn.commit()</span><br><span class="line">        selected_row = PList1.currentRow()</span><br><span class="line">        item = PList1.takeItem(selected_row)</span><br><span class="line">        <span class="keyword">del</span> item</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ButtonQuitClicked</span>(<span class="params">self,gConn,PList1,PEdit1</span>):</span><br><span class="line">        PList1.clear()</span><br><span class="line">       </span><br><span class="line">        cur = gConn.cursor()</span><br><span class="line"></span><br><span class="line">        text = PEdit1.text()</span><br><span class="line">        cur.execute(text)</span><br><span class="line">        rows = cur.fetchall()</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> rows:</span><br><span class="line">            PList1.addItem(<span class="built_in">str</span>(row[<span class="number">0</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">1</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">2</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">3</span>]))   </span><br><span class="line">        cur.close()</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">ButtonSignClicked</span>(<span class="params">self,gConn,PList1,PEdit1</span>):</span><br><span class="line">        PList1.clear()</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        cur = gConn.cursor()</span><br><span class="line"></span><br><span class="line">        text = PEdit1.text()</span><br><span class="line">        text = text.split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">        tuple_text = <span class="built_in">tuple</span>(text)</span><br><span class="line">        cur.execute(<span class="string">&quot;insert into reader values(&quot;</span> + <span class="built_in">str</span>(tuple_text[<span class="number">0</span>])+<span class="string">&#x27;,&#x27;</span>+<span class="built_in">str</span>(tuple_text[<span class="number">1</span>])+<span class="string">&#x27;);&#x27;</span>)</span><br><span class="line">        gConn.commit()</span><br><span class="line">        cur.execute(<span class="string">&quot;select * from reader;&quot;</span>)</span><br><span class="line">        rows = cur.fetchall()</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> rows:</span><br><span class="line">            PList1.addItem(QListWidgetItem(<span class="built_in">str</span>(row[<span class="number">0</span>]) + <span class="string">&quot;, &quot;</span> + <span class="built_in">str</span>(row[<span class="number">1</span>])))</span><br><span class="line">        cur.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,parent=<span class="literal">None</span></span>):</span><br><span class="line">        gConn = psycopg2.connect(host=<span class="string">&quot;127.0.0.1&quot;</span>, port=<span class="string">&quot;54321&quot;</span>, user=<span class="string">&quot;Sagapo&quot;</span>, password = <span class="string">&quot;201914&quot;</span>, database =<span class="string">&quot;test&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> gConn:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;connected&quot;</span>)</span><br><span class="line">        <span class="built_in">super</span>(lineEditDemo, self).__init__(parent)</span><br><span class="line">        self.setWindowTitle(<span class="string">&#x27;ang\&#x27;s database&#x27;</span>)</span><br><span class="line">        self.resize(<span class="number">1840</span>, <span class="number">950</span>)  </span><br><span class="line"></span><br><span class="line">        <span class="comment">#实例化表单布局</span></span><br><span class="line">        flo=QFormLayout()</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#创建4个文本输入框</span></span><br><span class="line">        PNormalLineEdit=QLineEdit()</span><br><span class="line">        PButtonSearch=QPushButton(<span class="string">&#x27;查询可借阅书籍&#x27;</span>)</span><br><span class="line">        PButtonEnter = QPushButton(<span class="string">&#x27;读者信息登记&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        PButtonInsert=QPushButton(<span class="string">&#x27;添加购进书籍&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        PButtonDeleteHave=QPushButton(<span class="string">&#x27;删除书籍&#x27;</span>)</span><br><span class="line">        PButtonQuit=QPushButton(<span class="string">&#x27;退出程序&#x27;</span>)</span><br><span class="line">        </span><br><span class="line">        PList=QListWidget()</span><br><span class="line"></span><br><span class="line">        PList.setResizeMode(<span class="number">1</span>)</span><br><span class="line">        PButtonSearch.clicked.connect(<span class="keyword">lambda</span>: self.ButtonSearchClicked(gConn,PList,PNormalLineEdit)) </span><br><span class="line">        PButtonInsert.clicked.connect(<span class="keyword">lambda</span>: self.PButtonInsertClicked(gConn,PList,PNormalLineEdit)) </span><br><span class="line">        PButtonEnter.clicked.connect(<span class="keyword">lambda</span>: self.ButtonSignClicked(gConn,PList,PNormalLineEdit))</span><br><span class="line">        PButtonDeleteHave.clicked.connect(<span class="keyword">lambda</span>: self.ButtonDeleteHaveClicked(gConn,PList,PNormalLineEdit)) </span><br><span class="line">        PButtonQuit.clicked.connect(<span class="keyword">lambda</span>: self.ButtonQuitClicked(gConn,PList,PNormalLineEdit)) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">#添加到表单布局中</span></span><br><span class="line">        <span class="comment">#flo.addRow(文本名称（可以自定义），文本框)</span></span><br><span class="line">        flo.addRow(<span class="string">&#x27;如果购进新的书籍，请输入书籍的信息：&#x27;</span>,PNormalLineEdit)</span><br><span class="line">        flo.addRow(<span class="string">&#x27;请点击插入上述书籍信息&#x27;</span>,PButtonInsert)</span><br><span class="line">        flo.addRow(<span class="string">&#x27;请点击查询可供借阅的书籍&#x27;</span>,PButtonSearch)</span><br><span class="line">        flo.addRow(<span class="string">&#x27;如果您想要借阅书籍，请输入您的信息&#x27;</span>,PButtonEnter)</span><br><span class="line">        flo.addRow(<span class="string">&#x27;消息列表&#x27;</span>,PList)</span><br><span class="line">        flo.addRow(<span class="string">&#x27;请选中一行，点击删除该书籍记录&#x27;</span>,PButtonDeleteHave)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">#设置setPlaceholderText()文本框浮现的文字</span></span><br><span class="line">        PNormalLineEdit.setPlaceholderText(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#setEchoMode()：设置显示效果</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#QLineEdit.Normal：正常显示所输入的字符，此为默认选项</span></span><br><span class="line">        PNormalLineEdit.setEchoMode(QLineEdit.Normal)</span><br><span class="line"></span><br><span class="line">        <span class="comment">#设置窗口的布局</span></span><br><span class="line">        self.setLayout(flo)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">resizeEvent</span>(<span class="params">self, e</span>):</span><br><span class="line">            self.PList.height = self.flo.height -<span class="number">20</span></span><br><span class="line">            </span><br><span class="line">        </span><br><span class="line">            </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> QApplication.instance():</span><br><span class="line">        app = QApplication(sys.argv)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        app = QApplication.instance()</span><br><span class="line">    win=lineEditDemo()</span><br><span class="line">    win.show()</span><br><span class="line"></span><br><span class="line">    sys.exit(app.exec_()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="4-作业诚信承诺"><a href="#4-作业诚信承诺" class="headerlink" title="4  作业诚信承诺"></a>4  作业诚信承诺</h1><p>本报告是我个人独立完成的，并非从网上或从其他同学及从其他来源获取得到的，报告中引用他人的成果、数据、观点均已一一注明出处。</p>
-<p>​                    承诺人电子签名：</p>
-]]></content>
-      <categories>
-        <category>数据库</category>
       </categories>
       <tags>
         <tag>大学大作业</tag>
@@ -983,133 +1030,6 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
       </tags>
   </entry>
   <entry>
-    <title>信号4</title>
-    <url>/2023/06/09/%E4%BF%A1%E5%8F%B74/</url>
-    <content><![CDATA[<h1 id="西安电子科技大学"><a href="#西安电子科技大学" class="headerlink" title="西安电子科技大学"></a>西安电子科技大学</h1><h3 id="信-号-与-系-统实验报告"><a href="#信-号-与-系-统实验报告" class="headerlink" title="信 号 与 系 统实验报告"></a>信 号 与 系 统实验报告</h3><h5 id="2023年6月9日"><a href="#2023年6月9日" class="headerlink" title="2023年6月9日"></a>2023年6月9日</h5><h4 id="一、实验题目：信号与系统实验四"><a href="#一、实验题目：信号与系统实验四" class="headerlink" title="一、实验题目：信号与系统实验四"></a>一、实验题目：信号与系统实验四</h4><span id="more"></span>
-
-<h4 id="二、实验摘要"><a href="#二、实验摘要" class="headerlink" title="二、实验摘要"></a>二、实验摘要</h4><h4 id="实验内容简述："><a href="#实验内容简述：" class="headerlink" title="实验内容简述："></a>实验内容简述：</h4><p><strong>题目一：</strong></p>
-<ol>
-<li><strong>使用符号工具箱 (<code>syms</code>) 声明变量 <code>t</code> 作为符号变量。</strong></li>
-<li><strong>定义函数 <code>f</code>，它是变量 <code>t</code> 的线性表达式 <code>t+2</code>。</strong></li>
-<li><strong>使用 <code>laplace</code> 函数对函数 <code>f</code> 进行拉普拉斯变换，结果存储在变量 <code>F</code> 中。</strong></li>
-<li><strong>清除符号变量 <code>t</code>。</strong></li>
-<li><strong>重新声明符号变量 <code>t</code>。</strong></li>
-<li><strong>重新定义函数 <code>f</code>，它是变量 <code>t</code> 的线性表达式 <code>t+2</code>。</strong></li>
-<li><strong>定义向量 <code>a</code>，其元素为 <code>[1,0,1]</code>。</strong></li>
-<li><strong>定义向量 <code>b</code>，其元素为 <code>[3,5,4,6]</code>。</strong></li>
-<li><strong>使用 <code>roots</code> 函数分别计算向量 <code>a</code> 和 <code>b</code> 的根，并将结果分别存储在变量 <code>outa</code> 和 <code>outb</code> 中。</strong></li>
-<li><strong>使用 <code>plot</code> 函数绘制 <code>outa</code> 的实部和虚部作为圆点（<code>o</code>）以及 <code>outb</code> 的实部和虚部作为叉号（<code>x</code>）。</strong></li>
-<li><strong>使用 <code>grid on</code> 打开网格显示。</strong></li>
-<li><strong>使用 <code>axis</code> 函数设置图形的坐标轴范围为 <code>[-2 0.5 -2 2]</code>。</strong></li>
-</ol>
-<h5 id="题目二："><a href="#题目二：" class="headerlink" title="题目二："></a>题目二：</h5><ol>
-<li><h5 id="定义了系统的传输函数分子和分母多项式。"><a href="#定义了系统的传输函数分子和分母多项式。" class="headerlink" title="定义了系统的传输函数分子和分母多项式。"></a>定义了系统的传输函数分子和分母多项式。</h5></li>
-<li><h5 id="计算并绘制了系统的单位冲激响应。"><a href="#计算并绘制了系统的单位冲激响应。" class="headerlink" title="计算并绘制了系统的单位冲激响应。"></a>计算并绘制了系统的单位冲激响应。</h5></li>
-<li><h5 id="计算并绘制了系统对单位阶跃信号的响应。"><a href="#计算并绘制了系统对单位阶跃信号的响应。" class="headerlink" title="计算并绘制了系统对单位阶跃信号的响应。"></a>计算并绘制了系统对单位阶跃信号的响应。</h5></li>
-<li><h5 id="使用拉普拉斯变换计算了信号的频域表达式。"><a href="#使用拉普拉斯变换计算了信号的频域表达式。" class="headerlink" title="使用拉普拉斯变换计算了信号的频域表达式。"></a>使用拉普拉斯变换计算了信号的频域表达式。</h5></li>
-<li><h5 id="定义了系统的传递函数，并计算了系统输出的频域表达式。"><a href="#定义了系统的传递函数，并计算了系统输出的频域表达式。" class="headerlink" title="定义了系统的传递函数，并计算了系统输出的频域表达式。"></a>定义了系统的传递函数，并计算了系统输出的频域表达式。</h5></li>
-<li><h5 id="使用逆拉普拉斯变换计算了系统输出的时域表达式，并绘制了其图形。"><a href="#使用逆拉普拉斯变换计算了系统输出的时域表达式，并绘制了其图形。" class="headerlink" title="使用逆拉普拉斯变换计算了系统输出的时域表达式，并绘制了其图形。"></a>使用逆拉普拉斯变换计算了系统输出的时域表达式，并绘制了其图形。</h5></li>
-</ol>
-<h4 id="三、题目描述"><a href="#三、题目描述" class="headerlink" title="三、题目描述"></a><strong>三、题目描述</strong></h4><h5 id="题目一："><a href="#题目一：" class="headerlink" title="题目一："></a>题目一：</h5><h5 id="首先实现给函数的拉普拉斯变换"><a href="#首先实现给函数的拉普拉斯变换" class="headerlink" title="首先实现给函数的拉普拉斯变换"></a>首先实现给函数的拉普拉斯变换</h5><h5 id="然后对给定的因果函数的系统函数进行分析，画出其零点和极点的分布图，从而判断系统的稳定性。"><a href="#然后对给定的因果函数的系统函数进行分析，画出其零点和极点的分布图，从而判断系统的稳定性。" class="headerlink" title="然后对给定的因果函数的系统函数进行分析，画出其零点和极点的分布图，从而判断系统的稳定性。"></a>然后对给定的因果函数的系统函数进行分析，画出其零点和极点的分布图，从而判断系统的稳定性。</h5><h5 id="题目二：-1"><a href="#题目二：-1" class="headerlink" title="题目二："></a>题目二：</h5><h5 id="首先利用ilaplace函数求出给定的系统函数的傅里叶逆变换，利用impulse函数画出其冲激响应的图像，然后调用step函数画出其阶跃响应的图像，最后对于给定的系统激励，计算出其零状态响应，并对图像进行官观察分析。"><a href="#首先利用ilaplace函数求出给定的系统函数的傅里叶逆变换，利用impulse函数画出其冲激响应的图像，然后调用step函数画出其阶跃响应的图像，最后对于给定的系统激励，计算出其零状态响应，并对图像进行官观察分析。" class="headerlink" title="首先利用ilaplace函数求出给定的系统函数的傅里叶逆变换，利用impulse函数画出其冲激响应的图像，然后调用step函数画出其阶跃响应的图像，最后对于给定的系统激励，计算出其零状态响应，并对图像进行官观察分析。"></a>首先利用ilaplace函数求出给定的系统函数的傅里叶逆变换，利用impulse函数画出其冲激响应的图像，然后调用step函数画出其阶跃响应的图像，最后对于给定的系统激励，计算出其零状态响应，并对图像进行官观察分析。</h5><h4 id="四、实验内容"><a href="#四、实验内容" class="headerlink" title="四、实验内容"></a>四、实验内容</h4><h5 id="题目一：-1"><a href="#题目一：-1" class="headerlink" title="题目一："></a>题目一：</h5><h5 id="实验过程："><a href="#实验过程：" class="headerlink" title="实验过程："></a>实验过程：</h5><ol>
-<li><strong>使用符号工具箱 (<code>syms</code>) 声明变量 <code>t</code> 作为符号变量。</strong></li>
-<li><strong>定义函数 <code>f</code>，它是变量 <code>t</code> 的线性表达式 <code>t+2</code>。</strong></li>
-<li><strong>使用 <code>laplace</code> 函数对函数 <code>f</code> 进行拉普拉斯变换，结果存储在变量 <code>F</code> 中。</strong></li>
-<li><strong>清除符号变量 <code>t</code>。</strong></li>
-<li><strong>重新声明符号变量 <code>t</code>。</strong></li>
-<li><strong>重新定义函数 <code>f</code>，它是变量 <code>t</code> 的线性表达式 <code>t+2</code>。</strong></li>
-<li><strong>定义向量 <code>a</code>，其元素为 <code>[1,0,1]</code>。</strong></li>
-<li><strong>定义向量 <code>b</code>，其元素为 <code>[3,5,4,6]</code>。</strong></li>
-<li><strong>使用 <code>roots</code> 函数分别计算向量 <code>a</code> 和 <code>b</code> 的根，并将结果分别存储在变量 <code>outa</code> 和 <code>outb</code> 中。</strong></li>
-<li><strong>使用 <code>plot</code> 函数绘制 <code>outa</code> 的实部和虚部作为圆点（<code>o</code>）以及 <code>outb</code> 的实部和虚部作为叉号（<code>x</code>）。</strong></li>
-<li><strong>使用 <code>grid on</code> 打开网格显示。</strong></li>
-<li><strong>使用 <code>axis</code> 函数设置图形的坐标轴范围为 <code>[-2 0.5 -2 2]</code>。</strong></li>
-</ol>
-<h5 id="最终根据结果分析："><a href="#最终根据结果分析：" class="headerlink" title="最终根据结果分析："></a>最终根据结果分析：</h5><h5 id="由图可得，H1的极点出现在右半开平面，所以H1不稳定；H2的极点都在左半开平面，所以H2是稳定的系统"><a href="#由图可得，H1的极点出现在右半开平面，所以H1不稳定；H2的极点都在左半开平面，所以H2是稳定的系统" class="headerlink" title="由图可得，H1的极点出现在右半开平面，所以H1不稳定；H2的极点都在左半开平面，所以H2是稳定的系统"></a>由图可得，H1的极点出现在右半开平面，所以H1不稳定；H2的极点都在左半开平面，所以H2是稳定的系统</h5><h5 id="实验结果图："><a href="#实验结果图：" class="headerlink" title="实验结果图："></a>实验结果图：</h5><img src="C:\Z.Sagapo\code\matlab\expriment4\f12.png" alt="f12" style="zoom: 80%;" />
-
-<p><img src="C:\Z.Sagapo\code\matlab\expriment4\f12_3.png" alt="f12_3"></p>
-<img src="C:\Z.Sagapo\code\matlab\expriment4\f13.png" alt="f13"  />
-
-<p><img src="C:\Z.Sagapo\code\matlab\expriment4\f13_3.png" alt="f13_3"></p>
-<p>实验代码：</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms t;</span><br><span class="line">f = t+<span class="number">2</span>;</span><br><span class="line">F = laplace(f);</span><br><span class="line"></span><br><span class="line">b=[<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line">a=[<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">6</span>];</span><br><span class="line">zplane(b,a);</span><br><span class="line">outa=roots(a);</span><br><span class="line">outb=roots(b);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%plot(real(outb),imag(outb),&#x27;o&#x27;,real(outa),imag(outa),&#x27;x&#x27;,&#x27;markersize&#x27;,12);</span></span><br><span class="line"></span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;零点&#x27;</span>,<span class="string">&#x27;极点&#x27;</span>);</span><br><span class="line">axis([<span class="number">-3</span> <span class="number">1</span> <span class="number">-3</span> <span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line">a = [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>];</span><br><span class="line">b = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">6</span>];</span><br><span class="line">zplane(a,b);</span><br><span class="line">outa = roots(a);</span><br><span class="line">outb = roots(b);</span><br><span class="line"></span><br><span class="line"><span class="comment">%plot(real(outa),imag(outa),&#x27;o&#x27;,real(outb),imag(outb),&#x27;x&#x27;,&#x27;MarkerSize&#x27;,12);</span></span><br><span class="line">grid on;</span><br><span class="line">axis([<span class="number">-2</span> <span class="number">0.5</span> <span class="number">-2</span> <span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="题目二：-2"><a href="#题目二：-2" class="headerlink" title="题目二："></a>题目二：</h5><h5 id="实验过程：-1"><a href="#实验过程：-1" class="headerlink" title="实验过程："></a>实验过程：</h5><ol>
-<li><strong>创建系统：</strong><ul>
-<li><strong>定义了分子多项式 <code>a = [1, 0]</code> 和分母多项式 <code>b = [1, 3, 2]</code>。</strong></li>
-<li><strong>使用 <code>tf</code> 函数创建系统传递函数 <code>sys</code>，由分子和分母多项式定义。</strong></li>
-</ul>
-</li>
-<li><strong>单位冲激响应：</strong><ul>
-<li><strong>创建时间向量 <code>t</code>，范围从 0 到 10，步长为 0.01。</strong></li>
-<li><strong>使用 <code>impulse</code> 函数计算系统 <code>sys</code> 的单位冲激响应 <code>h</code>，在时间向量 <code>t</code> 上。</strong></li>
-</ul>
-</li>
-<li><strong>单位冲激响应绘图：</strong><ul>
-<li><strong>打开网格显示。</strong></li>
-<li><strong>设置 x 轴标签为 ‘t’，y 轴标签为 ‘h(t)’。</strong></li>
-<li><strong>使用 <code>plot</code> 函数绘制时间向量 <code>t</code> 和单位冲激响应 <code>h</code>（该行代码被注释掉了）。</strong></li>
-</ul>
-</li>
-<li><strong>单位阶跃响应：</strong><ul>
-<li><strong>使用 <code>step</code> 函数计算系统 <code>sys</code> 的单位阶跃响应。</strong></li>
-</ul>
-</li>
-<li><strong>单位阶跃响应绘图：</strong><ul>
-<li><strong>打开网格显示。</strong></li>
-<li><strong>设置图形的 x 轴范围为 0 到 11，y 轴范围为 -0.02 到 0.29。</strong></li>
-</ul>
-</li>
-<li><strong>输入信号与系统响应：</strong><ul>
-<li><strong>创建信号 <code>f</code>，为 <code>cos(20*t)</code> 乘以一个逻辑函数 <code>t &gt; 0</code>。</strong></li>
-<li><strong>使用 <code>lsim</code> 函数计算系统 <code>sys</code> 对信号 <code>f</code> 的响应，并在时间向量 <code>t</code> 上得到结果。</strong></li>
-</ul>
-</li>
-<li><strong>输入信号与系统响应绘图：</strong><ul>
-<li><strong>打开网格显示。</strong></li>
-</ul>
-</li>
-<li><strong>频域分析：</strong><ul>
-<li><strong>声明符号变量 <code>t</code> 和 <code>s</code>。</strong></li>
-<li><strong>定义函数 <code>f</code>，为 <code>cos(20*t)</code> 乘以单位阶跃函数 <code>heaviside(t)</code>。</strong></li>
-<li><strong>使用 <code>laplace</code> 函数计算函数 <code>f</code> 的拉普拉斯变换，并将结果存储在变量 <code>Fs</code> 中。</strong></li>
-<li><strong>定义系统的传递函数 <code>Hs</code>。</strong></li>
-<li><strong>计算系统输出的拉普拉斯变换 <code>Ys</code>，为函数 <code>Fs</code> 与传递函数 <code>Hs</code> 相乘。</strong></li>
-</ul>
-</li>
-<li><strong>逆拉普拉斯变换绘图：</strong><ul>
-<li><strong>使用 <code>ilaplace</code> 函数计算 <code>Ys</code> 的逆拉普拉斯变换，并将结果存储在变量 <code>yzs</code> 中。</strong></li>
-<li><strong>使用 <code>fplot</code> 函数绘制函数 <code>yzs</code> 的图形。</strong></li>
-</ul>
-</li>
-<li><strong>逆拉普拉斯变换绘图范围：</strong></li>
-</ol>
-<ul>
-<li><strong>打开网格显示。</strong></li>
-<li><strong>设置图形的 x 轴范围为 -5 到 5，y 轴范围为 -5.1 到 0.1。</strong></li>
-</ul>
-<h5 id="实验结果图：-1"><a href="#实验结果图：-1" class="headerlink" title="实验结果图："></a>实验结果图：</h5><img src="C:\Z.Sagapo\code\matlab\expriment4\f21.png" alt="f21" style="zoom: 80%;" />
-
-<img src="C:\Z.Sagapo\code\matlab\expriment4\f22.png" alt="f22" style="zoom:80%;" />
-
-<h5 id="实验代码："><a href="#实验代码：" class="headerlink" title="实验代码："></a>实验代码：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">0</span>];</span><br><span class="line">b = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">sys = tf(a,b);</span><br><span class="line">t = <span class="number">0</span>:<span class="number">0.01</span>:<span class="number">10</span>;</span><br><span class="line">h = impulse(sys,t); </span><br><span class="line"><span class="comment">%plot(t,h);</span></span><br><span class="line"></span><br><span class="line">grid on;</span><br><span class="line">xlabel(<span class="string">&#x27;t&#x27;</span>);</span><br><span class="line">ylabel(<span class="string">&#x27;h(t)&#x27;</span>);</span><br><span class="line"></span><br><span class="line">step(a,b);</span><br><span class="line">grid on;</span><br><span class="line">axis([<span class="number">0</span> <span class="number">11</span> <span class="number">-0.02</span> <span class="number">0.29</span>]);</span><br><span class="line"></span><br><span class="line">f = <span class="built_in">cos</span>(<span class="number">20</span>*t).*(t&gt;<span class="number">0</span>);</span><br><span class="line">lsim(sys,f,t);</span><br><span class="line">grid on;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="C:\Z.Sagapo\code\matlab\expriment4\f24.png" alt="f24"></p>
-<p><img src="C:\Z.Sagapo\code\matlab\expriment4\f23.png" alt="f23"></p>
-<h5 id="实验代码：-1"><a href="#实验代码：-1" class="headerlink" title="实验代码："></a>实验代码：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms t s;</span><br><span class="line">f = <span class="built_in">cos</span>(<span class="number">20</span>*t)*heaviside(t);</span><br><span class="line">Fs = laplace(f);</span><br><span class="line">Hs = s/(s^<span class="number">2</span>+<span class="number">3</span>*s+<span class="number">2</span>);</span><br><span class="line">Ys = Fs*Hs;</span><br><span class="line"></span><br><span class="line">yzs = ilaplace(Ys);</span><br><span class="line">fplot(yzs);</span><br><span class="line">grid on;</span><br><span class="line">axis([<span class="number">-5</span> <span class="number">5</span> <span class="number">-5.1</span> <span class="number">0.1</span>]);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="五、实验总结"><a href="#五、实验总结" class="headerlink" title="五、实验总结"></a>五、实验总结</h4><h5 id="题目一：-2"><a href="#题目一：-2" class="headerlink" title="题目一："></a>题目一：</h5><h5 id="展示了如何使用-MATLAB-或类似的数值计算软件进行符号计算和绘图操作。其中，进行了符号函数的拉普拉斯变换、多项式根的计算，以及根的实部和虚部的散点图绘制。通过这些操作，可以实现对函数和多项式的分析、变换和可视化展示。"><a href="#展示了如何使用-MATLAB-或类似的数值计算软件进行符号计算和绘图操作。其中，进行了符号函数的拉普拉斯变换、多项式根的计算，以及根的实部和虚部的散点图绘制。通过这些操作，可以实现对函数和多项式的分析、变换和可视化展示。" class="headerlink" title="展示了如何使用 MATLAB 或类似的数值计算软件进行符号计算和绘图操作。其中，进行了符号函数的拉普拉斯变换、多项式根的计算，以及根的实部和虚部的散点图绘制。通过这些操作，可以实现对函数和多项式的分析、变换和可视化展示。"></a>展示了如何使用 MATLAB 或类似的数值计算软件进行符号计算和绘图操作。其中，进行了符号函数的拉普拉斯变换、多项式根的计算，以及根的实部和虚部的散点图绘制。通过这些操作，可以实现对函数和多项式的分析、变换和可视化展示。</h5><h5 id="题目二：-3"><a href="#题目二：-3" class="headerlink" title="题目二："></a>题目二：</h5><h5 id="主要进行了信号处理和系统响应的实验。通过计算和绘图，展示了系统的单位冲激响应、单位阶跃响应以及对输入信号的响应。同时，进行了频域分析，包括信号的拉普拉斯变换、系统传递函数的定义以及系统输出的拉普拉斯变换。最后，通过逆拉普拉斯变换将频域结果转换为时域结果，并绘制了函数图形。"><a href="#主要进行了信号处理和系统响应的实验。通过计算和绘图，展示了系统的单位冲激响应、单位阶跃响应以及对输入信号的响应。同时，进行了频域分析，包括信号的拉普拉斯变换、系统传递函数的定义以及系统输出的拉普拉斯变换。最后，通过逆拉普拉斯变换将频域结果转换为时域结果，并绘制了函数图形。" class="headerlink" title="主要进行了信号处理和系统响应的实验。通过计算和绘图，展示了系统的单位冲激响应、单位阶跃响应以及对输入信号的响应。同时，进行了频域分析，包括信号的拉普拉斯变换、系统传递函数的定义以及系统输出的拉普拉斯变换。最后，通过逆拉普拉斯变换将频域结果转换为时域结果，并绘制了函数图形。"></a>主要进行了信号处理和系统响应的实验。通过计算和绘图，展示了系统的单位冲激响应、单位阶跃响应以及对输入信号的响应。同时，进行了频域分析，包括信号的拉普拉斯变换、系统传递函数的定义以及系统输出的拉普拉斯变换。最后，通过逆拉普拉斯变换将频域结果转换为时域结果，并绘制了函数图形。</h5><h4 id="六、参考文献"><a href="#六、参考文献" class="headerlink" title="六、参考文献"></a>六、参考文献</h4><h5 id="lt-1-gt-https-blog-csdn-net-jk-101-article-details-106280095"><a href="#lt-1-gt-https-blog-csdn-net-jk-101-article-details-106280095" class="headerlink" title="&lt;1&gt;https://blog.csdn.net/jk_101/article/details/106280095"></a>&lt;1&gt;<a href="https://blog.csdn.net/jk_101/article/details/106280095">https://blog.csdn.net/jk_101/article/details/106280095</a></h5><h5 id="lt-2-gt-https-blog-csdn-net-HKX531317-article-details-124367419"><a href="#lt-2-gt-https-blog-csdn-net-HKX531317-article-details-124367419" class="headerlink" title="&lt;2&gt;https://blog.csdn.net/HKX531317/article/details/124367419"></a>&lt;2&gt;<a href="https://blog.csdn.net/HKX531317/article/details/124367419">https://blog.csdn.net/HKX531317/article/details/124367419</a></h5><h5 id="lt-3-gt-https-blog-csdn-net-m0-46155417-article-details-129364222"><a href="#lt-3-gt-https-blog-csdn-net-m0-46155417-article-details-129364222" class="headerlink" title="&lt;3&gt;https://blog.csdn.net/m0_46155417/article/details/129364222"></a>&lt;3&gt;<a href="https://blog.csdn.net/m0_46155417/article/details/129364222">https://blog.csdn.net/m0_46155417/article/details/129364222</a></h5>]]></content>
-      <categories>
-        <category>信号</category>
-      </categories>
-      <tags>
-        <tag>大学大作业</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>信号2</title>
     <url>/2023/05/27/%E4%BF%A1%E5%8F%B7%E4%BA%8C/</url>
     <content><![CDATA[<h1 id="西安电子科技大学"><a href="#西安电子科技大学" class="headerlink" title="西安电子科技大学"></a>西安电子科技大学</h1><h3 id="信-号-与-系-统实验报告"><a href="#信-号-与-系-统实验报告" class="headerlink" title="信 号 与 系 统实验报告"></a>信 号 与 系 统实验报告</h3><h5 id="2023年5月26日"><a href="#2023年5月26日" class="headerlink" title="2023年5月26日"></a>2023年5月26日</h5><h4 id="一、实验题目：信号与系统实验二"><a href="#一、实验题目：信号与系统实验二" class="headerlink" title="一、实验题目：信号与系统实验二"></a>一、实验题目：信号与系统实验二</h4><span id="more"></span>
@@ -1186,6 +1106,86 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
 
 
 <h4 id="五、实验总结"><a href="#五、实验总结" class="headerlink" title="五、实验总结"></a>五、实验总结</h4><h5 id="本次的实验的逻辑内容并不是很困难，大部分的时间用在了如何做出对应图像的函数上面，在本次实验中，我认为最困难的一点是对傅里叶系数的求解，因为这个求解过程需要把积分的过程变成离散的小段叠加的过程，两者之间的转换是相对来说比较困难的。这次实验最大的收获就是自己对于原函数的模拟逼近过程，以及对吉布斯现象的观察。"><a href="#本次的实验的逻辑内容并不是很困难，大部分的时间用在了如何做出对应图像的函数上面，在本次实验中，我认为最困难的一点是对傅里叶系数的求解，因为这个求解过程需要把积分的过程变成离散的小段叠加的过程，两者之间的转换是相对来说比较困难的。这次实验最大的收获就是自己对于原函数的模拟逼近过程，以及对吉布斯现象的观察。" class="headerlink" title="本次的实验的逻辑内容并不是很困难，大部分的时间用在了如何做出对应图像的函数上面，在本次实验中，我认为最困难的一点是对傅里叶系数的求解，因为这个求解过程需要把积分的过程变成离散的小段叠加的过程，两者之间的转换是相对来说比较困难的。这次实验最大的收获就是自己对于原函数的模拟逼近过程，以及对吉布斯现象的观察。"></a>本次的实验的逻辑内容并不是很困难，大部分的时间用在了如何做出对应图像的函数上面，在本次实验中，我认为最困难的一点是对傅里叶系数的求解，因为这个求解过程需要把积分的过程变成离散的小段叠加的过程，两者之间的转换是相对来说比较困难的。这次实验最大的收获就是自己对于原函数的模拟逼近过程，以及对吉布斯现象的观察。</h5><h4 id="六、参考文献"><a href="#六、参考文献" class="headerlink" title="六、参考文献"></a>六、参考文献</h4><h5 id="lt-1-gt-https-baike-baidu-com-item-E5-90-89-E5-B8-83-E6-96-AF-E7-8E-B0-E8-B1-A1"><a href="#lt-1-gt-https-baike-baidu-com-item-E5-90-89-E5-B8-83-E6-96-AF-E7-8E-B0-E8-B1-A1" class="headerlink" title="&lt;1&gt;https://baike.baidu.com/item/%E5%90%89%E5%B8%83%E6%96%AF%E7%8E%B0%E8%B1%A1"></a>&lt;1&gt;<a href="https://baike.baidu.com/item/%E5%90%89%E5%B8%83%E6%96%AF%E7%8E%B0%E8%B1%A1">https://baike.baidu.com/item/%E5%90%89%E5%B8%83%E6%96%AF%E7%8E%B0%E8%B1%A1</a></h5><h5 id="lt-2-gt-https-blog-csdn-net-lhiSt-article-details-103287689"><a href="#lt-2-gt-https-blog-csdn-net-lhiSt-article-details-103287689" class="headerlink" title="&lt;2&gt;https://blog.csdn.net/lhiSt/article/details/103287689"></a>&lt;2&gt;<a href="https://blog.csdn.net/lhiSt/article/details/103287689">https://blog.csdn.net/lhiSt/article/details/103287689</a></h5><h5 id="lt-3-gt-https-blog-csdn-net-hellocsz-article-details-88932356"><a href="#lt-3-gt-https-blog-csdn-net-hellocsz-article-details-88932356" class="headerlink" title="&lt;3&gt;https://blog.csdn.net/hellocsz/article/details/88932356"></a>&lt;3&gt;<a href="https://blog.csdn.net/hellocsz/article/details/88932356">https://blog.csdn.net/hellocsz/article/details/88932356</a></h5><h5 id="lt-4-gt-https-blog-csdn-net-Redmoon955331-article-details-125048310"><a href="#lt-4-gt-https-blog-csdn-net-Redmoon955331-article-details-125048310" class="headerlink" title="&lt;4&gt;https://blog.csdn.net/Redmoon955331/article/details/125048310"></a>&lt;4&gt;<a href="https://blog.csdn.net/Redmoon955331/article/details/125048310">https://blog.csdn.net/Redmoon955331/article/details/125048310</a></h5><h5 id="lt-5-gt-matlab官方帮助文档"><a href="#lt-5-gt-matlab官方帮助文档" class="headerlink" title="&lt;5&gt;matlab官方帮助文档"></a>&lt;5&gt;matlab官方帮助文档</h5>]]></content>
+      <categories>
+        <category>信号</category>
+      </categories>
+      <tags>
+        <tag>大学大作业</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>信号3</title>
+    <url>/2023/06/02/%E4%BF%A1%E5%8F%B73/</url>
+    <content><![CDATA[<h1 id="西安电子科技大学"><a href="#西安电子科技大学" class="headerlink" title="西安电子科技大学"></a>西安电子科技大学</h1><h3 id="信-号-与-系-统实验报告"><a href="#信-号-与-系-统实验报告" class="headerlink" title="信 号 与 系 统实验报告"></a>信 号 与 系 统实验报告</h3><h5 id="2023年6月2日"><a href="#2023年6月2日" class="headerlink" title="2023年6月2日"></a>2023年6月2日</h5><h4 id="一、实验题目：信号与系统实验三"><a href="#一、实验题目：信号与系统实验三" class="headerlink" title="一、实验题目：信号与系统实验三"></a>一、实验题目：信号与系统实验三</h4><h4 id="二、实验摘要"><a href="#二、实验摘要" class="headerlink" title="二、实验摘要"></a>二、实验摘要</h4><h5 id="lt-1-gt-题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"><a href="#lt-1-gt-题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。" class="headerlink" title="&lt;1&gt;题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"></a>&lt;1&gt;题目一利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。</h5><h5 id="lt-2-gt-题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。"><a href="#lt-2-gt-题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。" class="headerlink" title="&lt;2&gt;题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。"></a>&lt;2&gt;题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。</h5><h5 id="lt-3-gt-此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。"><a href="#lt-3-gt-此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。" class="headerlink" title="&lt;3&gt;此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。"></a>&lt;3&gt;此时我们需要求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。</h5><h5 id="lt-4-gt-本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。"><a href="#lt-4-gt-本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。" class="headerlink" title="&lt;4&gt;本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。"></a>&lt;4&gt;本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。</h5><span id="more"></span>
+
+<h4 id="三、题目描述"><a href="#三、题目描述" class="headerlink" title="三、题目描述"></a>三、题目描述</h4><h5 id="lt-1-gt-题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。"><a href="#lt-1-gt-题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。" class="headerlink" title="&lt;1&gt;题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。"></a>&lt;1&gt;题目一要求对给定原函数，调用matlab中的函数计算其傅里叶变换。给定频谱函数计算其傅里叶逆变换。</h5><h5 id="lt-2-gt-题目二要求-求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。"><a href="#lt-2-gt-题目二要求-求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。" class="headerlink" title="&lt;2&gt;题目二要求 求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。"></a>&lt;2&gt;题目二要求 求出一个函数以及该函数时移一个单位后的函数的傅里叶变换，对变换后的图像进行比较，分析时移规律。</h5><h5 id="lt-3-gt-题目三要求-求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。"><a href="#lt-3-gt-题目三要求-求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。" class="headerlink" title="&lt;3&gt;题目三要求 求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。"></a>&lt;3&gt;题目三要求 求出两个函数以及这两个函数的乘积的傅里叶变换，并将图像进行比较分析。</h5><h5 id="lt-4-gt-题目四要求-对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。"><a href="#lt-4-gt-题目四要求-对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。" class="headerlink" title="&lt;4&gt;题目四要求 对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。"></a>&lt;4&gt;题目四要求 对于已经给定的滤波器的模和截止频率，求出此滤波器的幅度谱和相位谱，同时n取2，3，4，5，对这些图像的特性进行分析。</h5><h4 id="四、实验内容"><a href="#四、实验内容" class="headerlink" title="四、实验内容"></a>四、实验内容</h4><h5 id="题目一："><a href="#题目一：" class="headerlink" title="题目一："></a>题目一：</h5><h5 id="实验过程："><a href="#实验过程：" class="headerlink" title="实验过程："></a>实验过程：</h5><h5 id="利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"><a href="#利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。" class="headerlink" title="利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。"></a>利用matlab的fourier函数和ifourier函数直接将给出的函数带入分别计算傅里叶变换和傅里叶反变换，画出变换之后的函数图像。</h5><h5 id="但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。"><a href="#但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。" class="headerlink" title="但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。"></a>但是这次用的图像函数为fplot函数，目的是以代码开头设置的t和w未知量为自变量直接画出图像。</h5><h5 id="实验结果："><a href="#实验结果：" class="headerlink" title="实验结果："></a>实验结果：</h5><img src="C:\Z.Sagapo\code\matlab\expriment3\f12.png" alt="f12" style="zoom:80%;" />
+
+<img src="C:\Z.Sagapo\code\matlab\expriment3\f13.png" alt="f13" style="zoom:80%;" />
+
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms t w;</span><br><span class="line">f = <span class="built_in">exp</span>(<span class="number">-2</span>*<span class="built_in">abs</span>(t));</span><br><span class="line">y1 = fourier(f);</span><br><span class="line">y = <span class="number">1</span>/(<span class="number">1</span>+w^<span class="number">2</span>);</span><br><span class="line">y2 = ifourier(y);</span><br><span class="line"></span><br><span class="line"><span class="comment">%fplot(y1);</span></span><br><span class="line">grid on;</span><br><span class="line"></span><br><span class="line">fplot(y2);</span><br><span class="line">grid on;</span><br><span class="line">axis([<span class="number">-6</span> <span class="number">6</span> <span class="number">-0.05</span> <span class="number">0.55</span>])</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="题目二："><a href="#题目二：" class="headerlink" title="题目二："></a>题目二：</h5><h5 id="实验过程：-1"><a href="#实验过程：-1" class="headerlink" title="实验过程："></a>实验过程：</h5><h5 id="题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。其中分别求幅度大小和相位大小是，调用了abs函数和angle函数。并且阶跃函数有heaviside函数直接构造出来。"><a href="#题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。其中分别求幅度大小和相位大小是，调用了abs函数和angle函数。并且阶跃函数有heaviside函数直接构造出来。" class="headerlink" title="题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。其中分别求幅度大小和相位大小是，调用了abs函数和angle函数。并且阶跃函数有heaviside函数直接构造出来。"></a>题目中给出了两个时域函数，对这个函数进行傅里叶变换，画出其幅度谱和相位谱的图像。通过二者图像的对比，探究傅里叶变换的时移性质。其中分别求幅度大小和相位大小是，调用了abs函数和angle函数。并且阶跃函数有heaviside函数直接构造出来。</h5><h5 id="实验结果：-1"><a href="#实验结果：-1" class="headerlink" title="实验结果："></a>实验结果：</h5><h5 id="根据理论和图像可以得出，傅里叶变换时移性对函数幅度谱不会产生变化，而相位谱则会发生变化。"><a href="#根据理论和图像可以得出，傅里叶变换时移性对函数幅度谱不会产生变化，而相位谱则会发生变化。" class="headerlink" title="根据理论和图像可以得出，傅里叶变换时移性对函数幅度谱不会产生变化，而相位谱则会发生变化。"></a>根据理论和图像可以得出，傅里叶变换时移性对函数幅度谱不会产生变化，而相位谱则会发生变化。</h5><h5 id="对信号进行时移会导致相位谱在频域上发生线性的变化。这是因为时移实际上是将信号的每个频率成分在时间上移动相同的量。"><a href="#对信号进行时移会导致相位谱在频域上发生线性的变化。这是因为时移实际上是将信号的每个频率成分在时间上移动相同的量。" class="headerlink" title="对信号进行时移会导致相位谱在频域上发生线性的变化。这是因为时移实际上是将信号的每个频率成分在时间上移动相同的量。"></a>对信号进行时移会导致相位谱在频域上发生线性的变化。这是因为时移实际上是将信号的每个频率成分在时间上移动相同的量。</h5><img src="C:\Z.Sagapo\code\matlab\expriment3\f21_1.png" alt="f21_1" style="zoom:80%;" />
+
+<img src="C:\Z.Sagapo\code\matlab\expriment3\f22.png" alt="f22" style="zoom:80%;" />
+
+<h5 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms t w; </span><br><span class="line">y1 = (<span class="number">1</span>/<span class="number">2</span>)*<span class="built_in">exp</span>(<span class="number">-2</span>*t)*heaviside(t);</span><br><span class="line">y2 = (<span class="number">1</span>/<span class="number">2</span>)*<span class="built_in">exp</span>(<span class="number">-2</span>*(t<span class="number">-1</span>))*heaviside(t<span class="number">-1</span>);</span><br><span class="line">outy1 = fourier(y1);</span><br><span class="line">outy2 = fourier(y2);</span><br><span class="line"></span><br><span class="line">fplot(outy1);</span><br><span class="line">fplot(outy2);</span><br><span class="line"></span><br><span class="line">fudu1 = <span class="built_in">abs</span>(outy1);</span><br><span class="line">fudu2 = <span class="built_in">abs</span>(outy2);</span><br><span class="line"></span><br><span class="line">xiang1 = <span class="built_in">angle</span>(outy1);</span><br><span class="line">xiang2 = <span class="built_in">angle</span>(outy2);</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">fplot(fudu1);</span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;幅度谱&#x27;</span>);</span><br><span class="line">subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">fplot(xiang1);</span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;相位谱&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="题目三："><a href="#题目三：" class="headerlink" title="题目三："></a>题目三：</h5><h5 id="实验过程：-2"><a href="#实验过程：-2" class="headerlink" title="实验过程："></a>实验过程：</h5><h5 id="求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。"><a href="#求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。" class="headerlink" title="求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。"></a>求出两个函数以及这两个函数的乘积的傅里叶变换，直接将其带入傅里叶变换函数即可求出，abs函数得到变换后的幅度大小，angle函数可以得到变换后的相位的大小。</h5><h5 id="实验结果：设函数f-t-的傅里叶变换为F-ω-，幅度谱为-F-ω-，相位谱为ϕ-ω-。同样，函数g-t-的傅里叶变换为G-ω-，幅度谱为-G-ω-，相位谱为φ-ω-。"><a href="#实验结果：设函数f-t-的傅里叶变换为F-ω-，幅度谱为-F-ω-，相位谱为ϕ-ω-。同样，函数g-t-的傅里叶变换为G-ω-，幅度谱为-G-ω-，相位谱为φ-ω-。" class="headerlink" title="实验结果：设函数f(t)的傅里叶变换为F(ω)，幅度谱为|F(ω)|，相位谱为ϕ(ω)。同样，函数g(t)的傅里叶变换为G(ω)，幅度谱为|G(ω)|，相位谱为φ(ω)。"></a>实验结果：设函数f(t)的傅里叶变换为F(ω)，幅度谱为|F(ω)|，相位谱为ϕ(ω)。同样，函数g(t)的傅里叶变换为G(ω)，幅度谱为|G(ω)|，相位谱为φ(ω)。</h5><h5 id="那么，两个函数的乘积h-t-x3D-f-t-g-t-的傅里叶变换的幅度谱为："><a href="#那么，两个函数的乘积h-t-x3D-f-t-g-t-的傅里叶变换的幅度谱为：" class="headerlink" title="那么，两个函数的乘积h(t) &#x3D; f(t) * g(t)的傅里叶变换的幅度谱为："></a>那么，两个函数的乘积h(t) &#x3D; f(t) * g(t)的傅里叶变换的幅度谱为：</h5><p>$$<br>|H(ω)| &#x3D; |F(ω)| * |G(ω)|<br>$$</p>
+<h5 id="即乘积的幅度谱等于两个函数的幅度谱的点乘。"><a href="#即乘积的幅度谱等于两个函数的幅度谱的点乘。" class="headerlink" title="即乘积的幅度谱等于两个函数的幅度谱的点乘。"></a>即乘积的幅度谱等于两个函数的幅度谱的点乘。</h5><h5 id="而相位谱的情况稍微复杂一些。两个函数的乘积的相位谱可以表示为："><a href="#而相位谱的情况稍微复杂一些。两个函数的乘积的相位谱可以表示为：" class="headerlink" title="而相位谱的情况稍微复杂一些。两个函数的乘积的相位谱可以表示为："></a>而相位谱的情况稍微复杂一些。两个函数的乘积的相位谱可以表示为：</h5><p>$$<br>ϕ_h(ω) &#x3D; ϕ_f(ω) + ϕ_g(ω)<br>$$</p>
+<h5 id="即乘积的相位谱等于两个函数的相位谱的点相加。"><a href="#即乘积的相位谱等于两个函数的相位谱的点相加。" class="headerlink" title="即乘积的相位谱等于两个函数的相位谱的点相加。"></a>即乘积的相位谱等于两个函数的相位谱的点相加。</h5><h5 id="这意味着乘积的幅度谱是原始函数幅度谱的乘积，而相位谱是原始函数相位谱的简单相加。"><a href="#这意味着乘积的幅度谱是原始函数幅度谱的乘积，而相位谱是原始函数相位谱的简单相加。" class="headerlink" title="这意味着乘积的幅度谱是原始函数幅度谱的乘积，而相位谱是原始函数相位谱的简单相加。"></a>这意味着乘积的幅度谱是原始函数幅度谱的乘积，而相位谱是原始函数相位谱的简单相加。</h5><h5 id="需要注意的是，以上的关系是在频域上的。在时域上进行函数的乘积会导致频域上的卷积操作，从而改变函数的幅度谱和相位谱。"><a href="#需要注意的是，以上的关系是在频域上的。在时域上进行函数的乘积会导致频域上的卷积操作，从而改变函数的幅度谱和相位谱。" class="headerlink" title="需要注意的是，以上的关系是在频域上的。在时域上进行函数的乘积会导致频域上的卷积操作，从而改变函数的幅度谱和相位谱。"></a>需要注意的是，以上的关系是在频域上的。在时域上进行函数的乘积会导致频域上的卷积操作，从而改变函数的幅度谱和相位谱。</h5><img src="C:\Z.Sagapo\code\matlab\expriment3\f31.png" alt="f31" style="zoom:80%;" />
+
+<h5 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms t w;</span><br><span class="line">w_c = <span class="number">100</span>;</span><br><span class="line">y1 = heaviside(t+<span class="number">2</span>) - heaviside(t<span class="number">-2</span>);</span><br><span class="line">y2 = (<span class="number">1</span>/<span class="number">2</span>)*<span class="built_in">exp</span>(<span class="number">-2</span>*(t<span class="number">-1</span>))*heaviside(t<span class="number">-1</span>);</span><br><span class="line">y3 = y1.*y2;</span><br><span class="line"></span><br><span class="line">y_1 = fourier(y1);</span><br><span class="line">y_2 = fourier(y2);</span><br><span class="line">y_3 = fourier(y3);</span><br><span class="line"></span><br><span class="line">tempy1 = <span class="built_in">abs</span>(y_1);</span><br><span class="line"></span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">ezplot(tempy1,[-w_c, w_c, <span class="number">0</span>, <span class="number">4</span>]);</span><br><span class="line">grid on;</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">w = <span class="number">-110</span>:<span class="number">0.01</span>:<span class="number">110</span>;</span><br><span class="line"><span class="built_in">plot</span>(w,<span class="built_in">sign</span>(subs(y_2,w)));</span><br><span class="line">fplot(y_2);</span><br><span class="line">grid on;</span><br><span class="line">subplot(<span class="number">3</span>,<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">w = <span class="number">-110</span>:<span class="number">110</span>;</span><br><span class="line">fplot(w,subs(<span class="built_in">abs</span>(y_3)));</span><br><span class="line">grid on;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="题目四："><a href="#题目四：" class="headerlink" title="题目四："></a>题目四：</h5><h5 id="实验过程：-3"><a href="#实验过程：-3" class="headerlink" title="实验过程："></a>实验过程：</h5><h5 id="本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。"><a href="#本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。" class="headerlink" title="本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。"></a>本题目是最难的一个题目，首先调用logspace函数对w的频率进行划分（由于频率的范围较大，我们需要对频率左边画成对数形式），然后通过矩阵的计算得到每一个w下对应的复数，接着分别调用abs函数和angle函数计算出频谱密度的幅度谱和相位谱，对n取2，3，4，5，画出图像进行比较观察。</h5><h5 id="通过结果我们发现："><a href="#通过结果我们发现：" class="headerlink" title="通过结果我们发现："></a>通过结果我们发现：</h5><h5 id="由于阶数-n-的不同，低通巴特沃斯滤波器的幅度谱和相位谱图像会有以下特点："><a href="#由于阶数-n-的不同，低通巴特沃斯滤波器的幅度谱和相位谱图像会有以下特点：" class="headerlink" title="由于阶数 n 的不同，低通巴特沃斯滤波器的幅度谱和相位谱图像会有以下特点："></a>由于阶数 n 的不同，低通巴特沃斯滤波器的幅度谱和相位谱图像会有以下特点：</h5><ol>
+<li><h5 id="幅度谱："><a href="#幅度谱：" class="headerlink" title="幅度谱："></a>幅度谱：</h5><ul>
+<li><h5 id="阶数-n-的增加会导致滤波器的陷波特性更加明显，即在截止频率附近会出现更大的衰减。"><a href="#阶数-n-的增加会导致滤波器的陷波特性更加明显，即在截止频率附近会出现更大的衰减。" class="headerlink" title="阶数 n 的增加会导致滤波器的陷波特性更加明显，即在截止频率附近会出现更大的衰减。"></a>阶数 n 的增加会导致滤波器的陷波特性更加明显，即在截止频率附近会出现更大的衰减。</h5></li>
+<li><h5 id="阶数-n-的增加会使滤波器的幅度谱更陡峭，即从通过频率到截止频率之间的幅度变化更加剧烈。"><a href="#阶数-n-的增加会使滤波器的幅度谱更陡峭，即从通过频率到截止频率之间的幅度变化更加剧烈。" class="headerlink" title="阶数 n 的增加会使滤波器的幅度谱更陡峭，即从通过频率到截止频率之间的幅度变化更加剧烈。"></a>阶数 n 的增加会使滤波器的幅度谱更陡峭，即从通过频率到截止频率之间的幅度变化更加剧烈。</h5></li>
+</ul>
+</li>
+<li><h5 id="相位谱："><a href="#相位谱：" class="headerlink" title="相位谱："></a>相位谱：</h5><ul>
+<li><h5 id="阶数-n-的增加不会对滤波器的相位谱产生明显的影响。"><a href="#阶数-n-的增加不会对滤波器的相位谱产生明显的影响。" class="headerlink" title="阶数 n 的增加不会对滤波器的相位谱产生明显的影响。"></a>阶数 n 的增加不会对滤波器的相位谱产生明显的影响。</h5></li>
+<li><h5 id="低通巴特沃斯滤波器的相位谱是线性的，没有随频率变化而产生明显的扭曲或畸变。"><a href="#低通巴特沃斯滤波器的相位谱是线性的，没有随频率变化而产生明显的扭曲或畸变。" class="headerlink" title="低通巴特沃斯滤波器的相位谱是线性的，没有随频率变化而产生明显的扭曲或畸变。"></a>低通巴特沃斯滤波器的相位谱是线性的，没有随频率变化而产生明显的扭曲或畸变。</h5></li>
+</ul>
+</li>
+</ol>
+<h5 id="综上所述，随着阶数-n-的增加，低通巴特沃斯滤波器的幅度谱图像会更加陡峭，截止频率附近的衰减更明显，而相位谱图像保持线性且不变。因此，阶数-n-对于滤波器的频率响应形状和幅度特性具有显著影响，而对相位特性影响较小。"><a href="#综上所述，随着阶数-n-的增加，低通巴特沃斯滤波器的幅度谱图像会更加陡峭，截止频率附近的衰减更明显，而相位谱图像保持线性且不变。因此，阶数-n-对于滤波器的频率响应形状和幅度特性具有显著影响，而对相位特性影响较小。" class="headerlink" title="综上所述，随着阶数 n 的增加，低通巴特沃斯滤波器的幅度谱图像会更加陡峭，截止频率附近的衰减更明显，而相位谱图像保持线性且不变。因此，阶数 n 对于滤波器的频率响应形状和幅度特性具有显著影响，而对相位特性影响较小。"></a>综上所述，随着阶数 n 的增加，低通巴特沃斯滤波器的幅度谱图像会更加陡峭，截止频率附近的衰减更明显，而相位谱图像保持线性且不变。因此，阶数 n 对于滤波器的频率响应形状和幅度特性具有显著影响，而对相位特性影响较小。</h5><img src="C:\Z.Sagapo\code\matlab\expriment3\f52_2.png" alt="f52_2" style="zoom: 80%;" />
+
+<img src="C:\Z.Sagapo\code\matlab\expriment3\f53.png" alt="f53" style="zoom: 80%;" />
+
+<img src="C:\Z.Sagapo\code\matlab\expriment3\f54.png" alt="f54" style="zoom: 80%;" />
+
+<img src="C:\Z.Sagapo\code\matlab\expriment3\f55.png" alt="f55" style="zoom: 80%;" />
+
+
+
+<img src="C:\Z.Sagapo\code\matlab\expriment3\f52.png" alt="f52"  />
+
+<h5 id="代码：-2"><a href="#代码：-2" class="headerlink" title="代码："></a>代码：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">wc = <span class="number">600</span>*<span class="built_in">pi</span>;  </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">w = <span class="built_in">logspace</span>(<span class="built_in">log10</span>(<span class="number">1</span>), <span class="built_in">log10</span>(<span class="number">10000</span>), <span class="number">10000</span>);  <span class="comment">% 频率范围</span></span><br><span class="line">n = <span class="number">5</span>;</span><br><span class="line">H = <span class="number">1</span> ./ (<span class="number">1</span> - <span class="number">1</span><span class="built_in">i</span> * (w ./ wc).^n);  <span class="comment">% 幅频函数</span></span><br><span class="line">H_mag = <span class="built_in">abs</span>(H);  <span class="comment">% 幅度谱</span></span><br><span class="line">semilogx(w, H_mag)</span><br><span class="line">xlabel(<span class="string">&#x27;频率 (w)&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;|H(jw)|&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;幅度谱&#x27;</span>)</span><br><span class="line">H_phase = <span class="built_in">angle</span>(H);  <span class="comment">% 相位谱</span></span><br><span class="line">grid on;</span><br><span class="line">axis([<span class="number">-0.1</span> <span class="number">10005</span> <span class="number">0</span> <span class="number">1.1</span>]);</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;n=5&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<img src="C:\Z.Sagapo\code\matlab\expriment3\f63.png" alt="f63" style="zoom:80%;" />
+
+<img src="C:\Z.Sagapo\code\matlab\expriment3\f64.png" alt="f64" style="zoom:80%;" />
+
+<img src="C:\Z.Sagapo\code\matlab\expriment3\f65.png" alt="f65" style="zoom:80%;" />
+
+<p><img src="C:\Z.Sagapo\code\matlab\expriment3\f61.png" alt="f61"></p>
+<h5 id="代码：-3"><a href="#代码：-3" class="headerlink" title="代码："></a>代码：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">wc = <span class="number">600</span>*<span class="built_in">pi</span>;  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">w = <span class="built_in">logspace</span>(<span class="built_in">log10</span>(<span class="number">1</span>), <span class="built_in">log10</span>(<span class="number">10000</span>), <span class="number">10000</span>);  </span><br><span class="line">n = <span class="number">2</span>;    </span><br><span class="line">H = <span class="number">1</span> ./ (<span class="number">1</span> - <span class="number">1</span><span class="built_in">i</span> * (w ./ wc).^n);  </span><br><span class="line"></span><br><span class="line">H_phase = <span class="built_in">angle</span>(H);  </span><br><span class="line"></span><br><span class="line">semilogx(w, H_phase)</span><br><span class="line">xlabel(<span class="string">&#x27;频率 (w)&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;相位 (弧度)&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;相位谱&#x27;</span>)</span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"></span><br><span class="line">n = <span class="number">3</span>;    </span><br><span class="line">H = <span class="number">1</span> ./ (<span class="number">1</span> - <span class="number">1</span><span class="built_in">i</span> * (w ./ wc).^n); </span><br><span class="line"></span><br><span class="line">H_phase = <span class="built_in">angle</span>(H); </span><br><span class="line"></span><br><span class="line">semilogx(w, H_phase)</span><br><span class="line">xlabel(<span class="string">&#x27;频率 (w)&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;相位 (弧度)&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;相位谱&#x27;</span>)</span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"></span><br><span class="line">n = <span class="number">4</span>;     </span><br><span class="line">H = <span class="number">1</span> ./ (<span class="number">1</span> - <span class="number">1</span><span class="built_in">i</span> * (w ./ wc).^n);  </span><br><span class="line"></span><br><span class="line">H_phase = <span class="built_in">angle</span>(H);  </span><br><span class="line"></span><br><span class="line">semilogx(w, H_phase)</span><br><span class="line">xlabel(<span class="string">&#x27;频率 (w)&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;相位 (弧度)&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;相位谱&#x27;</span>)</span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">hold</span> on;</span><br><span class="line"></span><br><span class="line">n = <span class="number">5</span>; </span><br><span class="line">H = <span class="number">1</span> ./ (<span class="number">1</span> - <span class="number">1</span><span class="built_in">i</span> * (w ./ wc).^n);</span><br><span class="line"></span><br><span class="line">H_phase = <span class="built_in">angle</span>(H);  </span><br><span class="line"></span><br><span class="line">semilogx(w, H_phase)</span><br><span class="line">xlabel(<span class="string">&#x27;频率 (w)&#x27;</span>)</span><br><span class="line">ylabel(<span class="string">&#x27;相位 (弧度)&#x27;</span>)</span><br><span class="line">title(<span class="string">&#x27;相位谱&#x27;</span>)</span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">hold</span> on;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="五、实验总结"><a href="#五、实验总结" class="headerlink" title="五、实验总结"></a>五、实验总结</h4><p><strong>在第二题一开始直接用fplot()绘制傅里叶变换后的幅度谱和相位谱，得不到结果，而应该绘制abs()模值部分和angle()辅角部分，因此分别定义abs(f1)和angle(f1)来绘制F1的图像，最终得到了结果</strong>。</p>
+<p><strong>乘积的幅度谱是原始函数幅度谱的点乘，而相位谱是原始函数相位谱的简单相加, 这是基于频域分析的结果，而在时域上对函数进行乘积会导致频域上的卷积操作，从而改变函数的幅度谱和相位谱。</strong></p>
+<h5 id="最后对于巴特沃斯滤波器的学习总结阶数-n-对于低通巴特沃斯滤波器的幅度谱图像具有显著影响，阶数的增加会使幅度谱更陡峭并导致更大的衰减。然而，阶数对于相位谱的影响较小，相位谱保持线性且不变。这些特点可以用于设计和分析低通巴特沃斯滤波器的频率响应。"><a href="#最后对于巴特沃斯滤波器的学习总结阶数-n-对于低通巴特沃斯滤波器的幅度谱图像具有显著影响，阶数的增加会使幅度谱更陡峭并导致更大的衰减。然而，阶数对于相位谱的影响较小，相位谱保持线性且不变。这些特点可以用于设计和分析低通巴特沃斯滤波器的频率响应。" class="headerlink" title="最后对于巴特沃斯滤波器的学习总结阶数 n 对于低通巴特沃斯滤波器的幅度谱图像具有显著影响，阶数的增加会使幅度谱更陡峭并导致更大的衰减。然而，阶数对于相位谱的影响较小，相位谱保持线性且不变。这些特点可以用于设计和分析低通巴特沃斯滤波器的频率响应。"></a>最后对于巴特沃斯滤波器的学习总结<strong>阶数 n 对于低通巴特沃斯滤波器的幅度谱图像具有显著影响，阶数的增加会使幅度谱更陡峭并导致更大的衰减。然而，阶数对于相位谱的影响较小，相位谱保持线性且不变。这些特点可以用于设计和分析低通巴特沃斯滤波器的频率响应。</strong></h5><h4 id="六、参考文献"><a href="#六、参考文献" class="headerlink" title="六、参考文献"></a><strong>六、参考文献</strong></h4><p>&lt;1&gt;<a href="https://blog.csdn.net/qq_43786066/article/details/108687806">https://blog.csdn.net/qq_43786066/article/details/108687806</a></p>
+<p>&lt;2&gt;<a href="https://ww2.mathworks.cn/help/matlab/complex-numbers.html">https://ww2.mathworks.cn/help/matlab/complex-numbers.html</a></p>
+<p>&lt;3&gt;<a href="https://blog.csdn.net/weixin_42870380/article/details/113122417?ops_request_misc=&request_id=&biz_id=102&utm_term=%E7%BB%98%E5%88%B6%E5%B7%B4%E7%89%B9%E6%B2%83%E6%96%AF%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E5%B9%85%E9%A2%91%E6%9B%B2%E7%BA%BF&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-113122417.268">https://blog.csdn.net/weixin_42870380/article/details/113122417?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=%E7%BB%98%E5%88%B6%E5%B7%B4%E7%89%B9%E6%B2%83%E6%96%AF%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%9A%84%E5%B9%85%E9%A2%91%E6%9B%B2%E7%BA%BF&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-113122417.268</a></p>
+<p>&lt;4&gt;<a href="https://blog.csdn.net/kissgoodbye2012/article/details/122018004">https://blog.csdn.net/kissgoodbye2012/article/details/122018004</a></p>
+]]></content>
       <categories>
         <category>信号</category>
       </categories>
@@ -1521,56 +1521,26 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
       </tags>
   </entry>
   <entry>
-    <title>第一次组会</title>
-    <url>/2022/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/</url>
-    <content><![CDATA[<h1 id="呜呜呜呜呜呜呜呜呜呜呜"><a href="#呜呜呜呜呜呜呜呜呜呜呜" class="headerlink" title="呜呜呜呜呜呜呜呜呜呜呜"></a>呜呜呜呜呜呜呜呜呜呜呜</h1><h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><h5 id="level1："><a href="#level1：" class="headerlink" title="level1："></a>level1：</h5><p>第一眼威尔逊定理，第二眼，草，不是，给出了p，则有：<br>$$<br>e &#x3D; 1*(p-210)!mod p<br>$$<br>则有设第二个返回值为x，<br>$$<br>x &#x3D; (m^e)mod p\<br>m &#x3D; x*e^(-1)mod p<br>$$<br>e为一个小于p的数，则有e一定和p互素，所以存在关于p的唯一逆元</p>
-<p>已知e，则求出m</p>
-<h5 id="level2："><a href="#level2：" class="headerlink" title="level2："></a>level2：</h5><p>$$<br>x &#x3D; (127<em>m+555)modp\<br>(x-555) &#x3D; (127</em>m)mod p\<br>m &#x3D; (x-555)*(127^(-1))mod p<br>$$</p>
-<p>还需要判断一下127是否与p互素，显然互素。</p>
-<h5 id="level3："><a href="#level3：" class="headerlink" title="level3："></a>level3：</h5><p>crt-rsa</p>
-<p>已知<br>$$<br>m1 &#x3D; m\ mod \ p\<br> m2&#x3D; m\ mod\ q<br>$$<br>则由于p，q互素，则存在唯一一个m满足上述方程<br>$$<br>m &#x3D; inv(q)*q <em>m1+inv(p)<em>p</em>m2\ mod \ （p</em>q)<br>$$<br>其中inv(p)为p关于q的逆，inv(q)同理。</p>
-<h5 id="level4："><a href="#level4：" class="headerlink" title="level4："></a>level4：</h5><p>解方程？还妹看懂&#x2F;&#x2F;(发现这是数论中二次同余式的知识，还没学到，直接进行临时补习，先去补习了)</p>
-<p>$$<br>x &#x3D; (m^2 +3<em>m+5)\ mod\ p\<br>3 &#x3D; p mod4\<br>p &#x3D; 4</em>k+3\<br>(x-11&#x2F;4) &#x3D; (m+3&#x2F;2)^2\ mod \ p\<br>(4x-11) &#x3D; (2m+3)^2\ mod \ p\<br>$$</p>
-<p> 此时 p为已知，x为已知，下面进行解方程</p>
-<p>设x &#x3D; 2m+3，n &#x3D; 4x-11<br>$$<br>n &#x3D; x^2\ mod \ p\<br>x^2 - n &#x3D; mp\<br>(x^2-n)^k &#x3D; (mp)^k\<br>设w^2 &#x3D; n\<br>则有(x+w)^k(x-w)^k &#x3D; (mp)^k\<br>进行二项式展开\<br>\ \  \ \ \ \ \ \ \ \ \ \ \ (x+w)^k  &#x3D; …\ &#x3D; t+uw(打不出来呜呜呜)\<br>(x-w)^k &#x3D; …\ &#x3D; t-uw\<br>$$<br>所以原式等价于<br>$$<br>t^2 - u^2n &#x3D; (mp)^k\<br>t^2 - u^2n &#x3D; 0 \ mod \ p\<br>t^2 &#x3D; u^2n\ mod \ p\<br>由于gcd(p,u) &#x3D; 1(证明过程好长)\<br>n &#x3D; t^2*inv(u^2) \ mod \ p\<br>$$<br>在本题中k &#x3D; 1带入</p>
-<p>最后得到<br>$$<br>x^2 &#x3D; t^2inv(u)^2\ mod \ p\<br>x1 &#x3D; t*inv(u)\ mod\ p\<br>x2 &#x3D; (p-x1)\ mod \ p<br>\<br>$$<br>代码(偷懒只写了k &#x3D; 1 的代码，其实口算就能算出来，有时间一定补完整的)</p>
-<p>（二次剩余的证明好难好难，数论书的证明过程看不懂，，，，，，）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p = getPrime()</span><br><span class="line">x = <span class="number">2</span>*m+<span class="number">3</span></span><br><span class="line">n  = <span class="number">4</span>*x - <span class="number">11</span></span><br><span class="line"></span><br><span class="line">w = <span class="built_in">pow</span>(n,<span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">k = <span class="number">1</span></span><br><span class="line">t = x</span><br><span class="line">u = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">inv_u = inverse(u,p)</span><br><span class="line">x1 = t*inv_u%p</span><br><span class="line">x2 = (p-x1)%p</span><br><span class="line"></span><br><span class="line">m = (x-<span class="number">3</span>)/<span class="number">2</span></span><br></pre></td></tr></table></figure>
+    <title>绿盟实习</title>
+    <url>/2023/07/07/%E7%BB%BF%E7%9B%9F%E5%AE%9E%E4%B9%A0/</url>
+    <content><![CDATA[<h5 id="windows登陆密码加密方式"><a href="#windows登陆密码加密方式" class="headerlink" title="windows登陆密码加密方式"></a>windows登陆密码加密方式</h5><p>windows登录密码的加密方式为NTML方式，对应的hashcat加密ID为1000，并且题目要求为字典解密，不要求掩码解密以及其他方法的解密，所以本题目的重点相当于考察对于python的subprocess模块的使用。</p>
+<span id="more"></span>
+
+<p>所以命令为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.\hashcat -m 1000 -a 0 <span class="built_in">hash</span>文件 解密字典</span><br></pre></td></tr></table></figure>
+
+<p>同时，我们想把解密的过程调用和解密结果保存，则设置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">capture = <span class="literal">true</span>,text = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>这两个参数中，capture会捕获子进程的输出结果，text会将结果以文本的形式输出。</p>
+<p>下面将子进程运行过程中的所有的输出都进行捕获并打印到指定文件中并进行输出。</p>
+<p>命令为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> .\hashcat -m 1000 -a 0 hash文件 解密字典 | tee 输出文件路径</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="第二题：Rabin加解密"><a href="#第二题：Rabin加解密" class="headerlink" title="第二题：Rabin加解密"></a>第二题：Rabin加解密</h2><p>选取两个大的不同素数p和q，两个都同余3模4</p>
-<p>计算n &#x3D; P*q</p>
-<p>p,q作为私钥，n作为公钥</p>
-<h5 id="加密过程：对于明文m-m-lt-n-和密文c，c-x3D-m-2-mod-n"><a href="#加密过程：对于明文m-m-lt-n-和密文c，c-x3D-m-2-mod-n" class="headerlink" title="加密过程：对于明文m(m&lt;n)和密文c，c &#x3D; m^2 mod n"></a>加密过程：对于明文m(m&lt;n)和密文c，c &#x3D; m^2 mod n</h5><h5 id="解密过程"><a href="#解密过程" class="headerlink" title="解密过程:"></a>解密过程:</h5><h5 id="lt-1-gt-根据费马小定理计算m在模p和q时的平方根（有时间再来补上费马小定理对于此方程的证明过程）"><a href="#lt-1-gt-根据费马小定理计算m在模p和q时的平方根（有时间再来补上费马小定理对于此方程的证明过程）" class="headerlink" title="&lt;1&gt;根据费马小定理计算m在模p和q时的平方根（有时间再来补上费马小定理对于此方程的证明过程）"></a>&lt;1&gt;根据费马小定理计算m在模p和q时的平方根（有时间再来补上费马小定理对于此方程的证明过程）</h5><p>p &#x3D; 4*k +1, 4|p+1</p>
-<p>对于c&#x3D;m^2 mod p 来说，c是模p的二次剩余</p>
-<p>即有：c^((p-1)&#x2F;2) &#x3D; 1 mod p</p>
-<p>带入有<br>$$<br>m^2 &#x3D; c(mod p)&#x3D;c^((p-1)&#x2F;2)*c (mod p)-c((p+1)&#x2F;2)modp<br>$$<br>则对于上述方程开方得到<br>$$<br>m1 &#x3D; c((p+1)&#x2F;4)mod \<br>m2 &#x3D; (p-c^((p+1)&#x2F;4))mod p\<br>$$<br>对于q同理</p>
-<p>所以我们得到下述方程<br>$$<br>m1 &#x3D; c^(1&#x2F;4 \ * (p+1)) \ mod\ p\<br>m1 &#x3D; c(1&#x2F;4\ *(q+1))\ mod q<br>$$</p>
-<p>从m1,m2以及m3,m4中分别选出一个方程，共有4种情况分别用中国剩余定理，则可得到四个关于m的解</p>
-<p>here is 代码</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">c1=<span class="built_in">pow</span>(c,(p+<span class="number">1</span>)/<span class="number">4</span>,p)</span><br><span class="line">c2=<span class="built_in">pow</span>(c,(q+<span class="number">1</span>)/<span class="number">4</span>,q)</span><br><span class="line">c3=p-c1</span><br><span class="line">c4=q-c2</span><br><span class="line">t1=gmpy2.invert(p,q)<span class="comment">#p的模q逆元</span></span><br><span class="line">t2=gmpy2.invert(q,p)<span class="comment">#q的模p逆元</span></span><br><span class="line"></span><br><span class="line">m1=(q*c1*t2+p*c2*t1)%n</span><br><span class="line">m2=(q*c1*t2+p*c4*t1)%n <span class="comment"># or m2=n-m1</span></span><br><span class="line">m3=(q*c3*t2+p*c2*t1)%n</span><br><span class="line">m4=(q*c3*t2+p*c4*t1)%n <span class="comment"># or m4=n-m3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span>(m1,m2,m3,m4):</span><br><span class="line">    m = <span class="string">&#x27;%x&#x27;</span> % i</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(m)%<span class="number">2</span>==<span class="number">1</span>:</span><br><span class="line">        m=<span class="string">&#x27;0&#x27;</span>+m </span><br><span class="line">    <span class="built_in">print</span>(m.decode())   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="第三题：RSA"><a href="#第三题：RSA" class="headerlink" title="第三题：RSA"></a>第三题：RSA</h2><p>strongprime：如果p是一个strongprime，则有p+1以及p-1至少有一个大素数因子。</p>
-<p>虽然还不清楚这个限制在这个题目中的作用。。。</p>
-<p>n1为三个大素数的乘积，则有<br>$$<br>phi(n1) &#x3D; (p-1)<em>(p-1)</em>(q-1)<br>$$<br>接下来就是rsa的解密过程，<br>$$<br>e1*inv(e1)&#x3D;1 mod\ phi(n1)\<br>m[0] &#x3D; pow(c1,inv(e1),n1)<br>$$<br>后面为一个共模攻击，gcd(65537,4007) &#x3D; 1,(待补共模攻击的证明过程)。。。</p>
-<p>然后对n2进行分解，则此时有：<br>$$<br>n2 &#x3D; p<em>q\<br>phi(n2)&#x3D;(p-1)</em>(q-1)<br>$$<br>共模攻击推导<br>$$<br>gcd(e1,e2) &#x3D; 1<br>$$<br>由扩展欧几里得公式<br>$$<br>e1<em>s1+e2</em>s2 &#x3D; 1\ \ (设s1为正，s2为负)\<br>c1 &#x3D; pow(m,e1,n2)\ \ c2 &#x3D; pow(m,e2,n2)\\<br>pow(c1,s1)*pow(c2,s2)mod\ n2 &#x3D; (pow(pow(m,e1,n2),s1))<em>pow(pow(m,e2,n2),s2)mod\ n2\<br>&#x3D;pow(m,e1</em>s1)<em>pow(m,e2</em>s2)mod \ n\<br>&#x3D;pow(m,e1s1+e2s2)mod\ n\<br>&#x3D;pow(m,1)mod\ n<br>&#x3D;m mod\ n\<br>最后得到\<br>pow(c1,s1)*pow(c2,s2) &#x3D; m<br>\<br>$$<br>只能感慨一下牛逼，呜呜呜</p>
-<p>代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">s,s1,s2 = gcdext(e1,e2)</span><br><span class="line">m[<span class="number">1</span>] = <span class="built_in">pow</span>(c1,s1,n2)*<span class="built_in">pow</span>(c2,s2,n2)%n2</span><br></pre></td></tr></table></figure>
-
-<p>虽然但是，仍然没有看懂这行代码…</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">m = [bytes_to_long(plaintext[len_p//<span class="number">2</span>*i:len_p//<span class="number">2</span>*(i+<span class="number">1</span>)]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>)]</span><br><span class="line">len_p//<span class="number">2</span>*i:len_p//<span class="number">2</span>*(i+<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<p>结束！数论好玩喵。（呜呜呜，数论一点也不好玩）</p>
+<h5 id="linux登录密码加密方式"><a href="#linux登录密码加密方式" class="headerlink" title="linux登录密码加密方式"></a>linux登录密码加密方式</h5><p>sha-512：hashcat解密ID为1800</p>
 ]]></content>
-      <categories>
-        <category>Crypto</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-      </tags>
   </entry>
   <entry>
     <title>OS_Extra</title>
@@ -1748,26 +1718,56 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
       </tags>
   </entry>
   <entry>
-    <title>绿盟实习</title>
-    <url>/2023/07/07/%E7%BB%BF%E7%9B%9F%E5%AE%9E%E4%B9%A0/</url>
-    <content><![CDATA[<h5 id="windows登陆密码加密方式"><a href="#windows登陆密码加密方式" class="headerlink" title="windows登陆密码加密方式"></a>windows登陆密码加密方式</h5><p>windows登录密码的加密方式为NTML方式，对应的hashcat加密ID为1000，并且题目要求为字典解密，不要求掩码解密以及其他方法的解密，所以本题目的重点相当于考察对于python的subprocess模块的使用。</p>
-<span id="more"></span>
+    <title>第一次组会</title>
+    <url>/2022/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/</url>
+    <content><![CDATA[<h1 id="呜呜呜呜呜呜呜呜呜呜呜"><a href="#呜呜呜呜呜呜呜呜呜呜呜" class="headerlink" title="呜呜呜呜呜呜呜呜呜呜呜"></a>呜呜呜呜呜呜呜呜呜呜呜</h1><h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><h5 id="level1："><a href="#level1：" class="headerlink" title="level1："></a>level1：</h5><p>第一眼威尔逊定理，第二眼，草，不是，给出了p，则有：<br>$$<br>e &#x3D; 1*(p-210)!mod p<br>$$<br>则有设第二个返回值为x，<br>$$<br>x &#x3D; (m^e)mod p\<br>m &#x3D; x*e^(-1)mod p<br>$$<br>e为一个小于p的数，则有e一定和p互素，所以存在关于p的唯一逆元</p>
+<p>已知e，则求出m</p>
+<h5 id="level2："><a href="#level2：" class="headerlink" title="level2："></a>level2：</h5><p>$$<br>x &#x3D; (127<em>m+555)modp\<br>(x-555) &#x3D; (127</em>m)mod p\<br>m &#x3D; (x-555)*(127^(-1))mod p<br>$$</p>
+<p>还需要判断一下127是否与p互素，显然互素。</p>
+<h5 id="level3："><a href="#level3：" class="headerlink" title="level3："></a>level3：</h5><p>crt-rsa</p>
+<p>已知<br>$$<br>m1 &#x3D; m\ mod \ p\<br> m2&#x3D; m\ mod\ q<br>$$<br>则由于p，q互素，则存在唯一一个m满足上述方程<br>$$<br>m &#x3D; inv(q)*q <em>m1+inv(p)<em>p</em>m2\ mod \ （p</em>q)<br>$$<br>其中inv(p)为p关于q的逆，inv(q)同理。</p>
+<h5 id="level4："><a href="#level4：" class="headerlink" title="level4："></a>level4：</h5><p>解方程？还妹看懂&#x2F;&#x2F;(发现这是数论中二次同余式的知识，还没学到，直接进行临时补习，先去补习了)</p>
+<p>$$<br>x &#x3D; (m^2 +3<em>m+5)\ mod\ p\<br>3 &#x3D; p mod4\<br>p &#x3D; 4</em>k+3\<br>(x-11&#x2F;4) &#x3D; (m+3&#x2F;2)^2\ mod \ p\<br>(4x-11) &#x3D; (2m+3)^2\ mod \ p\<br>$$</p>
+<p> 此时 p为已知，x为已知，下面进行解方程</p>
+<p>设x &#x3D; 2m+3，n &#x3D; 4x-11<br>$$<br>n &#x3D; x^2\ mod \ p\<br>x^2 - n &#x3D; mp\<br>(x^2-n)^k &#x3D; (mp)^k\<br>设w^2 &#x3D; n\<br>则有(x+w)^k(x-w)^k &#x3D; (mp)^k\<br>进行二项式展开\<br>\ \  \ \ \ \ \ \ \ \ \ \ \ (x+w)^k  &#x3D; …\ &#x3D; t+uw(打不出来呜呜呜)\<br>(x-w)^k &#x3D; …\ &#x3D; t-uw\<br>$$<br>所以原式等价于<br>$$<br>t^2 - u^2n &#x3D; (mp)^k\<br>t^2 - u^2n &#x3D; 0 \ mod \ p\<br>t^2 &#x3D; u^2n\ mod \ p\<br>由于gcd(p,u) &#x3D; 1(证明过程好长)\<br>n &#x3D; t^2*inv(u^2) \ mod \ p\<br>$$<br>在本题中k &#x3D; 1带入</p>
+<p>最后得到<br>$$<br>x^2 &#x3D; t^2inv(u)^2\ mod \ p\<br>x1 &#x3D; t*inv(u)\ mod\ p\<br>x2 &#x3D; (p-x1)\ mod \ p<br>\<br>$$<br>代码(偷懒只写了k &#x3D; 1 的代码，其实口算就能算出来，有时间一定补完整的)</p>
+<p>（二次剩余的证明好难好难，数论书的证明过程看不懂，，，，，，）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">p = getPrime()</span><br><span class="line">x = <span class="number">2</span>*m+<span class="number">3</span></span><br><span class="line">n  = <span class="number">4</span>*x - <span class="number">11</span></span><br><span class="line"></span><br><span class="line">w = <span class="built_in">pow</span>(n,<span class="number">1</span>/<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">k = <span class="number">1</span></span><br><span class="line">t = x</span><br><span class="line">u = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">inv_u = inverse(u,p)</span><br><span class="line">x1 = t*inv_u%p</span><br><span class="line">x2 = (p-x1)%p</span><br><span class="line"></span><br><span class="line">m = (x-<span class="number">3</span>)/<span class="number">2</span></span><br></pre></td></tr></table></figure>
 
-<p>所以命令为：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.\hashcat -m 1000 -a 0 <span class="built_in">hash</span>文件 解密字典</span><br></pre></td></tr></table></figure>
-
-<p>同时，我们想把解密的过程调用和解密结果保存，则设置：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">capture = <span class="literal">true</span>,text = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>这两个参数中，capture会捕获子进程的输出结果，text会将结果以文本的形式输出。</p>
-<p>下面将子进程运行过程中的所有的输出都进行捕获并打印到指定文件中并进行输出。</p>
-<p>命令为：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> .\hashcat -m 1000 -a 0 hash文件 解密字典 | tee 输出文件路径</span><br></pre></td></tr></table></figure>
 
 
+<h2 id="第二题：Rabin加解密"><a href="#第二题：Rabin加解密" class="headerlink" title="第二题：Rabin加解密"></a>第二题：Rabin加解密</h2><p>选取两个大的不同素数p和q，两个都同余3模4</p>
+<p>计算n &#x3D; P*q</p>
+<p>p,q作为私钥，n作为公钥</p>
+<h5 id="加密过程：对于明文m-m-lt-n-和密文c，c-x3D-m-2-mod-n"><a href="#加密过程：对于明文m-m-lt-n-和密文c，c-x3D-m-2-mod-n" class="headerlink" title="加密过程：对于明文m(m&lt;n)和密文c，c &#x3D; m^2 mod n"></a>加密过程：对于明文m(m&lt;n)和密文c，c &#x3D; m^2 mod n</h5><h5 id="解密过程"><a href="#解密过程" class="headerlink" title="解密过程:"></a>解密过程:</h5><h5 id="lt-1-gt-根据费马小定理计算m在模p和q时的平方根（有时间再来补上费马小定理对于此方程的证明过程）"><a href="#lt-1-gt-根据费马小定理计算m在模p和q时的平方根（有时间再来补上费马小定理对于此方程的证明过程）" class="headerlink" title="&lt;1&gt;根据费马小定理计算m在模p和q时的平方根（有时间再来补上费马小定理对于此方程的证明过程）"></a>&lt;1&gt;根据费马小定理计算m在模p和q时的平方根（有时间再来补上费马小定理对于此方程的证明过程）</h5><p>p &#x3D; 4*k +1, 4|p+1</p>
+<p>对于c&#x3D;m^2 mod p 来说，c是模p的二次剩余</p>
+<p>即有：c^((p-1)&#x2F;2) &#x3D; 1 mod p</p>
+<p>带入有<br>$$<br>m^2 &#x3D; c(mod p)&#x3D;c^((p-1)&#x2F;2)*c (mod p)-c((p+1)&#x2F;2)modp<br>$$<br>则对于上述方程开方得到<br>$$<br>m1 &#x3D; c((p+1)&#x2F;4)mod \<br>m2 &#x3D; (p-c^((p+1)&#x2F;4))mod p\<br>$$<br>对于q同理</p>
+<p>所以我们得到下述方程<br>$$<br>m1 &#x3D; c^(1&#x2F;4 \ * (p+1)) \ mod\ p\<br>m1 &#x3D; c(1&#x2F;4\ *(q+1))\ mod q<br>$$</p>
+<p>从m1,m2以及m3,m4中分别选出一个方程，共有4种情况分别用中国剩余定理，则可得到四个关于m的解</p>
+<p>here is 代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">c1=<span class="built_in">pow</span>(c,(p+<span class="number">1</span>)/<span class="number">4</span>,p)</span><br><span class="line">c2=<span class="built_in">pow</span>(c,(q+<span class="number">1</span>)/<span class="number">4</span>,q)</span><br><span class="line">c3=p-c1</span><br><span class="line">c4=q-c2</span><br><span class="line">t1=gmpy2.invert(p,q)<span class="comment">#p的模q逆元</span></span><br><span class="line">t2=gmpy2.invert(q,p)<span class="comment">#q的模p逆元</span></span><br><span class="line"></span><br><span class="line">m1=(q*c1*t2+p*c2*t1)%n</span><br><span class="line">m2=(q*c1*t2+p*c4*t1)%n <span class="comment"># or m2=n-m1</span></span><br><span class="line">m3=(q*c3*t2+p*c2*t1)%n</span><br><span class="line">m4=(q*c3*t2+p*c4*t1)%n <span class="comment"># or m4=n-m3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span>(m1,m2,m3,m4):</span><br><span class="line">    m = <span class="string">&#x27;%x&#x27;</span> % i</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(m)%<span class="number">2</span>==<span class="number">1</span>:</span><br><span class="line">        m=<span class="string">&#x27;0&#x27;</span>+m </span><br><span class="line">    <span class="built_in">print</span>(m.decode())   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h5 id="linux登录密码加密方式"><a href="#linux登录密码加密方式" class="headerlink" title="linux登录密码加密方式"></a>linux登录密码加密方式</h5><p>sha-512：hashcat解密ID为1800</p>
+
+
+<h2 id="第三题：RSA"><a href="#第三题：RSA" class="headerlink" title="第三题：RSA"></a>第三题：RSA</h2><p>strongprime：如果p是一个strongprime，则有p+1以及p-1至少有一个大素数因子。</p>
+<p>虽然还不清楚这个限制在这个题目中的作用。。。</p>
+<p>n1为三个大素数的乘积，则有<br>$$<br>phi(n1) &#x3D; (p-1)<em>(p-1)</em>(q-1)<br>$$<br>接下来就是rsa的解密过程，<br>$$<br>e1*inv(e1)&#x3D;1 mod\ phi(n1)\<br>m[0] &#x3D; pow(c1,inv(e1),n1)<br>$$<br>后面为一个共模攻击，gcd(65537,4007) &#x3D; 1,(待补共模攻击的证明过程)。。。</p>
+<p>然后对n2进行分解，则此时有：<br>$$<br>n2 &#x3D; p<em>q\<br>phi(n2)&#x3D;(p-1)</em>(q-1)<br>$$<br>共模攻击推导<br>$$<br>gcd(e1,e2) &#x3D; 1<br>$$<br>由扩展欧几里得公式<br>$$<br>e1<em>s1+e2</em>s2 &#x3D; 1\ \ (设s1为正，s2为负)\<br>c1 &#x3D; pow(m,e1,n2)\ \ c2 &#x3D; pow(m,e2,n2)\\<br>pow(c1,s1)*pow(c2,s2)mod\ n2 &#x3D; (pow(pow(m,e1,n2),s1))<em>pow(pow(m,e2,n2),s2)mod\ n2\<br>&#x3D;pow(m,e1</em>s1)<em>pow(m,e2</em>s2)mod \ n\<br>&#x3D;pow(m,e1s1+e2s2)mod\ n\<br>&#x3D;pow(m,1)mod\ n<br>&#x3D;m mod\ n\<br>最后得到\<br>pow(c1,s1)*pow(c2,s2) &#x3D; m<br>\<br>$$<br>只能感慨一下牛逼，呜呜呜</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">s,s1,s2 = gcdext(e1,e2)</span><br><span class="line">m[<span class="number">1</span>] = <span class="built_in">pow</span>(c1,s1,n2)*<span class="built_in">pow</span>(c2,s2,n2)%n2</span><br></pre></td></tr></table></figure>
+
+<p>虽然但是，仍然没有看懂这行代码…</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">m = [bytes_to_long(plaintext[len_p//<span class="number">2</span>*i:len_p//<span class="number">2</span>*(i+<span class="number">1</span>)]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>)]</span><br><span class="line">len_p//<span class="number">2</span>*i:len_p//<span class="number">2</span>*(i+<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>结束！数论好玩喵。（呜呜呜，数论一点也不好玩）</p>
 ]]></content>
+      <categories>
+        <category>Crypto</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+      </tags>
   </entry>
   <entry>
     <title>编译原理上机报告</title>
