@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>/2023/09/10/2023A%E6%91%98%E8%A6%81/</url>
+    <content><![CDATA[<p>针对问题一，问题一的难点在于<strong>计算镜场</strong>的阴影遮蔽效率和截断效率。对于阴影遮蔽效率的计算，本文采用改良的蒙特卡罗射线追踪法。通过计算待测镜与问题镜之间的距离，排除掉肯定无法对待测镜造成阴影遮蔽损失的问题镜，在待测镜上选取大量点，通过追踪这些点的入射和反射光线，建立点法式直线方程计算是否与问题镜相交从而将这些点分成能量损失点和非能量损失点，非能量损失点数量与选取的总点数的比值则为阴影遮蔽效率。对于截断效率的计算，采用光锥母线追迹法，将圆柱集热器投影成矩形平面，在非能量损失点反射的光锥上追迹多条母线，计算追迹的这些光锥母线是否与集热器平面相交，与集热器平面相交的光锥母线数量与追迹的总光锥母线数量的比值则为截断效率。在计算过程中，我们使用了局-整-局坐标转换法，将每面定日镜和集热器都当成独立对象并为其建立局部坐标系，计算坐标转换时使用整体坐标系作为桥梁，就可大大简化计算的难度。</p>
+<p>针对问题二，由于问题一中的阴影遮挡损失最大，本问题选择一种可以消除遮挡损失的定日镜布局方式——EB布局。根据EB布局方式中任意两个定日镜之间不存在遮挡损失的原理，固定吸收塔的平面坐标为(0,0)，由几何关系计算并调整初始定日镜的位置。然后对定日镜数量、吸收塔高度等参数进行迭代求解，以平均镜面面积的热功率为目标函数，在年平均效率$E_{field,all} &gt; 60MW$为约束函数，运用粒子群算法和非线性规划COBYLA算法对定日镜的坐标位置进行优化运算，建立单目标优化模型并使用SolarPILOT工具对结果进行进一步的分析拟合。求解得到[定日镜数量，吸收塔高度，定日镜安装高度，定日镜宽度，定日镜高度，单位面积镜面年平均输出热功率 ] &#x3D; [1020，155.73，7.23，13.28，9.80，0.45]。每面定日镜的具体位置坐标存在result2.xlsx中。</p>
+<p>针对问题三，基于问题二的单目标优化模型以及SolarPILOT拟合方法，仍然采用EB布局方法，根据不同定日镜的尺寸和安装高度不同，参考问题二的结果，可以得知定日镜的朝向以及距离吸收塔的距离会影响光学效率大小。以EB布局的定日镜位置为基础，计算定日镜和北方向（即地面参考系的y轴正方向）的夹角thea以及定日镜距离吸收塔的距离leng，将其和定日镜坐标、镜面安装高度以及吸收塔坐标作为变量带入粒子群和COBYLA结合的单目标优化模型中，最终发现定日镜和北方夹角越小或者距离吸收塔更近可以增大光学效率。以此为基础将夹角和距离结合作为比率rate对定日镜的尺寸进行调整，得到最优结果。本题目求解得到[定日镜数量，吸收塔高度，单位面积镜面年平均输出热功率 ] &#x3D; [933，158.24，0.5153]。每面定日镜的尺寸、安装高度以及坐标位置存在result3.xlsx中。</p>
+<p>模型的优点：</p>
+<p>模型综合使用了塔式太阳能定日镜场一种经典的可以消除阴影遮挡损失的影响，使定日镜场的光学效率得以大步提升</p>
+<p>在建立单目标优化模型时，将粒子群算法和COBLAY非线性规划算法进行结合，再降低计算时间复杂度问题的同时提升了结果的准确程度。</p>
+<p>缺点：EB布局方法在大量的定日镜数量时小于D blocking布局方法的准确性和光学效率。</p>
+<p>模型的改进：</p>
+<p>1、在问题一中还可以考虑吸收塔阴影对于阴影遮挡效率的影响，进一步优化光学效率的计算并优化定日经常的布局。</p>
+<p>2、在问题二中可以应用更加准确且高校的D blocking 方法，比较不同布局下对于最终光学效率以及热功率的影响。</p>
+<p>3、在问题三中还可以将遗传算法结合至单目标优化模型中，可以提高最终参数的准确性。</p>
+<p>DC37B88E91C005FD692CB07BB71A5863</p>
+<p>A6E6A8FA9041388ADA0483BA586E000E</p>
+]]></content>
+  </entry>
+  <entry>
     <title>RSA</title>
     <url>/2022/10/19/RSA/</url>
     <content><![CDATA[<p>​	</p>
@@ -302,6 +320,22 @@
       <tags>
         <tag>CTF</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/10/07/test/</url>
+    <content><![CDATA[<p>两种优化方案都是在分支为4的时候最快，其中虚实块树优化可以最快加速13.001％，满n叉树方案能够最快加速7.393%。</p>
+<p><strong>但是两个方案均存在以下问题</strong>：</p>
+<p>在rtree的分支个数为8或者更大的时候，速率急剧降低，这是树的查询节点时间增加所导致</p>
+<p>其中满n叉树方案存在两种实现方式：</p>
+<h5 id="第一种方式：从根节点开始向下编码"><a href="#第一种方式：从根节点开始向下编码" class="headerlink" title="第一种方式：从根节点开始向下编码"></a>第一种方式：从根节点开始向下编码</h5><p>这种编码方式，在编码时计算简便，但是在查询的时间复杂度为o(n)；</p>
+<p>公式如下：</p>
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20231007011205178.png" alt="image-20231007011205178" style="zoom: 50%;" />
+
+<h5 id="第二种方式：从第一个叶子节点开始向上编码"><a href="#第二种方式：从第一个叶子节点开始向上编码" class="headerlink" title="第二种方式：从第一个叶子节点开始向上编码"></a>第二种方式：从第一个叶子节点开始向上编码</h5><p>这种编码方式计算复杂，但是查询时间复杂度为o(1);</p>
+<p>但是这种查询时间复杂度为o(1)的情况，仅在只对数据库进行一次的数据填充而不进行数据的增加和删改操作时才能实现。</p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20231007011037781.png" alt="image-20231007011037781"></p>
+]]></content>
   </entry>
   <entry>
     <title>Latex_1</title>
@@ -846,6 +880,178 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/08/19/%E4%B8%80%E7%82%B9%E6%84%9F%E5%8F%97/</url>
+    <content><![CDATA[<p>有些东西果然有人需要才会写写（乐)</p>
+<p>（但是某人大学这两年一直在为了保研”卷“，所以写的东西可能都会涉及到保研这个词&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;上西电上的）。</p>
+<p>书院制：大一开学分实验班博弈，大一下学期网安实验班博弈，大一结束升大二分流要博弈，大二结束升大三转专业接着博弈。</p>
+<p>其实大部分最后为的都是一个保研名额罢了。</p>
+<p>反正已经在西电住了两年了，自认为最大的感受：选择大于努力（所以上述几个阶段才会被称为博弈）</p>
+<p>作为西电的第二批书院制的人，21级自认为有了20级的参考和血的教训，然后按照自己的想法选择了自己的专业，（但是最后平均情况跟往年比其实大差不差，只是大类的前多少名在为了rank能够更高博弈罢了）。</p>
+<p>但是也可以选择去一个小专业，也不是说小专业差，但是分流结果来看，大部分的小专业相比于卷的专业来说，生活不可谓不滋润（指获得保研资格的难度）。</p>
+<p>先说分流吧：</p>
+<p>大一分流会按照所有必修成绩的均分以及莫名奇妙的综测分直接相加的分数排名作为分流的依据。分流可以进入三个学院：计科院，智能院，网信院，后面细说</p>
+<p>（某人最后去了网信院）</p>
+<p>其实具体实际的想分流去什么专业是在大一最后快结束的一个月，然后这一个月里又要期末，又要比赛，又要想分流，又要提前把综测材料找好。总之——“充实”（上西电上的）。</p>
+<p>因为最后去了网信院，然后也并没有参加那些学院的宣讲，在这里就讲一下当时分流的心路历程：</p>
+<p>一开学认识的所有大二学长，在问他们关于分流的问题时，都会提到一个点：20级的计科惨不忍睹。</p>
+<p>但是作为一个还没有被拷打过的新生，哪里知道这个惨不忍睹是个什么情况，所以还是相信自己，就一定要去计科卷（后来想了想，疑问就来了，我当时是完全没有依据的凭空想象，我的第一反应就是计科，后来我把这个想法归之为大学之前的所有想法以及对于西电的评价，因为可能来西电就是怼着西电计科来的）。</p>
+<p>后来就逐渐开始思考一些有依据的东西，比如各个学院的课程设置以及充分发挥自己的优势。</p>
+<p>课程设置方面，目前根据我的了解：</p>
+<p>大二：计科院跟网信院一样当狗，智能院快乐生活</p>
+<p>（注：当狗指课程的难度以及课程的内卷程度以及实验的数量和难度）</p>
+<p>亲测网信院大二下（42个实验34个实验报告历历在目，甚至在期末考完之后还有两份报告没写，泪目了）</p>
+<p>因为实验室里有好多计科的，个人体验：和我一样当狗。。。。。实验多课也多。</p>
+<p>然后就到了自己选择专业的时候：</p>
+<p>第一：了解到网信的英语不计入保研科目</p>
+<p>第二：了解到网信没有电路模电之类的有关于“电”的科目（某人在这方面特别抗拒学习）</p>
+<p>第三：网信的数学相关科目会稍微多（数学好可能会有优势）（事实证明没有什么用）。</p>
+<p>第四：网信的课表（课好少啊）<br>综上所述：毅然决然去了网信院</p>
+<p>分流结果：20级卷的专业21级仍然卷，只是20级计科的离谱在21级稍微缓和了一点，但是仍然一马当先。</p>
+<p>草：好像把智能院忘了：呃呃呃，从头到尾就没有考虑过智能院，因为课程设置太离谱了（后面再说）。所以只在计科和网信做了选择。</p>
+<p>学的内容：计科和网信学的主要科目在大二貌似没有什么差距，除了那特别水的数学基础。</p>
+<p>计科具体学习内容不清楚</p>
+<p>网信大二：寄组，os，全是黑书，划重点，</p>
+<p>​	黑书，看不懂学不完，根本看不完，根本看不完，根本看不完，字小行密，并且翻译是依托。想看懂还是得王道。（并且只能机组只能讲完一半，压力小一点）	os直接快把整本黑书给结束了，要是能学会直接飞升了。</p>
+<p>​	但是：这门课只有两个学分，就很搞，付出大把时间复习2学分，还学不会。</p>
+<p>​	数据结构：学的明显比计科浅，信号学的也浅（但是今年考的最难），</p>
+<p>​	实验：上面已经说了，说起来都是泪。</p>
+<h5 id="计科课程：我觉得除了课多实验多卷王多大佬多女生多，课程设置还是挺好的（除了模电）。"><a href="#计科课程：我觉得除了课多实验多卷王多大佬多女生多，课程设置还是挺好的（除了模电）。" class="headerlink" title="计科课程：我觉得除了课多实验多卷王多大佬多女生多，课程设置还是挺好的（除了模电）。"></a>计科课程：我觉得除了课多实验多卷王多大佬多女生多，课程设置还是挺好的（除了模电）。</h5><h5 id="智能：此处绝非诋毁，机组学的内容很少，考的简单，电路学的内容比计科浅好多，还有一些莫名其妙的课程：脑科学（学生物），以及接近4学分的人智概论（这课就是依托）。然后os是选修，计网直接不学（我也不知道不学-os和计网-对一个计算机人来说真的合理吗）"><a href="#智能：此处绝非诋毁，机组学的内容很少，考的简单，电路学的内容比计科浅好多，还有一些莫名其妙的课程：脑科学（学生物），以及接近4学分的人智概论（这课就是依托）。然后os是选修，计网直接不学（我也不知道不学-os和计网-对一个计算机人来说真的合理吗）" class="headerlink" title="智能：此处绝非诋毁，机组学的内容很少，考的简单，电路学的内容比计科浅好多，还有一些莫名其妙的课程：脑科学（学生物），以及接近4学分的人智概论（这课就是依托）。然后os是选修，计网直接不学（我也不知道不学 os和计网 对一个计算机人来说真的合理吗）"></a>智能：此处绝非诋毁，机组学的内容很少，考的简单，电路学的内容比计科浅好多，还有一些莫名其妙的课程：脑科学（学生物），以及接近4学分的人智概论（这课就是依托）。然后os是选修，计网直接不学（我也不知道不学 os和计网 对一个计算机人来说真的合理吗）</h5><p>但是智能有一个好处：人多且摆，你可以滋润的（相比计科和信安来说，21级的信安个人认为快赶上计科了）获得一个好看的rank去保研。</p>
+<p>因为坚定了自己的转业，所以完全没有考虑转专业的事情。</p>
+<p>相关的政策大概是：</p>
+<p>大二结束教务处会让学院公布前两年的一个分数排名：这个排名应该是算了前两年的所有必修，然后这之前会公布转专业的要求：21级网信院是排名10%以内或者突出特长。 在这之后在规定时间内在西电一站式服务大厅提交转专业申请，符合要求即可参加转专业的面试，这个面试（据说有的院很水，有的院很玄学）。然后几天后会公布转专业成功的名单。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/09/04/%E3%80%8A%E8%BF%99%E5%B0%B1%E6%98%AF%E4%B8%AD%E5%9B%BD%E3%80%8B%EF%BC%9A%E8%B6%85%E5%A4%A7%E4%BA%BA%E5%8F%A3%E8%A7%84%E6%A8%A1%E7%9A%84%E7%8E%B0%E4%BB%A3%E5%8C%96/</url>
+    <content><![CDATA[<p>《这就是中国》：超大人口规模的现代化 学习笔记</p>
+<p>学习笔记：规模与国家发展的关系</p>
+<ol>
+<li>规模与国家发展的关系：<ul>
+<li>规模是国家成功发展的一个重要因素，但也可能引发内在矛盾。</li>
+<li>中国式现代化强调人口规模巨大的现代化，这需要理解中国政治历史逻辑。</li>
+<li>西方式现代化通常发生在小规模国家，如古希腊城邦和封建小王国。</li>
+</ul>
+</li>
+<li>小国的特点：<ul>
+<li>小国之间的频繁战争有助于技术、制度和文化创新。</li>
+<li>我们的火药传入欧洲提高了战争强度，催生了现代科学。</li>
+<li>欧洲国家的战争能力提升后，开始扩张殖民，积累财富，启动工业化进程。</li>
+</ul>
+</li>
+<li>小国面临的问题：<ul>
+<li>战争频仍导致债务积累，最终受国际金融资本控制。</li>
+<li>西方式现代化伴随战争、殖民、剥削、压迫和经济金融危机。</li>
+</ul>
+</li>
+<li>中国的独特之处：<ul>
+<li>中国从古代起就是大规模文明，通过民族融合、政治制度和文化创新实现和维护大一统。</li>
+<li>中国式现代化解决了规模与现代化的矛盾。</li>
+</ul>
+</li>
+<li>中国政治历史的发展：<ul>
+<li>周代通过宗法制度和封建制度维持大一统。</li>
+<li>秦制实现了人民平等，但是失于生硬，后汉时期对其加以完善。</li>
+<li>儒家思想独尊，解决了思想多元化问题。</li>
+<li>中国共产党实现了有机的大一统，代表人民的整体利益。</li>
+</ul>
+</li>
+<li>中国共产党的贡献：<ul>
+<li>中国共产党通过组织构建人民和国家的血肉联系，解决了规模和秩序的矛盾。</li>
+<li>党的长期性和连续性保障了中国现代化事业的延续性。</li>
+<li>中国共产党提出了人民民主和自我革命来解决历史周期律问题。</li>
+</ul>
+</li>
+<li>统一性与多样性的统一：<ul>
+<li>中国共产党通过民主集中、统一战线、群众路线等方式解决了统一性和多样性的问题。</li>
+<li>在人口规模巨大的国家，保持制度不僵化、权力不腐败、阶层不固化、社会不动荡、人民不分裂、文化不堕落是关键。</li>
+</ul>
+</li>
+<li>结论：<ul>
+<li>中国共产党的领导在解决规模与现代化的矛盾方面发挥了重要作用，奠定了中国“人口规模巨大的现代化”的基础。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>中国式现代化的背景：中国拥有巨大的人口规模，这使得实现现代化与西方一些人口规模小的国家实现现代化存在明显差异。中国式现代化挑战在于如何协调和管理庞大的人口资源。</li>
+<li>中国的人口规模与历史对比：中国崛起的时代背景与十九世纪欧洲国家、二十世纪美国和日本不同。中国具有十亿级别的人口规模，与过去崛起的国家相比，数量级别不同。</li>
+<li>中国式现代化的制度安排：中国采用了一整套制度安排来应对规模庞大的挑战。改革开放始于特区，进行试点，以确保规模大、风险高的改革具有可控性。另一策略是让一部分地区先富起来，带动其他地区发展，以实现整体现代化。</li>
+<li>中国与西方现代化模式的不同：中国式现代化与西方式现代化不同之处在于中国模式更注重社会秩序、国家稳定，以及综合考虑国情和民情。西方式现代化更强调赢者通吃，而中国要协调各方面的利益。</li>
+<li>中国式现代化的民情与国情：中国注重社会秩序和稳定，这是中国文化下的传统价值观的体现。与西方强调言论自由不同，中国更看重秩序和稳定，以确保社会正常运转。</li>
+<li>中国的政治制度：中国政治制度不仅为现有人民负责，还为未来的子孙后代负责，具有超长时间感。这与中国式现代化的核心理念，以人民为中心，从摇篮到坟墓，关注人的整个生命周期的发展有关。</li>
+<li>人口高质量发展：中国提出人口高质量发展的概念，强调提供高品质的生活和发展，以拉动产业发展。这不仅涉及人口自身的提升，还包括提供高品质的生活条件。</li>
+<li>城乡结构和人口特征：中国的人口结构复杂，涉及城乡结构、年龄结构、收入结构等多个方面。中国政府通过其制度优势，能够有效地调节这些结构，实现全面脱贫攻坚等政策。</li>
+<li>信任与中国共产党：中国共产党的领导力量和长期实践让人民深刻信任党的初心和实践。对口援建等做法加强了不同地区之间的合作和共同发展。</li>
+</ul>
+<ol>
+<li>人口规模巨大与中国式现代化：<ul>
+<li>中国的人口规模巨大，是中国式现代化的一个重要特点。</li>
+<li>中国式现代化与西方式现代化不同，因为中国拥有十几亿人口，这在规模上与西方国家有着巨大差异。</li>
+<li>中国式现代化的关键在于制度安排，包括特区试验、分阶段发展等，以适应庞大的国家体量。</li>
+</ul>
+</li>
+<li>秩序与现代化：<ul>
+<li>秩序问题在人口规模巨大的国家尤为重要，中国共产党成功地平衡了秩序问题，使中国的现代化进程更加顺利。</li>
+<li>秩序包括社会稳定、国家稳定、有预期的发展和中长期规划等因素。</li>
+</ul>
+</li>
+<li>中国式现代化与西方式现代化的区别：<ul>
+<li>中国式现代化是超大规模现代化，结合了古老文明与现代文明。</li>
+<li>中国的现代化需要考虑更广泛的民情、国情，以及民众的诉求和利益。</li>
+<li>中国政府在协调不同地区、不同利益之间具有关键作用，保持社会的稳定和公平。</li>
+</ul>
+</li>
+<li>人口高质量发展与中国式现代化：<ul>
+<li>人口高质量发展是中国式现代化的一部分，涵盖了为人民提供高品质生活的目标。</li>
+<li>这一发展理念是以人民为中心，包括从出生到晚年的生命周期内提供服务和提高生活质量。</li>
+</ul>
+</li>
+<li>人口红利与高素质人口：<ul>
+<li>人口红利不仅与绝对人口规模有关，还与人口的高素质有关，中国需要高素质的人口红利。</li>
+<li>通过教育和培训，中国可以提高人口的素质，实现更高质量的人口发展。</li>
+</ul>
+</li>
+<li>阶级固化问题：<ul>
+<li>阶级固化在任何社会都是一种常态，但中国具有公平调节机制，如高考制度，可以促进社会公平。</li>
+<li>中国的社会结构相对动态，允许个人通过奋斗改变命运。</li>
+<li>具有公平意识的中国文化和中国共产党的领导使得社会能够纠偏，解决阶级固化问题。</li>
+</ul>
+</li>
+<li>中国的优势和机会：<ul>
+<li>中国为有准备的人提供了大量机会，自助者天助之，努力是最重要的。</li>
+<li>中国的机会多样且广泛，只要个人有能力和努力，就能获得支持和认可。</li>
+</ul>
+</li>
+</ol>
+<h4 id="思维导图如下"><a href="#思维导图如下" class="headerlink" title="思维导图如下"></a>思维导图如下</h4><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230904212558714.png" alt="image-20230904212558714" style="zoom: 80%;" />
+
+
+
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/11/17/%E4%BD%9C%E5%93%81%E6%A6%82%E8%BF%B0/</url>
+    <content><![CDATA[<p>作品概述：</p>
+<p>背景：</p>
+<p>提出问题：</p>
+<p>能够防止这种问题：</p>
+<p>将psi，高成本哈希，系统：，设计了两个版本：</p>
+<p>我们的设计方案如下：</p>
+<p>图：</p>
+<p>（要不要详细讲解这个设计方案）</p>
+<p>作品设计与实现：</p>
+<p>首先我们的模型框架如下：</p>
+<p>讲一下这个框架：</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/09/13/%E4%BA%BA%E7%94%9F%E6%B5%B7%E6%B5%B7%E8%AF%BB%E4%B9%A6%E5%BF%83%E5%BE%97/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>信号3</title>
     <url>/2023/06/02/%E4%BF%A1%E5%8F%B73/</url>
     <content><![CDATA[<h1 id="西安电子科技大学"><a href="#西安电子科技大学" class="headerlink" title="西安电子科技大学"></a>西安电子科技大学</h1><h3 id="信-号-与-系-统实验报告"><a href="#信-号-与-系-统实验报告" class="headerlink" title="信 号 与 系 统实验报告"></a>信 号 与 系 统实验报告</h3><h5 id="2023年6月2日"><a href="#2023年6月2日" class="headerlink" title="2023年6月2日"></a>2023年6月2日</h5><h4 id="一、实验题目：信号与系统实验三"><a href="#一、实验题目：信号与系统实验三" class="headerlink" title="一、实验题目：信号与系统实验三"></a>一、实验题目：信号与系统实验三</h4><span id="more"></span>
@@ -930,7 +1136,8 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
     <url>/2023/06/09/%E4%BF%A1%E5%8F%B74/</url>
     <content><![CDATA[<h1 id="西安电子科技大学"><a href="#西安电子科技大学" class="headerlink" title="西安电子科技大学"></a>西安电子科技大学</h1><h3 id="信-号-与-系-统实验报告"><a href="#信-号-与-系-统实验报告" class="headerlink" title="信 号 与 系 统实验报告"></a>信 号 与 系 统实验报告</h3><h5 id="2023年6月9日"><a href="#2023年6月9日" class="headerlink" title="2023年6月9日"></a>2023年6月9日</h5><h4 id="一、实验题目：信号与系统实验四"><a href="#一、实验题目：信号与系统实验四" class="headerlink" title="一、实验题目：信号与系统实验四"></a>一、实验题目：信号与系统实验四</h4><span id="more"></span>
 
-<h4 id="二、实验摘要"><a href="#二、实验摘要" class="headerlink" title="二、实验摘要"></a>二、实验摘要</h4><h4 id="实验内容简述："><a href="#实验内容简述：" class="headerlink" title="实验内容简述："></a>实验内容简述：</h4><p><strong>题目一：</strong></p>
+<h4 id="二、实验摘要"><a href="#二、实验摘要" class="headerlink" title="二、实验摘要"></a>二、实验摘要</h4><p><img src="/%E4%BF%A1%E5%8F%B74%5Cimage-20230714105254263.png" alt="image-20230714105254263"></p>
+<h4 id="实验内容简述："><a href="#实验内容简述：" class="headerlink" title="实验内容简述："></a>实验内容简述：</h4><p><strong>题目一：</strong></p>
 <ol>
 <li><strong>使用符号工具箱 (<code>syms</code>) 声明变量 <code>t</code> 作为符号变量。</strong></li>
 <li><strong>定义函数 <code>f</code>，它是变量 <code>t</code> 的线性表达式 <code>t+2</code>。</strong></li>
@@ -972,7 +1179,7 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
 <p><img src="C:\Z.Sagapo\myblog\source_posts\信号4\f12_3.png" alt="f12_3"></p>
 <img src="C:\Z.Sagapo\myblog\source\_posts\信号4\f13.png" alt="f13"  />
 
-<p><img src="C:\Z.Sagapo\myblog\source_posts\信号4\f13_3.png" alt="f13_3"></p>
+<p><img src="/%E4%BF%A1%E5%8F%B74%5Cf13_3.png" alt="f13_3"></p>
 <p>实验代码：</p>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms t;</span><br><span class="line">f = t+<span class="number">2</span>;</span><br><span class="line">F = laplace(f);</span><br><span class="line"></span><br><span class="line">b=[<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line">a=[<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">6</span>];</span><br><span class="line">zplane(b,a);</span><br><span class="line">outa=roots(a);</span><br><span class="line">outb=roots(b);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%plot(real(outb),imag(outb),&#x27;o&#x27;,real(outa),imag(outa),&#x27;x&#x27;,&#x27;markersize&#x27;,12);</span></span><br><span class="line"></span><br><span class="line">grid on;</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&#x27;零点&#x27;</span>,<span class="string">&#x27;极点&#x27;</span>);</span><br><span class="line">axis([<span class="number">-3</span> <span class="number">1</span> <span class="number">-3</span> <span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line">a = [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>];</span><br><span class="line">b = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">6</span>];</span><br><span class="line">zplane(a,b);</span><br><span class="line">outa = roots(a);</span><br><span class="line">outb = roots(b);</span><br><span class="line"></span><br><span class="line"><span class="comment">%plot(real(outa),imag(outa),&#x27;o&#x27;,real(outb),imag(outb),&#x27;x&#x27;,&#x27;MarkerSize&#x27;,12);</span></span><br><span class="line">grid on;</span><br><span class="line">axis([<span class="number">-2</span> <span class="number">0.5</span> <span class="number">-2</span> <span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
 
@@ -1135,6 +1342,227 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
       <tags>
         <tag>大学大作业</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/08/03/%E5%9B%BE%E8%AE%BA%E4%B9%8B%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</url>
+    <content><![CDATA[<h3 id="图论之最小生成树"><a href="#图论之最小生成树" class="headerlink" title="图论之最小生成树"></a>图论之最小生成树</h3><p>欲修筑连接 n 个城市的铁路，已知 i ii 城与 j jj 城之间的铁路造价为 c i j c_{ij}c ij</p>
+<p>  设计一个线路图，使总造价最低。上述问题的数学模型是在连通赋权图上求权最小的生成树。赋权图的具有最小权的生成树叫做最小生成树。 下面介绍构造最小生成树的两种常用算法。</p>
+<h4 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h4><p>1、把图 G GG 中的所有边全部去掉，得到所有单独的顶点 V VV 构成图 T &#x3D; ( V , T&#x3D;(V,T&#x3D;(V, { } ) ))，其中 V VV 是顶点集合；<br>2、从 G GG 中取出当前权值最小的边，如果该边加入 T TT 的边的集合后 T TT 不形成回路，则加入 T TT ；否则舍弃；<br>3、重复第2步，直到 T TT 中有 n − 1 n-1n−1 条边 （ n nn 是顶点数）；<br>4、若第2步中遇到两条权值相同的最小权值边，任选一条即可，所以最小生成树可能不唯一，但权值之和相同。</p>
+<h5 id="Kruskal简单理解就是每次都选一条权值最小的边。适合边少点多的图。"><a href="#Kruskal简单理解就是每次都选一条权值最小的边。适合边少点多的图。" class="headerlink" title="Kruskal简单理解就是每次都选一条权值最小的边。适合边少点多的图。"></a>Kruskal简单理解就是每次都选一条权值最小的边。适合<strong>边少点多</strong>的图。</h5><img src="https://img-blog.csdnimg.cn/576414228f374c3dad1ef2b32faee40f.png#pic_center" alt="img" style="zoom:150%;" />
+
+<p>用Kruskal算法求解上图的Matlab代码为：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clc;clear; </span><br><span class="line"><span class="comment">% 输入邻接矩阵</span></span><br><span class="line">a(<span class="number">1</span>,<span class="number">2</span>)=<span class="number">50</span>; a(<span class="number">1</span>,<span class="number">3</span>)=<span class="number">60</span>; a(<span class="number">2</span>,<span class="number">4</span>)=<span class="number">65</span>; a(<span class="number">2</span>,<span class="number">5</span>)=<span class="number">40</span>; </span><br><span class="line">a(<span class="number">3</span>,<span class="number">4</span>)=<span class="number">52</span>;a(<span class="number">3</span>,<span class="number">7</span>)=<span class="number">45</span>; a(<span class="number">4</span>,<span class="number">5</span>)=<span class="number">50</span>; a(<span class="number">4</span>,<span class="number">6</span>)=<span class="number">30</span>; </span><br><span class="line">a(<span class="number">4</span>,<span class="number">7</span>)=<span class="number">42</span>; a(<span class="number">5</span>,<span class="number">6</span>)=<span class="number">70</span>;  </span><br><span class="line">[<span class="built_in">i</span>,<span class="built_in">j</span>,b]=<span class="built_in">find</span>(a);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>构建弧表表示矩阵<code>data</code>，及所有边的索引矩阵<code>index</code>：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">data=[i&#x27;;j&#x27;;b&#x27;]</span><br><span class="line">index=data(<span class="number">1</span>:<span class="number">2</span>,:)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">loop=<span class="built_in">max</span>(<span class="built_in">size</span>(a))<span class="number">-1</span>;</span><br><span class="line">result=[];</span><br><span class="line"><span class="keyword">while</span> <span class="built_in">length</span>(result)&lt;loop </span><br><span class="line">   temp=<span class="built_in">min</span>(data(<span class="number">3</span>,:));  <span class="comment">% 30</span></span><br><span class="line">   flag=<span class="built_in">find</span>(data(<span class="number">3</span>,:)==temp);  <span class="comment">% 7--&gt;在第七个位置上</span></span><br><span class="line">   flag=flag(<span class="number">1</span>);</span><br><span class="line">   v1=data(<span class="number">1</span>,flag);  <span class="comment">% 第7个位置上对应的第一行数据为4</span></span><br><span class="line">   v2=data(<span class="number">2</span>,flag);  <span class="comment">% 第7个位置上对应的第二行数据为6</span></span><br><span class="line">   <span class="keyword">if</span> index(<span class="number">1</span>,flag)~=index(<span class="number">2</span>,flag) </span><br><span class="line">      result=[result,data(:,flag)]; <span class="comment">% 4 6 30</span></span><br><span class="line">   <span class="keyword">end</span> </span><br><span class="line">   index(<span class="built_in">find</span>(index==v2))=v1; <span class="comment">% 把index里面的6全部改成4</span></span><br><span class="line">   data(:,flag)=[]; <span class="comment">% 删除第七个位置的三个值 4 6 30</span></span><br><span class="line">   index(:,flag)=[]; <span class="comment">% 删除第七个位置的索引</span></span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line">result </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>求得的结果为：</p>
+<img src="https://img-blog.csdnimg.cn/ba5d24e787594f02b2356af15a8e1eec.png#pic_center" alt="img" style="zoom:150%;" />
+
+
+
+<h4 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h4><p>1、设置一个图 U UU ，将原图 G GG 中任意一顶点取出加入 U UU 中；<br>2、在所有 u ∈ U u∈Uu∈U， v ∈ ( V − U ) v∈(V-U)v∈(V−U) 的边 ( u , v ) (u,v)(u,v) 中找到一条权值最小的边，并入图 U UU 中；<br>3、重复步骤2，直到 U UU 中包含了所有顶点；<br>4、若第2步中遇到两条权值相同的最小权值边，任选一条即可，所以最小生成树可能不唯一，但权值之和相同。</p>
+<h5 id="使用Prim算法求解的Matlab代码如下："><a href="#使用Prim算法求解的Matlab代码如下：" class="headerlink" title="使用Prim算法求解的Matlab代码如下："></a>使用Prim算法求解的Matlab代码如下：</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">a=<span class="built_in">zeros</span>(<span class="number">7</span>);</span><br><span class="line">a(<span class="number">1</span>,<span class="number">2</span>)=<span class="number">50</span>; </span><br><span class="line">a(<span class="number">1</span>,<span class="number">3</span>)=<span class="number">60</span>; </span><br><span class="line">a(<span class="number">2</span>,<span class="number">4</span>)=<span class="number">65</span>; </span><br><span class="line">a(<span class="number">2</span>,<span class="number">5</span>)=<span class="number">40</span>; </span><br><span class="line">a(<span class="number">3</span>,<span class="number">4</span>)=<span class="number">52</span>;</span><br><span class="line">a(<span class="number">3</span>,<span class="number">7</span>)=<span class="number">45</span>; </span><br><span class="line">a(<span class="number">4</span>,<span class="number">5</span>)=<span class="number">50</span>; </span><br><span class="line">a(<span class="number">4</span>,<span class="number">6</span>)=<span class="number">30</span>;</span><br><span class="line">a(<span class="number">4</span>,<span class="number">7</span>)=<span class="number">42</span>; </span><br><span class="line">a(<span class="number">5</span>,<span class="number">6</span>)=<span class="number">70</span>;  </span><br><span class="line">a=a+a&#x27;;</span><br><span class="line">a(<span class="built_in">find</span>(a==<span class="number">0</span>))=<span class="built_in">inf</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>初始化之后的矩阵 a a<em>a</em> 为：</p>
+<img src="https://img-blog.csdnimg.cn/25dc2cf7264c4a84a6e1f27e24feeecf.png" alt="img"  />
+
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">result=[]  <span class="comment">% 存储最小生成树</span></span><br><span class="line">p=<span class="number">1</span>;  <span class="comment">% 选取顶点1</span></span><br><span class="line">tb=<span class="number">2</span>:<span class="built_in">length</span>(a)  <span class="comment">% 剩余顶点</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">length</span>(result)~=<span class="built_in">length</span>(a)<span class="number">-1</span>  <span class="comment">% 当边的个数=n-1时，退出循环</span></span><br><span class="line">   temp=a(p,tb);  <span class="comment">% tb中存储着其他未处理的顶点,temp存储着未处理的边的权重</span></span><br><span class="line">   temp=temp(:); </span><br><span class="line">   d=<span class="built_in">min</span>(temp); </span><br><span class="line">   [jb,kb]=<span class="built_in">find</span>(a(p,tb)==d);  <span class="comment">% 找到最小权的横纵坐标</span></span><br><span class="line">   <span class="built_in">j</span>=p(jb(<span class="number">1</span>));  <span class="comment">% j存储找到的边的起始位置，可能有多最小权，但我们只取一个</span></span><br><span class="line">   k=tb(kb(<span class="number">1</span>));  <span class="comment">% k存储找到的边的末位置，可能有多最小权，但我们只取一个</span></span><br><span class="line">   result=[result,[<span class="built_in">j</span>;k;d]];  <span class="comment">% 存储找到的此条边的信息</span></span><br><span class="line">   p=[p,k];  <span class="comment">% 包含新加入的顶点</span></span><br><span class="line">   tb(<span class="built_in">find</span>(tb==k))=[];  <span class="comment">% 在tb中删除与刚加入的边相连接的点 </span></span><br><span class="line"><span class="keyword">end</span> </span><br><span class="line">result</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/08/03/%E5%9B%BE%E8%AE%BA%E4%B9%8B%E7%BD%91%E7%BB%9C%E6%9C%80%E5%A4%A7%E6%B5%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="图论之网络最大流问题"><a href="#图论之网络最大流问题" class="headerlink" title="图论之网络最大流问题"></a>图论之网络最大流问题</h3><p>设有向网络N（V，A），在发点Vs 有一批货，要通过网络上的弧运输到收点Vt 去，受运输条件限制，每条弧aij在单位时间内通过的车辆数不能超过cij 辆，分析：如何组织运输才能使从Vs到Vt 在单位时间内通过的车辆达到最多？<br>上面描述的这类问题，称为最大流问题。<br>例：如图10.3.1中，有一批物资需要用汽车尽快从发点①运到收点⑦，弧（i，j）上所标的数字表示该条道路在单位时间内最多能通过的车辆数（单位：百辆），问如何调运，才能使单位时间里有最多的车辆从①调到⑦。</p>
+<img src="https://img-blog.csdnimg.cn/94d1ca6f24354c8eb6ee7ec7f75cc98e.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZjeGdmZGp5,size_16,color_FFFFFF,t_70" alt="img" style="zoom:67%;" />
+
+
+
+<h5 id="求解方法，弧标号法"><a href="#求解方法，弧标号法" class="headerlink" title="求解方法，弧标号法"></a>求解方法，弧标号法</h5><p>首先需要将最大流问题重新改画成为如下形式</p>
+<img src="https://img-blog.csdnimg.cn/2c7e9d70aa8b49eba90bce9b852775b9.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZjeGdmZGp5,size_16,color_FFFFFF,t_70" alt="img" style="zoom: 80%;" />
+
+<p>如① 5 ②0 表示从①到②的最大通过量是5（百辆），从②到①的最大通过量是0；<br>第1次修改：<br>①从发点s到收点t找一条路，使得这条路上的所有弧前面的约束量。从图中可以看出，显然，①—③—⑥—⑦就是满足这样的条件的一条路。<br>②在路①—③—⑥—⑦中,c13&#x3D;6 , c36&#x3D;7, c67&#x3D;7 ,所以取<br>p&#x3D;c13&#x3D;6;</p>
+<img src="https://img-blog.csdnimg.cn/141193e46ba047e590d0362ecb2e96a2.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZjeGdmZGp5,size_16,color_FFFFFF,t_70" alt="img" style="zoom:67%;" />
+
+<p>同理，进行第2次修改：<br>选定①—②—⑤—⑦、</p>
+<img src="https://img-blog.csdnimg.cn/1c09ec8fba1145f4a7e2116d7754c230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZjeGdmZGp5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<p>①—④—⑥—⑦<br>①—④—⑥—⑤—⑦<br>①—④—⑥—③—⑤—⑦<br>一直修改到从发点①到收点⑦，再也不存在连通的起点容量都大于零的弧了</p>
+<img src="https://img-blog.csdnimg.cn/21b146194dd84c6cbfea1ea5b078b594.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZjeGdmZGp5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<p>依这样的调度方式，可以从发点s调运14（百辆）汽车到收点t。</p>
+<img src="https://img-blog.csdnimg.cn/1173b53ba5e04b1d846eef80c7bef104.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZjeGdmZGp5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:67%;" />
+
+<h5 id="最大流算法讨论"><a href="#最大流算法讨论" class="headerlink" title="最大流算法讨论"></a>最大流算法讨论</h5><h5 id="①一个图成为最大流图的条件是从发点到收点的每一条路上总存在某个起点容量为零的弧，我们称这样的路为饱和路；如果从s到t有一条路，它上面每条路的起点容量都大于零，则称为非饱和路。"><a href="#①一个图成为最大流图的条件是从发点到收点的每一条路上总存在某个起点容量为零的弧，我们称这样的路为饱和路；如果从s到t有一条路，它上面每条路的起点容量都大于零，则称为非饱和路。" class="headerlink" title="①一个图成为最大流图的条件是从发点到收点的每一条路上总存在某个起点容量为零的弧，我们称这样的路为饱和路；如果从s到t有一条路，它上面每条路的起点容量都大于零，则称为非饱和路。"></a>①一个图成为最大流图的条件是从发点到收点的每一条路上总存在某个起点容量为零的弧，我们称这样的路为饱和路；如果从s到t有一条路，它上面每条路的起点容量都大于零，则称为非饱和路。</h5><h5 id="由此可以得到一个结论：一个图是最大流图的充分必要条件是不存在从s到t的非饱和路。"><a href="#由此可以得到一个结论：一个图是最大流图的充分必要条件是不存在从s到t的非饱和路。" class="headerlink" title="由此可以得到一个结论：一个图是最大流图的充分必要条件是不存在从s到t的非饱和路。"></a>由此可以得到一个结论：一个图是最大流图的充分必要条件是不存在从s到t的非饱和路。</h5><h5 id="②将网络中的点分成两组，一组包括发点s-，称为发集-V1，一组包括收点t，称为收集-V2-，连接-s-到-t-的所有弧称为截集，截集中各弧在-V1-旁的容量和称为截集的容量。"><a href="#②将网络中的点分成两组，一组包括发点s-，称为发集-V1，一组包括收点t，称为收集-V2-，连接-s-到-t-的所有弧称为截集，截集中各弧在-V1-旁的容量和称为截集的容量。" class="headerlink" title="②将网络中的点分成两组，一组包括发点s ，称为发集 V1，一组包括收点t，称为收集 V2 ，连接 s 到 t 的所有弧称为截集，截集中各弧在 V1 旁的容量和称为截集的容量。"></a>②将网络中的点分成两组，一组包括发点s ，称为发集 V1，一组包括收点t，称为收集 V2 ，连接 s 到 t 的所有弧称为截集，截集中各弧在 V1 旁的容量和称为截集的容量。</h5><p>MATLAB图论工具箱求解最大流的函数：graphmaxflow( )<br>适用条件：权值都为正，且任意两个顶点之间不能有两条弧。顶点3和4之间有两条弧，删弧（4,3），加入虚拟的顶点9。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clc,clear</span><br><span class="line">a=<span class="built_in">zeros</span>(<span class="number">9</span>);<span class="comment">%创立矩阵</span></span><br><span class="line"><span class="comment">%填写数据</span></span><br><span class="line">a(<span class="number">1</span>,<span class="number">2</span>)=<span class="number">6</span>; a(<span class="number">1</span>,<span class="number">3</span>)=<span class="number">4</span>; a(<span class="number">1</span>,<span class="number">4</span>)=<span class="number">5</span>;</span><br><span class="line">a(<span class="number">2</span>,<span class="number">3</span>)=<span class="number">3</span>; a(<span class="number">2</span>,<span class="number">5</span>)=<span class="number">9</span>; a(<span class="number">2</span>,<span class="number">6</span>)=<span class="number">9</span>;</span><br><span class="line">a(<span class="number">3</span>,<span class="number">4</span>)=<span class="number">4</span>; a(<span class="number">3</span>,<span class="number">5</span>)=<span class="number">6</span>; a(<span class="number">3</span>,<span class="number">6</span>)=<span class="number">7</span>; a(<span class="number">3</span>,<span class="number">7</span>)=<span class="number">3</span>;</span><br><span class="line">a(<span class="number">4</span>,<span class="number">7</span>)=<span class="number">5</span>; a(<span class="number">4</span>,<span class="number">9</span>)=<span class="number">2</span>;</span><br><span class="line">a(<span class="number">5</span>,<span class="number">8</span>)=<span class="number">12</span>;</span><br><span class="line">a(<span class="number">6</span>,<span class="number">5</span>)=<span class="number">8</span>; a(<span class="number">6</span>,<span class="number">8</span>)=<span class="number">10</span>;</span><br><span class="line">a(<span class="number">7</span>,<span class="number">6</span>)=<span class="number">4</span>; a(<span class="number">7</span>,<span class="number">8</span>)=<span class="number">15</span>;</span><br><span class="line">a(<span class="number">9</span>,<span class="number">3</span>)=<span class="number">2</span>;</span><br><span class="line">b=sparse(a);<span class="comment">%通过挤出任何零元素将满矩阵转换为稀疏格式。</span></span><br><span class="line">[x,y,z]=graphmaxflow(b,<span class="number">1</span>,<span class="number">8</span>)</span><br><span class="line">h = view(biograph(a,[ ],<span class="string">&#x27;ShowWeights&#x27;</span>,<span class="string">&#x27;on&#x27;</span>))<span class="comment">%原始容量</span></span><br><span class="line">view(biograph(y,[],<span class="string">&#x27;ShowWeights&#x27;</span>,<span class="string">&#x27;on&#x27;</span>))  <span class="comment">%计算最大流后</span></span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"></span><br><span class="line"><span class="comment">%%%</span></span><br><span class="line">[MaxFlow, FlowMatrix, Cut] = graphmaxflow(G, SNode, TNode)</span><br><span class="line">最大流      流矩阵                 G为n*n稀疏矩阵        节点</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/08/03/%E5%9B%BE%E8%AE%BA%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/</url>
+    <content><![CDATA[<h4 id="图论最短路径问题："><a href="#图论最短路径问题：" class="headerlink" title="图论最短路径问题："></a>图论最短路径问题：</h4><p>一 基本概念<br>1.1 Intro<br>图论中的图是由若干给定的点以及连接两点的线所构成的图形，这种图形通常用来描述某些事物之间的某种特定关系，用点代表事物，用连接两点的线表示相应两个事物间具有这种关系。<br>一个图可以用数学语言描述为G ( V ( G ) , E ( G ) ) G(V(G),E(G))G(V(G),E(G)).V ( v e r t e x ) V(vertex)V(vertex)指的是图的顶点集，E ( e d g e ) E(edge)E(edge)指的是图的边集；<br>根据边是否有方向，可将图分为无向图 （图一）和有向图 （图二）；<br>另外，有一些图的边上可能会有权值，这样的图我们称为有权图，如图三.</p>
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803153142125.png" alt="image-20230803153142125" style="zoom:50%;" />
+
+<p>matlab作图：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">%函数graph(s,t):可以在s和t中的对应节点之间创建边，并生成一个图</span></span><br><span class="line">G1 = graph(s1, t1);</span><br><span class="line"><span class="built_in">plot</span>(G1)</span><br><span class="line"></span><br><span class="line"><span class="comment">%函数graph(s, t, w):可以在s和t中的对应节点之间以w的权重创建边，并生成一个图</span></span><br><span class="line">G2 = graph(s2, t2);</span><br><span class="line"><span class="built_in">plot</span>(G2, <span class="string">&#x27;linewidth&#x27;</span>, <span class="number">2</span>)	<span class="comment">%设置线的宽度</span></span><br><span class="line"><span class="comment">%	下面的命令是在画图后不显示坐标</span></span><br><span class="line">set(gca, <span class="string">&#x27;XTick&#x27;</span>, [], <span class="string">&#x27;YTick&#x27;</span>, []);</span><br><span class="line"><span class="comment">%	上面都是无向图，如果要做出有向图，把graph改为digraph即可</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="图的权重邻接矩阵"><a href="#图的权重邻接矩阵" class="headerlink" title="图的权重邻接矩阵"></a>图的权重邻接矩阵</h5><p>对于无向图：</p>
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803153254254.png" alt="image-20230803153254254" style="zoom:67%;" />
+
+<p>其对应的权重邻接矩阵为</p>
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803153318677.png" alt="image-20230803153318677"  />
+
+<p>即对应的权重边，可以表示为：</p>
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803153344186.png" alt="image-20230803153344186" style="zoom:50%;" />
+
+<p>由此，我们可以得到无向图的一些结论：</p>
+<p>无向图的邻接矩阵是一个对称矩阵<br>其邻接矩阵的主对角线全为0<br>D i j D_{ij}D ij</p>
+<p> 表示从第i ii点到第j jj点的距离（权重）是多少</p>
+<h4 id="二-迪杰斯特拉（Dijkstra）算法"><a href="#二-迪杰斯特拉（Dijkstra）算法" class="headerlink" title="二 迪杰斯特拉（Dijkstra）算法"></a>二 迪杰斯特拉（Dijkstra）算法</h4><p>可以把这个看成是建树的问题，通过比较两个点之间的距离的大小，分为父节点和子节点，后面根据权重边总和最小值从最后的子节点一直向上找父节点即可找到最短路径。</p>
+<p>图中有0-8共九个地点，地点之间如果用直线连接则表明两地可以直接到达，直线旁的数值表示两地的距离<br>问题：起点为0，终点为4，怎么走路程最短？</p>
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803153456732.png" alt="image-20230803153456732" style="zoom:67%;" />
+
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803153517104.png" alt="image-20230803153517104" style="zoom:67%;" />
+
+
+
+<p>程序如下：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clc,clear</span><br><span class="line">a=<span class="built_in">zeros</span>(<span class="number">6</span>); <span class="comment">%邻接矩阵初始化</span></span><br><span class="line">a(<span class="number">1</span>,<span class="number">2</span>)=<span class="number">50</span>;a(<span class="number">1</span>,<span class="number">4</span>)=<span class="number">40</span>;a(<span class="number">1</span>,<span class="number">5</span>)=<span class="number">25</span>;a(<span class="number">1</span>,<span class="number">6</span>)=<span class="number">10</span>;</span><br><span class="line">a(<span class="number">2</span>,<span class="number">3</span>)=<span class="number">15</span>;a(<span class="number">2</span>,<span class="number">4</span>)=<span class="number">20</span>;a(<span class="number">2</span>,<span class="number">6</span>)=<span class="number">25</span>;</span><br><span class="line">a(<span class="number">3</span>,<span class="number">4</span>)=<span class="number">10</span>;a(<span class="number">3</span>,<span class="number">5</span>)=<span class="number">20</span>;</span><br><span class="line">a(<span class="number">4</span>,<span class="number">5</span>)=<span class="number">10</span>;a(<span class="number">4</span>,<span class="number">6</span>)=<span class="number">25</span>;</span><br><span class="line">a(<span class="number">5</span>,<span class="number">6</span>)=<span class="number">55</span>;</span><br><span class="line">a=a+a&#x27;;  <span class="comment">% 两点之间的距离是一样的→对称矩阵</span></span><br><span class="line">a(a==<span class="number">0</span>)=<span class="built_in">inf</span>;</span><br><span class="line">pb(<span class="number">1</span>:<span class="built_in">length</span>(a))=<span class="number">0</span>;pb(<span class="number">1</span>)=<span class="number">1</span>;index1=<span class="number">1</span>;index2=<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(a));</span><br><span class="line">d(<span class="number">1</span>:<span class="built_in">length</span>(a))=<span class="built_in">inf</span>;d(<span class="number">1</span>)=<span class="number">0</span>;</span><br><span class="line">temp=<span class="number">1</span>; <span class="comment">%最新的P标号的顶点</span></span><br><span class="line"><span class="keyword">while</span> sum(pb)&lt;<span class="built_in">length</span>(a)</span><br><span class="line">   tb=<span class="built_in">find</span>(pb==<span class="number">0</span>);</span><br><span class="line">   d(tb)=<span class="built_in">min</span>(d(tb),d(temp)+a(temp,tb));</span><br><span class="line">   tmpb=<span class="built_in">find</span>(d(tb)==<span class="built_in">min</span>(d(tb)));</span><br><span class="line">   temp=tb(tmpb(<span class="number">1</span>)); <span class="comment">%可能有多个点同时达到最小值，只取其中的一个</span></span><br><span class="line">   pb(temp)=<span class="number">1</span>;</span><br><span class="line">   index1=[index1,temp];</span><br><span class="line">   temp2=<span class="built_in">find</span>(d(index1)==d(temp)-a(temp,index1));</span><br><span class="line">   index2(temp)=index1(temp2(<span class="number">1</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">d, index1, index2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>除了上面提到的迪杰斯特拉求两点之间最短路径外，我们还可以使用MATLAB自带的<code>graphshortestpath函数</code>。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">W = [<span class="number">10</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">9</span>,<span class="number">2</span>];</span><br><span class="line"><span class="comment">% sparse生成稀疏矩阵，除了标注的元素外，其余都是0</span></span><br><span class="line">DG = sparse([<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>],...  <span class="comment">% sparse第一个矩阵，三个.代表没写完，下一行接着</span></span><br><span class="line">            [<span class="number">2</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],W)  <span class="comment">% sparse第二个矩阵</span></span><br><span class="line"><span class="comment">% sparse里第一个和第二个矩阵相同位置的元素值就是非零元素的值，W是每条边的权值</span></span><br><span class="line"><span class="comment">% dist是最短路径的值，path是最短路径的节点顺序，pred是每一个节点的最短路径的终点前一个节点</span></span><br><span class="line">[dist,path,pred] = graphshortestpath(DG,<span class="number">1</span>,<span class="number">3</span>)  <span class="comment">% 节点1到3的最短路径</span></span><br><span class="line">point_name = [<span class="string">&quot;city1&quot;</span>,<span class="string">&quot;city2&quot;</span>,<span class="string">&quot;city3&quot;</span>,<span class="string">&quot;city4&quot;</span>,<span class="string">&quot;city5&quot;</span>];</span><br><span class="line">p = biograph(DG,point_name,<span class="string">&#x27;ShowWeights&#x27;</span>,<span class="string">&#x27;on&#x27;</span>)</span><br><span class="line">h = view(p)  <span class="comment">% biograph生成图对象，view显示该图</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/09/26/%E5%AF%86%E7%A0%81%E8%B5%9B%E8%AE%BA%E6%96%87/</url>
+    <content><![CDATA[<p>哈希到椭圆曲线算法：<a href="https://minersns.com/16043-1-1.html">https://minersns.com/16043-1-1.html</a></p>
+<p>密码强度检测算法：<a href="https://juejin.cn/post/7087742640787030024">https://juejin.cn/post/7087742640787030024</a></p>
+<p>1、从哈希值映射到椭圆曲线的一个点，这个映射函数，整个论文是没有给的。</p>
+<p>2、椭圆曲线的算法选择（SM2）</p>
+<p>3、哈希算法的选择 sm3 openssl</p>
+<p>4、找到数据库，或者自己生成（解决）</p>
+<p>5、<a href="https://github.com/cfrg/draft-irtf-cfrg-hash-to-curve%EF%BC%88%E5%93%88%E5%B8%8C%E5%80%BC%EF%BC%89">https://github.com/cfrg/draft-irtf-cfrg-hash-to-curve（哈希值）</a></p>
+<p>数据库存储在 服务器里</p>
+<p>底层代码：C++， API封装，</p>
+<p>前端：网页，shell，</p>
+<p>（用户登录）</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/10/24/%E5%B7%A5%E6%A6%823/</url>
+    <content><![CDATA[<p>ppt:</p>
+<h4 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h4><p>1、项目概述</p>
+<p>2、团队介绍</p>
+<p>3、需求分析</p>
+<p>4、方案分析</p>
+<p>5、方案实现</p>
+<p>第二部分：</p>
+<h4 id="成本分析部分"><a href="#成本分析部分" class="headerlink" title="成本分析部分"></a>成本分析部分</h4><p>1、人力资源成本</p>
+<ul>
+<li>项目经理：</li>
+<li>软件工程师：</li>
+<li>测试人员：</li>
+<li>技术支持：</li>
+</ul>
+<p>2、软件开发成本</p>
+<ul>
+<li>开发工具和软件许可证费用：估计 5,000 美元。</li>
+<li>开发硬件设备：估计 10,000 美元。</li>
+</ul>
+<p>3、测试成本</p>
+<p>4、培训成本</p>
+<p>5、项目管理成本</p>
+<p>第三步部分：</p>
+<h4 id="系统上线与宣发"><a href="#系统上线与宣发" class="headerlink" title="系统上线与宣发"></a>系统上线与宣发</h4><p>1、风险管理和储备预算</p>
+<p>2、报告和沟通成本</p>
+<p>3、变更控制成本</p>
+<p>4、质量保证成本</p>
+<p>5、硬件和软件维护成本</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/11/01/%E5%BB%BA%E6%A0%91%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<p>建树过程，</p>
+<p>1、接受所有数据点的data，spacial and text information，得到数据点的个数</p>
+<p>2、根据数据点branch个数计算出得到满n叉树时的总叶子branch个数，总叶子node个数，总branch个数，总node个数</p>
+<p>3、对数据块加密之后，将所有数据块的索引存放到叶子branch中，其余的branch中存放虚数据块</p>
+<p>4、建树，</p>
+<p>查询过程：</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/08/03/%E6%8E%A2%E7%B4%A2%E6%80%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h3 id="探索性数据分析"><a href="#探索性数据分析" class="headerlink" title="探索性数据分析"></a>探索性数据分析</h3><p>题目提供的训练数据集包含11个特征，分别是：</p>
+<p>Survived:0代表死亡，1代表存活<br>Pclass:乘客所持票类，有三种值(1,2,3)<br>Name:乘客姓名<br>Sex:乘客性别<br>Age:乘客年龄(有缺失)<br>SibSp:乘客兄弟姐妹&#x2F;配偶的个数(整数值)<br>Parch:乘客父母&#x2F;孩子的个数(整数值)<br>Ticket:票号(字符串)<br>Fare:乘客所持票的价格(浮点数，0-500不等)<br>Cabin:乘客所在船舱(有缺失)<br>Embark:乘客登船港口:S、C、Q(有缺失)</p>
+<p>训练集 891 名乘客中只有大约 350 人幸存，占比 38.4%. 两个类别的规模相差不悬殊, 可以进行正常分类. 下一步,我们需要继续深挖以获取更有用的信息，了解哪些人的生存几率更大, 哪些因素会影响生存几率。我们试图通过分析数据集的不同特征确定生存机率，这些特征包括 Sex, Port Of Embarcation, Age 等.<br><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803151009819.png" alt="image-20230803151009819"></p>
+<ol start="3">
+<li><h5 id="数据特征的处理"><a href="#数据特征的处理" class="headerlink" title="数据特征的处理"></a>数据特征的处理</h5></li>
+</ol>
+<p>  此数据中包含三种类型的数据类型:</p>
+<p>范畴特征：Sex,Embarked.<br>一种变量是有两个或者两个以上的分组，如性别变量。这类变量无法进行排序，称为定类变量。<br>序数特征: PClass<br>序数特征与范畴特征类似，不同的是它有排序的意义。例如，身高的高、中、矮，称为序数特征。这类特征可以进行相对排序。<br>连续特征：Age<br>特征的值可视为连续性随机变量</p>
+<h5 id="3-1-第一个因变量-分析范畴特征：Sex"><a href="#3-1-第一个因变量-分析范畴特征：Sex" class="headerlink" title="3.1 第一个因变量- 分析范畴特征：Sex"></a>3.1 第一个因变量- 分析范畴特征：Sex</h5><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803151101509.png" alt="image-20230803151101509" style="zoom:50%;" />
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803151237529.png" alt="image-20230803151237529"></p>
+<p>船上的男性人数远远多于女性人数。然而，女性获救人数几乎是男性获救人数的两倍。女性在船上的存活率约为75%，而男性约为18-19%。</p>
+<h5 id="3-2-定序特征分析：Pclass"><a href="#3-2-定序特征分析：Pclass" class="headerlink" title="3.2 定序特征分析：Pclass"></a>3.2 定序特征分析：Pclass</h5><p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803151359243.png" alt="image-20230803151359243"></p>
+<p>我们可以清楚地看到，Pclass 1的Passenegers在救援时被给予了非常高的优先级。尽管乘坐Pclass 3的乘客数量要高得多，但幸存的人数占比却非常低，大约在25%左右。</p>
+<p>Pclass 1 的存活率大约63%，而Pclass2的存活了大约48%，Pclass 3的存活率大约在25%左右，这个因素的差异可视为影响存活率的一个重要因素</p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803151550471.png" alt="image-20230803151550471"></p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">plt.style.use(<span class="string">&#x27;fivethirtyeight&#x27;</span>)</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data=pd.read_csv(<span class="string">&#x27;model/DieTanic_train.csv&#x27;</span>)</span><br><span class="line">data.head()</span><br><span class="line">data.columns</span><br><span class="line"></span><br><span class="line">data.isnull().<span class="built_in">sum</span>() <span class="comment">#checking for total null values</span></span><br><span class="line"></span><br><span class="line">f,ax=plt.subplots(<span class="number">1</span>,<span class="number">2</span>,figsize=(<span class="number">18</span>,<span class="number">8</span>))</span><br><span class="line">data[<span class="string">&#x27;Survived&#x27;</span>].value_counts().plot.pie(explode=[<span class="number">0</span>,<span class="number">0.1</span>],autopct=<span class="string">&#x27;%1.1f%%&#x27;</span>,ax=ax[<span class="number">0</span>],shadow=<span class="literal">True</span>)</span><br><span class="line">ax[<span class="number">0</span>].set_title(<span class="string">&#x27;Survived&#x27;</span>)</span><br><span class="line">ax[<span class="number">0</span>].set_ylabel(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">sns.countplot(x = <span class="string">&#x27;Survived&#x27;</span>,data=data,ax=ax[<span class="number">1</span>])</span><br><span class="line">ax[<span class="number">1</span>].set_title(<span class="string">&#x27;Survived&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data.groupby([<span class="string">&#x27;Sex&#x27;</span>,<span class="string">&#x27;Survived&#x27;</span>])[<span class="string">&#x27;Survived&#x27;</span>].count()</span><br><span class="line"></span><br><span class="line">f,ax=plt.subplots(<span class="number">1</span>,<span class="number">2</span>,figsize=(<span class="number">18</span>,<span class="number">8</span>))</span><br><span class="line">data[[<span class="string">&#x27;Sex&#x27;</span>,<span class="string">&#x27;Survived&#x27;</span>]].groupby([<span class="string">&#x27;Sex&#x27;</span>]).mean().plot.bar(ax=ax[<span class="number">0</span>])</span><br><span class="line">ax[<span class="number">0</span>].set_title(<span class="string">&#x27;Survived vs Sex&#x27;</span>)</span><br><span class="line">sns.countplot(x = <span class="string">&#x27;Sex&#x27;</span>,hue=<span class="string">&#x27;Survived&#x27;</span>,data=data,ax=ax[<span class="number">1</span>])</span><br><span class="line">ax[<span class="number">1</span>].set_title(<span class="string">&#x27;Sex:Survived vs Dead&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pd.crosstab(data.Pclass,data.Survived,margins=<span class="literal">True</span>).style.background_gradient(cmap=<span class="string">&#x27;summer_r&#x27;</span>)</span><br><span class="line"></span><br><span class="line">f,ax=plt.subplots(<span class="number">1</span>,<span class="number">2</span>,figsize=(<span class="number">18</span>,<span class="number">8</span>))</span><br><span class="line">data[<span class="string">&#x27;Pclass&#x27;</span>].value_counts().plot.bar(color=[<span class="string">&#x27;#CD7F32&#x27;</span>,<span class="string">&#x27;#FFDF00&#x27;</span>,<span class="string">&#x27;#D3D3D3&#x27;</span>],ax=ax[<span class="number">0</span>])</span><br><span class="line">ax[<span class="number">0</span>].set_title(<span class="string">&#x27;Number Of Passengers By Pclass&#x27;</span>)</span><br><span class="line">ax[<span class="number">0</span>].set_ylabel(<span class="string">&#x27;Count&#x27;</span>)</span><br><span class="line">sns.countplot(x = <span class="string">&#x27;Pclass&#x27;</span>,hue=<span class="string">&#x27;Survived&#x27;</span>,data=data,ax=ax[<span class="number">1</span>])</span><br><span class="line">ax[<span class="number">1</span>].set_title(<span class="string">&#x27;Pclass:Survived vs Dead&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pd.crosstab([data.Sex,data.Survived],data.Pclass,margins=<span class="literal">True</span>).style.background_gradient(cmap=<span class="string">&#x27;summer_r&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Oldest Passenger was of:&#x27;</span>,data[<span class="string">&#x27;Age&#x27;</span>].<span class="built_in">max</span>(),<span class="string">&#x27;Years&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Youngest Passenger was of:&#x27;</span>,data[<span class="string">&#x27;Age&#x27;</span>].<span class="built_in">min</span>(),<span class="string">&#x27;Years&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Average Age on the ship:&#x27;</span>,data[<span class="string">&#x27;Age&#x27;</span>].mean(),<span class="string">&#x27;Years&#x27;</span>)</span><br><span class="line"></span><br><span class="line">f,ax=plt.subplots(<span class="number">1</span>,<span class="number">2</span>,figsize=(<span class="number">18</span>,<span class="number">8</span>))</span><br><span class="line">sns.violinplot(x = <span class="string">&quot;Pclass&quot;</span>,y = <span class="string">&quot;Age&quot;</span>, hue=<span class="string">&quot;Survived&quot;</span>, data=data,split=<span class="literal">True</span>,ax=ax[<span class="number">0</span>])</span><br><span class="line">ax[<span class="number">0</span>].set_title(<span class="string">&#x27;Pclass and Age vs Survived&#x27;</span>)</span><br><span class="line">ax[<span class="number">0</span>].set_yticks(<span class="built_in">range</span>(<span class="number">0</span>,<span class="number">110</span>,<span class="number">10</span>))</span><br><span class="line">sns.violinplot(x = <span class="string">&quot;Sex&quot;</span>,y = <span class="string">&quot;Age&quot;</span>, hue=<span class="string">&quot;Survived&quot;</span>, data=data,split=<span class="literal">True</span>,ax=ax[<span class="number">1</span>])</span><br><span class="line">ax[<span class="number">1</span>].set_title(<span class="string">&#x27;Sex and Age vs Survived&#x27;</span>)</span><br><span class="line">ax[<span class="number">1</span>].set_yticks(<span class="built_in">range</span>(<span class="number">0</span>,<span class="number">110</span>,<span class="number">10</span>))</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/09/28/%E5%B7%A5%E7%A8%8B%E6%A6%82%E8%AE%BA%E4%BD%9C%E4%B8%9A%E8%A1%A5%E4%BA%A4%EF%BC%9A%2021009200735-%E5%88%98%E6%B3%BD%E6%A3%AE/</url>
+    <content><![CDATA[<h5 id="工程概论作业补交：-21009200735-刘泽森"><a href="#工程概论作业补交：-21009200735-刘泽森" class="headerlink" title="工程概论作业补交： 21009200735-刘泽森"></a>工程概论作业补交： 21009200735-刘泽森</h5><h3 id="第一次9月13日雨课堂作业补交："><a href="#第一次9月13日雨课堂作业补交：" class="headerlink" title="第一次9月13日雨课堂作业补交："></a>第一次9月13日雨课堂作业补交：</h3><h4 id="问题一：管理学和经济学之间存在什么联系？"><a href="#问题一：管理学和经济学之间存在什么联系？" class="headerlink" title="问题一：管理学和经济学之间存在什么联系？"></a>问题一：管理学和经济学之间存在什么联系？</h4><p>经济学研究的是抽象的企业，它所涉及的决策大多属于价格和产量决策。而在现实管理中，要决策的问题多种多样，而在这些管理决策中，需要应用到宏观经济学的理论研究成果。好的管理的本质是决定采取一种实践会不会增加企业的价值。管理与经济中的劳动力、资本、技术要素不同，它既是一种投入要素，又是其它三个要素的组合性要素。当将其它三个要素投入到经济资源储备中时，经济会按生产函数规则增长，而管理要素可能按规则，也可能通过改变规则来影响经济的运行与增长。</p>
+<h4 id="问题二：经济管理的职能是什么？经济管理有哪些方法？"><a href="#问题二：经济管理的职能是什么？经济管理有哪些方法？" class="headerlink" title="问题二：经济管理的职能是什么？经济管理有哪些方法？"></a>问题二：经济管理的职能是什么？经济管理有哪些方法？</h4><p>经济职能是行政管理最重要的职能，经济职能要为经济基础服务。经济管理职能的主要内容有：</p>
+<p><strong>预测职能、决策职能、计划职能、控制职能、监督职能、激励职能</strong></p>
+<h5 id="经济管理的方法："><a href="#经济管理的方法：" class="headerlink" title="经济管理的方法："></a>经济管理的方法：</h5><h5 id="经济方法，法律方法，行政方法等"><a href="#经济方法，法律方法，行政方法等" class="headerlink" title="经济方法，法律方法，行政方法等"></a>经济方法，法律方法，行政方法等</h5><h4 id="问题三：经济效益是如何定义的，经济效益有哪些评价标准？"><a href="#问题三：经济效益是如何定义的，经济效益有哪些评价标准？" class="headerlink" title="问题三：经济效益是如何定义的，经济效益有哪些评价标准？"></a>问题三：经济效益是如何定义的，经济效益有哪些评价标准？</h4><p>经济效益：一般地说，是指为实现某一经济目标而选择和采用一定的手段、途径、方法等，由此产生的劳动成果与劳动消耗的比较，或产出与投入的比较。</p>
+<p>就是经济效益要达到的目标。<br>经济效益评价标准，既有评价单位项目本身的经济效益(如投资回收期、内部收益率等评价指标)，又有项目之间比较的经济效益(如改造与不改造方案比较、追加投资回收期等评价标准)。还可分为具体评价标准、综合评价标准等。</p>
+<h4 id="问题四：经济效益评价的基本原则是什么？"><a href="#问题四：经济效益评价的基本原则是什么？" class="headerlink" title="问题四：经济效益评价的基本原则是什么？"></a>问题四：经济效益评价的基本原则是什么？</h4><p> 1.正确处理微观与宏观的关系。2.正确处理近期经济效益和长远经济效益的关系。3.正确处理直接经济效益与间接经济效益的关系。4.正确处理经济效益与社会环境的关系。5.正确处理生产效益与流通效益、消费效益的关系。</p>
+<h4 id="问题五：工程项目的经济效果评价和经济效益评价有哪些异同？"><a href="#问题五：工程项目的经济效果评价和经济效益评价有哪些异同？" class="headerlink" title="问题五：工程项目的经济效果评价和经济效益评价有哪些异同？"></a>问题五：工程项目的经济效果评价和经济效益评价有哪些异同？</h4><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230928124020692.png" alt="image-20230928124020692" style="zoom:80%;" />
+
+
+
+
+
+<h3 id="9月26日工程概论作业2："><a href="#9月26日工程概论作业2：" class="headerlink" title="9月26日工程概论作业2："></a>9月26日工程概论作业2：</h3><h4 id="问题一："><a href="#问题一：" class="headerlink" title="问题一："></a>问题一：</h4><img src="C:\Users\20191\Desktop\QQ图片20230928130952.jpg" alt="QQ图片20230928130952" style="zoom: 50%;" />
+
+<img src="C:\Users\20191\Desktop\QQ图片20230928130947.jpg" alt="QQ图片20230928130947" style="zoom: 50%;" />
+
+
+
+
+
+
+
+<h4 id="问题二："><a href="#问题二：" class="headerlink" title="问题二："></a>问题二：</h4><img src="C:\Users\20191\Desktop\QQ图片20230928132815.jpg" alt="QQ图片20230928132815" style="zoom: 50%;" />]]></content>
   </entry>
   <entry>
     <title>OS6</title>
@@ -1639,6 +2067,24 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/08/03/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h3 id="数值计算方法"><a href="#数值计算方法" class="headerlink" title="数值计算方法"></a>数值计算方法</h3><h5 id="1-常用数值计算方法"><a href="#1-常用数值计算方法" class="headerlink" title="1 常用数值计算方法"></a>1 常用数值计算方法</h5><p>（1）解线性方程组的直接方法<br>• 高斯消去法（Gauss）<br>• 三角分解追赶法<br>• Jacobi迭代法<br>• Gauss-Seidel迭代法<br>• 超松弛迭代法<br>（2）非线性方程的求根方法<br>• 二分法<br>• Newton迭代法<br>• 弦截法<br>• 抛物线法<br>（3）数值积分求解</p>
+<p>（4）数值微分求解</p>
+<p>（5）常微分方程的数值求解<br>• Euler公式<br>• 后退的Euler法<br>• 改进的Euler法<br>• Runge-Kutta法<br>（6）插值法<br>• Lagrange一次插值法<br>• Lagrange插值多项式<br>• Newton插值<br>• Hermite插值<br>• 三次样</p>
+<h5 id="2-现代智能计算方法"><a href="#2-现代智能计算方法" class="headerlink" title="2 现代智能计算方法"></a>2 现代智能计算方法</h5><h5 id="2-1-分类"><a href="#2-1-分类" class="headerlink" title="2.1 分类"></a>2.1 分类</h5><p>• 模拟退火算法<br>• <a href="https://so.csdn.net/so/search?q=%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95&spm=1001.2101.3001.7020">遗传算法</a><br>• 禁忌搜索算法<br>• 人工<a href="https://so.csdn.net/so/search?q=%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C&spm=1001.2101.3001.7020">神经网络</a><br>• 粒子群算法<br>• 深度学习</p>
+<h5 id="2-2-遗传算法、"><a href="#2-2-遗传算法、" class="headerlink" title="2.2 遗传算法、"></a>2.2 遗传算法、</h5><p>核心要素<br>• 参数编码<br>• 初始种群的设定<br>• 适应度函数的设计<br>• 遗传操作设计<br>• 控制参数设定</p>
+<h5 id="题目一：设计一个三角追赶法函数，求解问题L-Ux-x3D-b-要求输入L、U和b，输出x"><a href="#题目一：设计一个三角追赶法函数，求解问题L-Ux-x3D-b-要求输入L、U和b，输出x" class="headerlink" title="题目一：设计一个三角追赶法函数，求解问题L*Ux &#x3D; b,要求输入L、U和b，输出x"></a>题目一：设计一个三角追赶法函数，求解问题L*Ux &#x3D; b,要求输入L、U和b，输出x</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">x</span> = <span class="title">fun</span><span class="params">(L,U,b)</span> </span></span><br><span class="line">U = L.*U</span><br><span class="line">n = <span class="built_in">size</span>(U) <span class="comment">% n为系数矩阵的行数</span></span><br><span class="line">a(<span class="number">1</span>)  = U(<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">d(<span class="number">1</span>) = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:n<span class="number">-1</span></span><br><span class="line">    a(<span class="number">1</span>) = U(<span class="built_in">i</span>,<span class="built_in">i</span><span class="number">-1</span>)</span><br><span class="line">    d(<span class="built_in">i</span>) = U(<span class="built_in">i</span>,<span class="built_in">i</span><span class="number">-1</span>)</span><br><span class="line">    c(<span class="built_in">i</span>) = U(<span class="built_in">i</span>,<span class="built_in">i</span>+<span class="number">1</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">a(n) = U(n,n)</span><br><span class="line">d(n) = U(n,n<span class="number">-1</span>)</span><br><span class="line">c(n) = <span class="number">0</span></span><br><span class="line">t(<span class="number">1</span>) = a(<span class="number">1</span>) <span class="comment">%开始求解L，U</span></span><br><span class="line">m(<span class="number">1</span>) = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span> : n</span><br><span class="line">    m(<span class="built_in">i</span>) = b(<span class="built_in">i</span>) <span class="comment">%求得m(i)</span></span><br><span class="line">    u(<span class="built_in">i</span><span class="number">-1</span>) = c(<span class="built_in">i</span><span class="number">-1</span>)/t(<span class="built_in">i</span><span class="number">-1</span>)<span class="comment">% 求得u(i)</span></span><br><span class="line">    t(<span class="built_in">i</span>) = a(<span class="built_in">i</span>) - d(<span class="built_in">i</span>) *u(<span class="built_in">i</span><span class="number">-1</span>)<span class="comment">% 求得t(i)</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">u(n)=<span class="number">0</span></span><br><span class="line">y(<span class="number">1</span>) = b(<span class="number">1</span>)/t(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> =<span class="number">2</span>:n</span><br><span class="line">    y(<span class="built_in">i</span>) = [b(<span class="built_in">i</span>)-m(<span class="built_in">i</span>)*y(<span class="built_in">i</span><span class="number">-1</span>)]/t(<span class="built_in">i</span>);求得y(<span class="built_in">i</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">x(n) = y(n)</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=n<span class="number">-1</span>:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">    x(<span class="built_in">i</span>) = y(<span class="built_in">i</span>) - u(<span class="built_in">i</span>)*x(<span class="built_in">i</span>+<span class="number">1</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">x =x&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="题目二：二分法求解非线性方程根的程序"><a href="#题目二：二分法求解非线性方程根的程序" class="headerlink" title="题目二：二分法求解非线性方程根的程序"></a>题目二：二分法求解非线性方程根的程序</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span><span class="params">[x_star,index,it]</span>=<span class="title">bisect</span><span class="params">(fun,a,b)</span></span></span><br><span class="line"><span class="comment">%求解非线性计算方程的二分法，其中，fun(x)为需要求根的函数;</span></span><br><span class="line"><span class="comment">%a,b为初始区间的端点;</span></span><br><span class="line"><span class="comment">%ep为精度，当(b-a)/2&lt;ep时，算法能终止计算，</span></span><br><span class="line"><span class="comment">%缺省值为1e-5;</span></span><br><span class="line"><span class="comment">%当x_star迭代成功时，输出方程的根</span></span><br><span class="line"><span class="comment">%当x_start迭代失败时，输出两端点的值；</span></span><br><span class="line"><span class="comment">%index为指标变量，当index=1时，表明迭代成功，</span></span><br><span class="line"><span class="comment">%当index=0时，表明初始区间不是有根区间；</span></span><br><span class="line"><span class="comment">%it为迭代次数</span></span><br><span class="line"><span class="keyword">if</span> nargin&lt;<span class="number">4</span></span><br><span class="line">    ep=<span class="number">1e-5</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">fa=feval(fun,a);fb=feval(fun,b);</span><br><span class="line"><span class="keyword">if</span> fa*fb&gt;<span class="number">0</span></span><br><span class="line">    x_star=[fa,fb];index=<span class="number">0</span>;it=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">k=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> <span class="built_in">abs</span>(b-a)/<span class="number">2</span>&gt;=ep</span><br><span class="line">    x=(a+b)/<span class="number">2</span>;fx=feval(fun,x);</span><br><span class="line">    <span class="keyword">if</span> fx*fa&lt;<span class="number">0</span></span><br><span class="line">        b=x;fb=fx;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        a=x;fa=fx;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    k=k+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">x_star=(a+b)/<span class="number">2</span>;index=<span class="number">1</span>;it=k;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+  </entry>
+  <entry>
     <title>数据库实验四</title>
     <url>/2023/07/11/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E9%AA%8C%E5%9B%9B/</url>
     <content><![CDATA[<h1 id="《数据库原理》实验报告4"><a href="#《数据库原理》实验报告4" class="headerlink" title="《数据库原理》实验报告4"></a>《数据库原理》实验报告4</h1><h4 id="实验内容：数据库图书馆管理系统"><a href="#实验内容：数据库图书馆管理系统" class="headerlink" title="实验内容：数据库图书馆管理系统"></a>实验内容：数据库图书馆管理系统</h4><h3 id="1-实验内容简介"><a href="#1-实验内容简介" class="headerlink" title="1  实验内容简介"></a>1  实验内容简介</h3><p>图书馆借还书系统：图书信息表支持购入同一个ISBN的书籍多本，支持按ISBN、图书名、出版社、作者、图书分类、出版年份进行书籍登记，可查询和删除（这是基本界面功能）</p>
@@ -1695,6 +2141,563 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/08/03/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h3 id="数据挖掘算法"><a href="#数据挖掘算法" class="headerlink" title="数据挖掘算法"></a>数据挖掘算法</h3><p>一系列数学建模竞赛中，常见的问题设定与模型要求有：</p>
+<ol>
+<li>给定一系列数据，要求进行数据降维（挑选重要数据）、数据预处理、数据特征分析、特征选择等；</li>
+<li>给定一系列数据，要求根据数据训练模型，根据输入x做出预测&#x2F;分类，输出结果y；</li>
+<li>在给定的范围内搜寻最优解或者最优范围&#x2F;集合。</li>
+</ol>
+<h5 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h5><h5 id="2021年华为杯研究生数学建模竞赛D题"><a href="#2021年华为杯研究生数学建模竞赛D题" class="headerlink" title="2021年华为杯研究生数学建模竞赛D题"></a>2021年华为杯研究生数学建模竞赛D题</h5><h4 id="数据挖掘"><a href="#数据挖掘" class="headerlink" title="数据挖掘"></a>数据挖掘</h4><p>在建模之前，建议根据具体题目对数据进行<strong>异常值处理</strong>（包括漂移的数据点、缺失值补全）。注意，这一步是非常重要的，很多题目会在数据里埋坑，如果没有考虑到异常数据的影响，往往对于后续的分析与建模有重大影响。对于异常值的检测，常用的方法有基础的<strong>统计分析、可视化分析、分布检验</strong>；对于检测出的异常值，常用的处理方法有<strong>直接删除、根据前后数据进行平滑修正、补充为0</strong>等。接下来还可以进行一些常规的数据特征分析，比如均值、方差、最大值最小值、不同列数据的共线性分析等。</p>
+<p>很多时候题目会给出维度丰富的数据，但其中往往很多列数据是无效&#x2F;不重要的，这个时候往往题目会要求筛选出前n个重要的数据维度，用于进一步的建模等。这时候就需要进行<strong>特征选择</strong>。注意这里是在原始数据的基础上，选择最重要的n列原始数据。最常见的特征选择思路是，先<strong>剔除方差为0的列数据</strong>、对不同的列之间进行<strong>相关性检验</strong>，确保不会选择出两个蕴含相同信息的列。</p>
+<p>之后，可以把所有挑选过的原始数据，进行归一化数据预处理后，放进经典的机器学习模型中进行训练，根据训练后的模型反向输出每一列数据的重要性指标。这里<strong>推荐用sklearn库中的经典模型，方便训练后输出feature_importance数据</strong>。此外，有余力的同学可以用神经网络模型，根据网络输入层的weight，来判断每一列数据的重要性。</p>
+<p>此外，还有一个与特征选择概念相近但又不能等同的任务：<strong>数据降维</strong>。数据降维更多时候指的是，对于维度丰富的数据，直接把它压缩成n维数据，这里的n维数据就不再是原始数据了。常用的数据降维算法有PCA等。</p>
+<h4 id="分类预测"><a href="#分类预测" class="headerlink" title="分类预测"></a>分类预测</h4><p>分类任务指的是模型根据输入的样本特征x，预测样本对应的类别y（这里的y是一个离散值，比如0，1，2）；</p>
+<p>回归任务指的是模型根据输入的样本特征x，预测样本对应的分数y（这里的y是一个连续值，比如0.1，0.2）。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">####3.1 决策树回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> tree</span><br><span class="line">model_DecisionTreeRegressor = tree.DecisionTreeRegressor()</span><br><span class="line"><span class="comment">####3.2 线性回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line">model_LinearRegression = linear_model.LinearRegression()</span><br><span class="line"><span class="comment">####3.3SVM 回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</span><br><span class="line">model_SVR = svm.SVR()</span><br><span class="line"><span class="comment">####3.4KNN 回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> neighbors</span><br><span class="line">model_KNeighborsRegressor = neighbors.KNeighborsRegressor()</span><br><span class="line"><span class="comment">####3.5 随机森林回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> ensemble</span><br><span class="line">model_RandomForestRegressor = ensemble.RandomForestRegressor(n_estimators=<span class="number">500</span>)<span class="comment">#</span></span><br><span class="line">这里使用 <span class="number">20</span> 个决策树</span><br><span class="line"><span class="comment">####3.6Adaboost 回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> ensemble</span><br><span class="line">model_AdaBoostRegressor = ensemble.AdaBoostRegressor(n_estimators=<span class="number">500</span>)</span><br><span class="line"><span class="comment">#这里使用 50 个决策树</span></span><br><span class="line"><span class="comment">####3.7GBRT 回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> ensemble</span><br><span class="line">model_GradientBoostingRegressor=ensemble.GradientBoostingRegressor(n_estimators=<span class="number">50</span></span><br><span class="line"><span class="number">0</span>)</span><br><span class="line"><span class="comment">#这里使用 100 个决策树</span></span><br><span class="line"><span class="comment">####3.8Bagging 回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> BaggingRegressor</span><br><span class="line">model_BaggingRegressor = BaggingRegressor()</span><br><span class="line"><span class="comment">####3.9ExtraTree 极端随机树回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> ExtraTreeRegressor</span><br><span class="line">model_ExtraTreeRegressor = ExtraTreeRegressor()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h4><p>数学建模中常见的优化算法有：遗传算法、模拟退火算法、蚁群算法、粒子群算法等</p>
+<p>基于以上传统优化算法，可以根据具体问题设定带约束的优化算法求解。比如2021年华为杯的D题最后一问，优化目标有两个，则在定义优化算法目标函数时，加入一个惩罚项即可：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">schaffer</span>(<span class="params">p</span>):</span><br><span class="line">  p = p.reshape(<span class="number">1</span>, -<span class="number">1</span>)</span><br><span class="line">  <span class="comment"># ADMET 约束</span></span><br><span class="line">  admet = <span class="built_in">int</span>(cla_model1.predict(p)[<span class="number">0</span>]==<span class="number">1</span>) + <span class="built_in">int</span>(cla_model2.predict(p)[<span class="number">0</span>]==<span class="number">1</span>) + </span><br><span class="line">  <span class="built_in">int</span>(cla_model3.predict(p)[<span class="number">0</span>]==<span class="number">0</span>) + \</span><br><span class="line">  <span class="built_in">int</span>(cla_model4.predict(p)[<span class="number">0</span>]==<span class="number">1</span>) + <span class="built_in">int</span>(cla_model5.predict(p)[<span class="number">0</span>]==<span class="number">0</span>)</span><br><span class="line">  <span class="comment"># ERA 活性值</span></span><br><span class="line">  era = reg_model.predict(p)[<span class="number">0</span>]</span><br><span class="line">  <span class="comment"># 综合优化目标：ERA + ADMET 约束</span></span><br><span class="line">  res = -era + <span class="built_in">int</span>(admet&lt;<span class="number">3</span>)*<span class="number">1e5</span></span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line"><span class="comment"># 遗传算法实现</span></span><br><span class="line">low_bound = data.<span class="built_in">min</span>(axis=<span class="number">0</span>)</span><br><span class="line">high_bound = data.<span class="built_in">max</span>(axis=<span class="number">0</span>)</span><br><span class="line">ga = GA(func=schaffer, n_dim=<span class="number">20</span>, size_pop=<span class="number">50</span>, max_iter=<span class="number">600</span>, prob_mut=<span class="number">0.001</span>, </span><br><span class="line">lb=low_bound, ub=high_bound, precision=<span class="number">1e-7</span>)</span><br><span class="line">best_x, best_y = ga.run()</span><br><span class="line">Y_history = pd.DataFrame(ga.all_history_Y)</span><br><span class="line"><span class="comment"># 绘图。红点代表每一个 iteration 中种群里每一个个体的 y 值。</span></span><br><span class="line"><span class="comment"># 100000 的值都是不满足 admet 至少三个为优的性质。直接忽略。</span></span><br><span class="line"><span class="comment"># 蓝色曲线为 ERA 活性值，越高越好。</span></span><br><span class="line">fig, ax = plt.subplots(<span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">ax[<span class="number">0</span>].plot(Y_history.index, Y_history.values, <span class="string">&#x27;.&#x27;</span>, color=<span class="string">&#x27;red&#x27;</span>)</span><br><span class="line"><span class="comment"># Y_history.min(axis=1).cummin().plot(kind=&#x27;line&#x27;)</span></span><br><span class="line"><span class="built_in">abs</span>(Y_history.<span class="built_in">min</span>(axis=<span class="number">1</span>)).plot(kind=<span class="string">&#x27;line&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>数模</title>
+    <url>/2023/07/13/%E6%95%B0%E6%A8%A1/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/08/03/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E9%A2%84%E6%B5%8B/</url>
+    <content><![CDATA[<h3 id="时间序列预测"><a href="#时间序列预测" class="headerlink" title="时间序列预测"></a>时间序列预测</h3><p>ARIMA时间序列预测模型</p>
+<p>资金流入流出预测</p>
+<p>题目如下：</p>
+<p>使用的数据主要包含四个部分，分别为用户基本信息数据、用户申购赎回数据、收益率表和银行间拆借利率表。下面分别介绍四组数据。</p>
+<h4 id="1-用户信息表"><a href="#1-用户信息表" class="headerlink" title="1.用户信息表"></a>1.用户信息表</h4><p>用户信息表： user_profile_table 。 我们总共随机抽取了约 3 万用户，其中部分用户在 2014 年 9 月份第一次出现，这部分用户只在测试数据中 。因此用户信息表是约 2.8 万 个用户的基本数据，在原始数据的基础上处理后，主要包含了用户的性别、城市和星座。具体的字段如下表 1 ：</p>
+<p> 表1用户信息表</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>类型</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>user_id</td>
+<td>bigint</td>
+<td>用户 ID</td>
+<td>1234</td>
+</tr>
+<tr>
+<td>Sex</td>
+<td>bigint</td>
+<td>用户性别（ 1 ：男， 0 ：女 ）</td>
+<td>0</td>
+</tr>
+<tr>
+<td>City</td>
+<td>bigint</td>
+<td>所在城市</td>
+<td>6081949</td>
+</tr>
+<tr>
+<td>constellation</td>
+<td>string</td>
+<td>星座</td>
+<td>射手座</td>
+</tr>
+</tbody></table>
+<h4 id="2-用户申购赎回数据表"><a href="#2-用户申购赎回数据表" class="headerlink" title="2. 用户申购赎回数据表"></a>2. 用户申购赎回数据表</h4><p>用户申购赎回数据表： user_balance_table 。里面有 20130701 至 20140831 申购和赎回信息、以及所有的子类目信息， 数据经过脱敏处理。脱敏之后的数据，基本保持了原数据趋势。数据主要包括用户操作时间和操作记录，其中操作记录包括申购和赎回两个部分。金额的单位是分，即 0.01 元人民币。 如果用户今日消费总量为0，即consume_amt&#x3D;0，则四个字类目为空。</p>
+<p> 表格 2 ：用户申购赎回数据</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>类型</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>user_id</td>
+<td>bigint</td>
+<td>用户 id</td>
+<td>1234</td>
+</tr>
+<tr>
+<td>report_date</td>
+<td>string</td>
+<td>日期</td>
+<td>20140407</td>
+</tr>
+<tr>
+<td>tBalance</td>
+<td>bigint</td>
+<td>今日余额</td>
+<td>109004</td>
+</tr>
+<tr>
+<td>yBalance</td>
+<td>bigint</td>
+<td>昨日余额</td>
+<td>97389</td>
+</tr>
+<tr>
+<td>total_purchase_amt</td>
+<td>bigint</td>
+<td>今日总购买量 &#x3D; 直接购买 + 收益</td>
+<td>21876</td>
+</tr>
+<tr>
+<td>direct_purchase_amt</td>
+<td>bigint</td>
+<td>今日直接购买量</td>
+<td>21863</td>
+</tr>
+<tr>
+<td>purchase_bal_amt</td>
+<td>bigint</td>
+<td>今日支付宝余额购买量</td>
+<td>0</td>
+</tr>
+<tr>
+<td>purchase_bank_amt</td>
+<td>bigint</td>
+<td>今日银行卡购买量</td>
+<td>21863</td>
+</tr>
+<tr>
+<td>total_redeem_amt</td>
+<td>bigint</td>
+<td>今日总赎回量 &#x3D; 消费 + 转出</td>
+<td>10261</td>
+</tr>
+<tr>
+<td>consume_amt</td>
+<td>bigint</td>
+<td>今日消费总量</td>
+<td>0</td>
+</tr>
+<tr>
+<td>transfer_amt</td>
+<td>bigint</td>
+<td>今日转出总量</td>
+<td>10261</td>
+</tr>
+<tr>
+<td>tftobal_amt</td>
+<td>bigint</td>
+<td>今日转出到支付宝余额总量</td>
+<td>0</td>
+</tr>
+<tr>
+<td>tftocard_amt</td>
+<td>bigint</td>
+<td>今日转出到银行卡总量</td>
+<td>10261</td>
+</tr>
+<tr>
+<td>share_amt</td>
+<td>bigint</td>
+<td>今日收益</td>
+<td>13</td>
+</tr>
+<tr>
+<td>category1</td>
+<td>bigint</td>
+<td>今日类目 1 消费总额</td>
+<td>0</td>
+</tr>
+<tr>
+<td>category2</td>
+<td>bigint</td>
+<td>今日类目 2 消费总额</td>
+<td>0</td>
+</tr>
+<tr>
+<td>category3</td>
+<td>bigint</td>
+<td>今日类目 3 消费总额</td>
+<td>0</td>
+</tr>
+<tr>
+<td>category4</td>
+<td>bigint</td>
+<td>今日类目 4 消费总额</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>注 1 ：上述的数据都是经过脱敏处理的，收益为重新计算得到的，计算方法按照简化后的计算方式处理，具体计算方式在下节余额宝收益计算方式中描述。</p>
+<p>注 2 ：脱敏后的数据保证了今日余额 &#x3D; 昨日余额 + 今日申购 - 今日赎回，不会出现负值。</p>
+<h4 id="3-收益率表"><a href="#3-收益率表" class="headerlink" title="3.收益率表"></a>3.收益率表</h4><p>收益表为余额宝在 14 个月内的收益率表： mfd_day_share_interest 。具体字段如表格 3 中所示</p>
+<p> 表格 3 收益率表</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>类型</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mfd_date</td>
+<td>string</td>
+<td>日期</td>
+<td>20140102</td>
+</tr>
+<tr>
+<td>mfd_daily_yield</td>
+<td>double</td>
+<td>万份收益，即 1 万块钱的收益。</td>
+<td>1.5787</td>
+</tr>
+<tr>
+<td>mfd_7daily_yield</td>
+<td>double</td>
+<td>七日年化收益率（ % ）</td>
+<td>6.307</td>
+</tr>
+</tbody></table>
+<h4 id="4-上海银行间同业拆放利率（Shibor）表"><a href="#4-上海银行间同业拆放利率（Shibor）表" class="headerlink" title="4.上海银行间同业拆放利率（Shibor）表"></a>4.上海银行间同业拆放利率（Shibor）表</h4><p>银行间拆借利率表是 14 个月期间银行之间的拆借利率（皆为年化利率）： mfd_bank_shibor 。具体字段如下表格 4 所示：<br> 表格 4 银行间拆借利率表</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>类型</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mfd_date</td>
+<td>String</td>
+<td>日期</td>
+<td>20140102</td>
+</tr>
+<tr>
+<td>Interest_<strong>O_N</strong></td>
+<td>Double</td>
+<td>隔夜利率（%）</td>
+<td>2.8</td>
+</tr>
+<tr>
+<td>Interest_<strong>1_W</strong></td>
+<td>Double</td>
+<td>1周利率（%）</td>
+<td>4.25</td>
+</tr>
+<tr>
+<td>Interest_<strong>2_W</strong></td>
+<td>Double</td>
+<td>2周利率（%）</td>
+<td>4.9</td>
+</tr>
+<tr>
+<td>Interest_<strong>1_M</strong></td>
+<td>Double</td>
+<td>1个月利率（%）</td>
+<td>5.04</td>
+</tr>
+<tr>
+<td>Interest_<strong>3_M</strong></td>
+<td>Double</td>
+<td>3个月利率（%）</td>
+<td>4.91</td>
+</tr>
+<tr>
+<td>Interest_<strong>6_M</strong></td>
+<td>Double</td>
+<td>6个月利率（%）</td>
+<td>4.79</td>
+</tr>
+<tr>
+<td>Interest_<strong>9_M</strong></td>
+<td>Double</td>
+<td>9个月利率（%）</td>
+<td>4.76</td>
+</tr>
+<tr>
+<td>Interest_<strong>1_Y</strong></td>
+<td>Double</td>
+<td>1年利率（%）</td>
+<td>4.78</td>
+</tr>
+</tbody></table>
+<h3 id="题目分析和模型构建"><a href="#题目分析和模型构建" class="headerlink" title="题目分析和模型构建"></a>题目分析和模型构建</h3><p>生成 ARIMA 模型的基本步骤：</p>
+<ol>
+<li>对序列绘图，进行 ADF 检验，观察序列是否平稳；对于非平稳时间序列要先进行 d 阶差分，转化为平稳时间序列；</li>
+<li>经过第一步处理，已经得到平稳时间序列。要对平稳时间序列分别求得其自相关系数（ACF）和偏自相关系数（PACF），通过对自相关图和偏自相关图的分析，得到最佳的阶数p、q；</li>
+<li>由以上得到的d、q、p ，得到 ARIMA 模型。然后开始对得到的模型进行模型检验。</li>
+</ol>
+<p>步骤：</p>
+<p>1、首先查看每天的申购金额的趋势：</p>
+<p>python代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">user_balance = pd.read_csv(<span class="string">&#x27;./user_balance_table.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line">df_tmp = user_balance.groupby([<span class="string">&#x27;report_date&#x27;</span>])[<span class="string">&#x27;total_purchase_amt&#x27;</span>, <span class="string">&#x27;total_redeem_amt&#x27;</span>].<span class="built_in">sum</span>()</span><br><span class="line">df_tmp.reset_index(inplace=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">df_tmp[<span class="string">&#x27;report_date&#x27;</span>] = pd.to_datetime(df_tmp[<span class="string">&#x27;report_date&#x27;</span>], <span class="built_in">format</span>=<span class="string">&#x27;%Y%m%d&#x27;</span>)</span><br><span class="line"></span><br><span class="line">df_tmp.index = df_tmp[<span class="string">&#x27;report_date&#x27;</span>]</span><br><span class="line"></span><br><span class="line">total_purchase_amt = plt.figure(figsize=(<span class="number">10</span>, <span class="number">4</span>))</span><br><span class="line">ax = total_purchase_amt.add_subplot(<span class="number">111</span>)</span><br><span class="line">ax.<span class="built_in">set</span>(title=<span class="string">&#x27;Total_Purchase_Amt&#x27;</span>,</span><br><span class="line">       ylabel=<span class="string">&#x27;Unit (yuan)&#x27;</span>, xlabel=<span class="string">&#x27;Date&#x27;</span>)</span><br><span class="line">plt.plot(df_tmp[<span class="string">&#x27;report_date&#x27;</span>], df_tmp[<span class="string">&#x27;total_purchase_amt&#x27;</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803113120116.png" alt="image-20230803113120116"  />
+
+<p>结果如上图所示</p>
+<p>从上图中可以看出，从2013-07<del>2014-04，余额宝每日的申购金额经历了一个较大的波动过程，从2014-04开始，趋向于稳定的震荡（均值近似为常数）。<strong>ARIMA 模型是通过寻找历史数据之间的自相关性，来预测未来（假设未来将重复历史的走势），要求序列必须是平稳的。</strong>因此我们取2014-04-01</del>2014-07-31的数据作为训练集，将2014-08-01~2014-08-10的数据作为测试集。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_purchase_seq</span>():</span><br><span class="line">    dateparse = <span class="keyword">lambda</span> dates: pd.to_datetime.strptime(dates, <span class="string">&#x27;%Y%m%d&#x27;</span>)</span><br><span class="line">    user_balance = pd.read_csv(<span class="string">&#x27;model/user_balance_table.csv&#x27;</span>, parse_dates=[<span class="string">&#x27;report_date&#x27;</span>],</span><br><span class="line">                               index_col=<span class="string">&#x27;report_date&#x27;</span>, date_parser=dateparse)</span><br><span class="line"></span><br><span class="line">    df = user_balance.groupby([<span class="string">&#x27;report_date&#x27;</span>])[<span class="string">&#x27;total_purchase_amt&#x27;</span>].<span class="built_in">sum</span>()</span><br><span class="line">    purchase_seq = pd.Series(df, name=<span class="string">&#x27;value&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    purchase_seq_train = purchase_seq[<span class="string">&#x27;2014-04-01&#x27;</span>:<span class="string">&#x27;2014-07-31&#x27;</span>]</span><br><span class="line">    purchase_seq_test = purchase_seq[<span class="string">&#x27;2014-08-01&#x27;</span>:<span class="string">&#x27;2014-08-10&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    purchase_seq_train.to_csv(path=<span class="string">&#x27;model/purchase_seq_train.csv&#x27;</span>, header=<span class="literal">True</span>)</span><br><span class="line">    purchase_seq_test.to_csv(path=<span class="string">&#x27;model/purchase_seq_test.csv&#x27;</span>, header=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">generate_purchase_seq()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.arima_model <span class="keyword">import</span> ARIMA</span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.seasonal <span class="keyword">import</span> seasonal_decompose</span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.stattools <span class="keyword">import</span> adfuller <span class="keyword">as</span> ADF</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">diff</span>(<span class="params">timeseries</span>):</span><br><span class="line">    timeseries_diff1 = timeseries.diff(<span class="number">1</span>)</span><br><span class="line">    timeseries_diff2 = timeseries_diff1.diff(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    timeseries_diff1 = timeseries_diff1.fillna(<span class="number">0</span>)</span><br><span class="line">    timeseries_diff2 = timeseries_diff2.fillna(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    timeseries_adf = ADF(timeseries[<span class="string">&#x27;value&#x27;</span>].tolist())</span><br><span class="line">    timeseries_diff1_adf = ADF(timeseries_diff1[<span class="string">&#x27;value&#x27;</span>].tolist())</span><br><span class="line">    timeseries_diff2_adf = ADF(timeseries_diff2[<span class="string">&#x27;value&#x27;</span>].tolist())</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;timeseries_adf : &#x27;</span>, timeseries_adf)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;timeseries_diff1_adf : &#x27;</span>, timeseries_diff1_adf)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;timeseries_diff2_adf : &#x27;</span>, timeseries_diff2_adf)</span><br><span class="line"></span><br><span class="line">    plt.figure(figsize=(<span class="number">12</span>, <span class="number">8</span>))</span><br><span class="line">    plt.plot(timeseries, label=<span class="string">&#x27;Original&#x27;</span>, color=<span class="string">&#x27;blue&#x27;</span>)</span><br><span class="line">    plt.plot(timeseries_diff1, label=<span class="string">&#x27;Diff1&#x27;</span>, color=<span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">    plt.plot(timeseries_diff2, label=<span class="string">&#x27;Diff2&#x27;</span>, color=<span class="string">&#x27;purple&#x27;</span>)</span><br><span class="line">    plt.legend(loc=<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dateparse = <span class="keyword">lambda</span> dates: pd.datetime.strptime(dates, <span class="string">&#x27;%Y-%m-%d&#x27;</span>)</span><br><span class="line">purchase_seq_train = pd.read_csv(<span class="string">&#x27;./purchase_seq_train.csv&#x27;</span>, parse_dates=[<span class="string">&#x27;report_date&#x27;</span>],</span><br><span class="line">                                 index_col=<span class="string">&#x27;report_date&#x27;</span>, date_parser=dateparse)</span><br><span class="line"></span><br><span class="line">diff(purchase_seq_train)</span><br></pre></td></tr></table></figure>
+
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803113707819.png" alt="image-20230803113707819" style="zoom:50%;" />
+
+
+
+
+
+<p>从结果来看，要想使得序列变得平稳，需要进行一阶差分。我们对序列进行一阶差分，并查看差分后序列的 ACF、PACF：</p>
+<p>从序列 ACF 、PACF 的图中没有发现明显的拖尾或截尾，说明对于这样的序列，并不适合用ARIMA 模型来拟合。如何用 ARIMA 模型来拟合这样的曲线呢？<strong>这里我们将先通过对时间序列分解（STL），再采用 ARIMA 模型来拟合趋势序列与残差序列。</strong></p>
+<p>对原序列分解：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> statsmodels.api <span class="keyword">as</span> sm</span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.arima_model <span class="keyword">import</span> ARIMA</span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.seasonal <span class="keyword">import</span> seasonal_decompose</span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.stattools <span class="keyword">import</span> adfuller <span class="keyword">as</span> ADF</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decomposing</span>(<span class="params">timeseries</span>):</span><br><span class="line">    decomposition = seasonal_decompose(timeseries)</span><br><span class="line">    trend = decomposition.trend</span><br><span class="line">    seasonal = decomposition.seasonal</span><br><span class="line">    residual = decomposition.resid</span><br><span class="line"></span><br><span class="line">    plt.figure(figsize=(<span class="number">16</span>, <span class="number">12</span>))</span><br><span class="line">    plt.subplot(<span class="number">411</span>)</span><br><span class="line">    plt.plot(timeseries, label=<span class="string">&#x27;Original&#x27;</span>)</span><br><span class="line">    plt.legend(loc=<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">    plt.subplot(<span class="number">412</span>)</span><br><span class="line">    plt.plot(trend, label=<span class="string">&#x27;Trend&#x27;</span>)</span><br><span class="line">    plt.legend(loc=<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">    plt.subplot(<span class="number">413</span>)</span><br><span class="line">    plt.plot(seasonal, label=<span class="string">&#x27;Seasonarity&#x27;</span>)</span><br><span class="line">    plt.legend(loc=<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">    plt.subplot(<span class="number">414</span>)</span><br><span class="line">    plt.plot(residual, label=<span class="string">&#x27;Residual&#x27;</span>)</span><br><span class="line">    plt.legend(loc=<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dateparse = <span class="keyword">lambda</span> dates: pd.datetime.strptime(dates, <span class="string">&#x27;%Y-%m-%d&#x27;</span>)</span><br><span class="line">purchase_seq_train = pd.read_csv(<span class="string">&#x27;./purchase_seq_train.csv&#x27;</span>, parse_dates=[<span class="string">&#x27;report_date&#x27;</span>],</span><br><span class="line">                                 index_col=<span class="string">&#x27;report_date&#x27;</span>, date_parser=dateparse)</span><br><span class="line"></span><br><span class="line">decomposing(purchase_seq_train)</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803113820226.png" alt="image-20230803113820226"></p>
+<p>从上图中可以看到，原序列有明显的周期性，而且是以七天为一个周期（可以将具体的数值打印出来）。因此我们只对趋势序列和残差序列去拟合，同时认为这样的周期性会延伸至2014-08-01~2014-08-10的测试集上。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/10/16/%E6%96%B9%E6%A1%88%E7%AE%80%E8%BF%B0/</url>
+    <content><![CDATA[<h4 id="结论：两个方案可以合并。"><a href="#结论：两个方案可以合并。" class="headerlink" title="结论：两个方案可以合并。"></a>结论：两个方案可以合并。</h4><h5 id="首先在执行n叉树检索操作时："><a href="#首先在执行n叉树检索操作时：" class="headerlink" title="首先在执行n叉树检索操作时："></a>首先在执行n叉树检索操作时：</h5><p>我们对每个节点均设置了一个编号，这个编号以O(n)的时间复杂度执行path-oram的写回操作，</p>
+<h5 id="在执行虚实块方案检索操作时："><a href="#在执行虚实块方案检索操作时：" class="headerlink" title="在执行虚实块方案检索操作时："></a>在执行虚实块方案检索操作时：</h5><p>我们对于每个节点均设置了判断其虚实块的方案，首先是由于目前创建的树中，在一个节点中只有一半的节点是满的（这里的节点为满指的是该节点存储了irtree中规定的maxsize的分支，并且这些分支都是实际的），剩下的节点均为不满的，（不满是指，该节点存储的分支中实际分支的个数小于maxsize，剩下的被虚分支填充），所以这会导致写回速度能够加快将近50%左右。</p>
+<p>但是刚开始的理解是应该是n叉树检索会更快，但是实际测试比虚实块方案更慢，这其中的原因是，在初始方案中，我设置了父亲节点来进行写回操作，其实这个操作的时间复杂度也为o（n），修改之后的n叉树检索方案其实真实的时间复杂度也为o（n），但是这个方案有一个缺点，那就是必须将整棵树补充为满n叉树，注意：（在这里，我们需要区分两个概念：满n叉树和满树不是一个概念：在我们设置的rtree中，满树指的是每一个节点的分支个数均为maxsize，而满n叉树指的是不仅分支个数均为maxsize，并且整棵树还要重新补充节点，并且随着我们设置的maxsize的增大，这个新补充节点的个数的空间复杂度是o（2^n)），</p>
+<p>在清楚这个概念之后，我们来解释为什么在将maxsize设置为8之后，会导致满n叉树的检索速率大幅度下降的原因，那就是整棵树的虚结点的个数过多，这不仅产生了大量的存储消耗，并且让查询过程中对于虚结点和虚分支的判断消耗时间大大增加。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/10/25/%E6%A6%82/</url>
+    <content><![CDATA[<h5 id="工作日程安排："><a href="#工作日程安排：" class="headerlink" title="工作日程安排："></a>工作日程安排：</h5><p>根据上述工作分解结构与估算的工期时间，我们在项目软件project中制定了四个模块的工期安排，以及对应的前置任务，我们设置每人每天的工时均为8小时，并对某些任务设置了相应的前置任务</p>
+<p>根据后续ppt的甘特图，我们可以确定任务之间的先后顺序，从前到后依次是：需求分析、方案设计、系统实现、系统测试、系统上线。 有些任务我们设置了同步进行，如系统接口设计和配套硬件设计可以同时进行， 以提高物理设计阶段的效率。</p>
+<h5 id="资源分配"><a href="#资源分配" class="headerlink" title="资源分配"></a>资源分配</h5><p>由设计的资源工作表可知，该项目的材料成本为软件开发时所用到的服务器费用以及网页端运行费用；关于员工主要分为前端开发，后端开发以及系统运行以及维护人员；关于人员的管理以及住宿伙食安排也需要支出资金。</p>
+<p>同时我们根据国内外的前端、后端以及运维人员和产品经理的工资和加班费用进行了调查、最终确定了本系统的工资成本。</p>
+<p>分工：</p>
+<p>组长：刘泽森</p>
+<p>后端开发，产品经理、运营维护</p>
+<p>王可儿：运营维护、产品营销、需求调查</p>
+<p>谭尚谋：系统测试、前端开发、需求调查</p>
+<p>王剑宇：方案设计、性能分析、成本规划</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/09/07/%E6%A8%A1%E5%9E%8B%E5%BB%BA%E7%AB%8B%E4%B8%8E%E6%B1%82%E8%A7%A3/</url>
+    <content><![CDATA[<h4 id="五、模型建立与求解"><a href="#五、模型建立与求解" class="headerlink" title="五、模型建立与求解"></a>五、模型建立与求解</h4><p>5.1、问题一</p>
+<p>5.1.1模型的准备：</p>
+<p>5.1.1.1 镜场和镜面坐标系的建立</p>
+<p>以镜场中心为坐标原点，以正东方向为x轴正方向，以正北方向为y轴正方向，以垂直地面向上为z轴建立空间直角坐标系：如图：</p>
+<p>以镜面中心为坐标原点，以与地面平行方向为x轴方向，以镜面法向为z轴，以垂直于x和z轴所在平面方向为y轴，建立镜面的空间直角坐标系，如图所示：</p>
+<p>5.1.1.3 法向直接辐射辐照度</p>
+<p>5.1.1.4 定日镜的光学效率</p>
+<p>5.1.1.5 定日镜场的输出热功率</p>
+<p>5.1.2 模型的建立</p>
+<p>因为定日镜场的热功率并不是单个定日镜的功率的简单叠加，因此在计算定日镜的热功率时需要根据每个定日镜的位置关系来确定目标定日镜与邻近定日镜之间的关系。</p>
+<p>阴影遮挡效率的计算</p>
+<p>采用光线追迹法计算定日镜的阴影遮挡效率。</p>
+<p>在地面坐标系中，入射光线的方向余弦可以写为：</p>
+<p>公式1：</p>
+<p>阴影遮挡效率为：</p>
+<p>阴影遮挡损失包括</p>
+<p>1、A定日镜被B定日镜遮挡的阴影损失</p>
+<p>2、A定日镜反射光线被B定日镜遮挡损失</p>
+<p>3、吸收塔的阴影损失</p>
+<p>定日镜之间的阴影遮挡损失，我们在两块任意的定日镜A与B之间进行分析，设A镜面坐标系上一光线入射点坐标为H1（x1,y1,0),设该光线落入B镜面坐标系中的坐标，镜面坐标系A到B的关系变换矩阵为T</p>
+<p>公式1</p>
+<p>设光线在镜面A坐标系的向量坐标为H_A</p>
+<p>则在镜场坐标系中的向量坐标为H_0  &#x3D; T * H_A</p>
+<p>H_0在镜面B坐标系中的向量坐标为H_B &#x3D; H_0*T;</p>
+<p>则可以解的H_2坐标为：</p>
+<p>判断H_2是否在B镜面中，若在镜面中，则视为遮挡，则镜面A的镜面阴影遮挡损失为 遮挡面积&#x2F;镜面面积</p>
+<p>吸收塔的阴影损失计算</p>
+<p>我们根据给定的经纬度计算每个月份21号每一个时间段的太阳高度角为alpha,我们计算得到吸收塔对于定日镜产生遮挡影响的太阳高度角阈值为β，当α大于β时，吸收塔对于定日镜没有遮挡影响，α&lt;β时，吸收塔对于定日镜有影响，我们计算得到了吸收塔对于定日镜的遮挡模型。</p>
+<p>当α&lt;β时，我们计算吸收塔对于定日镜的遮挡面积</p>
+<p>设当日日期为m月d日，2023年春分为3月21日，计算太阳赤纬角为</p>
+<p>根据太阳赤纬角以及太阳时角可以计算得到太阳高度角，</p>
+<p>则遮挡范围为：</p>
+<p>5.1.2模型的建立</p>
+<p>5.1.3模型的求解</p>
+<p>5.2问题二</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/08/03/%E6%AC%A7%E5%8D%A1%E5%9B%BE%E5%92%8C%E5%93%88%E5%AF%86%E5%B0%94%E9%A1%BF%E5%9B%BE%E7%9A%84%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<h3 id="欧卡图和哈密尔顿图的应用"><a href="#欧卡图和哈密尔顿图的应用" class="headerlink" title="欧卡图和哈密尔顿图的应用"></a>欧卡图和哈密尔顿图的应用</h3><h4 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h4><h5 id="1-1-Euler图"><a href="#1-1-Euler图" class="headerlink" title="1.1.Euler图"></a>1.1.Euler图</h5><p>定义 经过<img src="https://math.jianshu.com/math?formula=G" alt="G">的每条边的迹叫做<img src="https://math.jianshu.com/math?formula=G" alt="G">的Euler迹；闭的Euler迹叫做<strong>Euler回路</strong>或E回路；含Euler回路的图叫做<strong>Euler图</strong></p>
+<p><strong>定理1</strong> 1.<img src="https://math.jianshu.com/math?formula=G" alt="G">是Euler图的充分必要条件是<img src="https://math.jianshu.com/math?formula=G" alt="G">联通且每个顶点都是偶次顶点。<br>2.<img src="https://math.jianshu.com/math?formula=G" alt="G">是Euler图的充分必要条件是<img src="https://math.jianshu.com/math?formula=G" alt="G">联通且<br><img src="https://math.jianshu.com/math?formula=G=%5Cbigcup_%7Bi=1%7D%5E%7Bd%7D%20C_%7Bi%7D" alt="G=\bigcup_{i=1}^{d} C_{i}">，<img src="https://math.jianshu.com/math?formula=C_%7Bi%7D" alt="C_{i}">是圈，<br><img src="https://math.jianshu.com/math?formula=E%5Cleft(C_%7Bi%7D%5Cright)%20%5Ccap%20E%5Cleft(C_%7Bj%7D%5Cright)=%5CPhi(i%20%5Cneq%20j)" alt="E\left(C_{i}\right) \cap E\left(C_{j}\right)=\Phi(i \neq j)"><br>3.<img src="https://math.jianshu.com/math?formula=G" alt="G">中有Euler迹的充要条件是<img src="https://math.jianshu.com/math?formula=G" alt="G">联通且至多有两个顶点。</p>
+<h5 id="1-2-Hamilton图"><a href="#1-2-Hamilton图" class="headerlink" title="1.2.Hamilton图"></a>1.2.Hamilton图</h5><p>定义 包含<img src="https://math.jianshu.com/math?formula=G" alt="G">的每个顶点的轨叫做Hamilton轨；闭的Hamilton轨叫做Hamilton圈或H圈；含Hamilton圈的图叫做<strong>Hamilton图</strong>。</p>
+<h5 id="1-3-Euler图和Hamilton图的区别"><a href="#1-3-Euler图和Hamilton图的区别" class="headerlink" title="1.3.Euler图和Hamilton图的区别"></a>1.3.Euler图和Hamilton图的区别</h5><p>都是含有一个圈，但是Euler图的关键词是“边”，它要经过该图中的每一条边。而Hamilton图的关键词是”顶点”只要经过每个顶点就行了，也就是说，Euler图的要求更高。</p>
+<h5 id="2-Euler回路的Fleury算法"><a href="#2-Euler回路的Fleury算法" class="headerlink" title="2.Euler回路的Fleury算法"></a>2.Euler回路的Fleury算法</h5><p>1.<img src="https://math.jianshu.com/math?formula=%5Cforall%20v_%7B0%7D%20%5Cin%20V(G)" alt="\forall v_{0} \in V(G)">，令<img src="https://math.jianshu.com/math?formula=W_%7B0%7D=v_%7B0%7D" alt="W_{0}=v_{0}">。<br> 2.假设迹<img src="https://math.jianshu.com/math?formula=W_%7Bi%7D=v_%7B0%7D%20e_%7B1%7D%20v_%7B1%7D%20%5Ccdots%20e_%7Bi%7D%20v_%7Bi%7D" alt="W_{i}=v_{0} e_{1} v_{1} \cdots e_{i} v_{i}">已经选定，那么按下列方法从<img src="https://math.jianshu.com/math?formula=E-%5Cleft%5C%7Be_%7B1%7D,%20%5Ccdots,%20e_%7Bi%7D%5Cright%5C%7D" alt="E-\left\{e_{1}, \cdots, e_{i}\right\}">中选取边<img src="https://math.jianshu.com/math?formula=e_%7Bi+1%7D" alt="e_{i+1}">:<br> (1)<img src="https://math.jianshu.com/math?formula=e_%7Bi+1%7D" alt="e_{i+1}">和<img src="https://math.jianshu.com/math?formula=v_%7Bi%7D" alt="v_{i}">相关联；<br> (2)除非没有别的边可选择，否则<img src="https://math.jianshu.com/math?formula=e_%7Bi+1%7D" alt="e_{i+1}">不能是<img src="https://math.jianshu.com/math?formula=G_%7Bi%7D=G-%5Cleft%5C%7Be_%7B1%7D,%20%5Ccdots,%20e_%7Bi%7D%5Cright%5C%7D" alt="G_{i}=G-\left\{e_{1}, \cdots, e_{i}\right\}">的割边（<strong>割边</strong>是一条删除后使连通图不再联通的边）。<br> 3.当第2步不能再执行时，算法停止。</p>
+<h4 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h4><h5 id="邮递员问题"><a href="#邮递员问题" class="headerlink" title="邮递员问题"></a>邮递员问题</h5><p>一位邮递员从邮局选好邮件去投递，然后返回邮局，当然他必须经过他负责投递的每条街道至少一次，为他设计一条投递路线，使得他<strong>行程最短</strong>。</p>
+<p>上述中国邮递员问题的数学模型是：在一个赋权连通图上求一个含所有边的回路，且使此<strong>回路的权最小</strong>。</p>
+<p>显然，若此连通赋权图是 Euler 图，则可用 Fleury 算法求 Euler 回路，此回路即为所求。</p>
+<p>若是非Euler图，则有以下算法：</p>
+<p>设<img src="https://math.jianshu.com/math?formula=G" alt="G">是联通赋权图<br> 1.求<img src="https://math.jianshu.com/math?formula=V_%7B0%7D=%5C%7Bv%20%7C%20v%20%5Cin%20V(G),%20d(v)=1(%5Cbmod%202)%5C%7D" alt="V_{0}=\{v | v \in V(G), d(v)=1(\bmod 2)\}"><br> 2.对每对顶点<img src="https://math.jianshu.com/math?formula=u,%20v%20%5Cin%20V_%7B0%7D" alt="u, v \in V_{0}">，求<img src="https://math.jianshu.com/math?formula=d(u,v)" alt="d(u,v)">（<img src="https://math.jianshu.com/math?formula=d(u,v)" alt="d(u,v)">是<img src="https://math.jianshu.com/math?formula=u" alt="u">和<img src="https://math.jianshu.com/math?formula=v" alt="v">的距离，可用最短路问题中的算法来求出）<br> 3.构造完全赋权图<img src="https://math.jianshu.com/math?formula=K_%7B%5Cleft.%5Cright%7C_%7BV_%7B0%7D%7D%20%7C%7D" alt="K_{\left.\right|_{V_{0}} |}">，以<img src="https://math.jianshu.com/math?formula=V_%7B0%7D" alt="V_{0}">为顶点集，以<img src="https://math.jianshu.com/math?formula=d(u,v)" alt="d(u,v)">为边<img src="https://math.jianshu.com/math?formula=uv" alt="uv">的权。<br> 4.求<img src="https://math.jianshu.com/math?formula=K_%7B%5Cleft%7CV_%7B0%7D%5Cright%7C%7D" alt="K_{\left|V_{0}\right|}">中的最小完美对集<img src="https://math.jianshu.com/math?formula=M" alt="M">。<br> 5.求<img src="https://math.jianshu.com/math?formula=M" alt="M">中边的端点之间的在<img src="https://math.jianshu.com/math?formula=G" alt="G">中的最短轨。<br> 6.在5中求得的每条最短轨上每条边添加一条等权的所谓“倍边”（即共端点共权的边）。<br> 7.在6中所得的图中求Euler回路即是邮递员问题的解。</p>
+<h5 id="旅行商问题"><a href="#旅行商问题" class="headerlink" title="旅行商问题"></a>旅行商问题</h5><p>一名推销员准备前往若干城市推销产品，然后回到他的出发地。如何为他设计一条最短的旅行路线（从驻地出发，经过每个城市恰好一次，最后返回驻地）？这个问题称为旅行商问题。用图论的术语说，就是在一个赋权完全图中，找出一个有最小权的Hamilton 圈。称这种圈为最优圈。与最短路问题及连线问题相反，目前还<strong>没有求解旅行商问题的有效算法</strong>。所以希望有一个方法以获得相当好（但不一定最优）的解。</p>
+<p>一个可行的方法是首先求一个Hamilton圈C，然后适当修改C得到具有更小权的另一个Hamilton圈，修改的方法叫做<strong>改良圈算法</strong>。</p>
+<blockquote>
+<p>设初始圈<img src="https://math.jianshu.com/math?formula=C=v_%7B1%7D%20v_%7B2%7D%20%5Ccdots%20v_%7Bn%7D%20v_%7B1%7D" alt="C=v_{1} v_{2} \cdots v_{n} v_{1}"><br>1.对于<img src="https://math.jianshu.com/math?formula=1%3Ci+1%3Cj%3Cn" alt="1&lt;i+1&lt;j&lt;n">，构造新的Hamilton图：<br><img src="https://math.jianshu.com/math?formula=C_%7By%7D=v_%7B1%7D%20v_%7B2%7D%20%5Ccdots%20v_%7Bi%7D%20v_%7Bj%7D%20v_%7Bj-1%7D%20v_%7Bj-2%7D%20%5Ccdots%20v_%7Bi+1%7D%20v_%7Bj+1%7D%20v_%7Bj+2%7D%20%5Ccdots%20v_%7Bn%7D%20v_%7B1%7D" alt="C_{y}=v_{1} v_{2} \cdots v_{i} v_{j} v_{j-1} v_{j-2} \cdots v_{i+1} v_{j+1} v_{j+2} \cdots v_{n} v_{1}"><br>它是由C中<strong>删去边<img src="https://math.jianshu.com/math?formula=v_%7Bi%7D%20v_%7Bi+1%7D" alt="v_{i} v_{i+1}">和<img src="https://math.jianshu.com/math?formula=v_%7Bj%7D%20v_%7Bj+1%7D" alt="v_{j} v_{j+1}">，添加边<img src="https://math.jianshu.com/math?formula=v_%7Bi%7D%20v_%7Bj%7D" alt="v_{i} v_{j}">和<img src="https://math.jianshu.com/math?formula=v_%7Bi+1%7D%20v_%7Bj+1%7D" alt="v_{i+1} v_{j+1}">得到的</strong>。若<img src="https://math.jianshu.com/math?formula=w%5Cleft(v_%7Bi%7D%20v_%7Bj%7D%5Cright)+w%5Cleft(v_%7Bi+1%7D%20v_%7Bj+1%7D%5Cright)%3Cw%5Cleft(v_%7Bi%7D%20v_%7Bi+1%7D%5Cright)+w%5Cleft(v_%7Bj%7D%20v_%7Bj+1%7D%5Cright)" alt="w\left(v_{i} v_{j}\right)+w\left(v_{i+1} v_{j+1}\right)&lt;w\left(v_{i} v_{i+1}\right)+w\left(v_{j} v_{j+1}\right)">则以<img src="https://math.jianshu.com/math?formula=C_%7Bi%20j%7D" alt="C_{i j}">代替<img src="https://math.jianshu.com/math?formula=C" alt="C">，<img src="https://math.jianshu.com/math?formula=C_%7Bi%20j%7D" alt="C_{i j}">称为圈<img src="https://math.jianshu.com/math?formula=C" alt="C">的改良圈。<br>2.转1，直到无法进行，停止。</p>
+</blockquote>
+<p>这个算法得到的结果几乎肯定不是最优的，为了得到更高的精确度，可以选择不同的初始圈，重复几次算法，以求得较准确的结果。</p>
+<p>从北京（Pe）乘飞机到东京(T)、纽约(N)、墨西哥城(M)、伦敦(L)、巴黎(Pa)<br>五城市做旅游，每城市恰去一次再回北京，应如何安排旅游线，使旅程最短？各城市之<br>间的航线距离如表。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>伦敦(L)</th>
+<th>墨西哥(M)</th>
+<th>纽约(N)</th>
+<th>巴黎(Pa)</th>
+<th>北京(Pe)</th>
+<th>东京(T)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>伦敦(L)</td>
+<td></td>
+<td>56</td>
+<td>35</td>
+<td>21</td>
+<td>51</td>
+<td>60</td>
+</tr>
+<tr>
+<td>墨西哥(M)</td>
+<td>56</td>
+<td></td>
+<td>21</td>
+<td>57</td>
+<td>78</td>
+<td>70</td>
+</tr>
+<tr>
+<td>纽约(N)</td>
+<td>35</td>
+<td>21</td>
+<td></td>
+<td>36</td>
+<td>68</td>
+<td>68</td>
+</tr>
+<tr>
+<td>巴黎(Pa)</td>
+<td>21</td>
+<td>57</td>
+<td>36</td>
+<td></td>
+<td>51</td>
+<td>61</td>
+</tr>
+<tr>
+<td>北京(Pe)</td>
+<td>51</td>
+<td>78</td>
+<td>68</td>
+<td>51</td>
+<td></td>
+<td>13</td>
+</tr>
+<tr>
+<td>东京(T)</td>
+<td>60</td>
+<td>70</td>
+<td>68</td>
+<td>61</td>
+<td>13</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>利用改良圈算法编写Matlab程序如下：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span></span></span><br><span class="line">clc,clear</span><br><span class="line"><span class="keyword">global</span> a</span><br><span class="line">a=<span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line">a(<span class="number">1</span>,<span class="number">2</span>)=<span class="number">56</span>;a(<span class="number">1</span>,<span class="number">3</span>)=<span class="number">35</span>;a(<span class="number">1</span>,<span class="number">4</span>)=<span class="number">21</span>;a(<span class="number">1</span>,<span class="number">5</span>)=<span class="number">51</span>;a(<span class="number">1</span>,<span class="number">6</span>)=<span class="number">60</span>;</span><br><span class="line">a(<span class="number">2</span>,<span class="number">3</span>)=<span class="number">21</span>;a(<span class="number">2</span>,<span class="number">4</span>)=<span class="number">57</span>;a(<span class="number">2</span>,<span class="number">5</span>)=<span class="number">78</span>;a(<span class="number">2</span>,<span class="number">6</span>)=<span class="number">70</span>;</span><br><span class="line">a(<span class="number">3</span>,<span class="number">4</span>)=<span class="number">36</span>;a(<span class="number">3</span>,<span class="number">5</span>)=<span class="number">68</span>;a(<span class="number">3</span>,<span class="number">6</span>)=<span class="number">68</span>; a(<span class="number">4</span>,<span class="number">5</span>)=<span class="number">51</span>;a(<span class="number">4</span>,<span class="number">6</span>)=<span class="number">61</span>;</span><br><span class="line">a(<span class="number">5</span>,<span class="number">6</span>)=<span class="number">13</span>; a=a+a&#x27;; L=<span class="built_in">size</span>(a,<span class="number">1</span>);</span><br><span class="line">c1=[<span class="number">5</span> <span class="number">1</span>:<span class="number">4</span> <span class="number">6</span>];</span><br><span class="line">[circle,long]=modifycircle(c1,L);</span><br><span class="line">c2=[<span class="number">5</span> <span class="number">6</span> <span class="number">1</span>:<span class="number">4</span>];<span class="comment">%改变初始圈，该算法的最后一个顶点不动</span></span><br><span class="line">[circle2,long2]=modifycircle(c2,L);</span><br><span class="line"><span class="keyword">if</span> long2&lt;long</span><br><span class="line">    long=long2;</span><br><span class="line">    circle=circle2;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">circle,long</span><br><span class="line"><span class="comment">%*******************************************</span></span><br><span class="line"><span class="comment">%修改圈的子函数</span></span><br><span class="line"><span class="comment">%*******************************************</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[circle,long]</span>=<span class="title">modifycircle</span><span class="params">(c1,L)</span>;</span></span><br><span class="line"><span class="keyword">global</span> a</span><br><span class="line">flag=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> flag&gt;<span class="number">0</span></span><br><span class="line">    flag=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> m=<span class="number">1</span>:L<span class="number">-3</span></span><br><span class="line">        <span class="keyword">for</span> n=m+<span class="number">2</span>:L<span class="number">-1</span></span><br><span class="line">            <span class="keyword">if</span> a(c1(m),c1(n))+a(c1(m+<span class="number">1</span>),c1(n+<span class="number">1</span>))&lt;...</span><br><span class="line">            a(c1(m),c1(m+<span class="number">1</span>))+a(c1(n),c1(n+<span class="number">1</span>))</span><br><span class="line">                flag=<span class="number">1</span>;</span><br><span class="line">                c1(m+<span class="number">1</span>:n)=c1(n:<span class="number">-1</span>:m+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">long=a(c1(<span class="number">1</span>),c1(L));</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:L<span class="number">-1</span></span><br><span class="line">    long=long+a(c1(<span class="built_in">i</span>),c1(<span class="built_in">i</span>+<span class="number">1</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">circle=c1;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/08/03/%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h3 id="灰色预测模型"><a href="#灰色预测模型" class="headerlink" title="灰色预测模型"></a>灰色预测模型</h3><p>灰色预测模型（Gray Forecast Model）是一种基于小样本数据进行预测的模型。灰色预测模型所需建模信息少，运算方便，建模精度高，在各种预测领域都有着广泛的应用，是处理小样本预测问题的有效工具。</p>
+<ol start="2">
+<li>灰色模型介绍<br>灰 色 预 测 模 型 \color{red}灰色预测模型灰色预测模型（Gray Forecast Model）是通过少量的、不完全的信息，建立数学模型并做出预测的一种预测方法。当我们应用运筹学的思想方法解决实际问题，制定发展战略和政策、进行重大问题的决策时，都必须对未来进行科学的预测。预测是根据客观事物的过去和现在的发展规律，借助于科学的方法对其未来的发展趋势和状况进行描述和分析，并形成科学的假设和判断。<br>灰色系统理论是研究解决灰色系统分析、建模、预测、决策和控制的理论。灰色预测是对灰色系统所做的预测。目前常用的一些预测方法（如回归分析等），需要较大的样本.若样本较小，常造成较大误差，使预测目标失效。灰色预测模型所需建模信息少，运算方便，建模精度高，在各种预测领域都有着广泛的应用，是处理小样本预测问题的有效工具。<br>灰色系统理论是由华中理工大学邓聚龙教授于1982年提出并加以发展的。二十几年来，引起了不少国内外学者的关注，得到了长足的发展。目前，在我国已经成为社会、经济、科学技术在等诸多领域进行预测、决策、评估、规划控制、系统分析与建模的重要方法之一。特别是它对时间序列短、统计数据少、信息不完全系统的分析与建模，具有独特的功效，因此得到了广泛的应用。<br>灰色系统是黑箱概念的一种推广。我们把既含有已知信息又含有未知信息的系统称为灰色系统。作为两个极端，我们将称信息完全未确定的系统为黑色系统；称信息完全确定的系统为白色系统。区别白色系统与黑色系统的重要标志是系统各因素之间是否具有确定的关系。</li>
+<li>精度检验等级参照表<br>模型精度等级	均方差比值C<br>1级（好）	C&lt;&#x3D;0.35<br>2级（合格）	0.35&lt;C&lt;&#x3D;0.5<br>3级（勉强）	0.5&lt;C&lt;&#x3D;0.65<br>4级（不合格）	0.65&lt;C</li>
+</ol>
+<p>代码为：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[]</span>=<span class="title">greymodel</span><span class="params">(y)</span></span></span><br><span class="line"><span class="comment">% 本程序主要用来计算根据灰色理论建立的模型的预测值。</span></span><br><span class="line"><span class="comment">% 应用的数学模型是 GM(1,1)。</span></span><br><span class="line"><span class="comment">% 原始数据的处理方法是一次累加法。</span></span><br><span class="line">y=input(<span class="string">&#x27;请输入数据 &#x27;</span>);</span><br><span class="line">n=<span class="built_in">length</span>(y);</span><br><span class="line">yy=<span class="built_in">ones</span>(n,<span class="number">1</span>);</span><br><span class="line">yy(<span class="number">1</span>)=y(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:n</span><br><span class="line">    yy(<span class="built_in">i</span>)=yy(<span class="built_in">i</span><span class="number">-1</span>)+y(<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">B=<span class="built_in">ones</span>(n<span class="number">-1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:(n<span class="number">-1</span>)</span><br><span class="line">    B(<span class="built_in">i</span>,<span class="number">1</span>)=-(yy(<span class="built_in">i</span>)+yy(<span class="built_in">i</span>+<span class="number">1</span>))/<span class="number">2</span>;</span><br><span class="line">    B(<span class="built_in">i</span>,<span class="number">2</span>)=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">BT=B&#x27;;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:n<span class="number">-1</span></span><br><span class="line">    YN(<span class="built_in">j</span>)=y(<span class="built_in">j</span>+<span class="number">1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">YN=YN&#x27;;</span><br><span class="line">A=inv(BT*B)*BT*YN;</span><br><span class="line">a=A(<span class="number">1</span>);</span><br><span class="line">u=A(<span class="number">2</span>);</span><br><span class="line">t=u/a;</span><br><span class="line"><span class="built_in">i</span>=<span class="number">1</span>:n+<span class="number">2</span>;</span><br><span class="line">yys(<span class="built_in">i</span>+<span class="number">1</span>)=(y(<span class="number">1</span>)-t).*<span class="built_in">exp</span>(-a.*<span class="built_in">i</span>)+t;</span><br><span class="line">yys(<span class="number">1</span>)=y(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=n+<span class="number">2</span>:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">    ys(<span class="built_in">j</span>)=yys(<span class="built_in">j</span>)-yys(<span class="built_in">j</span><span class="number">-1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">x=<span class="number">1</span>:n;</span><br><span class="line">xs=<span class="number">2</span>:n+<span class="number">2</span>;</span><br><span class="line">yn=ys(<span class="number">2</span>:n+<span class="number">2</span>);</span><br><span class="line"><span class="built_in">plot</span>(x,y,<span class="string">&#x27;^r&#x27;</span>,xs,yn,<span class="string">&#x27;*-b&#x27;</span>);</span><br><span class="line">det=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">sum1=<span class="number">0</span>;</span><br><span class="line">sumpe=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:n</span><br><span class="line">    sumpe=sumpe+y(<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">pe=sumpe/n;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:n;</span><br><span class="line">    sum1=sum1+(y(<span class="built_in">i</span>)-pe).^<span class="number">2</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">s1=<span class="built_in">sqrt</span>(sum1/n);</span><br><span class="line">sumce=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:n</span><br><span class="line">    sumce=sumce+(y(<span class="built_in">i</span>)-yn(<span class="built_in">i</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ce=sumce/(n<span class="number">-1</span>);</span><br><span class="line">sum2=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:n;</span><br><span class="line">    sum2=sum2+(y(<span class="built_in">i</span>)-yn(<span class="built_in">i</span>)-ce).^<span class="number">2</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">s2=<span class="built_in">sqrt</span>(sum2/(n<span class="number">-1</span>));</span><br><span class="line">c=(s2)/(s1);</span><br><span class="line"><span class="built_in">disp</span>([<span class="string">&#x27;后验差比值为：&#x27;</span>,num2str(c)]);</span><br><span class="line"><span class="keyword">if</span> c&lt;<span class="number">0.35</span></span><br><span class="line">    <span class="built_in">disp</span>(<span class="string">&#x27;系统预测精度好&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> c&lt;<span class="number">0.5</span></span><br><span class="line">        <span class="built_in">disp</span>(<span class="string">&#x27;系统预测精度合格&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> c&lt;<span class="number">0.65</span></span><br><span class="line">            <span class="built_in">disp</span>(<span class="string">&#x27;系统预测精度勉强&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">disp</span>(<span class="string">&#x27;系统预测精度不合格&#x27;</span>)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">disp</span>([<span class="string">&#x27;下个拟合值为 &#x27;</span>,num2str(ys(n+<span class="number">1</span>))]);</span><br><span class="line"><span class="built_in">disp</span>([<span class="string">&#x27;再下个拟合值为&#x27;</span>,num2str(ys(n+<span class="number">2</span>))]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>题目：</p>
+<p>现在有2000年-2010年某市总人口，现在用灰色方程模型来做。</p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLFOWvTAZOwxFibFDaceAC0RGhBECfehfW16v0df74yViaPWib9Jrqj2y5w/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<p>第一步，对原始数据（X^(0) ）做一次累加生成处理，得到一次累加序列X^(1) </p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLvLbVEN8ltaWXe401ElncPFDgBxRF00XIvUnI53xf5YFgBJ7xafCOGw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLcMCabyJA35iarKYM9icc75TymdzWRKN57uIA148GGRruDWtj17Cic1QqQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<p>第一个方程中，X^(0)  (1)代表原始数据的第一个数1013.4，k代表时间，从1开始，即2000年为1，依次累加。里面未知参数为a和u，也就是需要求这两个的值，下面就是求解的拆分步骤。</p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLj05ulib3xnzKDnpwt00s6r8iayWRrZWMf2Cw4QBVXTMCkjzM1NQBdsEw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvL1BEtjuGIEMQibgicB7bia3CIs495Nc1zDbNL1icMtyUibMRVLgWA9KbZFbA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNibTrETpZr4bws6iaibQHaUP9ibLWG5s7Hw892fzYibjjb42fHWXW6QHkJVNh7diaxMNicib6vxj4sbNoosHw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<p>所以，将求出来的数都代入这个公式</p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLFOWvTAZOwxFibFDaceAC0RGhBECfehfW16v0df74yViaPWib9Jrqj2y5w/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<p>得到方程</p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLNJ3zeq9wXp7eRAicicVcAwNwWygeE7tsM42vt15BKdpEB3NTfNkF71zw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLlW3fs9x1tYZexzPH97Pq0LJ0CAmkUsfRjfJte23LVH5V2xBngcSOqw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<p>在EXCLE里再进行计算，记得按shift+4，u&#x2F;a等一些数是位置固定的。</p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLoCk8uT4Iz3cpk8w4ppStr6gActGZY4ww7r0u5U9uxMiaAcicgsr0PvhA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<p>这个预测的值是对累加值的预测，需要还原到原始数据的预测值，就是后一个数减去前一个数。第一个数保持不变。这样算出来可以看到从0到10跟2000年至2010年的常住人口数基本上差距大不，还算可以。</p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLc5MYLF6z0ujNlcFkONPNBia8icrXia2Et93n6iaiaIXyTibDeSX2EJO1RMsA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/08/03/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/</url>
+    <content><![CDATA[<h3 id="特征提取即，从多个数据中提取最能预测因变量的少数几个变量。"><a href="#特征提取即，从多个数据中提取最能预测因变量的少数几个变量。" class="headerlink" title="特征提取即，从多个数据中提取最能预测因变量的少数几个变量。"></a>特征提取即，从多个数据中提取最能预测因变量的少数几个变量。</h3><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>线性相关：pearson、 spearman、 kendall</li>
+<li>非线性相关：距离协方差、灰相关</li>
+<li>其他特征选择方法：RFE（递归特征消除）、PCA（主成分分析）</li>
+</ul>
+<h5 id="距离协方差编写："><a href="#距离协方差编写：" class="headerlink" title="距离协方差编写："></a>距离协方差编写：</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.spatial.distance <span class="keyword">import</span> pdist, squareform</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">distcorr</span>(<span class="params">X, Y</span>):</span><br><span class="line">    X = np.atleast_1d(X)</span><br><span class="line">    Y = np.atleast_1d(Y)</span><br><span class="line">    <span class="keyword">if</span> np.prod(X.shape) == <span class="built_in">len</span>(X):</span><br><span class="line">        X = X[:, <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">if</span> np.prod(Y.shape) == <span class="built_in">len</span>(Y):</span><br><span class="line">        Y = Y[:, <span class="literal">None</span>]</span><br><span class="line">    X = np.atleast_2d(X)</span><br><span class="line">    Y = np.atleast_2d(Y)</span><br><span class="line">    n = X.shape[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> Y.shape[<span class="number">0</span>] != X.shape[<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&#x27;Number of samples must match&#x27;</span>)</span><br><span class="line">    a = squareform(pdist(X))</span><br><span class="line">    b = squareform(pdist(Y))</span><br><span class="line">    A = a - a.mean(axis=<span class="number">0</span>)[<span class="literal">None</span>, :] - a.mean(axis=<span class="number">1</span>)[:, <span class="literal">None</span>] + a.mean()</span><br><span class="line">    B = b - b.mean(axis=<span class="number">0</span>)[<span class="literal">None</span>, :] - b.mean(axis=<span class="number">1</span>)[:, <span class="literal">None</span>] + b.mean()</span><br><span class="line">    </span><br><span class="line">    dcov2_xy = (A * B).<span class="built_in">sum</span>() / <span class="built_in">float</span>(n * n)</span><br><span class="line">    dcov2_xx = (A * A).<span class="built_in">sum</span>() / <span class="built_in">float</span>(n * n)</span><br><span class="line">    dcov2_yy = (B * B).<span class="built_in">sum</span>() / <span class="built_in">float</span>(n * n)</span><br><span class="line">    dcor = np.sqrt(dcov2_xy) / np.sqrt(np.sqrt(dcov2_xx) * np.sqrt(dcov2_yy))</span><br><span class="line">    <span class="keyword">return</span> dcor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面代码可以将相关转为DataFrame，便于进一步的分析</span></span><br><span class="line">dcorr = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> names:</span><br><span class="line">    dcorr.append([distcorr(X.loc[i, :].to_list(), Y), i]) </span><br><span class="line"></span><br><span class="line">ans_dcorr = pd.DataFrame(columns=[<span class="string">&#x27;pIC50&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dcorr:</span><br><span class="line">    ans_dcorr.loc[i[<span class="number">1</span>]] = i[<span class="number">0</span>]</span><br><span class="line">ans_dcorr</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="灰关联"><a href="#灰关联" class="headerlink" title="灰关联"></a>灰关联</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GRA_ONE</span>(<span class="params">DataFrame,m=<span class="number">0</span></span>):</span><br><span class="line">    gray= DataFrame</span><br><span class="line">    <span class="comment">#读取为df格式</span></span><br><span class="line">    gray=(gray - gray.<span class="built_in">min</span>()) / (gray.<span class="built_in">max</span>() - gray.<span class="built_in">min</span>())</span><br><span class="line">    <span class="comment">#标准化</span></span><br><span class="line">    std=gray.iloc[:,m]<span class="comment">#为标准要素</span></span><br><span class="line">    ce=gray.iloc[:,<span class="number">0</span>:]<span class="comment">#为比较要素</span></span><br><span class="line">    n=ce.shape[<span class="number">0</span>]</span><br><span class="line">    m=ce.shape[<span class="number">1</span>]<span class="comment">#计算行列</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#与标准要素比较，相减</span></span><br><span class="line">    a=zeros([m,n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            a[i,j]=<span class="built_in">abs</span>(ce.iloc[j,i]-std[j])</span><br><span class="line"></span><br><span class="line">    <span class="comment">#取出矩阵中最大值与最小值</span></span><br><span class="line">    c=amax(a)</span><br><span class="line">    d=amin(a)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#计算值</span></span><br><span class="line">    result=zeros([m,n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            result[i,j]=(d+<span class="number">0.5</span>*c)/(a[i,j]+<span class="number">0.5</span>*c)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#求均值，得到灰色关联值</span></span><br><span class="line">    result2=zeros(m)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">            result2[i]=mean(result[i,:])</span><br><span class="line">    RT=pd.DataFrame(result2)</span><br><span class="line">    <span class="keyword">return</span> RT</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GRA</span>(<span class="params">DataFrame</span>):</span><br><span class="line">    list_columns = [<span class="built_in">str</span>(s) <span class="keyword">for</span> s <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(DataFrame.columns)) <span class="keyword">if</span> s <span class="keyword">not</span> <span class="keyword">in</span> [<span class="literal">None</span>]]</span><br><span class="line">    df_local = pd.DataFrame(columns=list_columns)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(DataFrame.columns)):</span><br><span class="line">        df_local.iloc[:,i] = GRA_ONE(DataFrame,m=i)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> df_local</span><br><span class="line"></span><br><span class="line">gray = GRA_ONE(dataframe)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="RFE"><a href="#RFE" class="headerlink" title="RFE"></a>RFE</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> RFECV</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression, Ridge, Lasso</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_RFE</span>(<span class="params">X, Y, names</span>):</span><br><span class="line">    X = X.T</span><br><span class="line"> <span class="comment"># use linear regression as the model</span></span><br><span class="line">    lr = LinearRegression()</span><br><span class="line"> <span class="comment"># rank all features, i.e continue the elimination until the last one</span></span><br><span class="line">    rfe = RFECV(lr, step=<span class="number">1</span>, cv=<span class="number">5</span>)</span><br><span class="line">    rfe.fit(X, Y)</span><br><span class="line">    res_lr = <span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x: <span class="built_in">round</span>(x, <span class="number">4</span>), rfe.ranking_), names))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Features sorted by their rank:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(res_lr)</span><br><span class="line"> <span class="comment"># use lasso as the model</span></span><br><span class="line">    lr = Lasso()</span><br><span class="line"> <span class="comment"># # rank all features, i.e continue the elimination until the last one</span></span><br><span class="line">    rfe = RFECV(lr, step=<span class="number">1</span>, cv=<span class="number">5</span>)</span><br><span class="line">    rfe.fit(X, Y)</span><br><span class="line">    res_la = <span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x: <span class="built_in">round</span>(x, <span class="number">4</span>), rfe.ranking_), names))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Features sorted by their rank:&quot;</span>)</span><br><span class="line"><span class="comment">#     print(res_la)</span></span><br><span class="line">    <span class="keyword">return</span> res_lr ,res_la</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#Split the data into input and target</span></span><br><span class="line">X = md_ea_dropY.T.copy()</span><br><span class="line">Y = (md_ea_train.loc[:, <span class="string">&#x27;pIC50&#x27;</span>] * <span class="number">1000</span>).astype(<span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line">res_lr, res_la = cal_RFE(X, Y, md_ea_dropY.columns.values.tolist())</span><br><span class="line"></span><br><span class="line">ans_res_lr = pd.DataFrame(columns=[<span class="string">&#x27;pIC50&#x27;</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> res_lr:</span><br><span class="line">    ans_res_lr.loc[i[<span class="number">1</span>]] = i[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">ans_res_la = pd.DataFrame(columns=[<span class="string">&#x27;pIC50&#x27;</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> res_la:</span><br><span class="line">    ans_res_la.loc[i[<span class="number">1</span>]] = i[<span class="number">0</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将数据写入 excel 文件</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">data_write_excel</span>(<span class="params">data, filename, writer=<span class="literal">None</span></span>):</span><br><span class="line">    data = pd.DataFrame(data)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> writer:</span><br><span class="line">        writer = pd.ExcelWriter(filename + <span class="string">&#x27;1.xlsx&#x27;</span>)</span><br><span class="line">        data.to_excel(writer, float_format=<span class="string">&#x27;%.5f&#x27;</span>, sheet_name=filename)</span><br><span class="line">        writer.save()</span><br><span class="line">        writer.close()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        data.to_excel(writer, float_format=<span class="string">&#x27;%.5f&#x27;</span>, sheet_name=filename)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_PCA</span>(<span class="params">X</span>):</span><br><span class="line">     <span class="comment"># 20个主成分</span></span><br><span class="line">    pca = PCA(n_components=<span class="number">20</span>)</span><br><span class="line">     <span class="comment"># 降维后的数据</span></span><br><span class="line">    data_low = pca.fit_transform(X)</span><br><span class="line">     <span class="comment"># 降维后近似恢复的数据</span></span><br><span class="line">    data_restore = pca.inverse_transform(data_low)</span><br><span class="line">    writer = pd.ExcelWriter(<span class="string">r&#x27;data\pca1.xlsx&#x27;</span>)</span><br><span class="line">    data_write_excel(data_low, <span class="string">&#x27;low&#x27;</span>, writer=writer)</span><br><span class="line">    data_write_excel(data_restore, <span class="string">&#x27;restore&#x27;</span>, writer=writer)</span><br><span class="line">     <span class="comment"># 主成分贡献率</span></span><br><span class="line">    data_write_excel(pca.explained_variance_ratio_, <span class="string">&#x27;ratio&#x27;</span>, writer=writer)</span><br><span class="line">     <span class="comment"># 主成分方差</span></span><br><span class="line">    data_write_excel(pca.explained_variance_, <span class="string">&#x27;variance&#x27;</span>, writer=writer)</span><br><span class="line">     <span class="comment"># 主成分在各个变量的负载</span></span><br><span class="line">    data_write_excel(pca.components_.T, <span class="string">&#x27;component&#x27;</span>, writer=writer)</span><br><span class="line">     <span class="comment"># 主成分个数</span></span><br><span class="line">    <span class="built_in">print</span>(pca.n_components_, <span class="string">&#x27; n_components&#x27;</span>)</span><br><span class="line">    writer.save()</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">scale</span>(<span class="params">data</span>):</span><br><span class="line">    minmax = MinMaxScaler()</span><br><span class="line">    data = minmax.fit_transform(data)</span><br><span class="line">    <span class="comment"># print(input_reframed)</span></span><br><span class="line">    <span class="built_in">print</span>(minmax.scale_)</span><br><span class="line">    <span class="built_in">print</span>(minmax.min_)</span><br><span class="line">    <span class="keyword">return</span> data, minmax.scale_[-<span class="number">1</span>], minmax.min_[-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">X = md_ea_dropY.copy()</span><br><span class="line">cal_PCA(X)</span><br><span class="line"></span><br><span class="line">comp = pd.read_excel(<span class="string">r&#x27;data\pca1.xlsx&#x27;</span>, sheet_name=<span class="string">&quot;component&quot;</span>)</span><br><span class="line">comp1, inscale_, inmin_ = scale(comp.<span class="built_in">abs</span>())</span><br><span class="line">ratio = pd.read_excel(<span class="string">r&#x27;data\pca1.xlsx&#x27;</span>, sheet_name=<span class="string">&quot;ratio&quot;</span>).iloc[:, <span class="number">1</span>].to_numpy()</span><br><span class="line">pca1 = np.<span class="built_in">abs</span>(comp1[..., <span class="number">1</span>]) * ratio[<span class="number">0</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">2</span>]) * ratio[<span class="number">1</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">3</span>]) * ratio[<span class="number">2</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">4</span>]) * ratio[<span class="number">3</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">5</span>]) * ratio[<span class="number">4</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">6</span>]) * ratio[<span class="number">5</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">7</span>]) * ratio[<span class="number">6</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">8</span>]) * ratio[<span class="number">7</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">9</span>]) * ratio[<span class="number">8</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">10</span>]) * ratio[<span class="number">9</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">11</span>]) * ratio[<span class="number">10</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">12</span>]) * ratio[<span class="number">11</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">13</span>]) * ratio[<span class="number">12</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">14</span>]) * ratio[<span class="number">13</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">15</span>]) * ratio[<span class="number">14</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">16</span>]) * ratio[<span class="number">15</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">17</span>]) * ratio[<span class="number">16</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">18</span>]) * ratio[<span class="number">17</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">19</span>]) * ratio[<span class="number">18</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">20</span>]) * ratio[<span class="number">19</span>]</span><br><span class="line"></span><br><span class="line">pca11, inscale_, inmin_ = scale(pca1.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拿到不同变量的重要程度</span></span><br><span class="line">ans_pca = pd.DataFrame(columns=[<span class="string">&#x27;pIC50&#x27;</span>])</span><br><span class="line">names_pca = (md_ea_dropY.columns.to_list())</span><br><span class="line">             </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(pca11.shape[<span class="number">0</span>]):</span><br><span class="line">    ans_pca.loc[names_pca[i]] = pca11[i]</span><br><span class="line">    </span><br><span class="line">ans_pca</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
     <title>第一次组会</title>
     <url>/2022/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/</url>
     <content><![CDATA[<h1 id="呜呜呜呜呜呜呜呜呜呜呜"><a href="#呜呜呜呜呜呜呜呜呜呜呜" class="headerlink" title="呜呜呜呜呜呜呜呜呜呜呜"></a>呜呜呜呜呜呜呜呜呜呜呜</h1><h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><h5 id="level1："><a href="#level1：" class="headerlink" title="level1："></a>level1：</h5><p>第一眼威尔逊定理，第二眼，草，不是，给出了p，则有：<br>$$<br>e &#x3D; 1*(p-210)!mod p<br>$$<br>则有设第二个返回值为x，<br>$$<br>x &#x3D; (m^e)mod p\<br>m &#x3D; x*e^(-1)mod p<br>$$<br>e为一个小于p的数，则有e一定和p互素，所以存在关于p的唯一逆元</p>
@@ -1745,11 +2748,6 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
       <tags>
         <tag>CTF</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>数模</title>
-    <url>/2023/07/13/%E6%95%B0%E6%A8%A1/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>绿盟实习</title>
@@ -1902,6 +2900,155 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/08/03/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h3 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h3><p>聚类是一个将<a href="https://so.csdn.net/so/search?q=%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%92%E5%88%86&spm=1001.2101.3001.7020">数据集划分</a>为若干组（class）或类（cluster）的的过程，并使得同一个组内的数据对象具有较高的相识度；而不同组中的数据对象是不相似的。</p>
+<p>1、相似或不相似是基于数据描述属性的取值来确定的，通常利用各数据对象间的<strong>距离</strong>来表示。<br>2、剧烈分析尤其是和用来探讨样本间的相互关联关系从而对一个样本结构做一个初步的评价。</p>
+<h5 id="kmeans优缺点分析"><a href="#kmeans优缺点分析" class="headerlink" title="kmeans优缺点分析"></a>kmeans优缺点分析</h5><ul>
+<li><p>优点：</p>
+</li>
+<li><ul>
+<li>算法简单，快捷。</li>
+<li>处理大数据集的效率较高。</li>
+</ul>
+</li>
+<li><p>缺点</p>
+</li>
+<li><ul>
+<li>必须先确定要生成的类别的数量。</li>
+<li>对选择的初值较为敏感。</li>
+<li>容易被噪声干扰。</li>
+</ul>
+</li>
+</ul>
+<h5 id="改进方法-Kmeans"><a href="#改进方法-Kmeans" class="headerlink" title="改进方法 Kmeans++"></a>改进方法 Kmeans++</h5><ul>
+<li><p><strong>可以解决 Kmeans 的第二和第三个问题。</strong></p>
+</li>
+<li><p><strong>改进体现在 k 个初值的选取上。</strong></p>
+</li>
+<li><p>流程：</p>
+</li>
+<li><ul>
+<li>随机选取一个样本作为第一个聚类中心。</li>
+<li>计算每个样本点到所有的聚类中心的距离，并且按照距离远近进行概率的设定，距离越远，概率越大。</li>
+<li>按照轮盘法(按照选取概率的大小进行抽取)的规则进行下一个聚类中心的选择，直到完成 k 个聚类中心的选择。</li>
+</ul>
+</li>
+</ul>
+<p>题目：</p>
+<p><img src="https://img-blog.csdnimg.cn/2eeeb636969143faa96554879d0dfc69.png" alt="请添加图片描述"></p>
+<p>代码为</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"> a=[<span class="number">7.9</span> <span class="number">39.77</span> <span class="number">8.49</span> <span class="number">12.94</span> <span class="number">19.27</span> <span class="number">11.05</span> <span class="number">2.04</span> <span class="number">13.29</span></span><br><span class="line"><span class="number">7.68</span> <span class="number">50.37</span> <span class="number">11.35</span> <span class="number">13.3</span> <span class="number">19.25</span> <span class="number">14.59</span> <span class="number">2.75</span> <span class="number">14.87</span></span><br><span class="line"><span class="number">9.42</span> <span class="number">27.93</span> <span class="number">8.2</span> <span class="number">8.14</span> <span class="number">16.17</span> <span class="number">9.42</span> <span class="number">1.55</span> <span class="number">9.76</span></span><br><span class="line"><span class="number">9.16</span> <span class="number">27.98</span> <span class="number">9.01</span> <span class="number">9.32</span> <span class="number">15.99</span> <span class="number">9.1</span> <span class="number">1.82</span> <span class="number">11.35</span></span><br><span class="line"><span class="number">10.06</span> <span class="number">28.64</span> <span class="number">10.52</span> <span class="number">10.05</span> <span class="number">16.18</span> <span class="number">8.39</span> <span class="number">1.96</span> <span class="number">10.81</span>];</span><br><span class="line">d1=pdist(a);				<span class="comment">% 此时计算出各行之间的欧氏距离，</span></span><br><span class="line">D= squareform(d1)			<span class="comment">% 注意此时d1必须是一个行向量，结果是实对称矩阵</span></span><br><span class="line">S=<span class="built_in">tril</span>(squareform (d1))		<span class="comment">% 得到书中的三角阵</span></span><br><span class="line"></span><br><span class="line">同理：</span><br><span class="line">d2=pdist(a,<span class="string">&#x27;cityblock&#x27;</span>);	<span class="comment">% 此时计算出各行之间的绝对距离，</span></span><br><span class="line">S2=<span class="built_in">tril</span>(squareform(d2))</span><br><span class="line"></span><br><span class="line">d3=pdist(a,<span class="string">&#x27;minkowski&#x27;</span>,<span class="number">3</span>);	<span class="comment">% 此时计算出各行之间的明氏距离，</span></span><br><span class="line">S3=<span class="built_in">tril</span>(squareform(d3))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">d1 =</span><br><span class="line"></span><br><span class="line">   <span class="number">11.6726</span>   <span class="number">13.8054</span>   <span class="number">13.1278</span>   <span class="number">12.7983</span>   <span class="number">24.6353</span>   <span class="number">24.0591</span>   <span class="number">23.5389</span>    <span class="number">2.2033</span>    <span class="number">3.5037</span>    <span class="number">2.2159</span></span><br><span class="line"></span><br><span class="line">D =</span><br><span class="line"></span><br><span class="line">         <span class="number">0</span>   <span class="number">11.6726</span>   <span class="number">13.8054</span>   <span class="number">13.1278</span>   <span class="number">12.7983</span></span><br><span class="line">   <span class="number">11.6726</span>         <span class="number">0</span>   <span class="number">24.6353</span>   <span class="number">24.0591</span>   <span class="number">23.5389</span></span><br><span class="line">   <span class="number">13.8054</span>   <span class="number">24.6353</span>         <span class="number">0</span>    <span class="number">2.2033</span>    <span class="number">3.5037</span></span><br><span class="line">   <span class="number">13.1278</span>   <span class="number">24.0591</span>    <span class="number">2.2033</span>         <span class="number">0</span>    <span class="number">2.2159</span></span><br><span class="line">   <span class="number">12.7983</span>   <span class="number">23.5389</span>    <span class="number">3.5037</span>    <span class="number">2.2159</span>         <span class="number">0</span></span><br><span class="line"></span><br><span class="line">S =</span><br><span class="line"></span><br><span class="line">         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">11.6726</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">13.8054</span>   <span class="number">24.6353</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">13.1278</span>   <span class="number">24.0591</span>    <span class="number">2.2033</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">12.7983</span>   <span class="number">23.5389</span>    <span class="number">3.5037</span>    <span class="number">2.2159</span>         <span class="number">0</span></span><br><span class="line"></span><br><span class="line">d2 =</span><br><span class="line"></span><br><span class="line">   <span class="number">19.8900</span>   <span class="number">27.2000</span>   <span class="number">24.5800</span>   <span class="number">26.5200</span>   <span class="number">47.0500</span>   <span class="number">43.3900</span>   <span class="number">42.3100</span>    <span class="number">4.6600</span>    <span class="number">8.0800</span>    <span class="number">5.3800</span></span><br><span class="line"></span><br><span class="line">S2 =</span><br><span class="line"></span><br><span class="line">         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">19.8900</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">27.2000</span>   <span class="number">47.0500</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">24.5800</span>   <span class="number">43.3900</span>    <span class="number">4.6600</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">26.5200</span>   <span class="number">42.3100</span>    <span class="number">8.0800</span>    <span class="number">5.3800</span>         <span class="number">0</span></span><br><span class="line"></span><br><span class="line">d3 =</span><br><span class="line"></span><br><span class="line">   <span class="number">10.8098</span>   <span class="number">12.2808</span>   <span class="number">12.0241</span>   <span class="number">11.4086</span>   <span class="number">22.7511</span>   <span class="number">22.6032</span>   <span class="number">21.9971</span>    <span class="number">1.8440</span>    <span class="number">2.8187</span>    <span class="number">1.7515</span></span><br><span class="line"></span><br><span class="line">S3 =</span><br><span class="line"></span><br><span class="line">         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">10.8098</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">12.2808</span>   <span class="number">22.7511</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">12.0241</span>   <span class="number">22.6032</span>    <span class="number">1.8440</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">11.4086</span>   <span class="number">21.9971</span>    <span class="number">2.8187</span>    <span class="number">1.7515</span>         <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="变量间的相似度量——相似系数"><a href="#变量间的相似度量——相似系数" class="headerlink" title="变量间的相似度量——相似系数"></a>变量间的相似度量——相似系数</h5><img src="https://img-blog.csdnimg.cn/d610a0525ce848ed89a6c86587bafa6f.png" alt="请添加图片描述" style="zoom: 80%;" />
+
+
+
+<img src="https://img-blog.csdnimg.cn/fcffbc8dae2442ebbc0c4ff7a1d367c0.png" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">R=corrcoef(a);		<span class="comment">%指标之间的相关系数</span></span><br><span class="line">a1=normc(a);		<span class="comment">%将a的各列转化为单位向量</span></span><br><span class="line">J=a1&#x27;*a1			<span class="comment">%计算a中各列之间的夹角余弦</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>结果如下：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">R =</span><br><span class="line"></span><br><span class="line">    <span class="number">1.0000</span>   <span class="number">-0.8946</span>   <span class="number">-0.1555</span>   <span class="number">-0.8466</span>   <span class="number">-0.9320</span>   <span class="number">-0.8810</span>   <span class="number">-0.7005</span>   <span class="number">-0.8989</span></span><br><span class="line">   <span class="number">-0.8946</span>    <span class="number">1.0000</span>    <span class="number">0.5475</span>    <span class="number">0.9103</span>    <span class="number">0.9246</span>    <span class="number">0.9730</span>    <span class="number">0.9210</span>    <span class="number">0.9572</span></span><br><span class="line">   <span class="number">-0.1555</span>    <span class="number">0.5475</span>    <span class="number">1.0000</span>    <span class="number">0.4758</span>    <span class="number">0.2748</span>    <span class="number">0.5145</span>    <span class="number">0.8134</span>    <span class="number">0.5404</span></span><br><span class="line">   <span class="number">-0.8466</span>    <span class="number">0.9103</span>    <span class="number">0.4758</span>    <span class="number">1.0000</span>    <span class="number">0.9500</span>    <span class="number">0.7955</span>    <span class="number">0.8526</span>    <span class="number">0.9545</span></span><br><span class="line">   <span class="number">-0.9320</span>    <span class="number">0.9246</span>    <span class="number">0.2748</span>    <span class="number">0.9500</span>    <span class="number">1.0000</span>    <span class="number">0.8456</span>    <span class="number">0.7534</span>    <span class="number">0.9096</span></span><br><span class="line">   <span class="number">-0.8810</span>    <span class="number">0.9730</span>    <span class="number">0.5145</span>    <span class="number">0.7955</span>    <span class="number">0.8456</span>    <span class="number">1.0000</span>    <span class="number">0.8826</span>    <span class="number">0.9006</span></span><br><span class="line">   <span class="number">-0.7005</span>    <span class="number">0.9210</span>    <span class="number">0.8134</span>    <span class="number">0.8526</span>    <span class="number">0.7534</span>    <span class="number">0.8826</span>    <span class="number">1.0000</span>    <span class="number">0.9231</span></span><br><span class="line">   <span class="number">-0.8989</span>    <span class="number">0.9572</span>    <span class="number">0.5404</span>    <span class="number">0.9545</span>    <span class="number">0.9096</span>    <span class="number">0.9006</span>    <span class="number">0.9231</span>    <span class="number">1.0000</span></span><br><span class="line"></span><br><span class="line">a1 =</span><br><span class="line"></span><br><span class="line">    <span class="number">0.3974</span>    <span class="number">0.4932</span>    <span class="number">0.3959</span>    <span class="number">0.5290</span>    <span class="number">0.4941</span>    <span class="number">0.4601</span>    <span class="number">0.4422</span>    <span class="number">0.4890</span></span><br><span class="line">    <span class="number">0.3863</span>    <span class="number">0.6247</span>    <span class="number">0.5292</span>    <span class="number">0.5437</span>    <span class="number">0.4936</span>    <span class="number">0.6074</span>    <span class="number">0.5961</span>    <span class="number">0.5471</span></span><br><span class="line">    <span class="number">0.4738</span>    <span class="number">0.3464</span>    <span class="number">0.3823</span>    <span class="number">0.3327</span>    <span class="number">0.4146</span>    <span class="number">0.3922</span>    <span class="number">0.3360</span>    <span class="number">0.3591</span></span><br><span class="line">    <span class="number">0.4608</span>    <span class="number">0.3470</span>    <span class="number">0.4201</span>    <span class="number">0.3810</span>    <span class="number">0.4100</span>    <span class="number">0.3789</span>    <span class="number">0.3945</span>    <span class="number">0.4176</span></span><br><span class="line">    <span class="number">0.5060</span>    <span class="number">0.3552</span>    <span class="number">0.4905</span>    <span class="number">0.4108</span>    <span class="number">0.4149</span>    <span class="number">0.3493</span>    <span class="number">0.4249</span>    <span class="number">0.3977</span></span><br><span class="line"></span><br><span class="line">J =</span><br><span class="line"></span><br><span class="line">    <span class="number">1.0000</span>    <span class="number">0.9410</span>    <span class="number">0.9847</span>    <span class="number">0.9613</span>    <span class="number">0.9824</span>    <span class="number">0.9546</span>    <span class="number">0.9620</span>    <span class="number">0.9695</span></span><br><span class="line">    <span class="number">0.9410</span>    <span class="number">1.0000</span>    <span class="number">0.9782</span>    <span class="number">0.9939</span>    <span class="number">0.9853</span>    <span class="number">0.9977</span>    <span class="number">0.9947</span>    <span class="number">0.9935</span></span><br><span class="line">    <span class="number">0.9847</span>    <span class="number">0.9782</span>    <span class="number">1.0000</span>    <span class="number">0.9859</span>    <span class="number">0.9911</span>    <span class="number">0.9840</span>    <span class="number">0.9931</span>    <span class="number">0.9909</span></span><br><span class="line">    <span class="number">0.9613</span>    <span class="number">0.9939</span>    <span class="number">0.9859</span>    <span class="number">1.0000</span>    <span class="number">0.9944</span>    <span class="number">0.9919</span>    <span class="number">0.9947</span>    <span class="number">0.9981</span></span><br><span class="line">    <span class="number">0.9824</span>    <span class="number">0.9853</span>    <span class="number">0.9911</span>    <span class="number">0.9944</span>    <span class="number">1.0000</span>    <span class="number">0.9901</span>    <span class="number">0.9901</span>    <span class="number">0.9968</span></span><br><span class="line">    <span class="number">0.9546</span>    <span class="number">0.9977</span>    <span class="number">0.9840</span>    <span class="number">0.9919</span>    <span class="number">0.9901</span>    <span class="number">1.0000</span>    <span class="number">0.9952</span>    <span class="number">0.9953</span></span><br><span class="line">    <span class="number">0.9620</span>    <span class="number">0.9947</span>    <span class="number">0.9931</span>    <span class="number">0.9947</span>    <span class="number">0.9901</span>    <span class="number">0.9952</span>    <span class="number">1.0000</span>    <span class="number">0.9968</span></span><br><span class="line">    <span class="number">0.9695</span>    <span class="number">0.9935</span>    <span class="number">0.9909</span>    <span class="number">0.9981</span>    <span class="number">0.9968</span>    <span class="number">0.9953</span>    <span class="number">0.9968</span>    <span class="number">1.0000</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/08/03/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%A8%A1%E6%8B%9F%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h3 id="蒙特卡洛模拟算法"><a href="#蒙特卡洛模拟算法" class="headerlink" title="蒙特卡洛模拟算法"></a>蒙特卡洛模拟算法</h3><p>概览<br>蒙特卡罗方法又称统计模拟法、随机抽样技术，是一种随机模拟方法，以概率和统计理论方法为基础的一种计算方法，是使用随机数（或伪随机数）来解决很多计算问题的方法。将所求解的问题同一定的概率模型相联系，用电子计算机实现统计模拟或抽样，以获得问题的近似解。为象征性地表明这一方法的概率统计特征，故借用赌城蒙特卡罗命名。</p>
+<p>引例<br>为了求得圆周率π值，在十九世纪后期，有很多人作了这样的试验：将长为2l的一根针任意投到地面上，用针与一组相间距离为2a（ l＜a）的平行线相交的频率代替概率P，再利用准确的关系式：</p>
+<img src="https://img-blog.csdnimg.cn/20200814151539347.png#pic_center" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<img src="https://img-blog.csdnimg.cn/20200814151522861.png#pic_center" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<p>当所求问题的解是某个事件的概率，或者是某个随机变量的数学期望，或者是与概率，数学期望有关的量时，通过某种试验的方法，得出该事件发生的概率，或者该随机变量若干个具体观察值的算术平均值，通过它得到问题的解。<br>当随机变量的取值仅为1或0时，它的数学期望就是某个事件的概率。或者说，某种事件的概率也是随机变量（仅取值为1或0）的数学期望。</p>
+<h5 id="优点：（可以求解复杂图形的积分、定积分，多维数据也可以很快收敛）"><a href="#优点：（可以求解复杂图形的积分、定积分，多维数据也可以很快收敛）" class="headerlink" title="优点：（可以求解复杂图形的积分、定积分，多维数据也可以很快收敛）"></a>优点：（可以求解复杂图形的积分、定积分，多维数据也可以很快收敛）</h5><p>1、能够比较逼真地描述具有随机性质的事物的特点及物理实验过程<br>2、受几何条件限制小<br>3、收敛速度与问题的维数无关<br>4、具有同时计算多个方案与多个未知量的能力<br>5、误差容易确定<br>6、程序结构简单，易于实现</p>
+<h5 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h5><p>1收敛速度慢<br>2误差具有概率性<br>3在粒子输运问题中，计算结果与系统大小有关</p>
+<p>所以在使用蒙特卡罗方法时，要“扬长避短”，只对问题中难以用解析（或数值）方法处理的部分，使用蒙特卡罗方法计算，对那些能用解析（或数值）方法处理的部分，应当尽量使用解析方法。</p>
+<h5 id="主要应用范围："><a href="#主要应用范围：" class="headerlink" title="主要应用范围："></a>主要应用范围：</h5><p>粒子输运问题（实验物理，反应堆物理）<br>统计物理<br>典型数学问题<br>真空技术<br>激光技术<br>医学<br>生物<br>探矿等</p>
+<h5 id="蒙特卡洛方法步骤如下："><a href="#蒙特卡洛方法步骤如下：" class="headerlink" title="蒙特卡洛方法步骤如下："></a><a href="https://so.csdn.net/so/search?q=%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B&spm=1001.2101.3001.7020">蒙特卡洛</a>方法步骤如下：</h5><p>1在区间[a,b]上利用计算机均匀产生n个随机数x1,x2…xn，使用matlab软件的unifrnd命令实现。</p>
+<p>2计算每一个随机数想对应的被积函数值f(x1),f(x2),f(xn)</p>
+<p>计算被积函数值的平均值。</p>
+<h5 id="题目一："><a href="#题目一：" class="headerlink" title="题目一："></a>题目一：</h5><p>求π的值。</p>
+<p>正方形内部有一个相切的圆，它们的面积之比是π&#x2F;4。现在，在这个正方形内部，随机产生1000000个点（即1000000个坐标对 (x, y)），计算它们与中心点的距离，从而判断是否落在圆的内部。如果这些点均匀分布，那么圆内的点应该占到所有点的 π&#x2F;4，因此将这个比值乘以4，就是π的值。</p>
+<p>代码为：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">N=<span class="number">1000000</span>;    <span class="comment">%随机点的数目</span></span><br><span class="line">x=<span class="built_in">rand</span>(N,<span class="number">1</span>);  <span class="comment">%rand 生成均匀分布的伪随机数。分布在（0~1）之间</span></span><br><span class="line">y=<span class="built_in">rand</span>(N,<span class="number">1</span>);  <span class="comment">%矩阵的维数为N×1</span></span><br><span class="line">count=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:N</span><br><span class="line">   <span class="keyword">if</span> (x(<span class="built_in">i</span>)^<span class="number">2</span>+y(<span class="built_in">i</span>)^<span class="number">2</span>&lt;=<span class="number">1</span>)</span><br><span class="line">     count=count+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">PI=<span class="number">4</span>*count/N</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="题目二："><a href="#题目二：" class="headerlink" title="题目二："></a>题目二：</h5><p>计算积分</p>
+<p>计算函数 y &#x3D; x^2 在 [0, 1] 区间的积分，就是求出红色曲线下面的面积。这个函数在 (1,1) 点的取值为1，所以整个红色区域在一个面积为1的正方形里面。在该正方形内部，产生大量随机点，可以计算出有多少点落在红色区域（判断条件 y &lt; x^2）。这个比重就是所要求的积分值。</p>
+<p>代码为：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">clear</span><br><span class="line">clc</span><br><span class="line">N=<span class="number">10000</span>;  </span><br><span class="line">x=<span class="built_in">rand</span>(N,<span class="number">1</span>); </span><br><span class="line">y=<span class="built_in">rand</span>(N,<span class="number">1</span>);</span><br><span class="line">count=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:N</span><br><span class="line">   <span class="keyword">if</span> (y(<span class="built_in">i</span>)&lt;=x(<span class="built_in">i</span>)^<span class="number">2</span>)</span><br><span class="line">     count=count+<span class="number">1</span>;</span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">result=count/N</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/08/04/%E8%AE%BA%E6%96%87/</url>
+    <content><![CDATA[<p>这段代码定义了一个名为<code>ObliviousRTree</code>的C++类模板，它表示一个带有范围查询和k最近邻查询功能的R树。这个R树使用Oblivious RAM (ORAM)技术来保护数据的隐私和安全性。代码中使用了模板参数<code>T</code>，用于指定底层的ORAM实现，可以是<code>ORAM</code>类或其子类。</p>
+<p>让我们逐段解释代码：</p>
+<ol>
+<li>头文件保护：<code>#ifndef OBLIVIOUS_RTREE_H</code>和<code>#define OBLIVIOUS_RTREE_H</code>用于防止头文件被重复包含。</li>
+<li>包含头文件：<code>#include</code>指令包含了一些必要的C++标准库和其他头文件。</li>
+<li>结构体定义：<ul>
+<li><code>RTreeEntry</code>：表示R树节点的数据项。它包含一个<code>blockID</code>用于标识节点在ORAM中的位置，以及一个<code>MBR</code>（Minimum Bounding Rectangle，最小外接矩形）用于表示节点的范围。</li>
+<li><code>kNNUtil</code>：用于k最近邻查询的辅助结构体，它包含了一个布尔值<code>isData</code>表示该项是数据还是非叶子节点、一个<code>dis</code>表示距离以及一个<code>payload</code>指针用于保存数据或节点信息。</li>
+</ul>
+</li>
+<li>类模板定义：<code>ObliviousRTree</code>是一个类模板，它有一个类型参数<code>T</code>，用于指定ORAM的实现类。类中包含了一些成员函数和数据成员用于构建和查询R树。</li>
+<li>构造函数：<ul>
+<li>第一个构造函数用于从输入文件中加载点数据并构建R树，并将其存储到ORAM中。</li>
+<li>第二个构造函数用于从已经构建好的ORAM中加载R树。</li>
+</ul>
+</li>
+<li>成员函数：<ul>
+<li><code>getServerSize()</code>, <code>getClientSize()</code>, <code>getCommSize()</code>, <code>resetCommSize()</code>: 获取或重置ORAM的各种尺寸和通信开销。</li>
+<li><code>getCacheHitRate()</code>, <code>getAccidentHitRate()</code>, <code>getHitCount()</code>, <code>getAccidentHitCount()</code>, <code>resetCacheHitRate()</code>: 获取或重置ORAM的缓存命中率和访问次数。</li>
+<li><code>kNN()</code>: 执行k最近邻查询。</li>
+<li><code>range()</code>: 执行范围查询。</li>
+</ul>
+</li>
+<li>私有数据成员：<ul>
+<li><code>rootID</code>和<code>rootMBR</code>：R树的根节点ID和范围。</li>
+<li><code>n_points</code>：数据点的数量。</li>
+<li><code>batch_no</code>和<code>batch_hit_count</code>：批次号和批次命中次数，用于统计批量查询中的性能。</li>
+<li><code>fcache</code>和<code>trace</code>：用于追踪缓存和查询情况的文件句柄和标志。</li>
+<li><code>timestamp</code>：用于记录时间戳。</li>
+<li><code>oram</code>：ORAM实例，用于存储R树。</li>
+</ul>
+</li>
+</ol>
+<p>Rtree和path-Oram的结合，实质上就是我们把数据存到rtree这棵树中，并且仍然只是在叶子节点存储数据，我们在建立rtree树的过程中，从用户提供的数据文件中能够获得n数目的数据块，第一点，用户的输入为：数据块的id，数据块的位置，这是常老师的处理，我们的处理则需要根据数据块文件的信息提取出数据块的关键字，将其一同存储在数据块的数据结构中。</p>
+<p>将这些数据块存储在叶子节点中，首先，我们根据么一个叶子节点能够存储的数据块的数量计算出我们需要的叶子节点的数量，</p>
+<p>注意：这里为什么要计算数量，因为我们都忽略了一个点，那就是叶子节点里存储的是数据，但是非叶子节点存储的指向其孩子节点的分支条目，这个分支条目和数据块的大小是不一样的，如果我们将rtree的每一个节点都规定为同样的大小，那么我们就可以根据这个大小计算出叶子节点的最大存储量和内部节点的最大存储量。</p>
+<p>下面详细讲述建树过程，老师这里的建树方法其实采用了和我在github里见到的所有代码都不同的建树方法。</p>
+<p>首先我们能够确定数据点的数量以及数据点的位置，然后我们可以计算出在最底层即叶子层一共需要多少个叶子节点，这些节点里存储数据</p>
+<p>然后我们能够根据叶子节点的数量向上一步步合并节点，直到节点为1为止，此时这个节点就是rtree的根节点，</p>
+<p>在建树的过程中，我们设置了两个映射结构：</p>
+<p>第一个映射结构存储了每一个数据块。</p>
+<p>第二个映射结构存储了rtree的每一个节点。</p>
+<p>然后开始介绍rtree和oram结合的knn查询过程以及正常的range查询过程。</p>
+<p>对于查询过程：</p>
+<p>查询过程是完全遵循pathoram的，但是采用的查询方式，是我们提供要查询的数据块的ID，而不是这个数据块的信息，</p>
+<p>然后我觉得老师这个代码的优化在于，就是我们将数据块查询之后，再寻找路径的过程也是要包含在查询过程当中的，所以老师的优化是在于查询完毕之后的路径找回，他采用了rtree的结构，能够在将路径上的数据块插回的速度加快。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>3Path-oram</title>
     <url>/2023/06/23/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h3 id="3Path-oram和r树的应用"><a href="#3Path-oram和r树的应用" class="headerlink" title="3Path-oram和r树的应用"></a>3Path-oram和r树的应用</h3><p>1、framework：框架</p>
@@ -1921,6 +3068,34 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
 <p>这个涉及到排序算法，所以该算法的时间复杂度主要由排序算法的时间复杂度决定。</p>
 <p><strong>改进方法</strong>：只对前k个最大的数据项进行排序即可，则利用冒泡排序就可以很好的解决这个问题</p>
 <p><strong>倒排文件索引文本相关性的计算方法</strong>：<a href="https://zhuanlan.zhihu.com/p/91603911">https://zhuanlan.zhihu.com/p/91603911</a></p>
+<p>在对于path-oram的具体实现中，我们的方案是同时存在位置和文本查询的，其中空间查询我们先保持用一个自己拟造的数据数据表示，文本查询采用文本相似性的相关计算方法进行计算，在存储节点时，我们会将每一个节点初始化为包含空间信息和文本信息的节点，文本信息是由一堆的关键字组成的，并且我们的查询请求对于文本的输入也是一系列的关键字，</p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230724215255789.png" alt="image-20230724215255789"></p>
+<p>空间文本距离计算的相关公式：</p>
+<p>使用倒置文件计算文本的相似性，使用Rtree计算空间的相似性</p>
+<p>第一种方法：</p>
+<p>只使用倒置文件的优化</p>
+<p>首先不考虑空间距离参数，只使用倒置文件的计算方法计算出查询结果的各个分数，然后产生一个根据文本相似度分数排序的列表，根据空间距离对这个表进行循环遍历找出最佳的查询结果。</p>
+<p>数据结构的设置：</p>
+<p>首先是IRtree的数据结构：1、一般节点：每个节点是由多个分支组成的，这是一个分支数组，节点的倒置文件，整个节点对应的矩形范围</p>
+<p>2、节点中的分支的结构：每个分支包括：指向其孩子节点的索引，该分支存储的数据，每一个索引对应的矩形范围即空间参数，该索引的文本参数即为关键字，这些文本参数存储在一个伪文件中，在这个伪文件中，包含了所有的该分支的子节点所具有的关键字，其中每一个关键字的权重为子节点中所有的分支该关键字权重最大值。</p>
+<p>3、倒置文件的结构：包含一个完成的词汇表，这个词汇表中包含所有的关键字，其中每一个关键字映射到一个列表中，倒置文件中的关键字映射到一个个的关键字的ID中，这个ID是一个int的数字，我们只在B+树中存储这个数字ID即可完成对于伪文件的存储。</p>
+<p>4、这个列表的结构为：每一个元素由包含此关键字的元素和该关键字在此元素中的权重组成。</p>
+<p>5、对于根节点和叶子节点：其中根节点是没有父节点的但是存在倒置文件和伪文件，叶子节点中没有必要存储伪文件，只需直接在其中存储关键字即可。</p>
+<p>数据结构结束。</p>
+<p>6、伪文件的结构：每一个除叶子节点外的分支结构都会有一个伪文件，这个伪文件存储了当前分支所具有的所有的关键字以及关键字的权重。	</p>
+<p>然后就是对这个树的查询策略：</p>
+<p>7、综上所述：我们当前需要单独维护三个结构：1、原本的rtree树，2、每一个节点的倒置文件结构  3、每一个节点的虚实条目判断结构。</p>
+<p>8、使用B+树存储每一个节点所对应的倒置文件，这就等价于我们的节点中存储一个指向其倒置文件的索引指针，这个指针指向B+树的根节点。	</p>
+<p>9、我最后才发现，伪文件并不是一个文件也不是一个其他结构，而是一种计算文本相似性的方法。我们只需要将每一个分支的关键字及其权重存储起来即可。</p>
+<p>下面介绍计算文本相似度的算法：</p>
+<p>我们将一个关键字在一个数据文本中的权重设置为该关键字在文本中的词频。</p>
+<p>10、对于词频的计算方法，首先我们给出一个含有50个关键词的字典，我们规定新输入的数据的文本参数所含有的关键字只能是在我们给出的字典中的关键字，</p>
+<p>在进行rtree的建立时，我们需要一个一个插入数据，数据里只是含有一段文本，我们需要对这段文本进行处理，将其处理为关键词和词频的映射结构，然后再根据这个映射结构计算文本相似度。</p>
+<p>11、其实这棵树的插入操作我们只需要修改节点的数据结构即可，这一部分我们已经完成，这棵树的删除操作时整个rtree最为最为复杂的过程，这棵树的查询操作，rtree的方法是利用rect和text进行一系列的比较，找到最合适的查询分支叶子节点，但是这就会找到好多个分支，于是我们返回的就是top-k的查询条目，把这些数据全部存储在内部节点中，而不是存储在叶子节点中。</p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230728140826442.png" alt="image-20230728140826442"></p>
+<p>12、查询方案：先找出该数据矩形范围距离最小的矩形，将这些矩形对应的branch存在一个列表里，然后我们对比文本参数，找出最佳的top-k索引，这些索引指向了不同的位置，在这些位置中存放着真正的数据，然后将查询的数据随机存放在另一个随机的路径里面，并且越深越好，然后修改原来的叶子分支的索引，将这个索引指向这个分支即可。这就相当于对于path-oram的应用。！！！！！！！牛逼。</p>
+<p>第二种方法：</p>
+<p>两种优化均使用</p>
 <h4 id="对于IFO和RIF的理解："><a href="#对于IFO和RIF的理解：" class="headerlink" title="对于IFO和RIF的理解："></a>对于IFO和RIF的理解：</h4><h5 id="IFO"><a href="#IFO" class="headerlink" title="IFO"></a>IFO</h5><p>首先先给定n个目标，这n个目标均由位置信息和文本信息组成，在对利用这两种信息对查询结果进行排序时，我们有两种不同的方法，其中大概的概念为对位置信息和文本信息进行分别处理和排序后再进行综合排序打分。</p>
 <p>然后IFO的算法为：只使用倒置文件的数据结构对文本信息和位置信息进行排序处理，将目标点按照文本相关性的排序依次放入候补队列中。</p>
 <h5 id="RIF"><a href="#RIF" class="headerlink" title="RIF"></a>RIF</h5><p>在RIF中，对于文本的信息处理和上述IFO的相同的，所以我们可以根据上述的处理得到了文本相关性的排序信息，接下来在进行位置接近性的排序时，我们采用R树对位置信息进行欧几里得距离的计算，并按照位置接近性的大小顺序来将目标点放入候选队列中。</p>
@@ -2039,6 +3214,95 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
 </ul>
 </li>
 </ol>
+<h5 id="Path-Oram路径协议简述："><a href="#Path-Oram路径协议简述：" class="headerlink" title="Path-Oram路径协议简述："></a>Path-Oram路径协议简述：</h5><p>Path-Oram是由一系列的桶组成的二叉树，其中在每一个二叉树中的节点都是一个桶，每个桶中都有n的block（块），我们对于path-oram数据的读取就是以块为单位进行的。下面对path-oram对于数据的读写协议进行总结：</p>
+<p>首先我们先明白，Path-Oram对于数据的存储分别在客户端和服务器中，客户端中维护了一个数据结构为stash，负责存储在客户端中的block以及此block在树中的路径，</p>
+<p>我们在进行对于数据的存储的时候，会维护一个映射结构position（map），这个映射结构将每一个block映射到这个block所在的path-oram的路径path（X），此路径是从叶子节点开始到根节点的路径，并且这个路径中包含了所要查找的block。</p>
+<p>大致过程如下，</p>
+<p>1、首先将要进行操作是根据position映射结构找到此block所对应的路径，</p>
+<p>2、设此路径为path(X)，将此路径上的所有的block从服务器取出，将这些block存入到本地客户端的stash中，同时将此路径path（X）也存入到stash中</p>
+<p>3、将取出的block数据块设置为a，将这个a-block重新映射到一个新的随机的路径中。</p>
+<p>4、循环遍历stash中的每一个bolck，找到我们需要进行操作的block，</p>
+<p>5、如果此此操作为写操作，则写操作比只读操作多一个步骤，即将要写入的数据写入到block-a中，若为只读操作，则跳过此步骤。</p>
+<p>6、下面是对于将取出的路径重新写回的操作：首先对于path-oram树按层L进行遍历，将stash中的block从最深层逐层向上一层写入，具体写入过程为：首先对于每一层L，找到stash中路径为X且层数为L的block，将其存入到temp-S（S’）中，从temp-S中取出不超过块的最大容量N的block，此时S变为S-（temp-S），然后把取出的block存入到指定bucket中。</p>
+<p>7、如何保证block的安全性呢？在stash中会存在一些隐含的块，这些块本来是没有在path-oram路径中的，但是我们在读写操作的最后一步的写入过程中，除了</p>
+<h5 id="下面是obvilious-path-oram对于path-oram的改进。"><a href="#下面是obvilious-path-oram对于path-oram的改进。" class="headerlink" title="下面是obvilious path-oram对于path-oram的改进。"></a>下面是obvilious path-oram对于path-oram的改进。</h5><p>我们在上面的算法中可以得知，在进行操作的过程中，我们需要始终维护一个position的映射结构，并且这个映射结构是对应到每一个block上的，这就会导致我们需要花费大量的存储空间去存储这个映射结构，在path-oram的基础上，obvilious的工作即将这种映射结构的存储也以一个path-oram的形式存储到服务器中，即为oram0，oram1，oram2.……，在这种结构下，我们仅在oram0存储真正的block数据块，而在其他的oram中存储映射结构，至于oram的级数，需要根据具体的oram0中block数量的大小来决定，从而做到时间和空间的节省。</p>
+<p>根据上述结构的改进之后，我们在本地客户端中仅仅需要维护oramN即可，这个数据结构所需的存储结构是大大减少的。</p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230718200209943.png" alt="image-20230718200209943"></p>
+<h5 id="一棵R树满足如下的性质："><a href="#一棵R树满足如下的性质：" class="headerlink" title="一棵R树满足如下的性质："></a>一棵R树满足如下的性质：</h5><ul>
+<li>\1. 除非它是根结点之外，所有叶子结点包含有m至M个记录索引（条目）。作为根结点的叶子结点所具有的记录个数可以少于m。通常，m&#x3D;M&#x2F;2。</li>
+<li>\2. 对于所有在叶子中存储的记录（条目），I是最小的可以在空间中完全覆盖这些记录所代表的点的矩形（注意：此处所说的“矩形”是可以扩展到高维空间的）。</li>
+<li>\3. 每一个非叶子结点拥有m至M个孩子结点，除非它是根结点。</li>
+<li>\4. 对于在非叶子结点上的每一个条目，i是最小的可以在空间上完全覆盖这些条目所代表的点的矩形（同性质2）。</li>
+<li>\5. 所有叶子结点都位于同一层，因此R树为平衡树。</li>
+</ul>
+<p>R数的插入操作：</p>
+<p>首先每一个R树的节点是由多个分支构成的，并且每一个分支都会自己的子节点，并且这个子节点也是有多个分支构成的，这就相当于每一个节点都有多个孩子节点，初次之外，我们只把数据存储在整个树的叶子节点中，同时，R树中的每一个节点所拥有的分支的个数在min-max之间，其中min一般等于max&#x2F;2，</p>
+<p>并且我们在进行数据的插入和删除的过程中，需要时刻保持叶子节点都在同一层中，以此来保证R树的平衡性。</p>
+<p>下面介绍数据的插入：</p>
+<p>数据的插入过程涉及到节点的分裂，</p>
+<p>对于数据的插入是要从叶子节点开始插入，并从叶子节点开始向上一层层的更新，首先每一个叶子节点可以存储的数据的条目最大为max，最小为min，当数据条目小于min时，即删除操作就会涉及到节点的合并，</p>
+<p>下面我们考虑如何将一个新加入的数据添加到最合适的节点当中，首先，这个数据会有一个BB，我们计算将这个数据插入到每一个节点后，对应节点的BB的增加量，我们取增加量最小的节点作为最合适的添加节点，若增加量相等，取本身面积最小的节点作为插入节点。</p>
+<p>在这之后，我们得到了最佳的插入节点best，将数据插入到节点best中，这就会涉及到节点的分裂操作，如果此时best存储的数据项已经为max了，则需要进行节点的分裂，相当于我们会增加一个新的叶子节点，并把原来节点和插入数据均匀的分配到这两个节点中，</p>
+<p>接下来，我们考虑下一层，因为叶子节点增加了，设best节点的父节点为F，则此时就要为新增加的节点设置一个新的分支索引存储到F中，则此时就会又要面临一个同样的问题，这个F节点有没有满，即是否要分裂，层层递进，直到根节点为止。</p>
+<p>如果节点并没有分裂，我们只需要将插入数据的BB放到best节点当中，设bset节点的父节点为F，设F节点中指向best节点的分支索引为BF，我们只需将这个BF的BB修改至包含新增加节点的BB即可。</p>
+<p>当前的大致想法是：用rtree来作为存储path-oram数据的数据结构：</p>
+<p>首先是path-oram的数据结构是在所有的节点中都存有相应的数据，然后rtree是只在叶子节点中存储数据，我们对于一个path-oram中数据的读取是通过一个映射结构来直接完成的，但是我们在rtree中对于一个数据的读取是根据这个数据的BB的范围来完成的，除此之外，我们在path-oram中存取的数据有一个非常大的问题，我们无法确定这个数据的BB通过何种方式来进行确定，这是第一个问题：</p>
+<p>就是数据之间的距离或者面积的计算由何种方式来进行确定。</p>
+<p>下面是第二个问题：</p>
+<p>其实我们在path-oram的存储过程中，只需在除了叶子节点之外的节点中，不再存储数据，而是只进行存储指向其孩子节点的指针即可。</p>
+<p>由于我们现在是在rtree这个树结构上存储path-oram的数据，并且只在叶子节点中存储指向真正数据的指针，那么我们的查询过程就需要提供一个需要查询的数据的范围，但是在实际的操作的过程中，我们提供的只是我们需要查询的数据，用户并不会提供查询数据的MBB,那么这个MBB的计算就需要我们自己进行编写：下面是rtree那篇相关论文中提供的方法：</p>
+<p>每一个数据节点有两个参数：位置参数和文本参数，但是我们现在需要查询的数据只应用文本参数即可，</p>
+<p>论文的方法是：</p>
+<p>我们设置存储的数据的本文参数其实是由一个文件描述的，这个文件中的文本有着许多的关键字，相当于是这个数据的文本参数是由一系列的关键字组成的，对于一个查询请求Q，这个查询请求在我们的论文情境下只会涉及到对于文本的查询请求，但是这个请求Q一般是不会恰好对应到path-oram中存储的某个数据的，这时我们就需要计算查询请求文本参数设为L，和path-oram中每一个节点的文本相似性，至于文本相似性的计算，后面再进行讨论。</p>
+<p>下面讨论查询请求，在rtree中，我们的查询请求是直接提供每一个节点对应的路径，即为前面提到的映射结构，那么我们也可以在path-oram维护一个这样的映射结构，但是这明显是不现实的，因为我们在进行查询时，不可能直接给出需要查询的节点，这个待查询的节点是我们根据文本的相似性从根节点开始一步一步计算出来的，但是这就会有着大量的时间的浪费，于是便有了上词组会提到的维护一个单独的结构，这个结构中单独存储path-oram中所有的叶子节点，我们只需要在查询时对这个结构进行遍历插叙即可。但是这个结构的维护就会涉及到大量的空间的消耗。</p>
+<p>然后是另一个方法，</p>
+<p>我们不是将rtree和path-oram放在一个数据结构中，而是分别维护：</p>
+<p>我们在rtree的叶子节点中存储数据，将这些数据全部放到patt-oram中进行数据的查询，草，这过程更复杂了，。。。。。。。。。这是个大问题，但是上次的组会说的应该就是这个方法。</p>
+<p>下面是优化过程，由于每一个数据的文本参数是由一系列的关键字组成的，这就会涉及到一个优化，倒置文件，我们会rtree的每一个节点中增加一个倒置文件，这个倒置文件存储的是指向导倒置文本的指针，这个倒置的文本其实就是在所有的文件中，包含有这个关键字的文件的索引。这是第一个优化</p>
+<p>第二个优化就是：我们在上面提到了需要维护一个path-oram的所有叶子节点的数据结构，这会加大空间的消耗，那么我们就可以存储一个类似于缓存的结构，只存储那些访问次数多的数据的索引。</p>
+<p>第三个可以优化的点就是：对于文本相似性的计算。这会涉及到好多算法：<strong>余弦相似度和汉明距离：</strong></p>
+<p>余弦相似度（Cosine Similarity）是一种用于衡量两个向量之间相似性的度量方法。它基于两个向量之间的夹角余弦值来计算相似性，而不仅仅考虑向量的长度或欧氏距离。余弦相似度通常用于文本挖掘、信息检索和推荐系统等领域。</p>
+<p>在余弦相似度中，给定两个向量A和B，它们可以表示为n维空间中的两个点。余弦相似度定义为向量A和B的点积（内积）除以它们的模（长度）的乘积。公式如下：</p>
+<p>余弦相似度 &#x3D; (A · B) &#x2F; (||A|| * ||B||)</p>
+<p>其中，A · B表示向量A和B的点积，||A||和||B||表示向量A和B的模（长度）。</p>
+<p>余弦相似度的取值范围在-1到1之间。当两个向量的方向完全相同时，余弦相似度为1，表示它们非常相似；当两个向量完全反向时，余弦相似度为-1，表示它们完全不相似；当两个向量之间夹角为90度时，余弦相似度为0，表示它们无关。</p>
+<p>汉明距离（Hamming Distance）是用于比较两个等长字符串之间差异性的度量方法。它衡量的是将一个字符串转换为另一个字符串所需的最小替换次数。汉明距离常用于错误检测和纠错码等领域。</p>
+<p>在汉明距离中，假设有两个等长的字符串A和B，它们的汉明距离定义为在相同位置上不相等的字符个数。换句话说，汉明距离等于将字符串A转换为字符串B所需的最小替换次数。</p>
+<p>汉明距离的取值范围为0到字符串长度之间。当两个字符串完全相同时，汉明距离为0，表示它们相同；当两个字符串完全不同时，汉明距离等于字符串长度，表示它们完全不同。</p>
+<p>然后就是进一步的优化，我们根据这些关键字之间的相似度，将这些关键字进行分类并存储在节点当中，这可以加快查询的效率。</p>
+<p>至于分类方案：</p>
+<h5 id="K-means聚类算法：-1"><a href="#K-means聚类算法：-1" class="headerlink" title="K-means聚类算法："></a>K-means聚类算法：</h5><p>K-means聚类算法是一种迭代的启发式聚类算法，用于将数据点划分为预先指定的K个簇。它的目标是最小化簇内的平方误差和，以获得较好的聚类结果。</p>
+<p>以下是K-means聚类算法的详细步骤和相关的数学公式：</p>
+<p>输入：</p>
+<ul>
+<li>数据集X，包含n个数据点：{x₁, x₂, …, xₙ}</li>
+<li>预先指定的簇数量K</li>
+</ul>
+<p>步骤：</p>
+<ol>
+<li><p>随机初始化K个簇中心：{c₁, c₂, …, cₖ}</p>
+</li>
+<li><p>迭代以下步骤直到达到停止条件（例如，簇中心不再发生显著变化）： a. 分配数据点到最近的簇中心： 对于每个数据点xᵢ：</p>
+<ul>
+<li>计算其与每个簇中心cⱼ之间的距离：d(xᵢ, cⱼ) &#x3D; ||xᵢ - cⱼ||₂</li>
+<li>将数据点xᵢ分配到距离最近的簇：xᵢ ∈ Cⱼ，其中 Cⱼ 表示第j个簇的成员。</li>
+</ul>
+<p>b. 更新簇中心为簇内数据点的均值： 对于每个簇Cⱼ：</p>
+<ul>
+<li>计算新的簇中心：cⱼ &#x3D; (1 &#x2F; |Cⱼ|) * Σxᵢ，其中 |Cⱼ| 表示簇Cⱼ的成员数量。</li>
+</ul>
+</li>
+<li><p>输出最终的簇分配结果。</p>
+</li>
+</ol>
+<p>其中，||.||₂表示欧几里德距离（Euclidean distance），表示两个数据点之间的距离。</p>
+<p>K-means聚类算法的数学公式总结如下：</p>
+<p>目标函数： J &#x3D; Σᵢ Σⱼ d²(xᵢ, cⱼ)</p>
+<p>簇中心与数据点之间的距离： d(xᵢ, cⱼ) &#x3D; ||xᵢ - cⱼ||₂</p>
+<p>簇Cⱼ的成员数量： |Cⱼ|</p>
+<p>簇中心的更新： cⱼ &#x3D; (1 &#x2F; |Cⱼ|) * Σxᵢ</p>
+<p>其中，J表示总的平方误差和，xᵢ表示第i个数据点，cⱼ表示第j个簇的中心，d(xᵢ, cⱼ)表示数据点xᵢ与簇中心cⱼ之间的距离，|Cⱼ|表示簇Cⱼ的成员数量，Σ表示求和运算。</p>
+<p>K-means聚类算法通过迭代更新簇中心和重新分配数据点，不断优化平方误差和，以得到较好的聚类结果。注意，该算法可能收敛到局部最优解，因此多次运行并比较不同初始值的结果是常见的做法。</p>
 ]]></content>
       <categories>
         <category>Science</category>
@@ -2046,5 +3310,62 @@ Z世代年轻人对网络上的新鲜事物会产生比较大的兴趣，在我�
       <tags>
         <tag>本科论文阅读</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/10/22/%E9%A1%B9%E7%9B%AE%E8%BF%9B%E7%A8%8B/</url>
+    <content><![CDATA[<h4 id="一、项目进程：甘特图："><a href="#一、项目进程：甘特图：" class="headerlink" title="一、项目进程：甘特图："></a>一、项目进程：甘特图：</h4><p>1、需求分析</p>
+<p>2、方案设计</p>
+<p>3、系统实现</p>
+<p>4、系统测试</p>
+<p>5、系统上线发布</p>
+<p>二、成本分析：</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/08/03/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E9%93%BE/</url>
+    <content><![CDATA[<h3 id="马尔可夫链："><a href="#马尔可夫链：" class="headerlink" title="马尔可夫链："></a>马尔可夫链：</h3><img src="https://img-blog.csdnimg.cn/54c4d36bda47463581d7ba7ec6405ee6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5bem5omL44Gu5piO5aSp,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom: 67%;" />
+
+<p>要描述某种特定时期的随机现象如某种药品在未来某时期的销售情况，比如说第n季度是畅销还是滞销，用一个随机变量Xn便可以了，但要描述未来所有时期的情况，则需要一系列的随机变量X1，X2，…，Xn，…．称{ Xt，t∈T ，T是参数集}为随机过程，{ Xt }的取值集合称为状态空间。若随机过程{ Xn }的参数为非负整数， Xn 为离散随机变量，且{ Xn }具有无后效性（或称马尔可夫性），则称这一随机过程为马尔可夫链（简称马氏链）。所谓无后效性，直观地说，就是如果把{ Xn }的参数n看作时间的话，那么它在将来取什么值只与它现在的取值有关，而与过去取什么值无关。</p>
+<h4 id="马氏链模型说明"><a href="#马氏链模型说明" class="headerlink" title="马氏链模型说明"></a>马氏链模型说明</h4><ul>
+<li>时间、状态均为离散的随机转移过程</li>
+<li>系统在每个时期所处的状态是随机的</li>
+<li>从一时期到下时期的状态按一定概率转移</li>
+<li>下时期状态只取决于本时期状态和转移概率</li>
+<li>已知现在，将来与过去无关（无后效性）</li>
+</ul>
+<h5 id="场景一-天气预报"><a href="#场景一-天气预报" class="headerlink" title="场景一: 天气预报"></a>场景一: 天气预报</h5><p>如果我们把天气状况简单分为晴、多云、雨天三个状态，通过对某一地区历史气象数据统计发现[^1]，</p>
+<ul>
+<li>如果当天是晴天则第二天是晴天的概率为 0.65 ，是阴天的概率为 0.1 ，是雨天的概率为 0.25 .</li>
+<li>如果当天是多云则第二天是晴天的概率为 0.25 ，是阴天的概率为 0.25 ，是雨天的概率为 0.5 .</li>
+<li>如果当天是雨天则第二天是晴天的概率为 0.25 ，是阴天的概率为 0.15 ，是雨天的概率为 0.6 .</li>
+</ul>
+<p>如果周一是晴天，那么如何预测周五的天气情况.</p>
+<p>几乎所有关于马尔可夫链的教材都会有这样的习题或者例题，但实际应用中往往比这个要复杂得多. 而且第二天的天气真的只与当天天气有关，与前一天无关吗？</p>
+<p>当然我们可以改为考虑前两天的天气，只要把连续两天的天气作为一个状态即可，即会有 P32 个状态. 这样马儿可夫链模型就仍然适用了.</p>
+<h5 id="场景二-病情-艾滋病-预测"><a href="#场景二-病情-艾滋病-预测" class="headerlink" title="场景二: 病情(艾滋病)预测"></a>场景二: 病情(艾滋病)预测</h5><p>艾滋病毒感染者病情发展有这样几个阶段(状态)：</p>
+<ul>
+<li>无临床症状(HIV asymptomatic)</li>
+<li>有临床病状(HIV symptomatic)</li>
+<li>获得性免疫缺陷综合征(AIDS)</li>
+<li>死亡(death)</li>
+</ul>
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803144440096.png" alt="image-20230803144440096" style="zoom: 33%;" />
+
+<h5 id="场景三-分子扩散模型"><a href="#场景三-分子扩散模型" class="headerlink" title="场景三: 分子扩散模型"></a>场景三: 分子扩散模型</h5><p>如果将两个充满不同气体的容器相互联通当中仅用薄膜分隔(允许分子在两容器间穿梭)，那么经过一段时间后，两个容器中的混合气体成分如何？</p>
+<p>1907年物理学家 <em>Tatiana</em> 和 <em>Paul Ehrenfest</em> 为了解释热力学第二定律而提出了一个分子扩散模型. 下面老君用尽可能简单的语言来描述下这个模型.</p>
+<p>我们把两个容器编号为A和B，两个容器内分子总数设为 m ，我们把容器A内含有分子个数为 0,1,⋯,m 看作是 m+1 个状态，当一个分子从一个容器转移到另一个容器，则容器A的状态发生一次转移. 假设每个分子等可能被选中发生转移，即从所在的容器转移到另一个容器.</p>
+<p>举个具体的例子，假设总共有 10 个分子，容器A目前有 2 个分子(处于状态2). 那么下一次转移，这 10 个分子等可能地被选中发生转移，即有 210 的概率容器A中的分子被选中，有 810</p>
+<p>的概率容器B中的分子被选中. 那么转移发生后，有 210 的概率容器A的一个分子跑到容器B(容器A从状态2转移到状态1)，有 810 的概率容器 B 中的一个分子跑到容器 A 中(容器A从状态2转移到状态3).</p>
+<p>如果用 P_ij表示容器A从状态 j 到状态 i的概率，则有</p>
+<p><img src="https://pic1.zhimg.com/80/v2-d94aae5e3ae3fb81d7d2cac7f7634834_720w.webp" alt="img"></p>
+<h5 id="四、"><a href="#四、" class="headerlink" title="四、"></a>四、</h5><p>考虑某地区农业收成变化的3个状态，即“丰收”、“平收”和“歉收”。记E1为“丰收”状态，E2为“平收”状态，E3为“歉收”状态。表给出了该地区1975—2014年期间农业收成的状态变化情况。试计算该地区农业收成变化的状态转移概率矩阵。</p>
+<img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230803144937047.png" alt="image-20230803144937047" style="zoom: 33%;" />
+
+<p>代码为：</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt; library(markovchain)</span><br><span class="line">&gt; library(readxl)</span><br><span class="line">&gt; library(tidyverse)</span><br><span class="line">&gt; library(expm)</span><br><span class="line">&gt; library(diagram)</span><br><span class="line">&gt; setwd(<span class="string">&quot;D:/code&quot;</span>)</span><br><span class="line">&gt; tb456=read_xlsx(<span class="string">&#x27;markov.xlsx&#x27;</span>) <span class="comment">%&gt;%</span></span><br><span class="line">+   mutate(state1=lag(state)) </span><br><span class="line">&gt;  #交叉统计，变量state1转为state的个数</span><br><span class="line">&gt;  tss= <span class="built_in">table</span>(tb456[<span class="number">-1</span>,]$state1,tb456[<span class="number">-1</span>,]$state) </span><br><span class="line">&gt; #返回交叉表的频率,即状态转移概率矩阵</span><br><span class="line">&gt; tmA=prop.<span class="built_in">table</span>(tss,<span class="number">1</span>) </span><br><span class="line">&gt; tmA</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; plotmat(tmA,pos = c(<span class="number">1</span>,<span class="number">2</span>), </span><br><span class="line">+         lwd = <span class="number">1</span>, box.lwd = <span class="number">2</span>, </span><br><span class="line">+         cex.txt = <span class="number">0.8</span>, </span><br><span class="line">+         box.<span class="built_in">size</span> = <span class="number">0.1</span>, </span><br><span class="line">+         box.<span class="built_in">type</span> = <span class="string">&quot;circle&quot;</span>, </span><br><span class="line">+         box.prop = <span class="number">0.5</span>,</span><br><span class="line">+         box.col = <span class="string">&quot;light blue&quot;</span>,</span><br><span class="line">+         arr.<span class="built_in">length</span>=<span class="number">.1</span>,</span><br><span class="line">+         arr.width=<span class="number">.1</span>,</span><br><span class="line">+         self.cex = <span class="number">.6</span>,</span><br><span class="line">+         self.shifty = <span class="number">-.01</span>,</span><br><span class="line">+         self.shiftx = <span class="number">.15</span>,</span><br><span class="line">+         main = <span class="string">&quot;Markov Chain&quot;</span>)</span><br><span class="line"></span><br><span class="line">&gt; #初始状态</span><br><span class="line">&gt; inital=matrix(c(<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>),nrow=<span class="number">1</span>, byrow=TRUE)</span><br><span class="line">&gt; #预测下一年</span><br><span class="line">&gt; fc15=inital <span class="comment">%*% tmA</span></span><br><span class="line">&gt; #预测下两年</span><br><span class="line">&gt; fc16=inital <span class="comment">%*% tmA%*% tmA</span></span><br><span class="line">&gt; #预测第三年，tmA<span class="comment">%^% 3相当于tmA%*% tmA%*%tmA</span></span><br><span class="line">&gt; fc17=inital <span class="comment">%*% (tmA%^% 3)</span></span><br><span class="line">&gt; #要进行多年预测，因此编写一个函数</span><br><span class="line">&gt; myfunction=<span class="function"><span class="keyword">function</span><span class="params">(n)</span>&#123;</span></span><br><span class="line">+   inital <span class="comment">%*% (tmA%^% n)</span></span><br><span class="line">+ &#125;</span><br><span class="line">&gt; mats=matrix(data = NA,nrow = <span class="number">11</span>,ncol = <span class="number">3</span>) <span class="comment">%&gt;% </span></span><br><span class="line">+ data.frame()</span><br><span class="line">&gt; #预测<span class="number">2015</span><span class="number">-2025</span>年，共<span class="number">11</span>年，用一个dataframe来进行结果存储</span><br><span class="line">&gt; <span class="keyword">for</span> (<span class="built_in">i</span> in <span class="number">1</span>:<span class="number">11</span>) &#123;</span><br><span class="line">+   mats[<span class="built_in">i</span>,]=myfunction(<span class="built_in">i</span>)</span><br><span class="line">+ &#125;</span><br><span class="line">&gt; mats$year=seq(<span class="number">2015</span>,<span class="number">2025</span>)</span><br><span class="line">&gt; colnames(mats)=c(<span class="string">&#x27;E1&#x27;</span>,<span class="string">&#x27;E2&#x27;</span>,<span class="string">&quot;E3&quot;</span>,<span class="string">&#x27;year&#x27;</span>)</span><br><span class="line">&gt; mats</span><br><span class="line"></span><br><span class="line">&gt; Ma=createSequenceMatrix(tb456$state,toRowProbs = T)</span><br><span class="line">&gt; #定义一个markov对象</span><br><span class="line">&gt; dtmcA &lt;- new(<span class="string">&quot;markovchain&quot;</span>,transitionMatrix=Ma,</span><br><span class="line">+              states=c(<span class="string">&#x27;E1&#x27;</span>,<span class="string">&#x27;E2&#x27;</span>,<span class="string">&quot;E3&quot;</span>),</span><br><span class="line">+              name=<span class="string">&quot;MarkovChain A&quot;</span>) </span><br><span class="line">&gt; #可视化</span><br><span class="line">&gt; <span class="built_in">plot</span>(dtmcA)</span><br></pre></td></tr></table></figure>
+
+]]></content>
   </entry>
 </search>

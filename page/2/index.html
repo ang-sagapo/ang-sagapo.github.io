@@ -195,7 +195,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/26/coppersmith/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/10/2023A%E6%91%98%E8%A6%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ang.jpg">
@@ -209,7 +209,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/03/26/coppersmith/" class="post-title-link" itemprop="url">Ctf练习</a>
+            <a href="/2023/09/10/2023A%E6%91%98%E8%A6%81/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -218,24 +218,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2023-03-26 22:18:50" itemprop="dateCreated datePublished" datetime="2023-03-26T22:18:50+08:00">2023-03-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-12 10:26:53" itemprop="dateModified" datetime="2023-07-12T10:26:53+08:00">2023-07-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
-                </span>
+              <time title="创建时间：2023-09-10 16:59:30 / 修改时间：20:00:46" itemprop="dateCreated datePublished" datetime="2023-09-10T16:59:30+08:00">2023-09-10</time>
             </span>
 
           
@@ -249,15 +234,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>一点点对于coppersmith轮子的使用</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/03/26/coppersmith/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>针对问题一，问题一的难点在于<strong>计算镜场</strong>的阴影遮蔽效率和截断效率。对于阴影遮蔽效率的计算，本文采用改良的蒙特卡罗射线追踪法。通过计算待测镜与问题镜之间的距离，排除掉肯定无法对待测镜造成阴影遮蔽损失的问题镜，在待测镜上选取大量点，通过追踪这些点的入射和反射光线，建立点法式直线方程计算是否与问题镜相交从而将这些点分成能量损失点和非能量损失点，非能量损失点数量与选取的总点数的比值则为阴影遮蔽效率。对于截断效率的计算，采用光锥母线追迹法，将圆柱集热器投影成矩形平面，在非能量损失点反射的光锥上追迹多条母线，计算追迹的这些光锥母线是否与集热器平面相交，与集热器平面相交的光锥母线数量与追迹的总光锥母线数量的比值则为截断效率。在计算过程中，我们使用了局-整-局坐标转换法，将每面定日镜和集热器都当成独立对象并为其建立局部坐标系，计算坐标转换时使用整体坐标系作为桥梁，就可大大简化计算的难度。</p>
+<p>针对问题二，由于问题一中的阴影遮挡损失最大，本问题选择一种可以消除遮挡损失的定日镜布局方式——EB布局。根据EB布局方式中任意两个定日镜之间不存在遮挡损失的原理，固定吸收塔的平面坐标为(0,0)，由几何关系计算并调整初始定日镜的位置。然后对定日镜数量、吸收塔高度等参数进行迭代求解，以平均镜面面积的热功率为目标函数，在年平均效率$E_{field,all} &gt; 60MW$为约束函数，运用粒子群算法和非线性规划COBYLA算法对定日镜的坐标位置进行优化运算，建立单目标优化模型并使用SolarPILOT工具对结果进行进一步的分析拟合。求解得到[定日镜数量，吸收塔高度，定日镜安装高度，定日镜宽度，定日镜高度，单位面积镜面年平均输出热功率 ] &#x3D; [1020，155.73，7.23，13.28，9.80，0.45]。每面定日镜的具体位置坐标存在result2.xlsx中。</p>
+<p>针对问题三，基于问题二的单目标优化模型以及SolarPILOT拟合方法，仍然采用EB布局方法，根据不同定日镜的尺寸和安装高度不同，参考问题二的结果，可以得知定日镜的朝向以及距离吸收塔的距离会影响光学效率大小。以EB布局的定日镜位置为基础，计算定日镜和北方向（即地面参考系的y轴正方向）的夹角thea以及定日镜距离吸收塔的距离leng，将其和定日镜坐标、镜面安装高度以及吸收塔坐标作为变量带入粒子群和COBYLA结合的单目标优化模型中，最终发现定日镜和北方夹角越小或者距离吸收塔更近可以增大光学效率。以此为基础将夹角和距离结合作为比率rate对定日镜的尺寸进行调整，得到最优结果。本题目求解得到[定日镜数量，吸收塔高度，单位面积镜面年平均输出热功率 ] &#x3D; [933，158.24，0.5153]。每面定日镜的尺寸、安装高度以及坐标位置存在result3.xlsx中。</p>
+<p>模型的优点：</p>
+<p>模型综合使用了塔式太阳能定日镜场一种经典的可以消除阴影遮挡损失的影响，使定日镜场的光学效率得以大步提升</p>
+<p>在建立单目标优化模型时，将粒子群算法和COBLAY非线性规划算法进行结合，再降低计算时间复杂度问题的同时提升了结果的准确程度。</p>
+<p>缺点：EB布局方法在大量的定日镜数量时小于D blocking布局方法的准确性和光学效率。</p>
+<p>模型的改进：</p>
+<p>1、在问题一中还可以考虑吸收塔阴影对于阴影遮挡效率的影响，进一步优化光学效率的计算并优化定日经常的布局。</p>
+<p>2、在问题二中可以应用更加准确且高校的D blocking 方法，比较不同布局下对于最终光学效率以及热功率的影响。</p>
+<p>3、在问题三中还可以将遗传算法结合至单目标优化模型中，可以提高最终参数的准确性。</p>
+<p>DC37B88E91C005FD692CB07BB71A5863</p>
+<p>A6E6A8FA9041388ADA0483BA586E000E</p>
+
       
     </div>
 
@@ -276,7 +266,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/21/latex1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/07/%E6%A8%A1%E5%9E%8B%E5%BB%BA%E7%AB%8B%E4%B8%8E%E6%B1%82%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ang.jpg">
@@ -290,7 +280,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/12/21/latex1/" class="post-title-link" itemprop="url">Latex_1</a>
+            <a href="/2023/09/07/%E6%A8%A1%E5%9E%8B%E5%BB%BA%E7%AB%8B%E4%B8%8E%E6%B1%82%E8%A7%A3/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -300,24 +290,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-12-21 17:41:03" itemprop="dateCreated datePublished" datetime="2022-12-21T17:41:03+08:00">2022-12-21</time>
+              <time title="创建时间：2023-09-07 21:15:02" itemprop="dateCreated datePublished" datetime="2023-09-07T21:15:02+08:00">2023-09-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-12 10:28:48" itemprop="dateModified" datetime="2023-07-12T10:28:48+08:00">2023-07-12</time>
+                <time title="修改时间：2023-09-08 22:35:28" itemprop="dateModified" datetime="2023-09-08T22:35:28+08:00">2023-09-08</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">一些工具的学习</span></a>
-                </span>
-            </span>
 
           
 
@@ -330,15 +311,42 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>有关latex各种格式的解释</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/21/latex1/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h4 id="五、模型建立与求解"><a href="#五、模型建立与求解" class="headerlink" title="五、模型建立与求解"></a>五、模型建立与求解</h4><p>5.1、问题一</p>
+<p>5.1.1模型的准备：</p>
+<p>5.1.1.1 镜场和镜面坐标系的建立</p>
+<p>以镜场中心为坐标原点，以正东方向为x轴正方向，以正北方向为y轴正方向，以垂直地面向上为z轴建立空间直角坐标系：如图：</p>
+<p>以镜面中心为坐标原点，以与地面平行方向为x轴方向，以镜面法向为z轴，以垂直于x和z轴所在平面方向为y轴，建立镜面的空间直角坐标系，如图所示：</p>
+<p>5.1.1.3 法向直接辐射辐照度</p>
+<p>5.1.1.4 定日镜的光学效率</p>
+<p>5.1.1.5 定日镜场的输出热功率</p>
+<p>5.1.2 模型的建立</p>
+<p>因为定日镜场的热功率并不是单个定日镜的功率的简单叠加，因此在计算定日镜的热功率时需要根据每个定日镜的位置关系来确定目标定日镜与邻近定日镜之间的关系。</p>
+<p>阴影遮挡效率的计算</p>
+<p>采用光线追迹法计算定日镜的阴影遮挡效率。</p>
+<p>在地面坐标系中，入射光线的方向余弦可以写为：</p>
+<p>公式1：</p>
+<p>阴影遮挡效率为：</p>
+<p>阴影遮挡损失包括</p>
+<p>1、A定日镜被B定日镜遮挡的阴影损失</p>
+<p>2、A定日镜反射光线被B定日镜遮挡损失</p>
+<p>3、吸收塔的阴影损失</p>
+<p>定日镜之间的阴影遮挡损失，我们在两块任意的定日镜A与B之间进行分析，设A镜面坐标系上一光线入射点坐标为H1（x1,y1,0),设该光线落入B镜面坐标系中的坐标，镜面坐标系A到B的关系变换矩阵为T</p>
+<p>公式1</p>
+<p>设光线在镜面A坐标系的向量坐标为H_A</p>
+<p>则在镜场坐标系中的向量坐标为H_0  &#x3D; T * H_A</p>
+<p>H_0在镜面B坐标系中的向量坐标为H_B &#x3D; H_0*T;</p>
+<p>则可以解的H_2坐标为：</p>
+<p>判断H_2是否在B镜面中，若在镜面中，则视为遮挡，则镜面A的镜面阴影遮挡损失为 遮挡面积&#x2F;镜面面积</p>
+<p>吸收塔的阴影损失计算</p>
+<p>我们根据给定的经纬度计算每个月份21号每一个时间段的太阳高度角为alpha,我们计算得到吸收塔对于定日镜产生遮挡影响的太阳高度角阈值为β，当α大于β时，吸收塔对于定日镜没有遮挡影响，α&lt;β时，吸收塔对于定日镜有影响，我们计算得到了吸收塔对于定日镜的遮挡模型。</p>
+<p>当α&lt;β时，我们计算吸收塔对于定日镜的遮挡面积</p>
+<p>设当日日期为m月d日，2023年春分为3月21日，计算太阳赤纬角为</p>
+<p>根据太阳赤纬角以及太阳时角可以计算得到太阳高度角，</p>
+<p>则遮挡范围为：</p>
+<p>5.1.2模型的建立</p>
+<p>5.1.3模型的求解</p>
+<p>5.2问题二</p>
+
       
     </div>
 
@@ -357,7 +365,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/04/%E3%80%8A%E8%BF%99%E5%B0%B1%E6%98%AF%E4%B8%AD%E5%9B%BD%E3%80%8B%EF%BC%9A%E8%B6%85%E5%A4%A7%E4%BA%BA%E5%8F%A3%E8%A7%84%E6%A8%A1%E7%9A%84%E7%8E%B0%E4%BB%A3%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ang.jpg">
@@ -371,7 +379,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/" class="post-title-link" itemprop="url">第一次组会</a>
+            <a href="/2023/09/04/%E3%80%8A%E8%BF%99%E5%B0%B1%E6%98%AF%E4%B8%AD%E5%9B%BD%E3%80%8B%EF%BC%9A%E8%B6%85%E5%A4%A7%E4%BA%BA%E5%8F%A3%E8%A7%84%E6%A8%A1%E7%9A%84%E7%8E%B0%E4%BB%A3%E5%8C%96/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -380,24 +388,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-12-21 09:19:31" itemprop="dateCreated datePublished" datetime="2022-12-21T09:19:31+08:00">2022-12-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-12 10:25:28" itemprop="dateModified" datetime="2023-07-12T10:25:28+08:00">2023-07-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
-                </span>
+              <time title="创建时间：2023-09-04 20:40:41 / 修改时间：21:27:09" itemprop="dateCreated datePublished" datetime="2023-09-04T20:40:41+08:00">2023-09-04</time>
             </span>
 
           
@@ -411,15 +404,110 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>密码组会威尔逊定理和中国剩余定理的使用</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%84%E4%BC%9A/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>《这就是中国》：超大人口规模的现代化 学习笔记</p>
+<p>学习笔记：规模与国家发展的关系</p>
+<ol>
+<li>规模与国家发展的关系：<ul>
+<li>规模是国家成功发展的一个重要因素，但也可能引发内在矛盾。</li>
+<li>中国式现代化强调人口规模巨大的现代化，这需要理解中国政治历史逻辑。</li>
+<li>西方式现代化通常发生在小规模国家，如古希腊城邦和封建小王国。</li>
+</ul>
+</li>
+<li>小国的特点：<ul>
+<li>小国之间的频繁战争有助于技术、制度和文化创新。</li>
+<li>我们的火药传入欧洲提高了战争强度，催生了现代科学。</li>
+<li>欧洲国家的战争能力提升后，开始扩张殖民，积累财富，启动工业化进程。</li>
+</ul>
+</li>
+<li>小国面临的问题：<ul>
+<li>战争频仍导致债务积累，最终受国际金融资本控制。</li>
+<li>西方式现代化伴随战争、殖民、剥削、压迫和经济金融危机。</li>
+</ul>
+</li>
+<li>中国的独特之处：<ul>
+<li>中国从古代起就是大规模文明，通过民族融合、政治制度和文化创新实现和维护大一统。</li>
+<li>中国式现代化解决了规模与现代化的矛盾。</li>
+</ul>
+</li>
+<li>中国政治历史的发展：<ul>
+<li>周代通过宗法制度和封建制度维持大一统。</li>
+<li>秦制实现了人民平等，但是失于生硬，后汉时期对其加以完善。</li>
+<li>儒家思想独尊，解决了思想多元化问题。</li>
+<li>中国共产党实现了有机的大一统，代表人民的整体利益。</li>
+</ul>
+</li>
+<li>中国共产党的贡献：<ul>
+<li>中国共产党通过组织构建人民和国家的血肉联系，解决了规模和秩序的矛盾。</li>
+<li>党的长期性和连续性保障了中国现代化事业的延续性。</li>
+<li>中国共产党提出了人民民主和自我革命来解决历史周期律问题。</li>
+</ul>
+</li>
+<li>统一性与多样性的统一：<ul>
+<li>中国共产党通过民主集中、统一战线、群众路线等方式解决了统一性和多样性的问题。</li>
+<li>在人口规模巨大的国家，保持制度不僵化、权力不腐败、阶层不固化、社会不动荡、人民不分裂、文化不堕落是关键。</li>
+</ul>
+</li>
+<li>结论：<ul>
+<li>中国共产党的领导在解决规模与现代化的矛盾方面发挥了重要作用，奠定了中国“人口规模巨大的现代化”的基础。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>中国式现代化的背景：中国拥有巨大的人口规模，这使得实现现代化与西方一些人口规模小的国家实现现代化存在明显差异。中国式现代化挑战在于如何协调和管理庞大的人口资源。</li>
+<li>中国的人口规模与历史对比：中国崛起的时代背景与十九世纪欧洲国家、二十世纪美国和日本不同。中国具有十亿级别的人口规模，与过去崛起的国家相比，数量级别不同。</li>
+<li>中国式现代化的制度安排：中国采用了一整套制度安排来应对规模庞大的挑战。改革开放始于特区，进行试点，以确保规模大、风险高的改革具有可控性。另一策略是让一部分地区先富起来，带动其他地区发展，以实现整体现代化。</li>
+<li>中国与西方现代化模式的不同：中国式现代化与西方式现代化不同之处在于中国模式更注重社会秩序、国家稳定，以及综合考虑国情和民情。西方式现代化更强调赢者通吃，而中国要协调各方面的利益。</li>
+<li>中国式现代化的民情与国情：中国注重社会秩序和稳定，这是中国文化下的传统价值观的体现。与西方强调言论自由不同，中国更看重秩序和稳定，以确保社会正常运转。</li>
+<li>中国的政治制度：中国政治制度不仅为现有人民负责，还为未来的子孙后代负责，具有超长时间感。这与中国式现代化的核心理念，以人民为中心，从摇篮到坟墓，关注人的整个生命周期的发展有关。</li>
+<li>人口高质量发展：中国提出人口高质量发展的概念，强调提供高品质的生活和发展，以拉动产业发展。这不仅涉及人口自身的提升，还包括提供高品质的生活条件。</li>
+<li>城乡结构和人口特征：中国的人口结构复杂，涉及城乡结构、年龄结构、收入结构等多个方面。中国政府通过其制度优势，能够有效地调节这些结构，实现全面脱贫攻坚等政策。</li>
+<li>信任与中国共产党：中国共产党的领导力量和长期实践让人民深刻信任党的初心和实践。对口援建等做法加强了不同地区之间的合作和共同发展。</li>
+</ul>
+<ol>
+<li>人口规模巨大与中国式现代化：<ul>
+<li>中国的人口规模巨大，是中国式现代化的一个重要特点。</li>
+<li>中国式现代化与西方式现代化不同，因为中国拥有十几亿人口，这在规模上与西方国家有着巨大差异。</li>
+<li>中国式现代化的关键在于制度安排，包括特区试验、分阶段发展等，以适应庞大的国家体量。</li>
+</ul>
+</li>
+<li>秩序与现代化：<ul>
+<li>秩序问题在人口规模巨大的国家尤为重要，中国共产党成功地平衡了秩序问题，使中国的现代化进程更加顺利。</li>
+<li>秩序包括社会稳定、国家稳定、有预期的发展和中长期规划等因素。</li>
+</ul>
+</li>
+<li>中国式现代化与西方式现代化的区别：<ul>
+<li>中国式现代化是超大规模现代化，结合了古老文明与现代文明。</li>
+<li>中国的现代化需要考虑更广泛的民情、国情，以及民众的诉求和利益。</li>
+<li>中国政府在协调不同地区、不同利益之间具有关键作用，保持社会的稳定和公平。</li>
+</ul>
+</li>
+<li>人口高质量发展与中国式现代化：<ul>
+<li>人口高质量发展是中国式现代化的一部分，涵盖了为人民提供高品质生活的目标。</li>
+<li>这一发展理念是以人民为中心，包括从出生到晚年的生命周期内提供服务和提高生活质量。</li>
+</ul>
+</li>
+<li>人口红利与高素质人口：<ul>
+<li>人口红利不仅与绝对人口规模有关，还与人口的高素质有关，中国需要高素质的人口红利。</li>
+<li>通过教育和培训，中国可以提高人口的素质，实现更高质量的人口发展。</li>
+</ul>
+</li>
+<li>阶级固化问题：<ul>
+<li>阶级固化在任何社会都是一种常态，但中国具有公平调节机制，如高考制度，可以促进社会公平。</li>
+<li>中国的社会结构相对动态，允许个人通过奋斗改变命运。</li>
+<li>具有公平意识的中国文化和中国共产党的领导使得社会能够纠偏，解决阶级固化问题。</li>
+</ul>
+</li>
+<li>中国的优势和机会：<ul>
+<li>中国为有准备的人提供了大量机会，自助者天助之，努力是最重要的。</li>
+<li>中国的机会多样且广泛，只要个人有能力和努力，就能获得支持和认可。</li>
+</ul>
+</li>
+</ol>
+<h4 id="思维导图如下"><a href="#思维导图如下" class="headerlink" title="思维导图如下"></a>思维导图如下</h4><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230904212558714.png" alt="image-20230904212558714" style="zoom: 80%;" />
+
+
+
+
       
     </div>
 
@@ -438,7 +526,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/21/ctf%E5%AF%86%E7%A0%81er%E7%95%99%E6%A0%A1%E5%88%B7%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/19/%E4%B8%80%E7%82%B9%E6%84%9F%E5%8F%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ang.jpg">
@@ -452,7 +540,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/12/21/ctf%E5%AF%86%E7%A0%81er%E7%95%99%E6%A0%A1%E5%88%B7%E9%A2%98/" class="post-title-link" itemprop="url">ctf密码er留校刷题</a>
+            <a href="/2023/08/19/%E4%B8%80%E7%82%B9%E6%84%9F%E5%8F%97/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -461,24 +549,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-12-21 09:18:26" itemprop="dateCreated datePublished" datetime="2022-12-21T09:18:26+08:00">2022-12-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-12 10:27:04" itemprop="dateModified" datetime="2023-07-12T10:27:04+08:00">2023-07-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
-                </span>
+              <time title="创建时间：2023-08-19 16:13:23 / 修改时间：21:21:15" itemprop="dateCreated datePublished" datetime="2023-08-19T16:13:23+08:00">2023-08-19</time>
             </span>
 
           
@@ -492,15 +565,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="留校刷题喵"><a href="#留校刷题喵" class="headerlink" title="留校刷题喵"></a>留校刷题喵</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/21/ctf%E5%AF%86%E7%A0%81er%E7%95%99%E6%A0%A1%E5%88%B7%E9%A2%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>有些东西果然有人需要才会写写（乐)</p>
+<p>（但是某人大学这两年一直在为了保研”卷“，所以写的东西可能都会涉及到保研这个词&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;上西电上的）。</p>
+<p>书院制：大一开学分实验班博弈，大一下学期网安实验班博弈，大一结束升大二分流要博弈，大二结束升大三转专业接着博弈。</p>
+<p>其实大部分最后为的都是一个保研名额罢了。</p>
+<p>反正已经在西电住了两年了，自认为最大的感受：选择大于努力（所以上述几个阶段才会被称为博弈）</p>
+<p>作为西电的第二批书院制的人，21级自认为有了20级的参考和血的教训，然后按照自己的想法选择了自己的专业，（但是最后平均情况跟往年比其实大差不差，只是大类的前多少名在为了rank能够更高博弈罢了）。</p>
+<p>但是也可以选择去一个小专业，也不是说小专业差，但是分流结果来看，大部分的小专业相比于卷的专业来说，生活不可谓不滋润（指获得保研资格的难度）。</p>
+<p>先说分流吧：</p>
+<p>大一分流会按照所有必修成绩的均分以及莫名奇妙的综测分直接相加的分数排名作为分流的依据。分流可以进入三个学院：计科院，智能院，网信院，后面细说</p>
+<p>（某人最后去了网信院）</p>
+<p>其实具体实际的想分流去什么专业是在大一最后快结束的一个月，然后这一个月里又要期末，又要比赛，又要想分流，又要提前把综测材料找好。总之——“充实”（上西电上的）。</p>
+<p>因为最后去了网信院，然后也并没有参加那些学院的宣讲，在这里就讲一下当时分流的心路历程：</p>
+<p>一开学认识的所有大二学长，在问他们关于分流的问题时，都会提到一个点：20级的计科惨不忍睹。</p>
+<p>但是作为一个还没有被拷打过的新生，哪里知道这个惨不忍睹是个什么情况，所以还是相信自己，就一定要去计科卷（后来想了想，疑问就来了，我当时是完全没有依据的凭空想象，我的第一反应就是计科，后来我把这个想法归之为大学之前的所有想法以及对于西电的评价，因为可能来西电就是怼着西电计科来的）。</p>
+<p>后来就逐渐开始思考一些有依据的东西，比如各个学院的课程设置以及充分发挥自己的优势。</p>
+<p>课程设置方面，目前根据我的了解：</p>
+<p>大二：计科院跟网信院一样当狗，智能院快乐生活</p>
+<p>（注：当狗指课程的难度以及课程的内卷程度以及实验的数量和难度）</p>
+<p>亲测网信院大二下（42个实验34个实验报告历历在目，甚至在期末考完之后还有两份报告没写，泪目了）</p>
+<p>因为实验室里有好多计科的，个人体验：和我一样当狗。。。。。实验多课也多。</p>
+<p>然后就到了自己选择专业的时候：</p>
+<p>第一：了解到网信的英语不计入保研科目</p>
+<p>第二：了解到网信没有电路模电之类的有关于“电”的科目（某人在这方面特别抗拒学习）</p>
+<p>第三：网信的数学相关科目会稍微多（数学好可能会有优势）（事实证明没有什么用）。</p>
+<p>第四：网信的课表（课好少啊）<br>综上所述：毅然决然去了网信院</p>
+<p>分流结果：20级卷的专业21级仍然卷，只是20级计科的离谱在21级稍微缓和了一点，但是仍然一马当先。</p>
+<p>草：好像把智能院忘了：呃呃呃，从头到尾就没有考虑过智能院，因为课程设置太离谱了（后面再说）。所以只在计科和网信做了选择。</p>
+<p>学的内容：计科和网信学的主要科目在大二貌似没有什么差距，除了那特别水的数学基础。</p>
+<p>计科具体学习内容不清楚</p>
+<p>网信大二：寄组，os，全是黑书，划重点，</p>
+<p>​	黑书，看不懂学不完，根本看不完，根本看不完，根本看不完，字小行密，并且翻译是依托。想看懂还是得王道。（并且只能机组只能讲完一半，压力小一点）	os直接快把整本黑书给结束了，要是能学会直接飞升了。</p>
+<p>​	但是：这门课只有两个学分，就很搞，付出大把时间复习2学分，还学不会。</p>
+<p>​	数据结构：学的明显比计科浅，信号学的也浅（但是今年考的最难），</p>
+<p>​	实验：上面已经说了，说起来都是泪。</p>
+<h5 id="计科课程：我觉得除了课多实验多卷王多大佬多女生多，课程设置还是挺好的（除了模电）。"><a href="#计科课程：我觉得除了课多实验多卷王多大佬多女生多，课程设置还是挺好的（除了模电）。" class="headerlink" title="计科课程：我觉得除了课多实验多卷王多大佬多女生多，课程设置还是挺好的（除了模电）。"></a>计科课程：我觉得除了课多实验多卷王多大佬多女生多，课程设置还是挺好的（除了模电）。</h5><h5 id="智能：此处绝非诋毁，机组学的内容很少，考的简单，电路学的内容比计科浅好多，还有一些莫名其妙的课程：脑科学（学生物），以及接近4学分的人智概论（这课就是依托）。然后os是选修，计网直接不学（我也不知道不学-os和计网-对一个计算机人来说真的合理吗）"><a href="#智能：此处绝非诋毁，机组学的内容很少，考的简单，电路学的内容比计科浅好多，还有一些莫名其妙的课程：脑科学（学生物），以及接近4学分的人智概论（这课就是依托）。然后os是选修，计网直接不学（我也不知道不学-os和计网-对一个计算机人来说真的合理吗）" class="headerlink" title="智能：此处绝非诋毁，机组学的内容很少，考的简单，电路学的内容比计科浅好多，还有一些莫名其妙的课程：脑科学（学生物），以及接近4学分的人智概论（这课就是依托）。然后os是选修，计网直接不学（我也不知道不学 os和计网 对一个计算机人来说真的合理吗）"></a>智能：此处绝非诋毁，机组学的内容很少，考的简单，电路学的内容比计科浅好多，还有一些莫名其妙的课程：脑科学（学生物），以及接近4学分的人智概论（这课就是依托）。然后os是选修，计网直接不学（我也不知道不学 os和计网 对一个计算机人来说真的合理吗）</h5><p>但是智能有一个好处：人多且摆，你可以滋润的（相比计科和信安来说，21级的信安个人认为快赶上计科了）获得一个好看的rank去保研。</p>
+<p>因为坚定了自己的转业，所以完全没有考虑转专业的事情。</p>
+<p>相关的政策大概是：</p>
+<p>大二结束教务处会让学院公布前两年的一个分数排名：这个排名应该是算了前两年的所有必修，然后这之前会公布转专业的要求：21级网信院是排名10%以内或者突出特长。 在这之后在规定时间内在西电一站式服务大厅提交转专业申请，符合要求即可参加转专业的面试，这个面试（据说有的院很水，有的院很玄学）。然后几天后会公布转专业成功的名单。</p>
+
       
     </div>
 
@@ -519,7 +622,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E4%B8%8A%E6%9C%BA%E6%8A%A5%E5%91%8A/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/04/%E8%AE%BA%E6%96%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ang.jpg">
@@ -533,7 +636,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/12/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E4%B8%8A%E6%9C%BA%E6%8A%A5%E5%91%8A/" class="post-title-link" itemprop="url">编译原理上机报告</a>
+            <a href="/2023/08/04/%E8%AE%BA%E6%96%87/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -543,24 +646,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-12-21 09:15:42" itemprop="dateCreated datePublished" datetime="2022-12-21T09:15:42+08:00">2022-12-21</time>
+              <time title="创建时间：2023-08-04 21:38:58" itemprop="dateCreated datePublished" datetime="2023-08-04T21:38:58+08:00">2023-08-04</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-14 10:32:56" itemprop="dateModified" datetime="2023-07-14T10:32:56+08:00">2023-07-14</time>
+                <time title="修改时间：2023-08-07 20:44:36" itemprop="dateModified" datetime="2023-08-07T20:44:36+08:00">2023-08-07</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">编译原理</span></a>
-                </span>
-            </span>
 
           
 
@@ -573,18 +667,53 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="编译原理上机实验报告"><a href="#编译原理上机实验报告" class="headerlink" title="编译原理上机实验报告"></a>编译原理上机实验报告</h1><h3 id="一、-上机题目：简单函数绘图语言解释器"><a href="#一、-上机题目：简单函数绘图语言解释器" class="headerlink" title="一、 上机题目：简单函数绘图语言解释器"></a>一、 上机题目：简单函数绘图语言解释器</h3><h4 id="1-1题目简述"><a href="#1-1题目简述" class="headerlink" title="1.1题目简述"></a>1.1题目简述</h4><p>题目：为函数绘图语言编写一个解释器</p>
-<p>解释器接受用绘图语言编写的源程序，经语法和语义分析之后，将源程序所规定的图形显示在显示屏</p>
-<p>（或窗口）中。</p>
-<p>目的：通过自己动手编写解释器，掌握语言翻译特别是语言识别的基本方法。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E4%B8%8A%E6%9C%BA%E6%8A%A5%E5%91%8A/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p>这段代码定义了一个名为<code>ObliviousRTree</code>的C++类模板，它表示一个带有范围查询和k最近邻查询功能的R树。这个R树使用Oblivious RAM (ORAM)技术来保护数据的隐私和安全性。代码中使用了模板参数<code>T</code>，用于指定底层的ORAM实现，可以是<code>ORAM</code>类或其子类。</p>
+<p>让我们逐段解释代码：</p>
+<ol>
+<li>头文件保护：<code>#ifndef OBLIVIOUS_RTREE_H</code>和<code>#define OBLIVIOUS_RTREE_H</code>用于防止头文件被重复包含。</li>
+<li>包含头文件：<code>#include</code>指令包含了一些必要的C++标准库和其他头文件。</li>
+<li>结构体定义：<ul>
+<li><code>RTreeEntry</code>：表示R树节点的数据项。它包含一个<code>blockID</code>用于标识节点在ORAM中的位置，以及一个<code>MBR</code>（Minimum Bounding Rectangle，最小外接矩形）用于表示节点的范围。</li>
+<li><code>kNNUtil</code>：用于k最近邻查询的辅助结构体，它包含了一个布尔值<code>isData</code>表示该项是数据还是非叶子节点、一个<code>dis</code>表示距离以及一个<code>payload</code>指针用于保存数据或节点信息。</li>
+</ul>
+</li>
+<li>类模板定义：<code>ObliviousRTree</code>是一个类模板，它有一个类型参数<code>T</code>，用于指定ORAM的实现类。类中包含了一些成员函数和数据成员用于构建和查询R树。</li>
+<li>构造函数：<ul>
+<li>第一个构造函数用于从输入文件中加载点数据并构建R树，并将其存储到ORAM中。</li>
+<li>第二个构造函数用于从已经构建好的ORAM中加载R树。</li>
+</ul>
+</li>
+<li>成员函数：<ul>
+<li><code>getServerSize()</code>, <code>getClientSize()</code>, <code>getCommSize()</code>, <code>resetCommSize()</code>: 获取或重置ORAM的各种尺寸和通信开销。</li>
+<li><code>getCacheHitRate()</code>, <code>getAccidentHitRate()</code>, <code>getHitCount()</code>, <code>getAccidentHitCount()</code>, <code>resetCacheHitRate()</code>: 获取或重置ORAM的缓存命中率和访问次数。</li>
+<li><code>kNN()</code>: 执行k最近邻查询。</li>
+<li><code>range()</code>: 执行范围查询。</li>
+</ul>
+</li>
+<li>私有数据成员：<ul>
+<li><code>rootID</code>和<code>rootMBR</code>：R树的根节点ID和范围。</li>
+<li><code>n_points</code>：数据点的数量。</li>
+<li><code>batch_no</code>和<code>batch_hit_count</code>：批次号和批次命中次数，用于统计批量查询中的性能。</li>
+<li><code>fcache</code>和<code>trace</code>：用于追踪缓存和查询情况的文件句柄和标志。</li>
+<li><code>timestamp</code>：用于记录时间戳。</li>
+<li><code>oram</code>：ORAM实例，用于存储R树。</li>
+</ul>
+</li>
+</ol>
+<p>Rtree和path-Oram的结合，实质上就是我们把数据存到rtree这棵树中，并且仍然只是在叶子节点存储数据，我们在建立rtree树的过程中，从用户提供的数据文件中能够获得n数目的数据块，第一点，用户的输入为：数据块的id，数据块的位置，这是常老师的处理，我们的处理则需要根据数据块文件的信息提取出数据块的关键字，将其一同存储在数据块的数据结构中。</p>
+<p>将这些数据块存储在叶子节点中，首先，我们根据么一个叶子节点能够存储的数据块的数量计算出我们需要的叶子节点的数量，</p>
+<p>注意：这里为什么要计算数量，因为我们都忽略了一个点，那就是叶子节点里存储的是数据，但是非叶子节点存储的指向其孩子节点的分支条目，这个分支条目和数据块的大小是不一样的，如果我们将rtree的每一个节点都规定为同样的大小，那么我们就可以根据这个大小计算出叶子节点的最大存储量和内部节点的最大存储量。</p>
+<p>下面详细讲述建树过程，老师这里的建树方法其实采用了和我在github里见到的所有代码都不同的建树方法。</p>
+<p>首先我们能够确定数据点的数量以及数据点的位置，然后我们可以计算出在最底层即叶子层一共需要多少个叶子节点，这些节点里存储数据</p>
+<p>然后我们能够根据叶子节点的数量向上一步步合并节点，直到节点为1为止，此时这个节点就是rtree的根节点，</p>
+<p>在建树的过程中，我们设置了两个映射结构：</p>
+<p>第一个映射结构存储了每一个数据块。</p>
+<p>第二个映射结构存储了rtree的每一个节点。</p>
+<p>然后开始介绍rtree和oram结合的knn查询过程以及正常的range查询过程。</p>
+<p>对于查询过程：</p>
+<p>查询过程是完全遵循pathoram的，但是采用的查询方式，是我们提供要查询的数据块的ID，而不是这个数据块的信息，</p>
+<p>然后我觉得老师这个代码的优化在于，就是我们将数据块查询之后，再寻找路径的过程也是要包含在查询过程当中的，所以老师的优化是在于查询完毕之后的路径找回，他采用了rtree的结构，能够在将路径上的数据块插回的速度加快。</p>
+
       
     </div>
 
@@ -603,7 +732,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/29/cmake-learn/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/03/%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ang.jpg">
@@ -617,7 +746,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/10/29/cmake-learn/" class="post-title-link" itemprop="url">cmake_learn</a>
+            <a href="/2023/08/03/%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -626,24 +755,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-10-29 21:34:05" itemprop="dateCreated datePublished" datetime="2022-10-29T21:34:05+08:00">2022-10-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-12 10:26:25" itemprop="dateModified" datetime="2023-07-12T10:26:25+08:00">2023-07-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">一些工具的学习</span></a>
-                </span>
+              <time title="创建时间：2023-08-03 17:02:01 / 修改时间：17:05:30" itemprop="dateCreated datePublished" datetime="2023-08-03T17:02:01+08:00">2023-08-03</time>
             </span>
 
           
@@ -657,15 +771,47 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h5 id="Cmake"><a href="#Cmake" class="headerlink" title="Cmake"></a>Cmake</h5><p>​	没想到竟然会为了抄一个编译原理作业而“学到”这么多东西，原来从大佬的github上扒代码也是要讲究技术的，呜呜呜，属实是被薄纱了，在求助了fl师傅之后，终于意识到了自己的错误，cmake和make这两个命令的区别。未完待续……</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/10/29/cmake-learn/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h3 id="灰色预测模型"><a href="#灰色预测模型" class="headerlink" title="灰色预测模型"></a>灰色预测模型</h3><p>灰色预测模型（Gray Forecast Model）是一种基于小样本数据进行预测的模型。灰色预测模型所需建模信息少，运算方便，建模精度高，在各种预测领域都有着广泛的应用，是处理小样本预测问题的有效工具。</p>
+<ol start="2">
+<li>灰色模型介绍<br>灰 色 预 测 模 型 \color{red}灰色预测模型灰色预测模型（Gray Forecast Model）是通过少量的、不完全的信息，建立数学模型并做出预测的一种预测方法。当我们应用运筹学的思想方法解决实际问题，制定发展战略和政策、进行重大问题的决策时，都必须对未来进行科学的预测。预测是根据客观事物的过去和现在的发展规律，借助于科学的方法对其未来的发展趋势和状况进行描述和分析，并形成科学的假设和判断。<br>灰色系统理论是研究解决灰色系统分析、建模、预测、决策和控制的理论。灰色预测是对灰色系统所做的预测。目前常用的一些预测方法（如回归分析等），需要较大的样本.若样本较小，常造成较大误差，使预测目标失效。灰色预测模型所需建模信息少，运算方便，建模精度高，在各种预测领域都有着广泛的应用，是处理小样本预测问题的有效工具。<br>灰色系统理论是由华中理工大学邓聚龙教授于1982年提出并加以发展的。二十几年来，引起了不少国内外学者的关注，得到了长足的发展。目前，在我国已经成为社会、经济、科学技术在等诸多领域进行预测、决策、评估、规划控制、系统分析与建模的重要方法之一。特别是它对时间序列短、统计数据少、信息不完全系统的分析与建模，具有独特的功效，因此得到了广泛的应用。<br>灰色系统是黑箱概念的一种推广。我们把既含有已知信息又含有未知信息的系统称为灰色系统。作为两个极端，我们将称信息完全未确定的系统为黑色系统；称信息完全确定的系统为白色系统。区别白色系统与黑色系统的重要标志是系统各因素之间是否具有确定的关系。</li>
+<li>精度检验等级参照表<br>模型精度等级	均方差比值C<br>1级（好）	C&lt;&#x3D;0.35<br>2级（合格）	0.35&lt;C&lt;&#x3D;0.5<br>3级（勉强）	0.5&lt;C&lt;&#x3D;0.65<br>4级（不合格）	0.65&lt;C</li>
+</ol>
+<p>代码为：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[]</span>=<span class="title">greymodel</span><span class="params">(y)</span></span></span><br><span class="line"><span class="comment">% 本程序主要用来计算根据灰色理论建立的模型的预测值。</span></span><br><span class="line"><span class="comment">% 应用的数学模型是 GM(1,1)。</span></span><br><span class="line"><span class="comment">% 原始数据的处理方法是一次累加法。</span></span><br><span class="line">y=input(<span class="string">&#x27;请输入数据 &#x27;</span>);</span><br><span class="line">n=<span class="built_in">length</span>(y);</span><br><span class="line">yy=<span class="built_in">ones</span>(n,<span class="number">1</span>);</span><br><span class="line">yy(<span class="number">1</span>)=y(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:n</span><br><span class="line">    yy(<span class="built_in">i</span>)=yy(<span class="built_in">i</span><span class="number">-1</span>)+y(<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">B=<span class="built_in">ones</span>(n<span class="number">-1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:(n<span class="number">-1</span>)</span><br><span class="line">    B(<span class="built_in">i</span>,<span class="number">1</span>)=-(yy(<span class="built_in">i</span>)+yy(<span class="built_in">i</span>+<span class="number">1</span>))/<span class="number">2</span>;</span><br><span class="line">    B(<span class="built_in">i</span>,<span class="number">2</span>)=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">BT=B&#x27;;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:n<span class="number">-1</span></span><br><span class="line">    YN(<span class="built_in">j</span>)=y(<span class="built_in">j</span>+<span class="number">1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">YN=YN&#x27;;</span><br><span class="line">A=inv(BT*B)*BT*YN;</span><br><span class="line">a=A(<span class="number">1</span>);</span><br><span class="line">u=A(<span class="number">2</span>);</span><br><span class="line">t=u/a;</span><br><span class="line"><span class="built_in">i</span>=<span class="number">1</span>:n+<span class="number">2</span>;</span><br><span class="line">yys(<span class="built_in">i</span>+<span class="number">1</span>)=(y(<span class="number">1</span>)-t).*<span class="built_in">exp</span>(-a.*<span class="built_in">i</span>)+t;</span><br><span class="line">yys(<span class="number">1</span>)=y(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=n+<span class="number">2</span>:<span class="number">-1</span>:<span class="number">2</span></span><br><span class="line">    ys(<span class="built_in">j</span>)=yys(<span class="built_in">j</span>)-yys(<span class="built_in">j</span><span class="number">-1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">x=<span class="number">1</span>:n;</span><br><span class="line">xs=<span class="number">2</span>:n+<span class="number">2</span>;</span><br><span class="line">yn=ys(<span class="number">2</span>:n+<span class="number">2</span>);</span><br><span class="line"><span class="built_in">plot</span>(x,y,<span class="string">&#x27;^r&#x27;</span>,xs,yn,<span class="string">&#x27;*-b&#x27;</span>);</span><br><span class="line">det=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">sum1=<span class="number">0</span>;</span><br><span class="line">sumpe=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:n</span><br><span class="line">    sumpe=sumpe+y(<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">pe=sumpe/n;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:n;</span><br><span class="line">    sum1=sum1+(y(<span class="built_in">i</span>)-pe).^<span class="number">2</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">s1=<span class="built_in">sqrt</span>(sum1/n);</span><br><span class="line">sumce=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:n</span><br><span class="line">    sumce=sumce+(y(<span class="built_in">i</span>)-yn(<span class="built_in">i</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">ce=sumce/(n<span class="number">-1</span>);</span><br><span class="line">sum2=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">2</span>:n;</span><br><span class="line">    sum2=sum2+(y(<span class="built_in">i</span>)-yn(<span class="built_in">i</span>)-ce).^<span class="number">2</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">s2=<span class="built_in">sqrt</span>(sum2/(n<span class="number">-1</span>));</span><br><span class="line">c=(s2)/(s1);</span><br><span class="line"><span class="built_in">disp</span>([<span class="string">&#x27;后验差比值为：&#x27;</span>,num2str(c)]);</span><br><span class="line"><span class="keyword">if</span> c&lt;<span class="number">0.35</span></span><br><span class="line">    <span class="built_in">disp</span>(<span class="string">&#x27;系统预测精度好&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> c&lt;<span class="number">0.5</span></span><br><span class="line">        <span class="built_in">disp</span>(<span class="string">&#x27;系统预测精度合格&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> c&lt;<span class="number">0.65</span></span><br><span class="line">            <span class="built_in">disp</span>(<span class="string">&#x27;系统预测精度勉强&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">disp</span>(<span class="string">&#x27;系统预测精度不合格&#x27;</span>)</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">disp</span>([<span class="string">&#x27;下个拟合值为 &#x27;</span>,num2str(ys(n+<span class="number">1</span>))]);</span><br><span class="line"><span class="built_in">disp</span>([<span class="string">&#x27;再下个拟合值为&#x27;</span>,num2str(ys(n+<span class="number">2</span>))]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>题目：</p>
+<p>现在有2000年-2010年某市总人口，现在用灰色方程模型来做。</p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLFOWvTAZOwxFibFDaceAC0RGhBECfehfW16v0df74yViaPWib9Jrqj2y5w/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<p>第一步，对原始数据（X^(0) ）做一次累加生成处理，得到一次累加序列X^(1) </p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLvLbVEN8ltaWXe401ElncPFDgBxRF00XIvUnI53xf5YFgBJ7xafCOGw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLcMCabyJA35iarKYM9icc75TymdzWRKN57uIA148GGRruDWtj17Cic1QqQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<p>第一个方程中，X^(0)  (1)代表原始数据的第一个数1013.4，k代表时间，从1开始，即2000年为1，依次累加。里面未知参数为a和u，也就是需要求这两个的值，下面就是求解的拆分步骤。</p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLj05ulib3xnzKDnpwt00s6r8iayWRrZWMf2Cw4QBVXTMCkjzM1NQBdsEw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvL1BEtjuGIEMQibgicB7bia3CIs495Nc1zDbNL1icMtyUibMRVLgWA9KbZFbA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNibTrETpZr4bws6iaibQHaUP9ibLWG5s7Hw892fzYibjjb42fHWXW6QHkJVNh7diaxMNicib6vxj4sbNoosHw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<p>所以，将求出来的数都代入这个公式</p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLFOWvTAZOwxFibFDaceAC0RGhBECfehfW16v0df74yViaPWib9Jrqj2y5w/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<p>得到方程</p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLNJ3zeq9wXp7eRAicicVcAwNwWygeE7tsM42vt15BKdpEB3NTfNkF71zw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLlW3fs9x1tYZexzPH97Pq0LJ0CAmkUsfRjfJte23LVH5V2xBngcSOqw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<p>在EXCLE里再进行计算，记得按shift+4，u&#x2F;a等一些数是位置固定的。</p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLoCk8uT4Iz3cpk8w4ppStr6gActGZY4ww7r0u5U9uxMiaAcicgsr0PvhA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
+
+<p>这个预测的值是对累加值的预测，需要还原到原始数据的预测值，就是后一个数减去前一个数。第一个数保持不变。这样算出来可以看到从0到10跟2000年至2010年的常住人口数基本上差距大不，还算可以。</p>
+<img src="https://mmbiz.qpic.cn/mmbiz_png/bwomSosbSNicrlBlpcaTbQA02eWdYCPvLc5MYLF6z0ujNlcFkONPNBia8icrXia2Et93n6iaiaIXyTibDeSX2EJO1RMsA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片" style="zoom:80%;" />
       
     </div>
 
@@ -684,7 +830,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/19/RSA/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/03/%E6%AC%A7%E5%8D%A1%E5%9B%BE%E5%92%8C%E5%93%88%E5%AF%86%E5%B0%94%E9%A1%BF%E5%9B%BE%E7%9A%84%E5%BA%94%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ang.jpg">
@@ -698,7 +844,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/10/19/RSA/" class="post-title-link" itemprop="url">RSA</a>
+            <a href="/2023/08/03/%E6%AC%A7%E5%8D%A1%E5%9B%BE%E5%92%8C%E5%93%88%E5%AF%86%E5%B0%94%E9%A1%BF%E5%9B%BE%E7%9A%84%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -707,24 +853,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-10-19 11:21:29" itemprop="dateCreated datePublished" datetime="2022-10-19T11:21:29+08:00">2022-10-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-12 10:28:12" itemprop="dateModified" datetime="2023-07-12T10:28:12+08:00">2023-07-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
-                </span>
+              <time title="创建时间：2023-08-03 16:56:13 / 修改时间：17:01:48" itemprop="dateCreated datePublished" datetime="2023-08-03T16:56:13+08:00">2023-08-03</time>
             </span>
 
           
@@ -738,16 +869,96 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>​	</p>
-<h2 id="第二题——signin-——不会（且和第六题一个德行）（一看原来是同一个出题人）"><a href="#第二题——signin-——不会（且和第六题一个德行）（一看原来是同一个出题人）" class="headerlink" title="第二题——signin ——不会（且和第六题一个德行）（一看原来是同一个出题人）"></a>第二题——signin ——不会（且和第六题一个德行）（一看原来是同一个出题人）</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/10/19/RSA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h3 id="欧卡图和哈密尔顿图的应用"><a href="#欧卡图和哈密尔顿图的应用" class="headerlink" title="欧卡图和哈密尔顿图的应用"></a>欧卡图和哈密尔顿图的应用</h3><h4 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h4><h5 id="1-1-Euler图"><a href="#1-1-Euler图" class="headerlink" title="1.1.Euler图"></a>1.1.Euler图</h5><p>定义 经过<img src="https://math.jianshu.com/math?formula=G" alt="G">的每条边的迹叫做<img src="https://math.jianshu.com/math?formula=G" alt="G">的Euler迹；闭的Euler迹叫做<strong>Euler回路</strong>或E回路；含Euler回路的图叫做<strong>Euler图</strong></p>
+<p><strong>定理1</strong> 1.<img src="https://math.jianshu.com/math?formula=G" alt="G">是Euler图的充分必要条件是<img src="https://math.jianshu.com/math?formula=G" alt="G">联通且每个顶点都是偶次顶点。<br>2.<img src="https://math.jianshu.com/math?formula=G" alt="G">是Euler图的充分必要条件是<img src="https://math.jianshu.com/math?formula=G" alt="G">联通且<br><img src="https://math.jianshu.com/math?formula=G=%5Cbigcup_%7Bi=1%7D%5E%7Bd%7D%20C_%7Bi%7D" alt="G=\bigcup_{i=1}^{d} C_{i}">，<img src="https://math.jianshu.com/math?formula=C_%7Bi%7D" alt="C_{i}">是圈，<br><img src="https://math.jianshu.com/math?formula=E%5Cleft(C_%7Bi%7D%5Cright)%20%5Ccap%20E%5Cleft(C_%7Bj%7D%5Cright)=%5CPhi(i%20%5Cneq%20j)" alt="E\left(C_{i}\right) \cap E\left(C_{j}\right)=\Phi(i \neq j)"><br>3.<img src="https://math.jianshu.com/math?formula=G" alt="G">中有Euler迹的充要条件是<img src="https://math.jianshu.com/math?formula=G" alt="G">联通且至多有两个顶点。</p>
+<h5 id="1-2-Hamilton图"><a href="#1-2-Hamilton图" class="headerlink" title="1.2.Hamilton图"></a>1.2.Hamilton图</h5><p>定义 包含<img src="https://math.jianshu.com/math?formula=G" alt="G">的每个顶点的轨叫做Hamilton轨；闭的Hamilton轨叫做Hamilton圈或H圈；含Hamilton圈的图叫做<strong>Hamilton图</strong>。</p>
+<h5 id="1-3-Euler图和Hamilton图的区别"><a href="#1-3-Euler图和Hamilton图的区别" class="headerlink" title="1.3.Euler图和Hamilton图的区别"></a>1.3.Euler图和Hamilton图的区别</h5><p>都是含有一个圈，但是Euler图的关键词是“边”，它要经过该图中的每一条边。而Hamilton图的关键词是”顶点”只要经过每个顶点就行了，也就是说，Euler图的要求更高。</p>
+<h5 id="2-Euler回路的Fleury算法"><a href="#2-Euler回路的Fleury算法" class="headerlink" title="2.Euler回路的Fleury算法"></a>2.Euler回路的Fleury算法</h5><p>1.<img src="https://math.jianshu.com/math?formula=%5Cforall%20v_%7B0%7D%20%5Cin%20V(G)" alt="\forall v_{0} \in V(G)">，令<img src="https://math.jianshu.com/math?formula=W_%7B0%7D=v_%7B0%7D" alt="W_{0}=v_{0}">。<br> 2.假设迹<img src="https://math.jianshu.com/math?formula=W_%7Bi%7D=v_%7B0%7D%20e_%7B1%7D%20v_%7B1%7D%20%5Ccdots%20e_%7Bi%7D%20v_%7Bi%7D" alt="W_{i}=v_{0} e_{1} v_{1} \cdots e_{i} v_{i}">已经选定，那么按下列方法从<img src="https://math.jianshu.com/math?formula=E-%5Cleft%5C%7Be_%7B1%7D,%20%5Ccdots,%20e_%7Bi%7D%5Cright%5C%7D" alt="E-\left\{e_{1}, \cdots, e_{i}\right\}">中选取边<img src="https://math.jianshu.com/math?formula=e_%7Bi+1%7D" alt="e_{i+1}">:<br> (1)<img src="https://math.jianshu.com/math?formula=e_%7Bi+1%7D" alt="e_{i+1}">和<img src="https://math.jianshu.com/math?formula=v_%7Bi%7D" alt="v_{i}">相关联；<br> (2)除非没有别的边可选择，否则<img src="https://math.jianshu.com/math?formula=e_%7Bi+1%7D" alt="e_{i+1}">不能是<img src="https://math.jianshu.com/math?formula=G_%7Bi%7D=G-%5Cleft%5C%7Be_%7B1%7D,%20%5Ccdots,%20e_%7Bi%7D%5Cright%5C%7D" alt="G_{i}=G-\left\{e_{1}, \cdots, e_{i}\right\}">的割边（<strong>割边</strong>是一条删除后使连通图不再联通的边）。<br> 3.当第2步不能再执行时，算法停止。</p>
+<h4 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h4><h5 id="邮递员问题"><a href="#邮递员问题" class="headerlink" title="邮递员问题"></a>邮递员问题</h5><p>一位邮递员从邮局选好邮件去投递，然后返回邮局，当然他必须经过他负责投递的每条街道至少一次，为他设计一条投递路线，使得他<strong>行程最短</strong>。</p>
+<p>上述中国邮递员问题的数学模型是：在一个赋权连通图上求一个含所有边的回路，且使此<strong>回路的权最小</strong>。</p>
+<p>显然，若此连通赋权图是 Euler 图，则可用 Fleury 算法求 Euler 回路，此回路即为所求。</p>
+<p>若是非Euler图，则有以下算法：</p>
+<p>设<img src="https://math.jianshu.com/math?formula=G" alt="G">是联通赋权图<br> 1.求<img src="https://math.jianshu.com/math?formula=V_%7B0%7D=%5C%7Bv%20%7C%20v%20%5Cin%20V(G),%20d(v)=1(%5Cbmod%202)%5C%7D" alt="V_{0}=\{v | v \in V(G), d(v)=1(\bmod 2)\}"><br> 2.对每对顶点<img src="https://math.jianshu.com/math?formula=u,%20v%20%5Cin%20V_%7B0%7D" alt="u, v \in V_{0}">，求<img src="https://math.jianshu.com/math?formula=d(u,v)" alt="d(u,v)">（<img src="https://math.jianshu.com/math?formula=d(u,v)" alt="d(u,v)">是<img src="https://math.jianshu.com/math?formula=u" alt="u">和<img src="https://math.jianshu.com/math?formula=v" alt="v">的距离，可用最短路问题中的算法来求出）<br> 3.构造完全赋权图<img src="https://math.jianshu.com/math?formula=K_%7B%5Cleft.%5Cright%7C_%7BV_%7B0%7D%7D%20%7C%7D" alt="K_{\left.\right|_{V_{0}} |}">，以<img src="https://math.jianshu.com/math?formula=V_%7B0%7D" alt="V_{0}">为顶点集，以<img src="https://math.jianshu.com/math?formula=d(u,v)" alt="d(u,v)">为边<img src="https://math.jianshu.com/math?formula=uv" alt="uv">的权。<br> 4.求<img src="https://math.jianshu.com/math?formula=K_%7B%5Cleft%7CV_%7B0%7D%5Cright%7C%7D" alt="K_{\left|V_{0}\right|}">中的最小完美对集<img src="https://math.jianshu.com/math?formula=M" alt="M">。<br> 5.求<img src="https://math.jianshu.com/math?formula=M" alt="M">中边的端点之间的在<img src="https://math.jianshu.com/math?formula=G" alt="G">中的最短轨。<br> 6.在5中求得的每条最短轨上每条边添加一条等权的所谓“倍边”（即共端点共权的边）。<br> 7.在6中所得的图中求Euler回路即是邮递员问题的解。</p>
+<h5 id="旅行商问题"><a href="#旅行商问题" class="headerlink" title="旅行商问题"></a>旅行商问题</h5><p>一名推销员准备前往若干城市推销产品，然后回到他的出发地。如何为他设计一条最短的旅行路线（从驻地出发，经过每个城市恰好一次，最后返回驻地）？这个问题称为旅行商问题。用图论的术语说，就是在一个赋权完全图中，找出一个有最小权的Hamilton 圈。称这种圈为最优圈。与最短路问题及连线问题相反，目前还<strong>没有求解旅行商问题的有效算法</strong>。所以希望有一个方法以获得相当好（但不一定最优）的解。</p>
+<p>一个可行的方法是首先求一个Hamilton圈C，然后适当修改C得到具有更小权的另一个Hamilton圈，修改的方法叫做<strong>改良圈算法</strong>。</p>
+<blockquote>
+<p>设初始圈<img src="https://math.jianshu.com/math?formula=C=v_%7B1%7D%20v_%7B2%7D%20%5Ccdots%20v_%7Bn%7D%20v_%7B1%7D" alt="C=v_{1} v_{2} \cdots v_{n} v_{1}"><br>1.对于<img src="https://math.jianshu.com/math?formula=1%3Ci+1%3Cj%3Cn" alt="1&lt;i+1&lt;j&lt;n">，构造新的Hamilton图：<br><img src="https://math.jianshu.com/math?formula=C_%7By%7D=v_%7B1%7D%20v_%7B2%7D%20%5Ccdots%20v_%7Bi%7D%20v_%7Bj%7D%20v_%7Bj-1%7D%20v_%7Bj-2%7D%20%5Ccdots%20v_%7Bi+1%7D%20v_%7Bj+1%7D%20v_%7Bj+2%7D%20%5Ccdots%20v_%7Bn%7D%20v_%7B1%7D" alt="C_{y}=v_{1} v_{2} \cdots v_{i} v_{j} v_{j-1} v_{j-2} \cdots v_{i+1} v_{j+1} v_{j+2} \cdots v_{n} v_{1}"><br>它是由C中<strong>删去边<img src="https://math.jianshu.com/math?formula=v_%7Bi%7D%20v_%7Bi+1%7D" alt="v_{i} v_{i+1}">和<img src="https://math.jianshu.com/math?formula=v_%7Bj%7D%20v_%7Bj+1%7D" alt="v_{j} v_{j+1}">，添加边<img src="https://math.jianshu.com/math?formula=v_%7Bi%7D%20v_%7Bj%7D" alt="v_{i} v_{j}">和<img src="https://math.jianshu.com/math?formula=v_%7Bi+1%7D%20v_%7Bj+1%7D" alt="v_{i+1} v_{j+1}">得到的</strong>。若<img src="https://math.jianshu.com/math?formula=w%5Cleft(v_%7Bi%7D%20v_%7Bj%7D%5Cright)+w%5Cleft(v_%7Bi+1%7D%20v_%7Bj+1%7D%5Cright)%3Cw%5Cleft(v_%7Bi%7D%20v_%7Bi+1%7D%5Cright)+w%5Cleft(v_%7Bj%7D%20v_%7Bj+1%7D%5Cright)" alt="w\left(v_{i} v_{j}\right)+w\left(v_{i+1} v_{j+1}\right)&lt;w\left(v_{i} v_{i+1}\right)+w\left(v_{j} v_{j+1}\right)">则以<img src="https://math.jianshu.com/math?formula=C_%7Bi%20j%7D" alt="C_{i j}">代替<img src="https://math.jianshu.com/math?formula=C" alt="C">，<img src="https://math.jianshu.com/math?formula=C_%7Bi%20j%7D" alt="C_{i j}">称为圈<img src="https://math.jianshu.com/math?formula=C" alt="C">的改良圈。<br>2.转1，直到无法进行，停止。</p>
+</blockquote>
+<p>这个算法得到的结果几乎肯定不是最优的，为了得到更高的精确度，可以选择不同的初始圈，重复几次算法，以求得较准确的结果。</p>
+<p>从北京（Pe）乘飞机到东京(T)、纽约(N)、墨西哥城(M)、伦敦(L)、巴黎(Pa)<br>五城市做旅游，每城市恰去一次再回北京，应如何安排旅游线，使旅程最短？各城市之<br>间的航线距离如表。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>伦敦(L)</th>
+<th>墨西哥(M)</th>
+<th>纽约(N)</th>
+<th>巴黎(Pa)</th>
+<th>北京(Pe)</th>
+<th>东京(T)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>伦敦(L)</td>
+<td></td>
+<td>56</td>
+<td>35</td>
+<td>21</td>
+<td>51</td>
+<td>60</td>
+</tr>
+<tr>
+<td>墨西哥(M)</td>
+<td>56</td>
+<td></td>
+<td>21</td>
+<td>57</td>
+<td>78</td>
+<td>70</td>
+</tr>
+<tr>
+<td>纽约(N)</td>
+<td>35</td>
+<td>21</td>
+<td></td>
+<td>36</td>
+<td>68</td>
+<td>68</td>
+</tr>
+<tr>
+<td>巴黎(Pa)</td>
+<td>21</td>
+<td>57</td>
+<td>36</td>
+<td></td>
+<td>51</td>
+<td>61</td>
+</tr>
+<tr>
+<td>北京(Pe)</td>
+<td>51</td>
+<td>78</td>
+<td>68</td>
+<td>51</td>
+<td></td>
+<td>13</td>
+</tr>
+<tr>
+<td>东京(T)</td>
+<td>60</td>
+<td>70</td>
+<td>68</td>
+<td>61</td>
+<td>13</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>利用改良圈算法编写Matlab程序如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span></span></span><br><span class="line">clc,clear</span><br><span class="line"><span class="keyword">global</span> a</span><br><span class="line">a=<span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line">a(<span class="number">1</span>,<span class="number">2</span>)=<span class="number">56</span>;a(<span class="number">1</span>,<span class="number">3</span>)=<span class="number">35</span>;a(<span class="number">1</span>,<span class="number">4</span>)=<span class="number">21</span>;a(<span class="number">1</span>,<span class="number">5</span>)=<span class="number">51</span>;a(<span class="number">1</span>,<span class="number">6</span>)=<span class="number">60</span>;</span><br><span class="line">a(<span class="number">2</span>,<span class="number">3</span>)=<span class="number">21</span>;a(<span class="number">2</span>,<span class="number">4</span>)=<span class="number">57</span>;a(<span class="number">2</span>,<span class="number">5</span>)=<span class="number">78</span>;a(<span class="number">2</span>,<span class="number">6</span>)=<span class="number">70</span>;</span><br><span class="line">a(<span class="number">3</span>,<span class="number">4</span>)=<span class="number">36</span>;a(<span class="number">3</span>,<span class="number">5</span>)=<span class="number">68</span>;a(<span class="number">3</span>,<span class="number">6</span>)=<span class="number">68</span>; a(<span class="number">4</span>,<span class="number">5</span>)=<span class="number">51</span>;a(<span class="number">4</span>,<span class="number">6</span>)=<span class="number">61</span>;</span><br><span class="line">a(<span class="number">5</span>,<span class="number">6</span>)=<span class="number">13</span>; a=a+a&#x27;; L=<span class="built_in">size</span>(a,<span class="number">1</span>);</span><br><span class="line">c1=[<span class="number">5</span> <span class="number">1</span>:<span class="number">4</span> <span class="number">6</span>];</span><br><span class="line">[circle,long]=modifycircle(c1,L);</span><br><span class="line">c2=[<span class="number">5</span> <span class="number">6</span> <span class="number">1</span>:<span class="number">4</span>];<span class="comment">%改变初始圈，该算法的最后一个顶点不动</span></span><br><span class="line">[circle2,long2]=modifycircle(c2,L);</span><br><span class="line"><span class="keyword">if</span> long2&lt;long</span><br><span class="line">    long=long2;</span><br><span class="line">    circle=circle2;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">circle,long</span><br><span class="line"><span class="comment">%*******************************************</span></span><br><span class="line"><span class="comment">%修改圈的子函数</span></span><br><span class="line"><span class="comment">%*******************************************</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[circle,long]</span>=<span class="title">modifycircle</span><span class="params">(c1,L)</span>;</span></span><br><span class="line"><span class="keyword">global</span> a</span><br><span class="line">flag=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> flag&gt;<span class="number">0</span></span><br><span class="line">    flag=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> m=<span class="number">1</span>:L<span class="number">-3</span></span><br><span class="line">        <span class="keyword">for</span> n=m+<span class="number">2</span>:L<span class="number">-1</span></span><br><span class="line">            <span class="keyword">if</span> a(c1(m),c1(n))+a(c1(m+<span class="number">1</span>),c1(n+<span class="number">1</span>))&lt;...</span><br><span class="line">            a(c1(m),c1(m+<span class="number">1</span>))+a(c1(n),c1(n+<span class="number">1</span>))</span><br><span class="line">                flag=<span class="number">1</span>;</span><br><span class="line">                c1(m+<span class="number">1</span>:n)=c1(n:<span class="number">-1</span>:m+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">long=a(c1(<span class="number">1</span>),c1(L));</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:L<span class="number">-1</span></span><br><span class="line">    long=long+a(c1(<span class="built_in">i</span>),c1(<span class="built_in">i</span>+<span class="number">1</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">circle=c1;</span><br></pre></td></tr></table></figure>
+
+
+
+
       
     </div>
 
@@ -766,7 +977,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/04/python-learn/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/03/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%A8%A1%E6%8B%9F%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ang.jpg">
@@ -780,7 +991,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/10/04/python-learn/" class="post-title-link" itemprop="url">python_learn</a>
+            <a href="/2023/08/03/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%A8%A1%E6%8B%9F%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -789,24 +1000,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-10-04 21:38:20" itemprop="dateCreated datePublished" datetime="2022-10-04T21:38:20+08:00">2022-10-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-12 10:27:57" itemprop="dateModified" datetime="2023-07-12T10:27:57+08:00">2023-07-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E7%9A%84%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">一些工具的学习</span></a>
-                </span>
+              <time title="创建时间：2023-08-03 16:51:35 / 修改时间：16:55:13" itemprop="dateCreated datePublished" datetime="2023-08-03T16:51:35+08:00">2023-08-03</time>
             </span>
 
           
@@ -820,17 +1016,233 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>​	字符串前加b表示这是一个bytes对象</p>
-<p>字符串前加f表示这是一个</p>
-<p>大佬博客 <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html">RSA算法原理（一） - 阮一峰的网络日志 (ruanyifeng.com)</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/10/04/python-learn/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h3 id="蒙特卡洛模拟算法"><a href="#蒙特卡洛模拟算法" class="headerlink" title="蒙特卡洛模拟算法"></a>蒙特卡洛模拟算法</h3><p>概览<br>蒙特卡罗方法又称统计模拟法、随机抽样技术，是一种随机模拟方法，以概率和统计理论方法为基础的一种计算方法，是使用随机数（或伪随机数）来解决很多计算问题的方法。将所求解的问题同一定的概率模型相联系，用电子计算机实现统计模拟或抽样，以获得问题的近似解。为象征性地表明这一方法的概率统计特征，故借用赌城蒙特卡罗命名。</p>
+<p>引例<br>为了求得圆周率π值，在十九世纪后期，有很多人作了这样的试验：将长为2l的一根针任意投到地面上，用针与一组相间距离为2a（ l＜a）的平行线相交的频率代替概率P，再利用准确的关系式：</p>
+<img src="https://img-blog.csdnimg.cn/20200814151539347.png#pic_center" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<img src="https://img-blog.csdnimg.cn/20200814151522861.png#pic_center" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<p>当所求问题的解是某个事件的概率，或者是某个随机变量的数学期望，或者是与概率，数学期望有关的量时，通过某种试验的方法，得出该事件发生的概率，或者该随机变量若干个具体观察值的算术平均值，通过它得到问题的解。<br>当随机变量的取值仅为1或0时，它的数学期望就是某个事件的概率。或者说，某种事件的概率也是随机变量（仅取值为1或0）的数学期望。</p>
+<h5 id="优点：（可以求解复杂图形的积分、定积分，多维数据也可以很快收敛）"><a href="#优点：（可以求解复杂图形的积分、定积分，多维数据也可以很快收敛）" class="headerlink" title="优点：（可以求解复杂图形的积分、定积分，多维数据也可以很快收敛）"></a>优点：（可以求解复杂图形的积分、定积分，多维数据也可以很快收敛）</h5><p>1、能够比较逼真地描述具有随机性质的事物的特点及物理实验过程<br>2、受几何条件限制小<br>3、收敛速度与问题的维数无关<br>4、具有同时计算多个方案与多个未知量的能力<br>5、误差容易确定<br>6、程序结构简单，易于实现</p>
+<h5 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h5><p>1收敛速度慢<br>2误差具有概率性<br>3在粒子输运问题中，计算结果与系统大小有关</p>
+<p>所以在使用蒙特卡罗方法时，要“扬长避短”，只对问题中难以用解析（或数值）方法处理的部分，使用蒙特卡罗方法计算，对那些能用解析（或数值）方法处理的部分，应当尽量使用解析方法。</p>
+<h5 id="主要应用范围："><a href="#主要应用范围：" class="headerlink" title="主要应用范围："></a>主要应用范围：</h5><p>粒子输运问题（实验物理，反应堆物理）<br>统计物理<br>典型数学问题<br>真空技术<br>激光技术<br>医学<br>生物<br>探矿等</p>
+<h5 id="蒙特卡洛方法步骤如下："><a href="#蒙特卡洛方法步骤如下：" class="headerlink" title="蒙特卡洛方法步骤如下："></a><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B&spm=1001.2101.3001.7020">蒙特卡洛</a>方法步骤如下：</h5><p>1在区间[a,b]上利用计算机均匀产生n个随机数x1,x2…xn，使用matlab软件的unifrnd命令实现。</p>
+<p>2计算每一个随机数想对应的被积函数值f(x1),f(x2),f(xn)</p>
+<p>计算被积函数值的平均值。</p>
+<h5 id="题目一："><a href="#题目一：" class="headerlink" title="题目一："></a>题目一：</h5><p>求π的值。</p>
+<p>正方形内部有一个相切的圆，它们的面积之比是π&#x2F;4。现在，在这个正方形内部，随机产生1000000个点（即1000000个坐标对 (x, y)），计算它们与中心点的距离，从而判断是否落在圆的内部。如果这些点均匀分布，那么圆内的点应该占到所有点的 π&#x2F;4，因此将这个比值乘以4，就是π的值。</p>
+<p>代码为：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">N=<span class="number">1000000</span>;    <span class="comment">%随机点的数目</span></span><br><span class="line">x=<span class="built_in">rand</span>(N,<span class="number">1</span>);  <span class="comment">%rand 生成均匀分布的伪随机数。分布在（0~1）之间</span></span><br><span class="line">y=<span class="built_in">rand</span>(N,<span class="number">1</span>);  <span class="comment">%矩阵的维数为N×1</span></span><br><span class="line">count=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:N</span><br><span class="line">   <span class="keyword">if</span> (x(<span class="built_in">i</span>)^<span class="number">2</span>+y(<span class="built_in">i</span>)^<span class="number">2</span>&lt;=<span class="number">1</span>)</span><br><span class="line">     count=count+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">PI=<span class="number">4</span>*count/N</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="题目二："><a href="#题目二：" class="headerlink" title="题目二："></a>题目二：</h5><p>计算积分</p>
+<p>计算函数 y &#x3D; x^2 在 [0, 1] 区间的积分，就是求出红色曲线下面的面积。这个函数在 (1,1) 点的取值为1，所以整个红色区域在一个面积为1的正方形里面。在该正方形内部，产生大量随机点，可以计算出有多少点落在红色区域（判断条件 y &lt; x^2）。这个比重就是所要求的积分值。</p>
+<p>代码为：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">clear</span><br><span class="line">clc</span><br><span class="line">N=<span class="number">10000</span>;  </span><br><span class="line">x=<span class="built_in">rand</span>(N,<span class="number">1</span>); </span><br><span class="line">y=<span class="built_in">rand</span>(N,<span class="number">1</span>);</span><br><span class="line">count=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:N</span><br><span class="line">   <span class="keyword">if</span> (y(<span class="built_in">i</span>)&lt;=x(<span class="built_in">i</span>)^<span class="number">2</span>)</span><br><span class="line">     count=count+<span class="number">1</span>;</span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">result=count/N</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/03/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ang.jpg">
+      <meta itemprop="name" content="Ang">
+      <meta itemprop="description" content="Why do learn?">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ang's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/03/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-08-03 16:01:31 / 修改时间：16:05:54" itemprop="dateCreated datePublished" datetime="2023-08-03T16:01:31+08:00">2023-08-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h3><p>聚类是一个将<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%92%E5%88%86&spm=1001.2101.3001.7020">数据集划分</a>为若干组（class）或类（cluster）的的过程，并使得同一个组内的数据对象具有较高的相识度；而不同组中的数据对象是不相似的。</p>
+<p>1、相似或不相似是基于数据描述属性的取值来确定的，通常利用各数据对象间的<strong>距离</strong>来表示。<br>2、剧烈分析尤其是和用来探讨样本间的相互关联关系从而对一个样本结构做一个初步的评价。</p>
+<h5 id="kmeans优缺点分析"><a href="#kmeans优缺点分析" class="headerlink" title="kmeans优缺点分析"></a>kmeans优缺点分析</h5><ul>
+<li><p>优点：</p>
+</li>
+<li><ul>
+<li>算法简单，快捷。</li>
+<li>处理大数据集的效率较高。</li>
+</ul>
+</li>
+<li><p>缺点</p>
+</li>
+<li><ul>
+<li>必须先确定要生成的类别的数量。</li>
+<li>对选择的初值较为敏感。</li>
+<li>容易被噪声干扰。</li>
+</ul>
+</li>
+</ul>
+<h5 id="改进方法-Kmeans"><a href="#改进方法-Kmeans" class="headerlink" title="改进方法 Kmeans++"></a>改进方法 Kmeans++</h5><ul>
+<li><p><strong>可以解决 Kmeans 的第二和第三个问题。</strong></p>
+</li>
+<li><p><strong>改进体现在 k 个初值的选取上。</strong></p>
+</li>
+<li><p>流程：</p>
+</li>
+<li><ul>
+<li>随机选取一个样本作为第一个聚类中心。</li>
+<li>计算每个样本点到所有的聚类中心的距离，并且按照距离远近进行概率的设定，距离越远，概率越大。</li>
+<li>按照轮盘法(按照选取概率的大小进行抽取)的规则进行下一个聚类中心的选择，直到完成 k 个聚类中心的选择。</li>
+</ul>
+</li>
+</ul>
+<p>题目：</p>
+<p><img src="https://img-blog.csdnimg.cn/2eeeb636969143faa96554879d0dfc69.png" alt="请添加图片描述"></p>
+<p>代码为</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> a=[<span class="number">7.9</span> <span class="number">39.77</span> <span class="number">8.49</span> <span class="number">12.94</span> <span class="number">19.27</span> <span class="number">11.05</span> <span class="number">2.04</span> <span class="number">13.29</span></span><br><span class="line"><span class="number">7.68</span> <span class="number">50.37</span> <span class="number">11.35</span> <span class="number">13.3</span> <span class="number">19.25</span> <span class="number">14.59</span> <span class="number">2.75</span> <span class="number">14.87</span></span><br><span class="line"><span class="number">9.42</span> <span class="number">27.93</span> <span class="number">8.2</span> <span class="number">8.14</span> <span class="number">16.17</span> <span class="number">9.42</span> <span class="number">1.55</span> <span class="number">9.76</span></span><br><span class="line"><span class="number">9.16</span> <span class="number">27.98</span> <span class="number">9.01</span> <span class="number">9.32</span> <span class="number">15.99</span> <span class="number">9.1</span> <span class="number">1.82</span> <span class="number">11.35</span></span><br><span class="line"><span class="number">10.06</span> <span class="number">28.64</span> <span class="number">10.52</span> <span class="number">10.05</span> <span class="number">16.18</span> <span class="number">8.39</span> <span class="number">1.96</span> <span class="number">10.81</span>];</span><br><span class="line">d1=pdist(a);				<span class="comment">% 此时计算出各行之间的欧氏距离，</span></span><br><span class="line">D= squareform(d1)			<span class="comment">% 注意此时d1必须是一个行向量，结果是实对称矩阵</span></span><br><span class="line">S=<span class="built_in">tril</span>(squareform (d1))		<span class="comment">% 得到书中的三角阵</span></span><br><span class="line"></span><br><span class="line">同理：</span><br><span class="line">d2=pdist(a,<span class="string">&#x27;cityblock&#x27;</span>);	<span class="comment">% 此时计算出各行之间的绝对距离，</span></span><br><span class="line">S2=<span class="built_in">tril</span>(squareform(d2))</span><br><span class="line"></span><br><span class="line">d3=pdist(a,<span class="string">&#x27;minkowski&#x27;</span>,<span class="number">3</span>);	<span class="comment">% 此时计算出各行之间的明氏距离，</span></span><br><span class="line">S3=<span class="built_in">tril</span>(squareform(d3))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">d1 =</span><br><span class="line"></span><br><span class="line">   <span class="number">11.6726</span>   <span class="number">13.8054</span>   <span class="number">13.1278</span>   <span class="number">12.7983</span>   <span class="number">24.6353</span>   <span class="number">24.0591</span>   <span class="number">23.5389</span>    <span class="number">2.2033</span>    <span class="number">3.5037</span>    <span class="number">2.2159</span></span><br><span class="line"></span><br><span class="line">D =</span><br><span class="line"></span><br><span class="line">         <span class="number">0</span>   <span class="number">11.6726</span>   <span class="number">13.8054</span>   <span class="number">13.1278</span>   <span class="number">12.7983</span></span><br><span class="line">   <span class="number">11.6726</span>         <span class="number">0</span>   <span class="number">24.6353</span>   <span class="number">24.0591</span>   <span class="number">23.5389</span></span><br><span class="line">   <span class="number">13.8054</span>   <span class="number">24.6353</span>         <span class="number">0</span>    <span class="number">2.2033</span>    <span class="number">3.5037</span></span><br><span class="line">   <span class="number">13.1278</span>   <span class="number">24.0591</span>    <span class="number">2.2033</span>         <span class="number">0</span>    <span class="number">2.2159</span></span><br><span class="line">   <span class="number">12.7983</span>   <span class="number">23.5389</span>    <span class="number">3.5037</span>    <span class="number">2.2159</span>         <span class="number">0</span></span><br><span class="line"></span><br><span class="line">S =</span><br><span class="line"></span><br><span class="line">         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">11.6726</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">13.8054</span>   <span class="number">24.6353</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">13.1278</span>   <span class="number">24.0591</span>    <span class="number">2.2033</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">12.7983</span>   <span class="number">23.5389</span>    <span class="number">3.5037</span>    <span class="number">2.2159</span>         <span class="number">0</span></span><br><span class="line"></span><br><span class="line">d2 =</span><br><span class="line"></span><br><span class="line">   <span class="number">19.8900</span>   <span class="number">27.2000</span>   <span class="number">24.5800</span>   <span class="number">26.5200</span>   <span class="number">47.0500</span>   <span class="number">43.3900</span>   <span class="number">42.3100</span>    <span class="number">4.6600</span>    <span class="number">8.0800</span>    <span class="number">5.3800</span></span><br><span class="line"></span><br><span class="line">S2 =</span><br><span class="line"></span><br><span class="line">         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">19.8900</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">27.2000</span>   <span class="number">47.0500</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">24.5800</span>   <span class="number">43.3900</span>    <span class="number">4.6600</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">26.5200</span>   <span class="number">42.3100</span>    <span class="number">8.0800</span>    <span class="number">5.3800</span>         <span class="number">0</span></span><br><span class="line"></span><br><span class="line">d3 =</span><br><span class="line"></span><br><span class="line">   <span class="number">10.8098</span>   <span class="number">12.2808</span>   <span class="number">12.0241</span>   <span class="number">11.4086</span>   <span class="number">22.7511</span>   <span class="number">22.6032</span>   <span class="number">21.9971</span>    <span class="number">1.8440</span>    <span class="number">2.8187</span>    <span class="number">1.7515</span></span><br><span class="line"></span><br><span class="line">S3 =</span><br><span class="line"></span><br><span class="line">         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">10.8098</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">12.2808</span>   <span class="number">22.7511</span>         <span class="number">0</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">12.0241</span>   <span class="number">22.6032</span>    <span class="number">1.8440</span>         <span class="number">0</span>         <span class="number">0</span></span><br><span class="line">   <span class="number">11.4086</span>   <span class="number">21.9971</span>    <span class="number">2.8187</span>    <span class="number">1.7515</span>         <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="变量间的相似度量——相似系数"><a href="#变量间的相似度量——相似系数" class="headerlink" title="变量间的相似度量——相似系数"></a>变量间的相似度量——相似系数</h5><img src="https://img-blog.csdnimg.cn/d610a0525ce848ed89a6c86587bafa6f.png" alt="请添加图片描述" style="zoom: 80%;" />
+
+
+
+<img src="https://img-blog.csdnimg.cn/fcffbc8dae2442ebbc0c4ff7a1d367c0.png" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R=corrcoef(a);		<span class="comment">%指标之间的相关系数</span></span><br><span class="line">a1=normc(a);		<span class="comment">%将a的各列转化为单位向量</span></span><br><span class="line">J=a1&#x27;*a1			<span class="comment">%计算a中各列之间的夹角余弦</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>结果如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">R =</span><br><span class="line"></span><br><span class="line">    <span class="number">1.0000</span>   <span class="number">-0.8946</span>   <span class="number">-0.1555</span>   <span class="number">-0.8466</span>   <span class="number">-0.9320</span>   <span class="number">-0.8810</span>   <span class="number">-0.7005</span>   <span class="number">-0.8989</span></span><br><span class="line">   <span class="number">-0.8946</span>    <span class="number">1.0000</span>    <span class="number">0.5475</span>    <span class="number">0.9103</span>    <span class="number">0.9246</span>    <span class="number">0.9730</span>    <span class="number">0.9210</span>    <span class="number">0.9572</span></span><br><span class="line">   <span class="number">-0.1555</span>    <span class="number">0.5475</span>    <span class="number">1.0000</span>    <span class="number">0.4758</span>    <span class="number">0.2748</span>    <span class="number">0.5145</span>    <span class="number">0.8134</span>    <span class="number">0.5404</span></span><br><span class="line">   <span class="number">-0.8466</span>    <span class="number">0.9103</span>    <span class="number">0.4758</span>    <span class="number">1.0000</span>    <span class="number">0.9500</span>    <span class="number">0.7955</span>    <span class="number">0.8526</span>    <span class="number">0.9545</span></span><br><span class="line">   <span class="number">-0.9320</span>    <span class="number">0.9246</span>    <span class="number">0.2748</span>    <span class="number">0.9500</span>    <span class="number">1.0000</span>    <span class="number">0.8456</span>    <span class="number">0.7534</span>    <span class="number">0.9096</span></span><br><span class="line">   <span class="number">-0.8810</span>    <span class="number">0.9730</span>    <span class="number">0.5145</span>    <span class="number">0.7955</span>    <span class="number">0.8456</span>    <span class="number">1.0000</span>    <span class="number">0.8826</span>    <span class="number">0.9006</span></span><br><span class="line">   <span class="number">-0.7005</span>    <span class="number">0.9210</span>    <span class="number">0.8134</span>    <span class="number">0.8526</span>    <span class="number">0.7534</span>    <span class="number">0.8826</span>    <span class="number">1.0000</span>    <span class="number">0.9231</span></span><br><span class="line">   <span class="number">-0.8989</span>    <span class="number">0.9572</span>    <span class="number">0.5404</span>    <span class="number">0.9545</span>    <span class="number">0.9096</span>    <span class="number">0.9006</span>    <span class="number">0.9231</span>    <span class="number">1.0000</span></span><br><span class="line"></span><br><span class="line">a1 =</span><br><span class="line"></span><br><span class="line">    <span class="number">0.3974</span>    <span class="number">0.4932</span>    <span class="number">0.3959</span>    <span class="number">0.5290</span>    <span class="number">0.4941</span>    <span class="number">0.4601</span>    <span class="number">0.4422</span>    <span class="number">0.4890</span></span><br><span class="line">    <span class="number">0.3863</span>    <span class="number">0.6247</span>    <span class="number">0.5292</span>    <span class="number">0.5437</span>    <span class="number">0.4936</span>    <span class="number">0.6074</span>    <span class="number">0.5961</span>    <span class="number">0.5471</span></span><br><span class="line">    <span class="number">0.4738</span>    <span class="number">0.3464</span>    <span class="number">0.3823</span>    <span class="number">0.3327</span>    <span class="number">0.4146</span>    <span class="number">0.3922</span>    <span class="number">0.3360</span>    <span class="number">0.3591</span></span><br><span class="line">    <span class="number">0.4608</span>    <span class="number">0.3470</span>    <span class="number">0.4201</span>    <span class="number">0.3810</span>    <span class="number">0.4100</span>    <span class="number">0.3789</span>    <span class="number">0.3945</span>    <span class="number">0.4176</span></span><br><span class="line">    <span class="number">0.5060</span>    <span class="number">0.3552</span>    <span class="number">0.4905</span>    <span class="number">0.4108</span>    <span class="number">0.4149</span>    <span class="number">0.3493</span>    <span class="number">0.4249</span>    <span class="number">0.3977</span></span><br><span class="line"></span><br><span class="line">J =</span><br><span class="line"></span><br><span class="line">    <span class="number">1.0000</span>    <span class="number">0.9410</span>    <span class="number">0.9847</span>    <span class="number">0.9613</span>    <span class="number">0.9824</span>    <span class="number">0.9546</span>    <span class="number">0.9620</span>    <span class="number">0.9695</span></span><br><span class="line">    <span class="number">0.9410</span>    <span class="number">1.0000</span>    <span class="number">0.9782</span>    <span class="number">0.9939</span>    <span class="number">0.9853</span>    <span class="number">0.9977</span>    <span class="number">0.9947</span>    <span class="number">0.9935</span></span><br><span class="line">    <span class="number">0.9847</span>    <span class="number">0.9782</span>    <span class="number">1.0000</span>    <span class="number">0.9859</span>    <span class="number">0.9911</span>    <span class="number">0.9840</span>    <span class="number">0.9931</span>    <span class="number">0.9909</span></span><br><span class="line">    <span class="number">0.9613</span>    <span class="number">0.9939</span>    <span class="number">0.9859</span>    <span class="number">1.0000</span>    <span class="number">0.9944</span>    <span class="number">0.9919</span>    <span class="number">0.9947</span>    <span class="number">0.9981</span></span><br><span class="line">    <span class="number">0.9824</span>    <span class="number">0.9853</span>    <span class="number">0.9911</span>    <span class="number">0.9944</span>    <span class="number">1.0000</span>    <span class="number">0.9901</span>    <span class="number">0.9901</span>    <span class="number">0.9968</span></span><br><span class="line">    <span class="number">0.9546</span>    <span class="number">0.9977</span>    <span class="number">0.9840</span>    <span class="number">0.9919</span>    <span class="number">0.9901</span>    <span class="number">1.0000</span>    <span class="number">0.9952</span>    <span class="number">0.9953</span></span><br><span class="line">    <span class="number">0.9620</span>    <span class="number">0.9947</span>    <span class="number">0.9931</span>    <span class="number">0.9947</span>    <span class="number">0.9901</span>    <span class="number">0.9952</span>    <span class="number">1.0000</span>    <span class="number">0.9968</span></span><br><span class="line">    <span class="number">0.9695</span>    <span class="number">0.9935</span>    <span class="number">0.9909</span>    <span class="number">0.9981</span>    <span class="number">0.9968</span>    <span class="number">0.9953</span>    <span class="number">0.9968</span>    <span class="number">1.0000</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/03/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ang.jpg">
+      <meta itemprop="name" content="Ang">
+      <meta itemprop="description" content="Why do learn?">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ang's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/03/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-08-03 15:54:34 / 修改时间：15:58:09" itemprop="dateCreated datePublished" datetime="2023-08-03T15:54:34+08:00">2023-08-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="数据挖掘算法"><a href="#数据挖掘算法" class="headerlink" title="数据挖掘算法"></a>数据挖掘算法</h3><p>一系列数学建模竞赛中，常见的问题设定与模型要求有：</p>
+<ol>
+<li>给定一系列数据，要求进行数据降维（挑选重要数据）、数据预处理、数据特征分析、特征选择等；</li>
+<li>给定一系列数据，要求根据数据训练模型，根据输入x做出预测&#x2F;分类，输出结果y；</li>
+<li>在给定的范围内搜寻最优解或者最优范围&#x2F;集合。</li>
+</ol>
+<h5 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h5><h5 id="2021年华为杯研究生数学建模竞赛D题"><a href="#2021年华为杯研究生数学建模竞赛D题" class="headerlink" title="2021年华为杯研究生数学建模竞赛D题"></a>2021年华为杯研究生数学建模竞赛D题</h5><h4 id="数据挖掘"><a href="#数据挖掘" class="headerlink" title="数据挖掘"></a>数据挖掘</h4><p>在建模之前，建议根据具体题目对数据进行<strong>异常值处理</strong>（包括漂移的数据点、缺失值补全）。注意，这一步是非常重要的，很多题目会在数据里埋坑，如果没有考虑到异常数据的影响，往往对于后续的分析与建模有重大影响。对于异常值的检测，常用的方法有基础的<strong>统计分析、可视化分析、分布检验</strong>；对于检测出的异常值，常用的处理方法有<strong>直接删除、根据前后数据进行平滑修正、补充为0</strong>等。接下来还可以进行一些常规的数据特征分析，比如均值、方差、最大值最小值、不同列数据的共线性分析等。</p>
+<p>很多时候题目会给出维度丰富的数据，但其中往往很多列数据是无效&#x2F;不重要的，这个时候往往题目会要求筛选出前n个重要的数据维度，用于进一步的建模等。这时候就需要进行<strong>特征选择</strong>。注意这里是在原始数据的基础上，选择最重要的n列原始数据。最常见的特征选择思路是，先<strong>剔除方差为0的列数据</strong>、对不同的列之间进行<strong>相关性检验</strong>，确保不会选择出两个蕴含相同信息的列。</p>
+<p>之后，可以把所有挑选过的原始数据，进行归一化数据预处理后，放进经典的机器学习模型中进行训练，根据训练后的模型反向输出每一列数据的重要性指标。这里<strong>推荐用sklearn库中的经典模型，方便训练后输出feature_importance数据</strong>。此外，有余力的同学可以用神经网络模型，根据网络输入层的weight，来判断每一列数据的重要性。</p>
+<p>此外，还有一个与特征选择概念相近但又不能等同的任务：<strong>数据降维</strong>。数据降维更多时候指的是，对于维度丰富的数据，直接把它压缩成n维数据，这里的n维数据就不再是原始数据了。常用的数据降维算法有PCA等。</p>
+<h4 id="分类预测"><a href="#分类预测" class="headerlink" title="分类预测"></a>分类预测</h4><p>分类任务指的是模型根据输入的样本特征x，预测样本对应的类别y（这里的y是一个离散值，比如0，1，2）；</p>
+<p>回归任务指的是模型根据输入的样本特征x，预测样本对应的分数y（这里的y是一个连续值，比如0.1，0.2）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">####3.1 决策树回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> tree</span><br><span class="line">model_DecisionTreeRegressor = tree.DecisionTreeRegressor()</span><br><span class="line"><span class="comment">####3.2 线性回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line">model_LinearRegression = linear_model.LinearRegression()</span><br><span class="line"><span class="comment">####3.3SVM 回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</span><br><span class="line">model_SVR = svm.SVR()</span><br><span class="line"><span class="comment">####3.4KNN 回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> neighbors</span><br><span class="line">model_KNeighborsRegressor = neighbors.KNeighborsRegressor()</span><br><span class="line"><span class="comment">####3.5 随机森林回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> ensemble</span><br><span class="line">model_RandomForestRegressor = ensemble.RandomForestRegressor(n_estimators=<span class="number">500</span>)<span class="comment">#</span></span><br><span class="line">这里使用 <span class="number">20</span> 个决策树</span><br><span class="line"><span class="comment">####3.6Adaboost 回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> ensemble</span><br><span class="line">model_AdaBoostRegressor = ensemble.AdaBoostRegressor(n_estimators=<span class="number">500</span>)</span><br><span class="line"><span class="comment">#这里使用 50 个决策树</span></span><br><span class="line"><span class="comment">####3.7GBRT 回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> ensemble</span><br><span class="line">model_GradientBoostingRegressor=ensemble.GradientBoostingRegressor(n_estimators=<span class="number">50</span></span><br><span class="line"><span class="number">0</span>)</span><br><span class="line"><span class="comment">#这里使用 100 个决策树</span></span><br><span class="line"><span class="comment">####3.8Bagging 回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> BaggingRegressor</span><br><span class="line">model_BaggingRegressor = BaggingRegressor()</span><br><span class="line"><span class="comment">####3.9ExtraTree 极端随机树回归####</span></span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> ExtraTreeRegressor</span><br><span class="line">model_ExtraTreeRegressor = ExtraTreeRegressor()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h4><p>数学建模中常见的优化算法有：遗传算法、模拟退火算法、蚁群算法、粒子群算法等</p>
+<p>基于以上传统优化算法，可以根据具体问题设定带约束的优化算法求解。比如2021年华为杯的D题最后一问，优化目标有两个，则在定义优化算法目标函数时，加入一个惩罚项即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">schaffer</span>(<span class="params">p</span>):</span><br><span class="line">  p = p.reshape(<span class="number">1</span>, -<span class="number">1</span>)</span><br><span class="line">  <span class="comment"># ADMET 约束</span></span><br><span class="line">  admet = <span class="built_in">int</span>(cla_model1.predict(p)[<span class="number">0</span>]==<span class="number">1</span>) + <span class="built_in">int</span>(cla_model2.predict(p)[<span class="number">0</span>]==<span class="number">1</span>) + </span><br><span class="line">  <span class="built_in">int</span>(cla_model3.predict(p)[<span class="number">0</span>]==<span class="number">0</span>) + \</span><br><span class="line">  <span class="built_in">int</span>(cla_model4.predict(p)[<span class="number">0</span>]==<span class="number">1</span>) + <span class="built_in">int</span>(cla_model5.predict(p)[<span class="number">0</span>]==<span class="number">0</span>)</span><br><span class="line">  <span class="comment"># ERA 活性值</span></span><br><span class="line">  era = reg_model.predict(p)[<span class="number">0</span>]</span><br><span class="line">  <span class="comment"># 综合优化目标：ERA + ADMET 约束</span></span><br><span class="line">  res = -era + <span class="built_in">int</span>(admet&lt;<span class="number">3</span>)*<span class="number">1e5</span></span><br><span class="line">  <span class="keyword">return</span> res</span><br><span class="line"><span class="comment"># 遗传算法实现</span></span><br><span class="line">low_bound = data.<span class="built_in">min</span>(axis=<span class="number">0</span>)</span><br><span class="line">high_bound = data.<span class="built_in">max</span>(axis=<span class="number">0</span>)</span><br><span class="line">ga = GA(func=schaffer, n_dim=<span class="number">20</span>, size_pop=<span class="number">50</span>, max_iter=<span class="number">600</span>, prob_mut=<span class="number">0.001</span>, </span><br><span class="line">lb=low_bound, ub=high_bound, precision=<span class="number">1e-7</span>)</span><br><span class="line">best_x, best_y = ga.run()</span><br><span class="line">Y_history = pd.DataFrame(ga.all_history_Y)</span><br><span class="line"><span class="comment"># 绘图。红点代表每一个 iteration 中种群里每一个个体的 y 值。</span></span><br><span class="line"><span class="comment"># 100000 的值都是不满足 admet 至少三个为优的性质。直接忽略。</span></span><br><span class="line"><span class="comment"># 蓝色曲线为 ERA 活性值，越高越好。</span></span><br><span class="line">fig, ax = plt.subplots(<span class="number">2</span>, <span class="number">1</span>)</span><br><span class="line">ax[<span class="number">0</span>].plot(Y_history.index, Y_history.values, <span class="string">&#x27;.&#x27;</span>, color=<span class="string">&#x27;red&#x27;</span>)</span><br><span class="line"><span class="comment"># Y_history.min(axis=1).cummin().plot(kind=&#x27;line&#x27;)</span></span><br><span class="line"><span class="built_in">abs</span>(Y_history.<span class="built_in">min</span>(axis=<span class="number">1</span>)).plot(kind=<span class="string">&#x27;line&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
 
@@ -848,7 +1260,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ang-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ang-16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="特征提取即，从多个数据中提取最能预测因变量的少数几个变量。方法 线性相关：pearson、 spearman、 kendall 非线性相关：距离协方差、灰相关 其他特征选择方法：RFE（递归特征消除）、PCA（主成分分析）  距离协方差编写：123456789101112131415161718192021222324252627282930313233343536from scipy.spati">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ang&#39;s blog">
+<meta property="og:url" content="http://example.com/2023/08/03/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/index.html">
+<meta property="og:site_name" content="ang&#39;s blog">
+<meta property="og:description" content="特征提取即，从多个数据中提取最能预测因变量的少数几个变量。方法 线性相关：pearson、 spearman、 kendall 非线性相关：距离协方差、灰相关 其他特征选择方法：RFE（递归特征消除）、PCA（主成分分析）  距离协方差编写：123456789101112131415161718192021222324252627282930313233343536from scipy.spati">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-03T06:53:16.657Z">
+<meta property="article:modified_time" content="2023-08-03T06:57:42.236Z">
+<meta property="article:author" content="Ang">
+<meta property="article:tag" content="大学,Crypto,大作业">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/08/03/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | ang's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ang's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">en?</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/ang-sagapo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/03/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ang.jpg">
+      <meta itemprop="name" content="Ang">
+      <meta itemprop="description" content="Why do learn?">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ang's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-08-03 14:53:16 / 修改时间：14:57:42" itemprop="dateCreated datePublished" datetime="2023-08-03T14:53:16+08:00">2023-08-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="特征提取即，从多个数据中提取最能预测因变量的少数几个变量。"><a href="#特征提取即，从多个数据中提取最能预测因变量的少数几个变量。" class="headerlink" title="特征提取即，从多个数据中提取最能预测因变量的少数几个变量。"></a>特征提取即，从多个数据中提取最能预测因变量的少数几个变量。</h3><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>线性相关：pearson、 spearman、 kendall</li>
+<li>非线性相关：距离协方差、灰相关</li>
+<li>其他特征选择方法：RFE（递归特征消除）、PCA（主成分分析）</li>
+</ul>
+<h5 id="距离协方差编写："><a href="#距离协方差编写：" class="headerlink" title="距离协方差编写："></a>距离协方差编写：</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.spatial.distance <span class="keyword">import</span> pdist, squareform</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">distcorr</span>(<span class="params">X, Y</span>):</span><br><span class="line">    X = np.atleast_1d(X)</span><br><span class="line">    Y = np.atleast_1d(Y)</span><br><span class="line">    <span class="keyword">if</span> np.prod(X.shape) == <span class="built_in">len</span>(X):</span><br><span class="line">        X = X[:, <span class="literal">None</span>]</span><br><span class="line">    <span class="keyword">if</span> np.prod(Y.shape) == <span class="built_in">len</span>(Y):</span><br><span class="line">        Y = Y[:, <span class="literal">None</span>]</span><br><span class="line">    X = np.atleast_2d(X)</span><br><span class="line">    Y = np.atleast_2d(Y)</span><br><span class="line">    n = X.shape[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">if</span> Y.shape[<span class="number">0</span>] != X.shape[<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&#x27;Number of samples must match&#x27;</span>)</span><br><span class="line">    a = squareform(pdist(X))</span><br><span class="line">    b = squareform(pdist(Y))</span><br><span class="line">    A = a - a.mean(axis=<span class="number">0</span>)[<span class="literal">None</span>, :] - a.mean(axis=<span class="number">1</span>)[:, <span class="literal">None</span>] + a.mean()</span><br><span class="line">    B = b - b.mean(axis=<span class="number">0</span>)[<span class="literal">None</span>, :] - b.mean(axis=<span class="number">1</span>)[:, <span class="literal">None</span>] + b.mean()</span><br><span class="line">    </span><br><span class="line">    dcov2_xy = (A * B).<span class="built_in">sum</span>() / <span class="built_in">float</span>(n * n)</span><br><span class="line">    dcov2_xx = (A * A).<span class="built_in">sum</span>() / <span class="built_in">float</span>(n * n)</span><br><span class="line">    dcov2_yy = (B * B).<span class="built_in">sum</span>() / <span class="built_in">float</span>(n * n)</span><br><span class="line">    dcor = np.sqrt(dcov2_xy) / np.sqrt(np.sqrt(dcov2_xx) * np.sqrt(dcov2_yy))</span><br><span class="line">    <span class="keyword">return</span> dcor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面代码可以将相关转为DataFrame，便于进一步的分析</span></span><br><span class="line">dcorr = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> names:</span><br><span class="line">    dcorr.append([distcorr(X.loc[i, :].to_list(), Y), i]) </span><br><span class="line"></span><br><span class="line">ans_dcorr = pd.DataFrame(columns=[<span class="string">&#x27;pIC50&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dcorr:</span><br><span class="line">    ans_dcorr.loc[i[<span class="number">1</span>]] = i[<span class="number">0</span>]</span><br><span class="line">ans_dcorr</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="灰关联"><a href="#灰关联" class="headerlink" title="灰关联"></a>灰关联</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GRA_ONE</span>(<span class="params">DataFrame,m=<span class="number">0</span></span>):</span><br><span class="line">    gray= DataFrame</span><br><span class="line">    <span class="comment">#读取为df格式</span></span><br><span class="line">    gray=(gray - gray.<span class="built_in">min</span>()) / (gray.<span class="built_in">max</span>() - gray.<span class="built_in">min</span>())</span><br><span class="line">    <span class="comment">#标准化</span></span><br><span class="line">    std=gray.iloc[:,m]<span class="comment">#为标准要素</span></span><br><span class="line">    ce=gray.iloc[:,<span class="number">0</span>:]<span class="comment">#为比较要素</span></span><br><span class="line">    n=ce.shape[<span class="number">0</span>]</span><br><span class="line">    m=ce.shape[<span class="number">1</span>]<span class="comment">#计算行列</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#与标准要素比较，相减</span></span><br><span class="line">    a=zeros([m,n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            a[i,j]=<span class="built_in">abs</span>(ce.iloc[j,i]-std[j])</span><br><span class="line"></span><br><span class="line">    <span class="comment">#取出矩阵中最大值与最小值</span></span><br><span class="line">    c=amax(a)</span><br><span class="line">    d=amin(a)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#计算值</span></span><br><span class="line">    result=zeros([m,n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            result[i,j]=(d+<span class="number">0.5</span>*c)/(a[i,j]+<span class="number">0.5</span>*c)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#求均值，得到灰色关联值</span></span><br><span class="line">    result2=zeros(m)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">            result2[i]=mean(result[i,:])</span><br><span class="line">    RT=pd.DataFrame(result2)</span><br><span class="line">    <span class="keyword">return</span> RT</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GRA</span>(<span class="params">DataFrame</span>):</span><br><span class="line">    list_columns = [<span class="built_in">str</span>(s) <span class="keyword">for</span> s <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(DataFrame.columns)) <span class="keyword">if</span> s <span class="keyword">not</span> <span class="keyword">in</span> [<span class="literal">None</span>]]</span><br><span class="line">    df_local = pd.DataFrame(columns=list_columns)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(DataFrame.columns)):</span><br><span class="line">        df_local.iloc[:,i] = GRA_ONE(DataFrame,m=i)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> df_local</span><br><span class="line"></span><br><span class="line">gray = GRA_ONE(dataframe)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="RFE"><a href="#RFE" class="headerlink" title="RFE"></a>RFE</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_selection <span class="keyword">import</span> RFECV</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression, Ridge, Lasso</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_RFE</span>(<span class="params">X, Y, names</span>):</span><br><span class="line">    X = X.T</span><br><span class="line"> <span class="comment"># use linear regression as the model</span></span><br><span class="line">    lr = LinearRegression()</span><br><span class="line"> <span class="comment"># rank all features, i.e continue the elimination until the last one</span></span><br><span class="line">    rfe = RFECV(lr, step=<span class="number">1</span>, cv=<span class="number">5</span>)</span><br><span class="line">    rfe.fit(X, Y)</span><br><span class="line">    res_lr = <span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x: <span class="built_in">round</span>(x, <span class="number">4</span>), rfe.ranking_), names))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Features sorted by their rank:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(res_lr)</span><br><span class="line"> <span class="comment"># use lasso as the model</span></span><br><span class="line">    lr = Lasso()</span><br><span class="line"> <span class="comment"># # rank all features, i.e continue the elimination until the last one</span></span><br><span class="line">    rfe = RFECV(lr, step=<span class="number">1</span>, cv=<span class="number">5</span>)</span><br><span class="line">    rfe.fit(X, Y)</span><br><span class="line">    res_la = <span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">map</span>(<span class="keyword">lambda</span> x: <span class="built_in">round</span>(x, <span class="number">4</span>), rfe.ranking_), names))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Features sorted by their rank:&quot;</span>)</span><br><span class="line"><span class="comment">#     print(res_la)</span></span><br><span class="line">    <span class="keyword">return</span> res_lr ,res_la</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#Split the data into input and target</span></span><br><span class="line">X = md_ea_dropY.T.copy()</span><br><span class="line">Y = (md_ea_train.loc[:, <span class="string">&#x27;pIC50&#x27;</span>] * <span class="number">1000</span>).astype(<span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line">res_lr, res_la = cal_RFE(X, Y, md_ea_dropY.columns.values.tolist())</span><br><span class="line"></span><br><span class="line">ans_res_lr = pd.DataFrame(columns=[<span class="string">&#x27;pIC50&#x27;</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> res_lr:</span><br><span class="line">    ans_res_lr.loc[i[<span class="number">1</span>]] = i[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">ans_res_la = pd.DataFrame(columns=[<span class="string">&#x27;pIC50&#x27;</span>])</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> res_la:</span><br><span class="line">    ans_res_la.loc[i[<span class="number">1</span>]] = i[<span class="number">0</span>]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将数据写入 excel 文件</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">data_write_excel</span>(<span class="params">data, filename, writer=<span class="literal">None</span></span>):</span><br><span class="line">    data = pd.DataFrame(data)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> writer:</span><br><span class="line">        writer = pd.ExcelWriter(filename + <span class="string">&#x27;1.xlsx&#x27;</span>)</span><br><span class="line">        data.to_excel(writer, float_format=<span class="string">&#x27;%.5f&#x27;</span>, sheet_name=filename)</span><br><span class="line">        writer.save()</span><br><span class="line">        writer.close()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        data.to_excel(writer, float_format=<span class="string">&#x27;%.5f&#x27;</span>, sheet_name=filename)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cal_PCA</span>(<span class="params">X</span>):</span><br><span class="line">     <span class="comment"># 20个主成分</span></span><br><span class="line">    pca = PCA(n_components=<span class="number">20</span>)</span><br><span class="line">     <span class="comment"># 降维后的数据</span></span><br><span class="line">    data_low = pca.fit_transform(X)</span><br><span class="line">     <span class="comment"># 降维后近似恢复的数据</span></span><br><span class="line">    data_restore = pca.inverse_transform(data_low)</span><br><span class="line">    writer = pd.ExcelWriter(<span class="string">r&#x27;data\pca1.xlsx&#x27;</span>)</span><br><span class="line">    data_write_excel(data_low, <span class="string">&#x27;low&#x27;</span>, writer=writer)</span><br><span class="line">    data_write_excel(data_restore, <span class="string">&#x27;restore&#x27;</span>, writer=writer)</span><br><span class="line">     <span class="comment"># 主成分贡献率</span></span><br><span class="line">    data_write_excel(pca.explained_variance_ratio_, <span class="string">&#x27;ratio&#x27;</span>, writer=writer)</span><br><span class="line">     <span class="comment"># 主成分方差</span></span><br><span class="line">    data_write_excel(pca.explained_variance_, <span class="string">&#x27;variance&#x27;</span>, writer=writer)</span><br><span class="line">     <span class="comment"># 主成分在各个变量的负载</span></span><br><span class="line">    data_write_excel(pca.components_.T, <span class="string">&#x27;component&#x27;</span>, writer=writer)</span><br><span class="line">     <span class="comment"># 主成分个数</span></span><br><span class="line">    <span class="built_in">print</span>(pca.n_components_, <span class="string">&#x27; n_components&#x27;</span>)</span><br><span class="line">    writer.save()</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> MinMaxScaler</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">scale</span>(<span class="params">data</span>):</span><br><span class="line">    minmax = MinMaxScaler()</span><br><span class="line">    data = minmax.fit_transform(data)</span><br><span class="line">    <span class="comment"># print(input_reframed)</span></span><br><span class="line">    <span class="built_in">print</span>(minmax.scale_)</span><br><span class="line">    <span class="built_in">print</span>(minmax.min_)</span><br><span class="line">    <span class="keyword">return</span> data, minmax.scale_[-<span class="number">1</span>], minmax.min_[-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">X = md_ea_dropY.copy()</span><br><span class="line">cal_PCA(X)</span><br><span class="line"></span><br><span class="line">comp = pd.read_excel(<span class="string">r&#x27;data\pca1.xlsx&#x27;</span>, sheet_name=<span class="string">&quot;component&quot;</span>)</span><br><span class="line">comp1, inscale_, inmin_ = scale(comp.<span class="built_in">abs</span>())</span><br><span class="line">ratio = pd.read_excel(<span class="string">r&#x27;data\pca1.xlsx&#x27;</span>, sheet_name=<span class="string">&quot;ratio&quot;</span>).iloc[:, <span class="number">1</span>].to_numpy()</span><br><span class="line">pca1 = np.<span class="built_in">abs</span>(comp1[..., <span class="number">1</span>]) * ratio[<span class="number">0</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">2</span>]) * ratio[<span class="number">1</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">3</span>]) * ratio[<span class="number">2</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">4</span>]) * ratio[<span class="number">3</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">5</span>]) * ratio[<span class="number">4</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">6</span>]) * ratio[<span class="number">5</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">7</span>]) * ratio[<span class="number">6</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">8</span>]) * ratio[<span class="number">7</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">9</span>]) * ratio[<span class="number">8</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">10</span>]) * ratio[<span class="number">9</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">11</span>]) * ratio[<span class="number">10</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">12</span>]) * ratio[<span class="number">11</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">13</span>]) * ratio[<span class="number">12</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">14</span>]) * ratio[<span class="number">13</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">15</span>]) * ratio[<span class="number">14</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">16</span>]) * ratio[<span class="number">15</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">17</span>]) * ratio[<span class="number">16</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">18</span>]) * ratio[<span class="number">17</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">19</span>]) * ratio[<span class="number">18</span>] + \</span><br><span class="line">np.<span class="built_in">abs</span>(comp1[..., <span class="number">20</span>]) * ratio[<span class="number">19</span>]</span><br><span class="line"></span><br><span class="line">pca11, inscale_, inmin_ = scale(pca1.reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拿到不同变量的重要程度</span></span><br><span class="line">ans_pca = pd.DataFrame(columns=[<span class="string">&#x27;pIC50&#x27;</span>])</span><br><span class="line">names_pca = (md_ea_dropY.columns.to_list())</span><br><span class="line">             </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(pca11.shape[<span class="number">0</span>]):</span><br><span class="line">    ans_pca.loc[names_pca[i]] = pca11[i]</span><br><span class="line">    </span><br><span class="line">ans_pca</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+      <div>
+        
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">本文结束，感谢您的阅读</div>
+    
+</div>
+
+        
+      </div>
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/03/%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E9%93%BE/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/08/03/%E6%8E%A2%E7%B4%A2%E6%80%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E5%8D%B3%EF%BC%8C%E4%BB%8E%E5%A4%9A%E4%B8%AA%E6%95%B0%E6%8D%AE%E4%B8%AD%E6%8F%90%E5%8F%96%E6%9C%80%E8%83%BD%E9%A2%84%E6%B5%8B%E5%9B%A0%E5%8F%98%E9%87%8F%E7%9A%84%E5%B0%91%E6%95%B0%E5%87%A0%E4%B8%AA%E5%8F%98%E9%87%8F%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">特征提取即，从多个数据中提取最能预测因变量的少数几个变量。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B7%9D%E7%A6%BB%E5%8D%8F%E6%96%B9%E5%B7%AE%E7%BC%96%E5%86%99%EF%BC%9A"><span class="nav-number">2.0.1.</span> <span class="nav-text">距离协方差编写：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%81%B0%E5%85%B3%E8%81%94"><span class="nav-number">2.0.2.</span> <span class="nav-text">灰关联</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RFE"><span class="nav-number">2.0.3.</span> <span class="nav-text">RFE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PCA"><span class="nav-number">2.0.4.</span> <span class="nav-text">PCA</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ang"
+      src="/images/ang.jpg">
+  <p class="site-author-name" itemprop="name">Ang</p>
+  <div class="site-description" itemprop="description">Why do learn?</div>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ang-sagapo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ang-sagapo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

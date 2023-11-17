@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ang-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ang-16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="欧卡图和哈密尔顿图的应用1.基本概念1.1.Euler图定义 经过的每条边的迹叫做的Euler迹；闭的Euler迹叫做Euler回路或E回路；含Euler回路的图叫做Euler图 定理1 1.是Euler图的充分必要条件是联通且每个顶点都是偶次顶点。2.是Euler图的充分必要条件是联通且，是圈，3.中有Euler迹的充要条件是联通且至多有两个顶点。 1.2.Hamilton图定义 包含的每个顶点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ang&#39;s blog">
+<meta property="og:url" content="http://example.com/2023/08/03/%E6%AC%A7%E5%8D%A1%E5%9B%BE%E5%92%8C%E5%93%88%E5%AF%86%E5%B0%94%E9%A1%BF%E5%9B%BE%E7%9A%84%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:site_name" content="ang&#39;s blog">
+<meta property="og:description" content="欧卡图和哈密尔顿图的应用1.基本概念1.1.Euler图定义 经过的每条边的迹叫做的Euler迹；闭的Euler迹叫做Euler回路或E回路；含Euler回路的图叫做Euler图 定理1 1.是Euler图的充分必要条件是联通且每个顶点都是偶次顶点。2.是Euler图的充分必要条件是联通且，是圈，3.中有Euler迹的充要条件是联通且至多有两个顶点。 1.2.Hamilton图定义 包含的每个顶点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G=%5Cbigcup_%7Bi=1%7D%5E%7Bd%7D%20C_%7Bi%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=C_%7Bi%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=E%5Cleft(C_%7Bi%7D%5Cright)%20%5Ccap%20E%5Cleft(C_%7Bj%7D%5Cright)=%5CPhi(i%20%5Cneq%20j)">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=%5Cforall%20v_%7B0%7D%20%5Cin%20V(G)">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=W_%7B0%7D=v_%7B0%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=W_%7Bi%7D=v_%7B0%7D%20e_%7B1%7D%20v_%7B1%7D%20%5Ccdots%20e_%7Bi%7D%20v_%7Bi%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=E-%5Cleft%5C%7Be_%7B1%7D,%20%5Ccdots,%20e_%7Bi%7D%5Cright%5C%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=e_%7Bi+1%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=e_%7Bi+1%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=v_%7Bi%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=e_%7Bi+1%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G_%7Bi%7D=G-%5Cleft%5C%7Be_%7B1%7D,%20%5Ccdots,%20e_%7Bi%7D%5Cright%5C%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=V_%7B0%7D=%5C%7Bv%20%7C%20v%20%5Cin%20V(G),%20d(v)=1(%5Cbmod%202)%5C%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=u,%20v%20%5Cin%20V_%7B0%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=d(u,v)">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=d(u,v)">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=u">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=v">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=K_%7B%5Cleft.%5Cright%7C_%7BV_%7B0%7D%7D%20%7C%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=V_%7B0%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=d(u,v)">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=uv">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=K_%7B%5Cleft%7CV_%7B0%7D%5Cright%7C%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=M">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=M">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=G">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=C=v_%7B1%7D%20v_%7B2%7D%20%5Ccdots%20v_%7Bn%7D%20v_%7B1%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=1%3Ci+1%3Cj%3Cn">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=C_%7By%7D=v_%7B1%7D%20v_%7B2%7D%20%5Ccdots%20v_%7Bi%7D%20v_%7Bj%7D%20v_%7Bj-1%7D%20v_%7Bj-2%7D%20%5Ccdots%20v_%7Bi+1%7D%20v_%7Bj+1%7D%20v_%7Bj+2%7D%20%5Ccdots%20v_%7Bn%7D%20v_%7B1%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=v_%7Bi%7D%20v_%7Bi+1%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=v_%7Bj%7D%20v_%7Bj+1%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=v_%7Bi%7D%20v_%7Bj%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=v_%7Bi+1%7D%20v_%7Bj+1%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=w%5Cleft(v_%7Bi%7D%20v_%7Bj%7D%5Cright)+w%5Cleft(v_%7Bi+1%7D%20v_%7Bj+1%7D%5Cright)%3Cw%5Cleft(v_%7Bi%7D%20v_%7Bi+1%7D%5Cright)+w%5Cleft(v_%7Bj%7D%20v_%7Bj+1%7D%5Cright)">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=C_%7Bi%20j%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=C">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=C_%7Bi%20j%7D">
+<meta property="og:image" content="https://math.jianshu.com/math?formula=C">
+<meta property="article:published_time" content="2023-08-03T08:56:13.974Z">
+<meta property="article:modified_time" content="2023-08-03T09:01:48.686Z">
+<meta property="article:author" content="Ang">
+<meta property="article:tag" content="大学,Crypto,大作业">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://math.jianshu.com/math?formula=G">
+
+<link rel="canonical" href="http://example.com/2023/08/03/%E6%AC%A7%E5%8D%A1%E5%9B%BE%E5%92%8C%E5%93%88%E5%AF%86%E5%B0%94%E9%A1%BF%E5%9B%BE%E7%9A%84%E5%BA%94%E7%94%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | ang's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ang's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">en?</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/ang-sagapo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/03/%E6%AC%A7%E5%8D%A1%E5%9B%BE%E5%92%8C%E5%93%88%E5%AF%86%E5%B0%94%E9%A1%BF%E5%9B%BE%E7%9A%84%E5%BA%94%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ang.jpg">
+      <meta itemprop="name" content="Ang">
+      <meta itemprop="description" content="Why do learn?">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ang's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-08-03 16:56:13 / 修改时间：17:01:48" itemprop="dateCreated datePublished" datetime="2023-08-03T16:56:13+08:00">2023-08-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="欧卡图和哈密尔顿图的应用"><a href="#欧卡图和哈密尔顿图的应用" class="headerlink" title="欧卡图和哈密尔顿图的应用"></a>欧卡图和哈密尔顿图的应用</h3><h4 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h4><h5 id="1-1-Euler图"><a href="#1-1-Euler图" class="headerlink" title="1.1.Euler图"></a>1.1.Euler图</h5><p>定义 经过<img src="https://math.jianshu.com/math?formula=G" alt="G">的每条边的迹叫做<img src="https://math.jianshu.com/math?formula=G" alt="G">的Euler迹；闭的Euler迹叫做<strong>Euler回路</strong>或E回路；含Euler回路的图叫做<strong>Euler图</strong></p>
+<p><strong>定理1</strong> 1.<img src="https://math.jianshu.com/math?formula=G" alt="G">是Euler图的充分必要条件是<img src="https://math.jianshu.com/math?formula=G" alt="G">联通且每个顶点都是偶次顶点。<br>2.<img src="https://math.jianshu.com/math?formula=G" alt="G">是Euler图的充分必要条件是<img src="https://math.jianshu.com/math?formula=G" alt="G">联通且<br><img src="https://math.jianshu.com/math?formula=G=%5Cbigcup_%7Bi=1%7D%5E%7Bd%7D%20C_%7Bi%7D" alt="G=\bigcup_{i=1}^{d} C_{i}">，<img src="https://math.jianshu.com/math?formula=C_%7Bi%7D" alt="C_{i}">是圈，<br><img src="https://math.jianshu.com/math?formula=E%5Cleft(C_%7Bi%7D%5Cright)%20%5Ccap%20E%5Cleft(C_%7Bj%7D%5Cright)=%5CPhi(i%20%5Cneq%20j)" alt="E\left(C_{i}\right) \cap E\left(C_{j}\right)=\Phi(i \neq j)"><br>3.<img src="https://math.jianshu.com/math?formula=G" alt="G">中有Euler迹的充要条件是<img src="https://math.jianshu.com/math?formula=G" alt="G">联通且至多有两个顶点。</p>
+<h5 id="1-2-Hamilton图"><a href="#1-2-Hamilton图" class="headerlink" title="1.2.Hamilton图"></a>1.2.Hamilton图</h5><p>定义 包含<img src="https://math.jianshu.com/math?formula=G" alt="G">的每个顶点的轨叫做Hamilton轨；闭的Hamilton轨叫做Hamilton圈或H圈；含Hamilton圈的图叫做<strong>Hamilton图</strong>。</p>
+<h5 id="1-3-Euler图和Hamilton图的区别"><a href="#1-3-Euler图和Hamilton图的区别" class="headerlink" title="1.3.Euler图和Hamilton图的区别"></a>1.3.Euler图和Hamilton图的区别</h5><p>都是含有一个圈，但是Euler图的关键词是“边”，它要经过该图中的每一条边。而Hamilton图的关键词是”顶点”只要经过每个顶点就行了，也就是说，Euler图的要求更高。</p>
+<h5 id="2-Euler回路的Fleury算法"><a href="#2-Euler回路的Fleury算法" class="headerlink" title="2.Euler回路的Fleury算法"></a>2.Euler回路的Fleury算法</h5><p>1.<img src="https://math.jianshu.com/math?formula=%5Cforall%20v_%7B0%7D%20%5Cin%20V(G)" alt="\forall v_{0} \in V(G)">，令<img src="https://math.jianshu.com/math?formula=W_%7B0%7D=v_%7B0%7D" alt="W_{0}=v_{0}">。<br> 2.假设迹<img src="https://math.jianshu.com/math?formula=W_%7Bi%7D=v_%7B0%7D%20e_%7B1%7D%20v_%7B1%7D%20%5Ccdots%20e_%7Bi%7D%20v_%7Bi%7D" alt="W_{i}=v_{0} e_{1} v_{1} \cdots e_{i} v_{i}">已经选定，那么按下列方法从<img src="https://math.jianshu.com/math?formula=E-%5Cleft%5C%7Be_%7B1%7D,%20%5Ccdots,%20e_%7Bi%7D%5Cright%5C%7D" alt="E-\left\{e_{1}, \cdots, e_{i}\right\}">中选取边<img src="https://math.jianshu.com/math?formula=e_%7Bi+1%7D" alt="e_{i+1}">:<br> (1)<img src="https://math.jianshu.com/math?formula=e_%7Bi+1%7D" alt="e_{i+1}">和<img src="https://math.jianshu.com/math?formula=v_%7Bi%7D" alt="v_{i}">相关联；<br> (2)除非没有别的边可选择，否则<img src="https://math.jianshu.com/math?formula=e_%7Bi+1%7D" alt="e_{i+1}">不能是<img src="https://math.jianshu.com/math?formula=G_%7Bi%7D=G-%5Cleft%5C%7Be_%7B1%7D,%20%5Ccdots,%20e_%7Bi%7D%5Cright%5C%7D" alt="G_{i}=G-\left\{e_{1}, \cdots, e_{i}\right\}">的割边（<strong>割边</strong>是一条删除后使连通图不再联通的边）。<br> 3.当第2步不能再执行时，算法停止。</p>
+<h4 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h4><h5 id="邮递员问题"><a href="#邮递员问题" class="headerlink" title="邮递员问题"></a>邮递员问题</h5><p>一位邮递员从邮局选好邮件去投递，然后返回邮局，当然他必须经过他负责投递的每条街道至少一次，为他设计一条投递路线，使得他<strong>行程最短</strong>。</p>
+<p>上述中国邮递员问题的数学模型是：在一个赋权连通图上求一个含所有边的回路，且使此<strong>回路的权最小</strong>。</p>
+<p>显然，若此连通赋权图是 Euler 图，则可用 Fleury 算法求 Euler 回路，此回路即为所求。</p>
+<p>若是非Euler图，则有以下算法：</p>
+<p>设<img src="https://math.jianshu.com/math?formula=G" alt="G">是联通赋权图<br> 1.求<img src="https://math.jianshu.com/math?formula=V_%7B0%7D=%5C%7Bv%20%7C%20v%20%5Cin%20V(G),%20d(v)=1(%5Cbmod%202)%5C%7D" alt="V_{0}=\{v | v \in V(G), d(v)=1(\bmod 2)\}"><br> 2.对每对顶点<img src="https://math.jianshu.com/math?formula=u,%20v%20%5Cin%20V_%7B0%7D" alt="u, v \in V_{0}">，求<img src="https://math.jianshu.com/math?formula=d(u,v)" alt="d(u,v)">（<img src="https://math.jianshu.com/math?formula=d(u,v)" alt="d(u,v)">是<img src="https://math.jianshu.com/math?formula=u" alt="u">和<img src="https://math.jianshu.com/math?formula=v" alt="v">的距离，可用最短路问题中的算法来求出）<br> 3.构造完全赋权图<img src="https://math.jianshu.com/math?formula=K_%7B%5Cleft.%5Cright%7C_%7BV_%7B0%7D%7D%20%7C%7D" alt="K_{\left.\right|_{V_{0}} |}">，以<img src="https://math.jianshu.com/math?formula=V_%7B0%7D" alt="V_{0}">为顶点集，以<img src="https://math.jianshu.com/math?formula=d(u,v)" alt="d(u,v)">为边<img src="https://math.jianshu.com/math?formula=uv" alt="uv">的权。<br> 4.求<img src="https://math.jianshu.com/math?formula=K_%7B%5Cleft%7CV_%7B0%7D%5Cright%7C%7D" alt="K_{\left|V_{0}\right|}">中的最小完美对集<img src="https://math.jianshu.com/math?formula=M" alt="M">。<br> 5.求<img src="https://math.jianshu.com/math?formula=M" alt="M">中边的端点之间的在<img src="https://math.jianshu.com/math?formula=G" alt="G">中的最短轨。<br> 6.在5中求得的每条最短轨上每条边添加一条等权的所谓“倍边”（即共端点共权的边）。<br> 7.在6中所得的图中求Euler回路即是邮递员问题的解。</p>
+<h5 id="旅行商问题"><a href="#旅行商问题" class="headerlink" title="旅行商问题"></a>旅行商问题</h5><p>一名推销员准备前往若干城市推销产品，然后回到他的出发地。如何为他设计一条最短的旅行路线（从驻地出发，经过每个城市恰好一次，最后返回驻地）？这个问题称为旅行商问题。用图论的术语说，就是在一个赋权完全图中，找出一个有最小权的Hamilton 圈。称这种圈为最优圈。与最短路问题及连线问题相反，目前还<strong>没有求解旅行商问题的有效算法</strong>。所以希望有一个方法以获得相当好（但不一定最优）的解。</p>
+<p>一个可行的方法是首先求一个Hamilton圈C，然后适当修改C得到具有更小权的另一个Hamilton圈，修改的方法叫做<strong>改良圈算法</strong>。</p>
+<blockquote>
+<p>设初始圈<img src="https://math.jianshu.com/math?formula=C=v_%7B1%7D%20v_%7B2%7D%20%5Ccdots%20v_%7Bn%7D%20v_%7B1%7D" alt="C=v_{1} v_{2} \cdots v_{n} v_{1}"><br>1.对于<img src="https://math.jianshu.com/math?formula=1%3Ci+1%3Cj%3Cn" alt="1&lt;i+1&lt;j&lt;n">，构造新的Hamilton图：<br><img src="https://math.jianshu.com/math?formula=C_%7By%7D=v_%7B1%7D%20v_%7B2%7D%20%5Ccdots%20v_%7Bi%7D%20v_%7Bj%7D%20v_%7Bj-1%7D%20v_%7Bj-2%7D%20%5Ccdots%20v_%7Bi+1%7D%20v_%7Bj+1%7D%20v_%7Bj+2%7D%20%5Ccdots%20v_%7Bn%7D%20v_%7B1%7D" alt="C_{y}=v_{1} v_{2} \cdots v_{i} v_{j} v_{j-1} v_{j-2} \cdots v_{i+1} v_{j+1} v_{j+2} \cdots v_{n} v_{1}"><br>它是由C中<strong>删去边<img src="https://math.jianshu.com/math?formula=v_%7Bi%7D%20v_%7Bi+1%7D" alt="v_{i} v_{i+1}">和<img src="https://math.jianshu.com/math?formula=v_%7Bj%7D%20v_%7Bj+1%7D" alt="v_{j} v_{j+1}">，添加边<img src="https://math.jianshu.com/math?formula=v_%7Bi%7D%20v_%7Bj%7D" alt="v_{i} v_{j}">和<img src="https://math.jianshu.com/math?formula=v_%7Bi+1%7D%20v_%7Bj+1%7D" alt="v_{i+1} v_{j+1}">得到的</strong>。若<img src="https://math.jianshu.com/math?formula=w%5Cleft(v_%7Bi%7D%20v_%7Bj%7D%5Cright)+w%5Cleft(v_%7Bi+1%7D%20v_%7Bj+1%7D%5Cright)%3Cw%5Cleft(v_%7Bi%7D%20v_%7Bi+1%7D%5Cright)+w%5Cleft(v_%7Bj%7D%20v_%7Bj+1%7D%5Cright)" alt="w\left(v_{i} v_{j}\right)+w\left(v_{i+1} v_{j+1}\right)&lt;w\left(v_{i} v_{i+1}\right)+w\left(v_{j} v_{j+1}\right)">则以<img src="https://math.jianshu.com/math?formula=C_%7Bi%20j%7D" alt="C_{i j}">代替<img src="https://math.jianshu.com/math?formula=C" alt="C">，<img src="https://math.jianshu.com/math?formula=C_%7Bi%20j%7D" alt="C_{i j}">称为圈<img src="https://math.jianshu.com/math?formula=C" alt="C">的改良圈。<br>2.转1，直到无法进行，停止。</p>
+</blockquote>
+<p>这个算法得到的结果几乎肯定不是最优的，为了得到更高的精确度，可以选择不同的初始圈，重复几次算法，以求得较准确的结果。</p>
+<p>从北京（Pe）乘飞机到东京(T)、纽约(N)、墨西哥城(M)、伦敦(L)、巴黎(Pa)<br>五城市做旅游，每城市恰去一次再回北京，应如何安排旅游线，使旅程最短？各城市之<br>间的航线距离如表。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>伦敦(L)</th>
+<th>墨西哥(M)</th>
+<th>纽约(N)</th>
+<th>巴黎(Pa)</th>
+<th>北京(Pe)</th>
+<th>东京(T)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>伦敦(L)</td>
+<td></td>
+<td>56</td>
+<td>35</td>
+<td>21</td>
+<td>51</td>
+<td>60</td>
+</tr>
+<tr>
+<td>墨西哥(M)</td>
+<td>56</td>
+<td></td>
+<td>21</td>
+<td>57</td>
+<td>78</td>
+<td>70</td>
+</tr>
+<tr>
+<td>纽约(N)</td>
+<td>35</td>
+<td>21</td>
+<td></td>
+<td>36</td>
+<td>68</td>
+<td>68</td>
+</tr>
+<tr>
+<td>巴黎(Pa)</td>
+<td>21</td>
+<td>57</td>
+<td>36</td>
+<td></td>
+<td>51</td>
+<td>61</td>
+</tr>
+<tr>
+<td>北京(Pe)</td>
+<td>51</td>
+<td>78</td>
+<td>68</td>
+<td>51</td>
+<td></td>
+<td>13</td>
+</tr>
+<tr>
+<td>东京(T)</td>
+<td>60</td>
+<td>70</td>
+<td>68</td>
+<td>61</td>
+<td>13</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>利用改良圈算法编写Matlab程序如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span></span></span><br><span class="line">clc,clear</span><br><span class="line"><span class="keyword">global</span> a</span><br><span class="line">a=<span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line">a(<span class="number">1</span>,<span class="number">2</span>)=<span class="number">56</span>;a(<span class="number">1</span>,<span class="number">3</span>)=<span class="number">35</span>;a(<span class="number">1</span>,<span class="number">4</span>)=<span class="number">21</span>;a(<span class="number">1</span>,<span class="number">5</span>)=<span class="number">51</span>;a(<span class="number">1</span>,<span class="number">6</span>)=<span class="number">60</span>;</span><br><span class="line">a(<span class="number">2</span>,<span class="number">3</span>)=<span class="number">21</span>;a(<span class="number">2</span>,<span class="number">4</span>)=<span class="number">57</span>;a(<span class="number">2</span>,<span class="number">5</span>)=<span class="number">78</span>;a(<span class="number">2</span>,<span class="number">6</span>)=<span class="number">70</span>;</span><br><span class="line">a(<span class="number">3</span>,<span class="number">4</span>)=<span class="number">36</span>;a(<span class="number">3</span>,<span class="number">5</span>)=<span class="number">68</span>;a(<span class="number">3</span>,<span class="number">6</span>)=<span class="number">68</span>; a(<span class="number">4</span>,<span class="number">5</span>)=<span class="number">51</span>;a(<span class="number">4</span>,<span class="number">6</span>)=<span class="number">61</span>;</span><br><span class="line">a(<span class="number">5</span>,<span class="number">6</span>)=<span class="number">13</span>; a=a+a&#x27;; L=<span class="built_in">size</span>(a,<span class="number">1</span>);</span><br><span class="line">c1=[<span class="number">5</span> <span class="number">1</span>:<span class="number">4</span> <span class="number">6</span>];</span><br><span class="line">[circle,long]=modifycircle(c1,L);</span><br><span class="line">c2=[<span class="number">5</span> <span class="number">6</span> <span class="number">1</span>:<span class="number">4</span>];<span class="comment">%改变初始圈，该算法的最后一个顶点不动</span></span><br><span class="line">[circle2,long2]=modifycircle(c2,L);</span><br><span class="line"><span class="keyword">if</span> long2&lt;long</span><br><span class="line">    long=long2;</span><br><span class="line">    circle=circle2;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">circle,long</span><br><span class="line"><span class="comment">%*******************************************</span></span><br><span class="line"><span class="comment">%修改圈的子函数</span></span><br><span class="line"><span class="comment">%*******************************************</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[circle,long]</span>=<span class="title">modifycircle</span><span class="params">(c1,L)</span>;</span></span><br><span class="line"><span class="keyword">global</span> a</span><br><span class="line">flag=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> flag&gt;<span class="number">0</span></span><br><span class="line">    flag=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> m=<span class="number">1</span>:L<span class="number">-3</span></span><br><span class="line">        <span class="keyword">for</span> n=m+<span class="number">2</span>:L<span class="number">-1</span></span><br><span class="line">            <span class="keyword">if</span> a(c1(m),c1(n))+a(c1(m+<span class="number">1</span>),c1(n+<span class="number">1</span>))&lt;...</span><br><span class="line">            a(c1(m),c1(m+<span class="number">1</span>))+a(c1(n),c1(n+<span class="number">1</span>))</span><br><span class="line">                flag=<span class="number">1</span>;</span><br><span class="line">                c1(m+<span class="number">1</span>:n)=c1(n:<span class="number">-1</span>:m+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">long=a(c1(<span class="number">1</span>),c1(L));</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:L<span class="number">-1</span></span><br><span class="line">    long=long+a(c1(<span class="built_in">i</span>),c1(<span class="built_in">i</span>+<span class="number">1</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">circle=c1;</span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+      <div>
+        
+          <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">本文结束，感谢您的阅读</div>
+    
+</div>
+
+        
+      </div>
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/03/%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%A8%A1%E6%8B%9F%E7%AE%97%E6%B3%95/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/08/03/%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E5%8D%A1%E5%9B%BE%E5%92%8C%E5%93%88%E5%AF%86%E5%B0%94%E9%A1%BF%E5%9B%BE%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">欧卡图和哈密尔顿图的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">1.基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-Euler%E5%9B%BE"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.Euler图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-Hamilton%E5%9B%BE"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2.Hamilton图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-Euler%E5%9B%BE%E5%92%8CHamilton%E5%9B%BE%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3.Euler图和Hamilton图的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Euler%E5%9B%9E%E8%B7%AF%E7%9A%84Fleury%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.4.</span> <span class="nav-text">2.Euler回路的Fleury算法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">题目：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%82%AE%E9%80%92%E5%91%98%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.1.</span> <span class="nav-text">邮递员问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%97%85%E8%A1%8C%E5%95%86%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.2.</span> <span class="nav-text">旅行商问题</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ang"
+      src="/images/ang.jpg">
+  <p class="site-author-name" itemprop="name">Ang</p>
+  <div class="site-description" itemprop="description">Why do learn?</div>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ang-sagapo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ang-sagapo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ang</span>
+</div>
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

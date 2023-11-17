@@ -27,11 +27,15 @@
 <meta property="og:site_name" content="ang&#39;s blog">
 <meta property="og:description" content="3Path-oram和r树的应用1、framework：框架 2、http:&#x2F;&#x2F;www.jos.org.cn&#x2F;html&#x2F;2018&#x2F;9&#x2F;5591.htm r树：三维的树，地图查找之类的应用 3、在r树应用中：使用语言模型和概率排序函数来计算查询结果的文本相关性，在本论文中，对于r树的拓展应用相当于是对于地图的查找：同时根据查找的关键词和r树中的临近位置进行查找以加快查找速度 4、解决oram的问题：">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230724215255789.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230728140826442.png">
+<meta property="og:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230718200209943.png">
 <meta property="article:published_time" content="2023-06-23T08:17:18.477Z">
-<meta property="article:modified_time" content="2023-07-12T02:25:57.922Z">
+<meta property="article:modified_time" content="2023-08-03T06:31:14.665Z">
 <meta property="article:author" content="Ang">
 <meta property="article:tag" content="本科论文阅读">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230724215255789.png">
 
 <link rel="canonical" href="http://example.com/2023/06/23/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95/">
 
@@ -228,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-12 10:25:57" itemprop="dateModified" datetime="2023-07-12T10:25:57+08:00">2023-07-12</time>
+                <time title="修改时间：2023-08-03 14:31:14" itemprop="dateModified" datetime="2023-08-03T14:31:14+08:00">2023-08-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -268,6 +272,34 @@
 <p>这个涉及到排序算法，所以该算法的时间复杂度主要由排序算法的时间复杂度决定。</p>
 <p><strong>改进方法</strong>：只对前k个最大的数据项进行排序即可，则利用冒泡排序就可以很好的解决这个问题</p>
 <p><strong>倒排文件索引文本相关性的计算方法</strong>：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/91603911">https://zhuanlan.zhihu.com/p/91603911</a></p>
+<p>在对于path-oram的具体实现中，我们的方案是同时存在位置和文本查询的，其中空间查询我们先保持用一个自己拟造的数据数据表示，文本查询采用文本相似性的相关计算方法进行计算，在存储节点时，我们会将每一个节点初始化为包含空间信息和文本信息的节点，文本信息是由一堆的关键字组成的，并且我们的查询请求对于文本的输入也是一系列的关键字，</p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230724215255789.png" alt="image-20230724215255789"></p>
+<p>空间文本距离计算的相关公式：</p>
+<p>使用倒置文件计算文本的相似性，使用Rtree计算空间的相似性</p>
+<p>第一种方法：</p>
+<p>只使用倒置文件的优化</p>
+<p>首先不考虑空间距离参数，只使用倒置文件的计算方法计算出查询结果的各个分数，然后产生一个根据文本相似度分数排序的列表，根据空间距离对这个表进行循环遍历找出最佳的查询结果。</p>
+<p>数据结构的设置：</p>
+<p>首先是IRtree的数据结构：1、一般节点：每个节点是由多个分支组成的，这是一个分支数组，节点的倒置文件，整个节点对应的矩形范围</p>
+<p>2、节点中的分支的结构：每个分支包括：指向其孩子节点的索引，该分支存储的数据，每一个索引对应的矩形范围即空间参数，该索引的文本参数即为关键字，这些文本参数存储在一个伪文件中，在这个伪文件中，包含了所有的该分支的子节点所具有的关键字，其中每一个关键字的权重为子节点中所有的分支该关键字权重最大值。</p>
+<p>3、倒置文件的结构：包含一个完成的词汇表，这个词汇表中包含所有的关键字，其中每一个关键字映射到一个列表中，倒置文件中的关键字映射到一个个的关键字的ID中，这个ID是一个int的数字，我们只在B+树中存储这个数字ID即可完成对于伪文件的存储。</p>
+<p>4、这个列表的结构为：每一个元素由包含此关键字的元素和该关键字在此元素中的权重组成。</p>
+<p>5、对于根节点和叶子节点：其中根节点是没有父节点的但是存在倒置文件和伪文件，叶子节点中没有必要存储伪文件，只需直接在其中存储关键字即可。</p>
+<p>数据结构结束。</p>
+<p>6、伪文件的结构：每一个除叶子节点外的分支结构都会有一个伪文件，这个伪文件存储了当前分支所具有的所有的关键字以及关键字的权重。	</p>
+<p>然后就是对这个树的查询策略：</p>
+<p>7、综上所述：我们当前需要单独维护三个结构：1、原本的rtree树，2、每一个节点的倒置文件结构  3、每一个节点的虚实条目判断结构。</p>
+<p>8、使用B+树存储每一个节点所对应的倒置文件，这就等价于我们的节点中存储一个指向其倒置文件的索引指针，这个指针指向B+树的根节点。	</p>
+<p>9、我最后才发现，伪文件并不是一个文件也不是一个其他结构，而是一种计算文本相似性的方法。我们只需要将每一个分支的关键字及其权重存储起来即可。</p>
+<p>下面介绍计算文本相似度的算法：</p>
+<p>我们将一个关键字在一个数据文本中的权重设置为该关键字在文本中的词频。</p>
+<p>10、对于词频的计算方法，首先我们给出一个含有50个关键词的字典，我们规定新输入的数据的文本参数所含有的关键字只能是在我们给出的字典中的关键字，</p>
+<p>在进行rtree的建立时，我们需要一个一个插入数据，数据里只是含有一段文本，我们需要对这段文本进行处理，将其处理为关键词和词频的映射结构，然后再根据这个映射结构计算文本相似度。</p>
+<p>11、其实这棵树的插入操作我们只需要修改节点的数据结构即可，这一部分我们已经完成，这棵树的删除操作时整个rtree最为最为复杂的过程，这棵树的查询操作，rtree的方法是利用rect和text进行一系列的比较，找到最合适的查询分支叶子节点，但是这就会找到好多个分支，于是我们返回的就是top-k的查询条目，把这些数据全部存储在内部节点中，而不是存储在叶子节点中。</p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230728140826442.png" alt="image-20230728140826442"></p>
+<p>12、查询方案：先找出该数据矩形范围距离最小的矩形，将这些矩形对应的branch存在一个列表里，然后我们对比文本参数，找出最佳的top-k索引，这些索引指向了不同的位置，在这些位置中存放着真正的数据，然后将查询的数据随机存放在另一个随机的路径里面，并且越深越好，然后修改原来的叶子分支的索引，将这个索引指向这个分支即可。这就相当于对于path-oram的应用。！！！！！！！牛逼。</p>
+<p>第二种方法：</p>
+<p>两种优化均使用</p>
 <h4 id="对于IFO和RIF的理解："><a href="#对于IFO和RIF的理解：" class="headerlink" title="对于IFO和RIF的理解："></a>对于IFO和RIF的理解：</h4><h5 id="IFO"><a href="#IFO" class="headerlink" title="IFO"></a>IFO</h5><p>首先先给定n个目标，这n个目标均由位置信息和文本信息组成，在对利用这两种信息对查询结果进行排序时，我们有两种不同的方法，其中大概的概念为对位置信息和文本信息进行分别处理和排序后再进行综合排序打分。</p>
 <p>然后IFO的算法为：只使用倒置文件的数据结构对文本信息和位置信息进行排序处理，将目标点按照文本相关性的排序依次放入候补队列中。</p>
 <h5 id="RIF"><a href="#RIF" class="headerlink" title="RIF"></a>RIF</h5><p>在RIF中，对于文本的信息处理和上述IFO的相同的，所以我们可以根据上述的处理得到了文本相关性的排序信息，接下来在进行位置接近性的排序时，我们采用R树对位置信息进行欧几里得距离的计算，并按照位置接近性的大小顺序来将目标点放入候选队列中。</p>
@@ -386,6 +418,95 @@
 </ul>
 </li>
 </ol>
+<h5 id="Path-Oram路径协议简述："><a href="#Path-Oram路径协议简述：" class="headerlink" title="Path-Oram路径协议简述："></a>Path-Oram路径协议简述：</h5><p>Path-Oram是由一系列的桶组成的二叉树，其中在每一个二叉树中的节点都是一个桶，每个桶中都有n的block（块），我们对于path-oram数据的读取就是以块为单位进行的。下面对path-oram对于数据的读写协议进行总结：</p>
+<p>首先我们先明白，Path-Oram对于数据的存储分别在客户端和服务器中，客户端中维护了一个数据结构为stash，负责存储在客户端中的block以及此block在树中的路径，</p>
+<p>我们在进行对于数据的存储的时候，会维护一个映射结构position（map），这个映射结构将每一个block映射到这个block所在的path-oram的路径path（X），此路径是从叶子节点开始到根节点的路径，并且这个路径中包含了所要查找的block。</p>
+<p>大致过程如下，</p>
+<p>1、首先将要进行操作是根据position映射结构找到此block所对应的路径，</p>
+<p>2、设此路径为path(X)，将此路径上的所有的block从服务器取出，将这些block存入到本地客户端的stash中，同时将此路径path（X）也存入到stash中</p>
+<p>3、将取出的block数据块设置为a，将这个a-block重新映射到一个新的随机的路径中。</p>
+<p>4、循环遍历stash中的每一个bolck，找到我们需要进行操作的block，</p>
+<p>5、如果此此操作为写操作，则写操作比只读操作多一个步骤，即将要写入的数据写入到block-a中，若为只读操作，则跳过此步骤。</p>
+<p>6、下面是对于将取出的路径重新写回的操作：首先对于path-oram树按层L进行遍历，将stash中的block从最深层逐层向上一层写入，具体写入过程为：首先对于每一层L，找到stash中路径为X且层数为L的block，将其存入到temp-S（S’）中，从temp-S中取出不超过块的最大容量N的block，此时S变为S-（temp-S），然后把取出的block存入到指定bucket中。</p>
+<p>7、如何保证block的安全性呢？在stash中会存在一些隐含的块，这些块本来是没有在path-oram路径中的，但是我们在读写操作的最后一步的写入过程中，除了</p>
+<h5 id="下面是obvilious-path-oram对于path-oram的改进。"><a href="#下面是obvilious-path-oram对于path-oram的改进。" class="headerlink" title="下面是obvilious path-oram对于path-oram的改进。"></a>下面是obvilious path-oram对于path-oram的改进。</h5><p>我们在上面的算法中可以得知，在进行操作的过程中，我们需要始终维护一个position的映射结构，并且这个映射结构是对应到每一个block上的，这就会导致我们需要花费大量的存储空间去存储这个映射结构，在path-oram的基础上，obvilious的工作即将这种映射结构的存储也以一个path-oram的形式存储到服务器中，即为oram0，oram1，oram2.……，在这种结构下，我们仅在oram0存储真正的block数据块，而在其他的oram中存储映射结构，至于oram的级数，需要根据具体的oram0中block数量的大小来决定，从而做到时间和空间的节省。</p>
+<p>根据上述结构的改进之后，我们在本地客户端中仅仅需要维护oramN即可，这个数据结构所需的存储结构是大大减少的。</p>
+<p><img src="C:\Users\20191\AppData\Roaming\Typora\typora-user-images\image-20230718200209943.png" alt="image-20230718200209943"></p>
+<h5 id="一棵R树满足如下的性质："><a href="#一棵R树满足如下的性质：" class="headerlink" title="一棵R树满足如下的性质："></a>一棵R树满足如下的性质：</h5><ul>
+<li>\1. 除非它是根结点之外，所有叶子结点包含有m至M个记录索引（条目）。作为根结点的叶子结点所具有的记录个数可以少于m。通常，m&#x3D;M&#x2F;2。</li>
+<li>\2. 对于所有在叶子中存储的记录（条目），I是最小的可以在空间中完全覆盖这些记录所代表的点的矩形（注意：此处所说的“矩形”是可以扩展到高维空间的）。</li>
+<li>\3. 每一个非叶子结点拥有m至M个孩子结点，除非它是根结点。</li>
+<li>\4. 对于在非叶子结点上的每一个条目，i是最小的可以在空间上完全覆盖这些条目所代表的点的矩形（同性质2）。</li>
+<li>\5. 所有叶子结点都位于同一层，因此R树为平衡树。</li>
+</ul>
+<p>R数的插入操作：</p>
+<p>首先每一个R树的节点是由多个分支构成的，并且每一个分支都会自己的子节点，并且这个子节点也是有多个分支构成的，这就相当于每一个节点都有多个孩子节点，初次之外，我们只把数据存储在整个树的叶子节点中，同时，R树中的每一个节点所拥有的分支的个数在min-max之间，其中min一般等于max&#x2F;2，</p>
+<p>并且我们在进行数据的插入和删除的过程中，需要时刻保持叶子节点都在同一层中，以此来保证R树的平衡性。</p>
+<p>下面介绍数据的插入：</p>
+<p>数据的插入过程涉及到节点的分裂，</p>
+<p>对于数据的插入是要从叶子节点开始插入，并从叶子节点开始向上一层层的更新，首先每一个叶子节点可以存储的数据的条目最大为max，最小为min，当数据条目小于min时，即删除操作就会涉及到节点的合并，</p>
+<p>下面我们考虑如何将一个新加入的数据添加到最合适的节点当中，首先，这个数据会有一个BB，我们计算将这个数据插入到每一个节点后，对应节点的BB的增加量，我们取增加量最小的节点作为最合适的添加节点，若增加量相等，取本身面积最小的节点作为插入节点。</p>
+<p>在这之后，我们得到了最佳的插入节点best，将数据插入到节点best中，这就会涉及到节点的分裂操作，如果此时best存储的数据项已经为max了，则需要进行节点的分裂，相当于我们会增加一个新的叶子节点，并把原来节点和插入数据均匀的分配到这两个节点中，</p>
+<p>接下来，我们考虑下一层，因为叶子节点增加了，设best节点的父节点为F，则此时就要为新增加的节点设置一个新的分支索引存储到F中，则此时就会又要面临一个同样的问题，这个F节点有没有满，即是否要分裂，层层递进，直到根节点为止。</p>
+<p>如果节点并没有分裂，我们只需要将插入数据的BB放到best节点当中，设bset节点的父节点为F，设F节点中指向best节点的分支索引为BF，我们只需将这个BF的BB修改至包含新增加节点的BB即可。</p>
+<p>当前的大致想法是：用rtree来作为存储path-oram数据的数据结构：</p>
+<p>首先是path-oram的数据结构是在所有的节点中都存有相应的数据，然后rtree是只在叶子节点中存储数据，我们对于一个path-oram中数据的读取是通过一个映射结构来直接完成的，但是我们在rtree中对于一个数据的读取是根据这个数据的BB的范围来完成的，除此之外，我们在path-oram中存取的数据有一个非常大的问题，我们无法确定这个数据的BB通过何种方式来进行确定，这是第一个问题：</p>
+<p>就是数据之间的距离或者面积的计算由何种方式来进行确定。</p>
+<p>下面是第二个问题：</p>
+<p>其实我们在path-oram的存储过程中，只需在除了叶子节点之外的节点中，不再存储数据，而是只进行存储指向其孩子节点的指针即可。</p>
+<p>由于我们现在是在rtree这个树结构上存储path-oram的数据，并且只在叶子节点中存储指向真正数据的指针，那么我们的查询过程就需要提供一个需要查询的数据的范围，但是在实际的操作的过程中，我们提供的只是我们需要查询的数据，用户并不会提供查询数据的MBB,那么这个MBB的计算就需要我们自己进行编写：下面是rtree那篇相关论文中提供的方法：</p>
+<p>每一个数据节点有两个参数：位置参数和文本参数，但是我们现在需要查询的数据只应用文本参数即可，</p>
+<p>论文的方法是：</p>
+<p>我们设置存储的数据的本文参数其实是由一个文件描述的，这个文件中的文本有着许多的关键字，相当于是这个数据的文本参数是由一系列的关键字组成的，对于一个查询请求Q，这个查询请求在我们的论文情境下只会涉及到对于文本的查询请求，但是这个请求Q一般是不会恰好对应到path-oram中存储的某个数据的，这时我们就需要计算查询请求文本参数设为L，和path-oram中每一个节点的文本相似性，至于文本相似性的计算，后面再进行讨论。</p>
+<p>下面讨论查询请求，在rtree中，我们的查询请求是直接提供每一个节点对应的路径，即为前面提到的映射结构，那么我们也可以在path-oram维护一个这样的映射结构，但是这明显是不现实的，因为我们在进行查询时，不可能直接给出需要查询的节点，这个待查询的节点是我们根据文本的相似性从根节点开始一步一步计算出来的，但是这就会有着大量的时间的浪费，于是便有了上词组会提到的维护一个单独的结构，这个结构中单独存储path-oram中所有的叶子节点，我们只需要在查询时对这个结构进行遍历插叙即可。但是这个结构的维护就会涉及到大量的空间的消耗。</p>
+<p>然后是另一个方法，</p>
+<p>我们不是将rtree和path-oram放在一个数据结构中，而是分别维护：</p>
+<p>我们在rtree的叶子节点中存储数据，将这些数据全部放到patt-oram中进行数据的查询，草，这过程更复杂了，。。。。。。。。。这是个大问题，但是上次的组会说的应该就是这个方法。</p>
+<p>下面是优化过程，由于每一个数据的文本参数是由一系列的关键字组成的，这就会涉及到一个优化，倒置文件，我们会rtree的每一个节点中增加一个倒置文件，这个倒置文件存储的是指向导倒置文本的指针，这个倒置的文本其实就是在所有的文件中，包含有这个关键字的文件的索引。这是第一个优化</p>
+<p>第二个优化就是：我们在上面提到了需要维护一个path-oram的所有叶子节点的数据结构，这会加大空间的消耗，那么我们就可以存储一个类似于缓存的结构，只存储那些访问次数多的数据的索引。</p>
+<p>第三个可以优化的点就是：对于文本相似性的计算。这会涉及到好多算法：<strong>余弦相似度和汉明距离：</strong></p>
+<p>余弦相似度（Cosine Similarity）是一种用于衡量两个向量之间相似性的度量方法。它基于两个向量之间的夹角余弦值来计算相似性，而不仅仅考虑向量的长度或欧氏距离。余弦相似度通常用于文本挖掘、信息检索和推荐系统等领域。</p>
+<p>在余弦相似度中，给定两个向量A和B，它们可以表示为n维空间中的两个点。余弦相似度定义为向量A和B的点积（内积）除以它们的模（长度）的乘积。公式如下：</p>
+<p>余弦相似度 &#x3D; (A · B) &#x2F; (||A|| * ||B||)</p>
+<p>其中，A · B表示向量A和B的点积，||A||和||B||表示向量A和B的模（长度）。</p>
+<p>余弦相似度的取值范围在-1到1之间。当两个向量的方向完全相同时，余弦相似度为1，表示它们非常相似；当两个向量完全反向时，余弦相似度为-1，表示它们完全不相似；当两个向量之间夹角为90度时，余弦相似度为0，表示它们无关。</p>
+<p>汉明距离（Hamming Distance）是用于比较两个等长字符串之间差异性的度量方法。它衡量的是将一个字符串转换为另一个字符串所需的最小替换次数。汉明距离常用于错误检测和纠错码等领域。</p>
+<p>在汉明距离中，假设有两个等长的字符串A和B，它们的汉明距离定义为在相同位置上不相等的字符个数。换句话说，汉明距离等于将字符串A转换为字符串B所需的最小替换次数。</p>
+<p>汉明距离的取值范围为0到字符串长度之间。当两个字符串完全相同时，汉明距离为0，表示它们相同；当两个字符串完全不同时，汉明距离等于字符串长度，表示它们完全不同。</p>
+<p>然后就是进一步的优化，我们根据这些关键字之间的相似度，将这些关键字进行分类并存储在节点当中，这可以加快查询的效率。</p>
+<p>至于分类方案：</p>
+<h5 id="K-means聚类算法：-1"><a href="#K-means聚类算法：-1" class="headerlink" title="K-means聚类算法："></a>K-means聚类算法：</h5><p>K-means聚类算法是一种迭代的启发式聚类算法，用于将数据点划分为预先指定的K个簇。它的目标是最小化簇内的平方误差和，以获得较好的聚类结果。</p>
+<p>以下是K-means聚类算法的详细步骤和相关的数学公式：</p>
+<p>输入：</p>
+<ul>
+<li>数据集X，包含n个数据点：{x₁, x₂, …, xₙ}</li>
+<li>预先指定的簇数量K</li>
+</ul>
+<p>步骤：</p>
+<ol>
+<li><p>随机初始化K个簇中心：{c₁, c₂, …, cₖ}</p>
+</li>
+<li><p>迭代以下步骤直到达到停止条件（例如，簇中心不再发生显著变化）： a. 分配数据点到最近的簇中心： 对于每个数据点xᵢ：</p>
+<ul>
+<li>计算其与每个簇中心cⱼ之间的距离：d(xᵢ, cⱼ) &#x3D; ||xᵢ - cⱼ||₂</li>
+<li>将数据点xᵢ分配到距离最近的簇：xᵢ ∈ Cⱼ，其中 Cⱼ 表示第j个簇的成员。</li>
+</ul>
+<p>b. 更新簇中心为簇内数据点的均值： 对于每个簇Cⱼ：</p>
+<ul>
+<li>计算新的簇中心：cⱼ &#x3D; (1 &#x2F; |Cⱼ|) * Σxᵢ，其中 |Cⱼ| 表示簇Cⱼ的成员数量。</li>
+</ul>
+</li>
+<li><p>输出最终的簇分配结果。</p>
+</li>
+</ol>
+<p>其中，||.||₂表示欧几里德距离（Euclidean distance），表示两个数据点之间的距离。</p>
+<p>K-means聚类算法的数学公式总结如下：</p>
+<p>目标函数： J &#x3D; Σᵢ Σⱼ d²(xᵢ, cⱼ)</p>
+<p>簇中心与数据点之间的距离： d(xᵢ, cⱼ) &#x3D; ||xᵢ - cⱼ||₂</p>
+<p>簇Cⱼ的成员数量： |Cⱼ|</p>
+<p>簇中心的更新： cⱼ &#x3D; (1 &#x2F; |Cⱼ|) * Σxᵢ</p>
+<p>其中，J表示总的平方误差和，xᵢ表示第i个数据点，cⱼ表示第j个簇的中心，d(xᵢ, cⱼ)表示数据点xᵢ与簇中心cⱼ之间的距离，|Cⱼ|表示簇Cⱼ的成员数量，Σ表示求和运算。</p>
+<p>K-means聚类算法通过迭代更新簇中心和重新分配数据点，不断优化平方误差和，以得到较好的聚类结果。注意，该算法可能收敛到局部最优解，因此多次运行并比较不同初始值的结果是常见的做法。</p>
 
     </div>
 
@@ -479,7 +600,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3Path-oram%E5%92%8Cr%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">3Path-oram和r树的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#top-k%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="nav-number">1.0.1.</span> <span class="nav-text">top-k的概念：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8EIFO%E5%92%8CRIF%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">对于IFO和RIF的理解：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#IFO"><span class="nav-number">1.1.1.</span> <span class="nav-text">IFO</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RIF"><span class="nav-number">1.1.2.</span> <span class="nav-text">RIF</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%B4%A2%E5%BC%95R%E6%A0%91%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="nav-number">1.1.3.</span> <span class="nav-text">混合索引R树的数据结构：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#B-%E6%A0%91%EF%BC%9A"><span class="nav-number">1.1.4.</span> <span class="nav-text">B+树：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">1.1.5.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%87%A0%E7%A7%8D%E5%B9%B3%E8%A1%A1%E6%A0%91%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.6.</span> <span class="nav-text">几种平衡树的介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E8%AE%BA%E6%96%87%E5%8F%82%E6%95%B0%E7%9A%84%E8%A7%A3%E9%87%8A%EF%BC%9A"><span class="nav-number">1.1.7.</span> <span class="nav-text">对于论文参数的解释：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%99%E5%BC%A6%E7%9B%B8%E4%BC%BC%E5%BA%A6%E5%92%8C%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB%EF%BC%9A"><span class="nav-number">1.1.8.</span> <span class="nav-text">余弦相似度和汉明距离：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NP-hard"><span class="nav-number">1.1.9.</span> <span class="nav-text">NP-hard</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A3%85%E7%AE%B1%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.10.</span> <span class="nav-text">装箱问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#K-means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">1.1.11.</span> <span class="nav-text">K-means聚类算法：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SGX"><span class="nav-number">1.1.12.</span> <span class="nav-text">SGX</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Hilbert"><span class="nav-number">1.1.13.</span> <span class="nav-text">Hilbert</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3Path-oram%E5%92%8Cr%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">3Path-oram和r树的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#top-k%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="nav-number">1.0.1.</span> <span class="nav-text">top-k的概念：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8EIFO%E5%92%8CRIF%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">对于IFO和RIF的理解：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#IFO"><span class="nav-number">1.1.1.</span> <span class="nav-text">IFO</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RIF"><span class="nav-number">1.1.2.</span> <span class="nav-text">RIF</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%B4%A2%E5%BC%95R%E6%A0%91%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="nav-number">1.1.3.</span> <span class="nav-text">混合索引R树的数据结构：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#B-%E6%A0%91%EF%BC%9A"><span class="nav-number">1.1.4.</span> <span class="nav-text">B+树：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link"><span class="nav-number">1.1.5.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%87%A0%E7%A7%8D%E5%B9%B3%E8%A1%A1%E6%A0%91%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.6.</span> <span class="nav-text">几种平衡树的介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E8%AE%BA%E6%96%87%E5%8F%82%E6%95%B0%E7%9A%84%E8%A7%A3%E9%87%8A%EF%BC%9A"><span class="nav-number">1.1.7.</span> <span class="nav-text">对于论文参数的解释：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%99%E5%BC%A6%E7%9B%B8%E4%BC%BC%E5%BA%A6%E5%92%8C%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB%EF%BC%9A"><span class="nav-number">1.1.8.</span> <span class="nav-text">余弦相似度和汉明距离：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NP-hard"><span class="nav-number">1.1.9.</span> <span class="nav-text">NP-hard</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A3%85%E7%AE%B1%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.10.</span> <span class="nav-text">装箱问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#K-means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-number">1.1.11.</span> <span class="nav-text">K-means聚类算法：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SGX"><span class="nav-number">1.1.12.</span> <span class="nav-text">SGX</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Hilbert"><span class="nav-number">1.1.13.</span> <span class="nav-text">Hilbert</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Path-Oram%E8%B7%AF%E5%BE%84%E5%8D%8F%E8%AE%AE%E7%AE%80%E8%BF%B0%EF%BC%9A"><span class="nav-number">1.1.14.</span> <span class="nav-text">Path-Oram路径协议简述：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AFobvilious-path-oram%E5%AF%B9%E4%BA%8Epath-oram%E7%9A%84%E6%94%B9%E8%BF%9B%E3%80%82"><span class="nav-number">1.1.15.</span> <span class="nav-text">下面是obvilious path-oram对于path-oram的改进。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E6%A3%B5R%E6%A0%91%E6%BB%A1%E8%B6%B3%E5%A6%82%E4%B8%8B%E7%9A%84%E6%80%A7%E8%B4%A8%EF%BC%9A"><span class="nav-number">1.1.16.</span> <span class="nav-text">一棵R树满足如下的性质：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#K-means%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95%EF%BC%9A-1"><span class="nav-number">1.1.17.</span> <span class="nav-text">K-means聚类算法：</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
